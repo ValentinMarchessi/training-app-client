@@ -21,7 +21,7 @@ export const listInfo = [
     },
 ]
 
-export const listNoticias = [
+export const listNews = [
     {
         id: 1,
         img: "https://www.salta.gob.ar/public/images/noticias/thumbs/75446-la-actividad-fisica-es-un-pilar-fundamental-en-la-salud-de-las-personas.jpeg",
