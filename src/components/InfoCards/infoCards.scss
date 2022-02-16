@@ -1,0 +1,40 @@
+//IMPORT PALETA DE COLORES
+@use "../../config/color/configColors.scss" as c;
+
+.contentCards {
+  width: 496px;
+  height: 736px;
+  padding-left: 96px;
+  //   margin-left: 96px;
+  border-left: 3px solid c.$color-white;
+
+  .cardRutes {
+    position: relative;
+    display: block;
+    width: 496px;
+    height: 136px;
+    border: 3px solid c.$color-button-bg;
+    border-radius: 10px;
+    margin-bottom: 46px;
+    overflow: hidden;
+
+    .imgCardRutes {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .contetTitleInfo {
+      width: 250px;
+      height: 45px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      font-size: 30px;
+      font-weight: bold;
+      margin-top: 5px;
+      margin-left: 15px;
+      color: c.$color-white;
+    }
+  }
+}
