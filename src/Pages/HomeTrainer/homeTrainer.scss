@@ -1,0 +1,51 @@
+//IMPORT PALETA DE COLORES
+@import "../../config/color/configColors.scss";
+
+.contentHomeTrainer {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  //TOP CONTENT
+  .topBarContainer {
+    width: 100%;
+    height: 120px;
+    position: sticky;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    background: $color-white;
+
+    .leftItem {
+      flex: 80%;
+      display: flex;
+      justify-content: start;
+      align-items: flex-end;
+      background: red;
+    }
+
+    //CONTENEDOR DE IMG Y HAMBURGER
+    .rightItem {
+      flex: 20%;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      background: blue;
+
+      .contentImg {
+        flex: 50;
+      }
+      .contentMenu {
+        flex: 50;
+      }
+    }
+  }
+
+  //TOP CONTENT
+  .downContainer {
+    width: 100%;
+    height: 80%;
+    background: $color-black;
+  }
+}
