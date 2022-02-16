@@ -7,6 +7,9 @@ import reportWebVitals from "./reportWebVitals";
 import store from "./Redux/store/store";
 import { Provider } from "react-redux";
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
+//COMPONENTS
+import Settings from './Pages/Settings/Settings'
+
 
 /* Page Components */
 import App from './App';
@@ -17,6 +20,7 @@ ReactDOM.render(
 		  <BrowserRouter>
 			  <Routes>
 				  <Route path="/" element={<App />} />
+				  <Route path="/settings" element={<Settings />} />
 			  </Routes>
 		  </BrowserRouter>
     </Provider>

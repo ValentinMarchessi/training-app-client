@@ -1,0 +1,47 @@
+@use "../../config/color/configColors.scss" as colors; 
+
+.container{
+    text-align: left;
+
+    span{
+        color:white;
+        margin-bottom: 20px;
+    }
+
+    .select{
+        width: 100%;
+        min-width: 15ch;
+        max-width: 20ch;
+        line-height: 1.1;
+        display:grid;
+        grid-template-areas: "select";
+        align-items: center;
+    
+        select{
+            color:white;
+            z-index: 2;
+            height: 40px;
+            background-color: transparent;
+            border: 2px solid colors.$color-secondary-bg;
+            border-radius: 10px;
+            appearance: none;
+            padding-left: 10px;
+
+            option{
+                color:black;
+            }
+        }
+    
+        &:after{
+            content: url('https://api.iconify.design/simple-line-icons/arrow-down.svg?color=%233f59b8');
+            width: 1.8em;
+            height: 1em;
+            justify-self: end;
+        }
+    
+        select,
+        &:after{
+            grid-area: select;
+        }
+    }
+}
