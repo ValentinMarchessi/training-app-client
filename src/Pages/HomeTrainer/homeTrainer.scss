@@ -1,0 +1,294 @@
+//IMPORT PALETA DE COLORES
+@use "../../config/color/configColors.scss" as c;
+
+.contentHomeTrainer {
+  width: 1920;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  //TOP CONTENT
+  .topBarContainer {
+    width: 1920px;
+    height: 120px;
+    position: sticky;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    background: c.$color-primary-bg;
+    z-index: 99;
+
+    .leftItems {
+      flex: 80%;
+      display: flex;
+      justify-content: start;
+      align-items: center;
+      flex-direction: row;
+      //   background: red;
+
+      .homeItem {
+        width: 50px;
+        height: 50px;
+        margin-left: 69px;
+        color: c.$color-white;
+      }
+      .page {
+        font-size: 30px;
+        font-weight: bold;
+        color: c.$color-white;
+      }
+    }
+
+    //CONTENEDOR DE IMG Y HAMBURGER
+    .rightItems {
+      position: relative;
+      flex: 20%;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      //   background: blue;
+
+      .contentImg {
+        flex: 50;
+        display: flex;
+        justify-content: end;
+
+        .avatarNavbar {
+          width: 110px;
+          height: 99px;
+          margin-right: 40px;
+          border-radius: 100%;
+        }
+      }
+      .contentMenu {
+        position: relative;
+        height: 100%;
+        margin-left: 0px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        .hamburgerItem {
+          width: 57px;
+          height: 52px;
+          color: c.$color-white;
+          margin-right: 36px;
+          cursor: pointer;
+        }
+
+        //SETING
+        .contentSeting {
+          position: absolute;
+          bottom: -240%;
+          left: -130%;
+          width: 237px;
+          height: 282px;
+          border-radius: 10px;
+          background-color: c.$color-secondary-bg;
+          opacity: 0;
+
+          .triangle {
+            width: 30px;
+            height: 30px;
+            position: inherit;
+            top: -10%;
+            left: 60%;
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            background-color: c.$color-secondary-bg;
+          }
+
+          .contentList {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            flex-direction: column;
+            // background-color: red;
+
+            .itemList {
+              width: 184px;
+              height: 46px;
+              display: flex;
+              flex-direction: row;
+              margin-top: 38px;
+
+              .iconItems {
+                width: 46px;
+                height: 46px;
+                color: c.$color-white;
+              }
+
+              .textSeting {
+                width: 131px;
+                height: 37px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: c.$color-white;
+                font-size: 30px;
+                font-weight: bold;
+              }
+            }
+          }
+        }
+        .active {
+          opacity: 1;
+          z-index: 999;
+        }
+      }
+    }
+  }
+
+  //BOTTON CONTENT
+  .downContainer {
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-self: start;
+    flex-direction: row;
+    background: c.$color-primary-bg;
+
+    //CONTENEDOR NEWS
+    .leftContain {
+      width: 60%;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background-color: c.$color-primary-bg;
+
+      .contentTitle {
+        width: 100%;
+        height: 50px;
+        display: flex;
+        justify-content: start;
+        margin-left: 96px;
+        margin-bottom: 23px;
+
+        .titleNews {
+          width: 229px;
+          height: 50px;
+          font-size: 30px;
+          color: c.$color-white;
+          font-weight: bold;
+          letter-spacing: 20px;
+          border-bottom: 6px solid c.$color-button-bg;
+
+          .titleNews {
+            padding-left: 10px;
+          }
+        }
+      }
+
+      .contentCardsNews {
+        width: 800px;
+        height: 700px;
+        margin-left: 94px;
+        overflow-x: hidden;
+        overflow-y: scroll;
+        &::-webkit-scrollbar {
+          display: none;
+        }
+
+        .cardNews {
+          position: relative;
+          display: block;
+          width: 738px;
+          height: 298px;
+          border: 3px solid c.$color-button-bg;
+          margin-bottom: 75px;
+          overflow: hidden;
+
+          .imgCardNews {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+
+          .contentTitleNews {
+            width: 250px;
+            height: 45px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: start;
+            align-items: flex-start;
+            font-size: 30px;
+            font-weight: bold;
+            margin-top: 23px;
+            margin-left: 42px;
+            color: c.$color-white;
+          }
+        }
+      }
+    }
+
+    .rightContain {
+      width: 40%;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background-color: c.$color-primary-bg;
+
+      .contentTitle {
+        width: 100%;
+        height: 50px;
+        display: flex;
+        justify-content: start;
+        margin-left: 96px;
+        margin-bottom: 35px;
+
+        .titleInfo {
+          width: 229px;
+          height: 50px;
+          font-size: 30px;
+          color: c.$color-white;
+          font-weight: bold;
+          letter-spacing: 20px;
+          border-bottom: 6px solid c.$color-button-bg;
+        }
+      }
+
+      .contentCards {
+        width: 496px;
+        height: 736px;
+        padding-left: 96px;
+        // margin-left: 96px;
+        border-left: 3px solid c.$color-white;
+
+        .cardRutes {
+          position: relative;
+          display: block;
+          width: 496px;
+          height: 136px;
+          border: 3px solid c.$color-button-bg;
+          border-radius: 10px;
+          margin-bottom: 46px;
+          overflow: hidden;
+
+          .imgCardRutes {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+
+          .contetTitleInfo {
+            width: 250px;
+            height: 45px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            font-size: 30px;
+            font-weight: bold;
+            margin-top: 5px;
+            margin-left: 15px;
+            color: c.$color-white;
+          }
+        }
+      }
+    }
+  }
+}

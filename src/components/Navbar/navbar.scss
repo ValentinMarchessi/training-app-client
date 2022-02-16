@@ -1,0 +1,21 @@
+//IMPORT PALETA DE COLORES
+@import "../../config/color/configColors.scss";
+
+.topBarContainer {
+  width: 100%;
+  height: 120px;
+  position: sticky;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  background: $color-white;
+
+  .leftItem {
+    flex: 80%;
+    background: red;
+  }
+  .rightItem {
+    flex: 20%;
+    background: blue;
+  }
+}
