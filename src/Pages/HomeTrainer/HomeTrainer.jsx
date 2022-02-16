@@ -3,6 +3,7 @@ import './homeTrainer.scss'
 
 import { listInfo, listNoticias } from '../../data'
 import Navbar from '../../components/Navbar/Navbar'
+import InfoCards from '../../components/InfoCards/InfoCards'
 
 const HomeTrainer = () => {
     return (
@@ -32,16 +33,15 @@ const HomeTrainer = () => {
                             INFO
                         </div>
                     </div>
-                    <div className="contentCards">
-                        {
-                            listInfo.map(data => (
-                                <div className="cardRutes" style={{ zIndex: '1' }}>
-                                    <img className='imgCardRutes' src={data.img} alt={data.title} />
-                                    <div className="contetTitleInfo">{data.title}</div>
-                                </div>
-                            ))
-                        }
-                    </div>
+                    {
+                        listInfo.map(data => (
+                            <InfoCards
+                                key={data.title}
+                                title={data.title}
+                                img={data.img}
+                            />
+                        ))
+                    }
                 </div>
             </div>
         </div>
