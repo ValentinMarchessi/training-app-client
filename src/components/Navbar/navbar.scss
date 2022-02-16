@@ -1,21 +1,136 @@
 //IMPORT PALETA DE COLORES
-@import "../../config/color/configColors.scss";
+@use "../../config/color/configColors.scss" as c;
 
+//TOP CONTENT
 .topBarContainer {
-  width: 100%;
+  width: 1920px;
   height: 120px;
   position: sticky;
   display: flex;
   justify-content: space-between;
   flex-direction: row;
-  background: $color-white;
+  background: c.$color-primary-bg;
+  z-index: 99;
 
-  .leftItem {
+  .leftItems {
     flex: 80%;
-    background: red;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: row;
+    //   background: red;
+
+    .homeItem {
+      width: 50px;
+      height: 50px;
+      margin-left: 69px;
+      color: c.$color-white;
+    }
+    .page {
+      font-size: 30px;
+      font-weight: bold;
+      color: c.$color-white;
+    }
   }
-  .rightItem {
+
+  //CONTENEDOR DE IMG Y HAMBURGER
+  .rightItems {
+    position: relative;
     flex: 20%;
-    background: blue;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    //   background: blue;
+
+    .contentImg {
+      flex: 50;
+      display: flex;
+      justify-content: end;
+
+      .avatarNavbar {
+        width: 110px;
+        height: 99px;
+        margin-right: 40px;
+        border-radius: 100%;
+      }
+    }
+    .contentMenu {
+      position: relative;
+      height: 100%;
+      margin-left: 0px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+
+      .hamburgerItem {
+        width: 57px;
+        height: 52px;
+        color: c.$color-white;
+        margin-right: 36px;
+        cursor: pointer;
+      }
+
+      //SETING
+      .contentSeting {
+        position: absolute;
+        bottom: -240%;
+        left: -130%;
+        width: 237px;
+        height: 282px;
+        border-radius: 10px;
+        background-color: c.$color-secondary-bg;
+        opacity: 0;
+
+        .triangle {
+          width: 30px;
+          height: 30px;
+          position: inherit;
+          top: -10%;
+          left: 60%;
+          clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+          background-color: c.$color-secondary-bg;
+        }
+
+        .contentList {
+          width: 100%;
+          height: 100%;
+          display: flex;
+          justify-content: start;
+          align-items: center;
+          flex-direction: column;
+          // background-color: red;
+
+          .itemList {
+            width: 184px;
+            height: 46px;
+            display: flex;
+            flex-direction: row;
+            margin-top: 38px;
+
+            .iconItems {
+              width: 46px;
+              height: 46px;
+              color: c.$color-white;
+            }
+
+            .textSeting {
+              width: 131px;
+              height: 37px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              color: c.$color-white;
+              font-size: 30px;
+              font-weight: bold;
+            }
+          }
+        }
+      }
+      .active {
+        opacity: 1;
+        z-index: 999;
+      }
+    }
   }
 }
