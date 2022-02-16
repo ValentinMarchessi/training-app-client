@@ -1,9 +1,13 @@
-@forward './Pages/Settings/Settings.module.scss';
+@forward "./Pages/Settings/Settings.module.scss";
 
-html, body{
-  background-color: #2E2C3B;
+html,
+body {
+  background-color: #2e2c3b;
   height: 100vh;
   width: 100vw;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 .App {
