@@ -1,8 +1,9 @@
+@import '../../config/color/configColors.scss';
+
 .landingContainer{
     width: 100%;
     height: 100%;
     position: relative;
-    overflow: hidden;
 }
 
 .background{
@@ -22,16 +23,16 @@
     color:white;
     font-size: 50px;
     font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
+    font-weight: 700;
 }
 
 .choices{
     display: flex;
     flex-direction: row;
     position: absolute;
-    right:26px;
+    right:150px;
     top:43px;
-    width: 30%;
+    width: 450px;
     align-items: center;
     justify-content: space-evenly;
     h1{
@@ -40,9 +41,29 @@
         font-family: 'Montserrat', sans-serif;
         font-weight: 600;
         margin:0;
+        border:10px solid transparent;
+        transition:.35s;
     }
     hr{
         height: 50px;
         margin: 0;
     }
+}
+
+#form{
+    width: 500px;
+    height: 80%;
+    overflow: hidden;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    top:150px;
+    bottom:10%;
+    right:126px;
+    scroll-behavior: smooth;
+}
+
+#signUpText{
+    border-bottom: 10px solid $color-button-bg;
 }
