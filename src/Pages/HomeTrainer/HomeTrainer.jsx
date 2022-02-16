@@ -1,8 +1,9 @@
 import React from 'react'
 import './homeTrainer.scss'
 
-import { listInfo, listNoticias } from '../../data'
+import { listInfo, listNews } from '../../data'
 import Navbar from '../../components/Navbar/Navbar'
+import NewsCards from '../../components/NewsCards/NewsCards'
 
 const HomeTrainer = () => {
     return (
@@ -16,14 +17,13 @@ const HomeTrainer = () => {
                         </div>
                     </div>
                     <div className="contentCardsNews">
-                        {
-                            listNoticias.map(data => (
-                                <div className="cardNews">
-                                    <img className='imgCardNews' src={data.img} alt={data.title} />
-                                    <div className="contentTitleNews">{data.title}</div>
-                                </div>
-                            ))
-                        }
+                        {listNews.map(data => (
+                            <NewsCards
+                                key={data.title}
+                                title={data.title}
+                                img={data.img}
+                            />
+                        ))}
                     </div>
                 </div>
                 <div className="rightContain">
