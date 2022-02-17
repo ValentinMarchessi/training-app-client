@@ -1,0 +1,51 @@
+.info{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    text-align:left;
+
+    h1{
+        font-size: 25px;
+        font-style: normal;
+        font-weight: 500;
+    }
+}
+.section{
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+
+    h2{
+        font-size: 18px;
+        text-align: left;
+        font-style:italic;
+        font-weight:400;
+    }
+
+    .grid{
+        align-self: center;
+        height: 70%;
+        display: grid;
+        gap: 10px;
+    
+        #energy{
+            grid-column: 1 / span 2;
+            grid-row: 1;
+        }
+    
+        #carbs{
+            grid-column: 1;
+            grid-row: 2;
+        }
+    
+        #fats{
+            grid-column: 2;
+            grid-row: 2;
+        }
+    
+        #proteins{
+            grid-column: 3;
+            grid-row: 2;
+        }
+    }
+}

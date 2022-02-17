@@ -1,0 +1,9 @@
+$w_and_h: 60px;
+
+.avatar{
+    height: $w_and_h;
+    width: $w_and_h;
+    margin: 0 5px;
+    border-radius: 50%;
+    object-fit: cover;
+}
