@@ -1,0 +1,10 @@
+@use "../../config/color/configColors.scss" as c;
+@use "../../config/fontSize/configFontSize.scss" as f;
+
+.container {
+    margin: 20px auto;
+    width: 95%;
+    height: 45%;
+    background: c.$color-option2-bg;
+    border-radius: 5px;
+  }

@@ -1,0 +1,41 @@
+@use "../../config/color/configColors.scss" as c;
+@use "../../config/fontSize/configFontSize.scss" as f;
+
+.container {
+    margin: 20px auto;
+    width: 95%;
+    height: 50%;
+    background: c.$color-option2-bg;
+    border-radius: 5px;
+    display:flex;
+    flex-direction: column;
+    .containerSelect{
+      display: flex;
+      justify-content: space-evenly;
+      .containerSelectLeft{
+        margin: 20px 20px 20px 20px;
+      }
+      .containerSelectRight{
+        margin: 20px 20px 20px 20px;
+      }
+    }
+    .containerBtn{
+      position: relative;
+      margin: 20px;
+      top: -10px;
+      align-self: center;
+      button {
+        width: 70px;
+        background: c.$color-button-bg;
+        padding: 9px;
+        border: none;
+        border-radius: 5px;
+        color: c.$color-white;
+      }
+      button:hover{
+          cursor: pointer;
+          transition: .3s;
+          opacity: .8;
+      }
+    }
+  }

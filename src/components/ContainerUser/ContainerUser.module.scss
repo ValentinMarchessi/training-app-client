@@ -1,0 +1,58 @@
+@use "../../config/color/configColors.scss" as c;
+@use "../../config/fontSize/configFontSize.scss" as f;
+ 
+ //CONTENT CENTER
+ .containerContentCenter {
+    display: flex;
+    flex-direction: column;
+    background: c.$color-secondary-bg;
+    width: 50%;
+    height: 90vh;
+    margin-top: 30px;
+    border-radius: 10px;
+    .containerImg {
+      border-radius: 10px 10px 0 0;
+      position: relative;
+      overflow: hidden;
+      height: 200px;
+      img {
+        position: absolute;
+        bottom: -50px;
+        width: 100%;
+        object-fit: scale-down;
+      }
+    }
+    .containerUser {
+      display: flex;
+      justify-content: space-between;
+      img {
+        position: relative;
+        top: -25px;
+        left: 50px;
+        width: 100px;
+        height: 90px;
+        border-radius: 50%;
+        border: 5px solid c.$color-secondary-bg;
+      }
+      p {
+        position: relative;
+        left: -80px;
+        color: c.$color-white;
+      }
+      input {
+        height: 30px;
+        background: c.$color-secondary-bg;
+        color: c.$color-fonts-highlight-error;
+        border: 1px solid c.$color-fonts-highlight-error;
+        border-radius: 4px;
+        margin: 15px 25px 0 0;
+      }
+      input:hover {
+          transition: .3s;
+          cursor: pointer;
+        background: c.$color-fonts-highlight-error;
+        color: c.$color-white;
+      }
+    }
+    
+  }
