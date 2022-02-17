@@ -2,10 +2,91 @@
 @use "../../config/fontSize/configFontSize.scss" as f;
 
 .container {
-    margin: 20px auto;
-    width: 95%;
-    height: 45%;
-    background: c.$color-option2-bg;
-    border-radius: 5px;
-  
+  margin: 20px auto;
+  width: 95%;
+  height: 45%;
+  background: c.$color-option2-bg;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-around;
+  .containerCard {
+    display: flex;
+    flex-direction: column;
+    .contentCard {
+      display: flex;
+      .contentCardLeft {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        img {
+          margin: 10px;
+          width: 50px;
+        }
+      }
+      .contentCardRight {
+        display: flex;
+        flex-direction: column;
+        p {
+          margin: 15px;
+          color: c.$color-white;
+        }
+        p:hover {
+          cursor: pointer;
+          text-decoration: underline;
+          transition: 0.3s;
+        }
+      }
+    }
+    button {
+      margin: 10px;
+      background: c.$color-button-bg;
+      padding: 9px;
+      border: none;
+      border-radius: 5px;
+      color: c.$color-white;
+    }
+    button:hover {
+      cursor: pointer;
+      transition: 0.3s;
+      opacity: 0.8;
+    }
   }
+  .containerCart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: c.$color-secondary-bg;
+    margin: 15px 0;
+    width: 35%;
+    border-radius: 15px;
+    h4 {
+      color: c.$color-white;
+      margin: 0;
+    }
+    .contentCart {
+      display: flex;
+      justify-content: space-around;
+      width: 100%;
+      .contentCartLeft {
+        color: c.$color-white;
+      }
+      .contentCartRight {
+        color: c.$color-white;
+      }
+    }
+    button {
+      margin: 10px;
+      background: c.$color-button-bg;
+      padding: 9px;
+      border: none;
+      border-radius: 5px;
+      color: c.$color-white;
+    }
+    button:hover {
+      cursor: pointer;
+      transition: 0.3s;
+      opacity: 0.8;
+    }
+  }
+}
