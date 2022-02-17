@@ -1,13 +1,18 @@
-
+import React from 'react'
+import { Routes, Route } from 'react-router-dom';
 import "./App.scss";
-// import Landing from "./Pages/Landing/Landing";
+import Landing from "./Pages/Landing/Landing";
 import HomeTrainer from './Pages/HomeTrainer/HomeTrainer'
+import Settings from './Pages/Settings/Settings'
 
 function App() {
     return (
         <div className="App">
-            <HomeTrainer />
-            {/* <Landing /> */}
+            <Routes>
+                <Route path='/' element={<Landing />} />
+                <Route path='/home' element={<HomeTrainer />} />
+                <Route path='/settings' element={<Settings />} />
+            </Routes>
         </div>
     );
 }

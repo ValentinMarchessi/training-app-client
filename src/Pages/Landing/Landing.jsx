@@ -5,6 +5,7 @@ import test2 from '../../assets/images/carrousel2.jpg'
 import './Landing.scss'
 import AuthForm from '../../components/Form/AuthForm/Form'
 import autoScroll from '../../helpers/autoScroll/autoScroll' // Documentación en el .js
+import { Link } from 'react-router-dom'
 
 export default function LandingPage(){
     
@@ -24,6 +25,8 @@ export default function LandingPage(){
                 <img className='background' src={test1} alt='2'/>
                 <img className='background' src={test2} alt='3'/>
             </div>
+
+            <Link to='/home'><div id='guest'>Continue as guest</div></Link>
             
             <div className='choices'>
                 <h1 id='signUpText' onClick={()=>{

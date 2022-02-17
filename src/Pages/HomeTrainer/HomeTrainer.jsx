@@ -13,14 +13,12 @@ const HomeTrainer = () => {
             <div className="downContainer">
                 <div className="leftContain">
                     <div className="contentTitle">
-                        <div className="contentTitle" >
-                            <span className="titleNews" >PANEL</span>
-                        </div>
+                        <span className="titleNews" >PANEL</span>
                     </div>
                     <div className="contentCardsNews">
-                        {listNews.map(data => (
+                        {listNews.map((data,i) => (
                             <NewsCards
-                                key={data.title}
+                                key={i}
                                 title={data.title}
                                 img={data.img}
                             />
@@ -33,15 +31,17 @@ const HomeTrainer = () => {
                             INFO
                         </div>
                     </div>
-                    {
-                        listInfo.map(data => (
-                            <InfoCards
-                                key={data.title}
-                                title={data.title}
-                                img={data.img}
-                            />
-                        ))
-                    }
+                    <div className='infoCards'>
+                        {listInfo.map(data => (
+                                <InfoCards
+                                    key={data.title}
+                                    title={data.title}
+                                    img={data.img}
+                                />
+                            ))
+                        }
+                    </div>
+                    
                 </div>
             </div>
         </div>
