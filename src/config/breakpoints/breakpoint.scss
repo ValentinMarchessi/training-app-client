@@ -5,3 +5,15 @@
         @content;
     }
 }
+
+@mixin phoneL {
+    @media (max-width:500px){
+        
+    }
+}
+
+@mixin phoneM {
+    @media (max-width:400px){
+        
+    }
+}
