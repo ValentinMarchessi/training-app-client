@@ -21,7 +21,7 @@ export default function ContainerUser() {
         <p>User Name</p>
         <input type="button" value="Delete account" />
       </div>
-      <HistoryUser/>
+      <PaymentMethod/>
     </div>
   );
 }
