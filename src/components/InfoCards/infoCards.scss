@@ -2,20 +2,17 @@
 @use "../../config/color/configColors.scss" as c;
 
 .contentCards {
-  width: 496px;
-  height: 736px;
-  padding-left: 96px;
+  width: 100%;
+  height: 20%;
   //   margin-left: 96px;
-  border-left: 3px solid c.$color-white;
+  //border-left: 3px solid c.$color-white;
 
   .cardRutes {
     position: relative;
     display: block;
-    width: 496px;
-    height: 136px;
+    height: 100%;
     border: 3px solid c.$color-button-bg;
     border-radius: 10px;
-    margin-bottom: 46px;
     overflow: hidden;
 
     .imgCardRutes {

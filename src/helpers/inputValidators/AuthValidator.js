@@ -1,7 +1,5 @@
 export default function validate(input) {
-    let errors = {
-
-    };
+    let errors = {};
 
     if (!input.username) errors.username = 'Username required';
     else if (input.username.length<5) errors.username = <span>Your username must contain at least <span style={{color:'red'}}>5 characters</span></span>;
@@ -25,7 +23,5 @@ export default function validate(input) {
 
     if(input.password!==input.confirmPassword) errors.confirmPassword='Your passwords don\'t match'
     
-
-
     return errors
   };

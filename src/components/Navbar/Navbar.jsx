@@ -10,7 +10,10 @@ import Avatar from '../../assets/images/dep.jpg'
 const Navbar = () => {
     const [active, setActive] = useState(false)
 
+    const user = null
+
     const handleClick = () => {
+        console.log(1)
         setActive(!active)
     }
     return (
@@ -19,15 +22,14 @@ const Navbar = () => {
                 <HomeIcon className="homeItem" />
                 <span className="page" >Inicio</span>
             </div>
+            {user?
             <div className="rightItems">
-                <div className="contentImg">
+                <div>
                     <img className="avatarNavbar" src={Avatar} alt="" />
                 </div>
                 <div className="contentMenu">
                     <MenuIcon onClick={handleClick} className="hamburgerItem" />
-                    <div
-                        id="contentSeting"
-                        className={active ? "contentSeting active" : "contentSeting"}>
+                    <div id="contentSeting" className={active ? "contentSeting active" : "contentSeting"}>
                         <div className="triangle" />
                         <div className="contentList">
                             <div className="itemList">
@@ -46,6 +48,15 @@ const Navbar = () => {
                     </div>
                 </div>
             </div>
+            :<div className='guest'>
+                <div className='buttonA'>
+                    Sign up
+                </div>
+                <div className='buttonA'>
+                    Log in
+                </div>
+            </div>}
+            
         </div>
     )
 }

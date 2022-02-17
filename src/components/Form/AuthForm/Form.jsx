@@ -102,7 +102,7 @@ export default function AuthForm({method}){
                 </div>
             </div>
             {method==='register'
-                ?   <p style={{position:'absolute', bottom:0, left:0, right:0}}>
+                ?   <p style={{position:'absolute', bottom:0, left:0, right:0 , textAlign:'center'}}>
                         Already got an account? <span style={{color:'#2B73FF', cursor:'pointer'}} onClick={()=>{
                             autoScroll('form', 'right')
                             document.getElementById('logInText').style.borderBottom='10px solid #3f59b8'
@@ -112,7 +112,7 @@ export default function AuthForm({method}){
                         </span>
                     </p>
 
-                :   <p style={{position:'absolute', bottom:0, left:0, right:0}}>
+                :   <p style={{position:'absolute', bottom:0, left:0, right:0, textAlign:'center'}}>
                         Don't have an account yet? <span style={{color:'#2B73FF', cursor:'pointer'}} onClick={()=>{
                             autoScroll('form', 'left')
                             document.getElementById('signUpText').style.borderBottom='10px solid #3f59b8'
