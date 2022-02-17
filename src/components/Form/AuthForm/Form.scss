@@ -18,24 +18,46 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top:40px;
+    padding-top:30px;
     div{
         width: 90%;
         position:relative;
         display: flex;
+        flex-direction: column;
+        margin:1vh;
+        div{
+            width: 100%;
+            margin:0vh;
+        }
         img{
             position:absolute;
-            top:16px;
-            left:20px;
-            width: 50px;
+            top:50%;
+            transform: translateY(-50%);
+            left:10px;
+            height: calc(90% - 6px)
         }
         input{
             width: 100%;
         }
+        span{
+            color: $color-fonts-grayed-out;
+            font-weight: 400;
+            font-family: 'Montserrat', sans-serif;
+            text-align: end;
+            transition: 1s;
+        }
+        .active{
+            height: 19px;
+            opacity:1;
+        }
+        .inactive{
+            height:0;
+            opacity:0
+        }
     }
     input{
-        height: 55px;
-        margin:10px;
+        height: 7vh;
+        box-sizing: border-box;
         border-radius: 10px;
         border: 3px solid $color-form-stroke;
         background-color: transparent;
@@ -55,13 +77,25 @@
             align-items: center;
         }
     }
-    .submitForm{
+    .ready{
         background-color:$color-button-bg;
         border:0;
+        width: 70%;
+        align-self: center;
         box-sizing: content-box;
-        font-size: 40px;
-        height: 90px;
+        font-size: 30px;
+        height: 60px;
+        transition: 1s;
+        opacity:1;
         cursor: pointer;
+    }
+
+
+    .unready{
+        transition: 1s;
+        height: 0;
+        border:0;
+        opacity:0;
     }
 }
 
