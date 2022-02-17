@@ -6,8 +6,8 @@ export default function Select({ options, label, callback }) {
             <span>{label}</span>
             <div className={style.select}>
                 <select onChange={callback}>
-                    <option value="" selected disabled hidden>Selección</option>
-                    {options.map(e => <option value={e}>{e}</option>)}
+                    <option selected disabled hidden>Selección</option>
+                    {options.map((e,index) => <option key={index} value={e}>{e}</option>)}
                 </select>
             </div>
         </div>
