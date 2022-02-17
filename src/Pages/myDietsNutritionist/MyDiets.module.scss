@@ -1,0 +1,61 @@
+.page{
+    margin-top: 40px;
+    width: 90vw;
+    h1,h2,h3,h4,p,span{
+    font-family: "Montserrat";
+    margin: 0;
+    height: fit-content;
+    }
+
+    .header{
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 40px;
+
+        .breadcrumbs{
+            width: 200px;
+            display:flex;
+            flex-direction:row;
+            align-items: center;
+            gap: 10px;            
+            text-align: left;
+            #icon{
+                height: 30px;
+            }
+            h1{
+                font-size: 25px;
+                font-weight: 700;
+                font-style: normal;
+            }
+            hr{
+                margin: 0 2px;
+                height: 40px;
+            }
+        }
+
+        #close{
+            width: 40px;
+        }
+    }
+
+    .body{
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        #myPlans{
+            width: fit-content;
+            border-bottom: 2px solid gray;
+        }
+
+        .plans{
+            max-height: 400px;
+            display: flex;
+            padding: 10px;
+            gap: 20px;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+    }
+}
