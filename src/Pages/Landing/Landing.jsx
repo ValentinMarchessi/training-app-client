@@ -1,15 +1,30 @@
 import React, { useEffect } from 'react'
 import background from '../../assets/images/landingBackground.png'
+import test1 from '../../assets/images/carrousel1.jpg'
+import test2 from '../../assets/images/carrousel2.jpg'
 import './Landing.scss'
-import AuthForm from '../../components/Form/RegisterForm/Form'
-import autoScroll from '../../helpers/autoScroll' // Documentación en el .js
+import AuthForm from '../../components/Form/AuthForm/Form'
+import autoScroll from '../../helpers/autoScroll/autoScroll' // Documentación en el .js
 
 export default function LandingPage(){
+    
+    useEffect(()=>{
+        setTimeout(() => { 
+            autoScroll('carrousel', 'right', 'loop', 2)//Hace el carrusel. Se bugea un poco, por ahí después lo cambie
+        }, 1000);
+        window.addEventListener('resize', ()=>autoScroll())
+    },[])
 
     return(
         <div className='landingContainer'>
             <h1 className='title'>Training app</h1>
-            <img className='background' src={background} alt='background'/>
+
+            <div id='carrousel'>
+                <img className='background' src={background} alt='1'/>
+                <img className='background' src={test1} alt='2'/>
+                <img className='background' src={test2} alt='3'/>
+            </div>
+            
             <div className='choices'>
                 <h1 id='signUpText' onClick={()=>{
                     autoScroll('form', 'left')
