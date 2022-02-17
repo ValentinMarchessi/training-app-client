@@ -1,0 +1,7 @@
+//breakpoints para mobil
+
+@mixin tabletL {
+    @media (max-width:1000px) {
+        @content;
+    }
+}

@@ -1,22 +1,16 @@
 @forward "./Pages/Settings/Settings.module.scss";
 
-html,
-body {
+html, body {
   background-color: #2e2c3b;
-  height: 100vh;
-  width: 100vw;
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+  height: 100%;
+}
+
+:root{
+  height: 100%;
 }
 
 .App {
-  text-align: center;
   height: 100vh;
-  width: 100vw;
-  display: flex;
-  justify-content: center;
-  align-items: start;
 }
 
 .App-logo {

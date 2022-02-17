@@ -3,7 +3,7 @@
 
 //TOP CONTENT
 .topBarContainer {
-  width: 1920px;
+  width: 100%;
   height: 120px;
   position: sticky;
   display: flex;
@@ -12,8 +12,32 @@
   background: c.$color-primary-bg;
   z-index: 99;
 
+  .guest{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 300px;
+    .buttonA{
+      display: flex;
+      justify-content: center;
+      background-color:c.$color-button-bg;
+      border:0;
+      width: 40%;
+      align-self: center;
+      box-sizing: content-box;
+      font-size: 30px;
+      height: 60px;
+      transition: 1s;
+      opacity:1;
+      cursor: pointer;
+      border-radius: 10px;
+      color:white;
+      line-height: 55px;
+  }
+  }
+
   .leftItems {
-    flex: 80%;
     display: flex;
     justify-content: start;
     align-items: center;
@@ -35,25 +59,26 @@
 
   //CONTENEDOR DE IMG Y HAMBURGER
   .rightItems {
-    position: relative;
-    flex: 20%;
+    right:0;
     display: flex;
     justify-content: center;
-    align-items: flex-end;
-    //   background: blue;
+    margin:10px;
+    align-items: center;
 
-    .contentImg {
-      flex: 50;
-      display: flex;
-      justify-content: end;
-
-      .avatarNavbar {
-        width: 110px;
-        height: 99px;
-        margin-right: 40px;
-        border-radius: 100%;
-      }
+    div{
+      height: 100%;
+      width: 50%;
+      margin: 0;
     }
+
+    .avatarNavbar {
+        height: 100%;
+        width: 100%;
+        border-radius: 100%;
+        margin:0;
+        object-fit: cover;
+    }
+
     .contentMenu {
       position: relative;
       height: 100%;
@@ -67,46 +92,44 @@
         width: 57px;
         height: 52px;
         color: c.$color-white;
-        margin-right: 36px;
         cursor: pointer;
       }
 
       //SETING
       .contentSeting {
         position: absolute;
-        bottom: -240%;
-        left: -130%;
+        top: 110%;
+        right: 20px;
         width: 237px;
-        height: 282px;
+        height: 0px;
         border-radius: 10px;
         background-color: c.$color-secondary-bg;
-        opacity: 0;
+        transition: .7s;
 
         .triangle {
           width: 30px;
-          height: 30px;
+          height: 0px;
           position: inherit;
           top: -10%;
-          left: 60%;
+          right: 5%;
           clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
           background-color: c.$color-secondary-bg;
+          transition: .7s;
         }
 
         .contentList {
           width: 100%;
-          height: 100%;
           display: flex;
-          justify-content: start;
           align-items: center;
           flex-direction: column;
-          // background-color: red;
+          justify-content: space-evenly;
+          overflow: hidden;
 
           .itemList {
             width: 184px;
             height: 46px;
             display: flex;
             flex-direction: row;
-            margin-top: 38px;
 
             .iconItems {
               width: 46px;
@@ -128,8 +151,14 @@
         }
       }
       .active {
-        opacity: 1;
         z-index: 999;
+        height: 282px;
+        transition: .7s;
+        .triangle{
+          height: 30px;
+          transition: .7s;
+        }
+
       }
     }
   }
