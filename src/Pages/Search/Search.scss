@@ -1,0 +1,10 @@
+@use '../../config/color/configColors.scss' as Colors;
+@use '../../config/fontSize/configFontSize.scss' as FontSize;
+@use '../../config/mixins' as Mixins;
+
+.searchContainer{
+    background-color: Colors.$color-primary-bg;
+    display: flex;
+    flex-wrap:wrap;
+    justify-content: space-around;
+}
