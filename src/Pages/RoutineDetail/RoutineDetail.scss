@@ -1,0 +1,75 @@
+@use '../../config/color/configColors.scss' as Colors;
+@use '../../config/fontSize/configFontSize.scss' as FontSize;
+@use '../../config/mixins' as Mixins;
+
+.routineDetailContainer{
+    color:white;
+}
+
+#userInfo{
+    img{
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+    }
+    p{
+        margin:0;
+    }
+    font-weight: 600;
+    color:white;
+    display: flex;
+    gap:15px;
+}
+
+#merit{
+    display:flex;
+    flex-direction: row;
+    gap: 5px;
+    p{
+        margin:0;
+    }
+    #rating{
+        font-weight: bold;
+        color: #FBCB22;
+        *{
+            width: 1rem;
+            height: 1rem;
+        }
+    }
+}
+
+.subtle{
+    font-weight: lighter;
+    color: #AFAFAF;
+}
+
+#mainDisplay{
+    width: 50%;
+}
+
+#mainInfo{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#costInfo{
+    background-color: Colors.$color-secondary-bg;
+    color:white;
+    padding:20px;
+    display: flex;
+}
+
+#profile{
+    border:0;
+    background-color: Colors.$color-button-bg;
+    color:white;
+    font-weight: 600;
+    padding:10px;
+    border-radius: 10px;
+}
+
+.footer{
+    display: flex;
+    flex-direction: column;
+    gap:5px;
+}
