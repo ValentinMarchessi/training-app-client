@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import { Link } from 'react-router-dom'
 import './Form.scss'
 import google from '../../../assets/images/google.png'
 import facebook from '../../../assets/images/facebook.png'
@@ -87,11 +88,11 @@ export default function AuthForm({method}){
                     </div>
                 :   null}
                 
-                <div style={{alignItems: 'center'}}>
-                    
-                <input className={method==='register'?((Object.keys(errors).length||formData.empty)?'unready':'ready'):'ready'} style={{textIndent:0}} type='submit' value={string}/>
-                </div>
-                
+                    <div style={{alignItems: 'center'}}>
+                        <Link to={method==='register'?'/newUser':'/home'} style={{width:'100%', display:'flex', justifyContent:'center', textDecoration:'none'}}>
+                            <input className={method==='register'?((Object.keys(errors).length||formData.empty)?'unready':'ready'):'ready'} style={{textIndent:0}} type='submit' value={string}/>
+                        </Link>
+                    </div>
             </form>
             <div className='mediaAuth'>
                 <p>Or {method==='register'?'sign up':'log in'} with your social media</p>

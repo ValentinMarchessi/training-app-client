@@ -1,75 +1,35 @@
-import React from 'react'
-import './home.scss'
-import { listInfo, listNews, listNewUser, listDisableUser } from '../../data'
-import Navbar from '../../components/Navbar/Navbar'
-import NewsCards from '../../components/NewsCards/NewsCards'
-import InfoCards from '../../components/InfoCards/InfoCards'
-import NewUserCards from '../../components/NewUserCards/NewUserCards'
+import React from 'react';
+import './home.scss';
+import { listInfo, listNews, listNewUser } from '../../data';
+import Navbar from '../../components/Navbar/Navbar';
+import NewsCard from '../../components/NewsCard/NewsCard';
+import InfoCard from '../../components/InfoCard/InfoCard';
+import CardContainer from '../../components/CardContainer/CardContainer.jsx';
 
 const Home = () => {
-    const user = null;
+    const user = true;
 
     return (
-        <div className='contentHomeTrainer'>
+        <div className="contentHomeTrainer">
             <Navbar user={user} />
             <div className="downContainer">
                 <div className="leftContain">
                     <div className="contentTitle">
-                        <span className="titleNews" >PANEL</span>
+                        <span className="titleNews">PANEL</span>
                     </div>
-                    <div className="contentCardsNews">
-                        {listNews.map((data, i) => (
-                            <NewsCards
-                                key={i}
-                                title={data.title}
-                                img={data.img}
-                            />
-                        ))}
-                    </div>
+                    <CardContainer cards={listNews} CardElement={NewsCard} />
                 </div>
                 <div className="rightContain">
                     <div className="contentTitle">
-                        <div className="titleInfo" >
-                            INFO
-                        </div>
+                        <div className="titleInfo">INFO</div>
                     </div>
-                    <div className='infoCards'>
-                        {user && listInfo.map(data => (
-                            <InfoCards
-                                key={data.title}
-                                title={data.title}
-                                img={data.img}
-                            />
-                        ))
-                        }
-                    </div>
-                    <div className='infoCards'>
-                        {!user
-                            &&
-                            listNewUser.map(data => (
-                                <InfoCards
-                                    key={data.title}
-                                    title={data.title}
-                                    img={data.img}
-                                />
-                            ))
-                        }
-                        {!user
-                            &&
-                            listDisableUser.map(data => (
-                                <NewUserCards
-                                    key={data.title}
-                                    title={data.title}
-                                    img={data.img}
-                                    user={user}
-                                />
-                            ))
-                        }
+                    <div className="infoCards">
+                        <CardContainer cards={user ? listInfo : listNewUser} CardElement={InfoCard} />
                     </div>
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default Home
+export default Home;

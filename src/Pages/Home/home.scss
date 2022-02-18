@@ -47,13 +47,6 @@
           }
         }
       }
-
-      .contentCardsNews {
-        overflow-y: scroll;
-        &::-webkit-scrollbar {
-          display: none;
-        }
-      }
     }
 
     .rightContain {
@@ -80,7 +73,6 @@
         border-bottom: 6px solid c.$color-button-bg;
 
         .titleInfo {
-          width: 30%;
           height: 50px;
           font-size: 30px;
           color: c.$color-white;
