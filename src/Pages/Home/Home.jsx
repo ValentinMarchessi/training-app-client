@@ -52,7 +52,6 @@ const Home = () => {
                                     title={data.title}
                                     img={data.img}
                                 />
-
                             ))
                         }
                         {!user
@@ -64,7 +63,6 @@ const Home = () => {
                                     img={data.img}
                                     user={user}
                                 />
-
                             ))
                         }
                     </div>
