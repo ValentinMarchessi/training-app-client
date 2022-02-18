@@ -6,6 +6,7 @@ import Home from './Pages/Home/Home'
 import Settings from './Pages/Settings/Settings'
 import SignUpSequence from './Pages/SignUpSequence/SignUpSequence';
 import Routine from './Pages/Routine/Routine.jsx'
+import Routines from './Pages/Routines/Routines.jsx'
 
 function App() {
     return (
@@ -16,6 +17,7 @@ function App() {
                 <Route path='/settings' element={<Settings />} />
                 <Route path='/newUser' element={<SignUpSequence />} />
                 <Route path='/routine' element={<Routine />} />
+                <Route path='/routines' element={<Routines />} />
             </Routes>
         </div>
     );
