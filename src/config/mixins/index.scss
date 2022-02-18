@@ -2,31 +2,65 @@
 @use '../color/configColors.scss' as Colors;
 @use '../fontWeight' as FontWeight;
 
-@mixin medium-bold-font{
-    font-family: Montserrat;
-    font-size: FontSize.$font-medium;
-    font-weight: FontWeight.$bold;
+@mixin medium-bold-font {
+	font-family: Montserrat;
+	font-size: FontSize.$font-medium;
+	font-weight: FontWeight.$bold;
 }
 
-@mixin button($color){
-    @include medium-bold-font;
-    cursor: pointer;
-    color: white;
-    background-color: $color; 
-    border: hidden;
-    border-radius: 5px;
-    
-    &:active{
-        background-color: gray;
-    }
+@mixin button($color) {
+	@include medium-bold-font;
+	cursor: pointer;
+	color: white;
+	background-color: $color;
+	border: hidden;
+	border-radius: 5px;
+
+	&:active {
+		background-color: gray;
+	}
 }
 
-@mixin bold-button($color){
-    @include button($color);
-    @include medium-bold-font;
+@mixin bold-button($color) {
+	@include button($color);
+	@include medium-bold-font;
 }
 
-@mixin blue-button{
-    @include button(Colors.$color-button-bg);
-    @include medium-bold-font;
+@mixin blue-button {
+	@include button(Colors.$color-button-bg);
+	@include medium-bold-font;
+}
+
+@mixin page {
+	margin-top: 40px;
+	width: 90vw;
+	h1,
+	h2,
+	h3,
+	h4,
+	p,
+	span {
+		font-family: 'Montserrat';
+		margin: 0;
+		height: fit-content;
+	}
+}
+
+@mixin header {
+	margin: 3% 5%;
+	display: flex;
+	width: fit-content;
+	gap: 20px;
+
+	#icon{
+		height: 2.5rem;
+	}
+
+	h1,h2,h3,h4{
+		color: white;
+	}
+
+	hr {
+		margin: 0 10px;
+	}
 }
