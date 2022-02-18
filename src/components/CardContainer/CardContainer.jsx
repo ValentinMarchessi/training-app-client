@@ -1,3 +1,4 @@
+import * as React from 'react';
 import style from './CardContainer.module.scss';
 /*
     PROPS
@@ -8,6 +9,7 @@ import style from './CardContainer.module.scss';
         title: string,
         img: string (URL),
         disabled?: boolean,
+        route: string          para el elemento <Link> en la card
     }
 
     CardElement: JSX.Element
@@ -23,7 +25,7 @@ export default function CardContainer({ cards, CardElement }) {
     return (
         <div className={style.container}>
             {cards.map(card => 
-                <CardElement key={card.id} title={card.title} img={card.img} disabled={card.disabled}/>
+                <CardElement {...card}/>
             )}
         </div>
     );

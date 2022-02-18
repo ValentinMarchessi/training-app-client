@@ -7,7 +7,7 @@ import InfoCard from '../../components/InfoCard/InfoCard';
 import CardContainer from '../../components/CardContainer/CardContainer.jsx';
 
 const Home = () => {
-	const user = false;
+	const user = true;
 
 	return (
 		<div className="contentHomeTrainer">
