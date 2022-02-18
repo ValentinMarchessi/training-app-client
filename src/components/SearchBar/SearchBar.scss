@@ -1,0 +1,80 @@
+@use '../../config/color/configColors.scss' as Colors;
+@use '../../config/fontSize/configFontSize.scss' as FontSize;
+@use '../../config/mixins' as Mixins;
+
+.searchBar{
+    background-color: Colors.$color-primary-bg;
+    display: flex;
+    flex-wrap:wrap;
+    flex-direction: column;
+    justify-content: space-around;
+    align-content: center;
+    position: sticky;
+    width: 100%;
+    color:white;
+}
+
+form{
+    width: 100%;
+    display: flex;
+    justify-content: center
+}
+.searchField{
+    width: 80%;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    @media (max-width:700px) {
+        flex-direction: column;
+    }
+    >div{
+        margin:10px 0 10px 0
+    }
+}
+
+.filters{
+    width: 30%;
+    min-width: 200px;
+    display: flex;
+    justify-content: space-between;
+    @media (max-width:700px) {
+        width: 100%;
+    }
+    button{
+        background-color: Colors.$color-button-bg;
+        border:0;
+        border-radius: 10px;
+        color:white;
+        padding:10px;
+        width: 30%;
+    }
+}
+
+.searchInput{
+    display: flex;
+    width: fit-content;
+    //border: 10px;
+    //overflow: hidden;
+    height: 35px;
+    input{
+        width: 250px;
+    }
+    @media (max-width:700px) {
+        width: 100%;
+        input{
+            width: 100%;
+        }
+    }
+    *{
+        border:0;
+        outline:none;
+    }
+    #addInput{
+        border-radius: 10px 0 0 10px;
+        text-indent: 10px;
+    }
+    #submitInput{
+        width:fit-content;
+        border-radius: 0 10px 10px 0;
+    }
+}

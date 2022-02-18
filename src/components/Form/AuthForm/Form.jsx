@@ -6,8 +6,12 @@ import facebook from '../../../assets/images/facebook.png'
 import twitter from '../../../assets/images/twitter.png'
 import autoScroll from '../../../helpers/autoScroll/autoScroll'
 import validate from '../../../helpers/inputValidators/AuthValidator'
+import {useDispatch} from 'react-redux'
+//import login from 
 
 export default function AuthForm({method}){
+
+    const dispatch = useDispatch()
 
     let [formData, setFormData] = useState({
         empty:true
@@ -89,8 +93,16 @@ export default function AuthForm({method}){
                 :   null}
                 
                     <div style={{alignItems: 'center'}}>
-                        <Link to={method==='register'?'/newUser':'/home'} style={{width:'100%', display:'flex', justifyContent:'center', textDecoration:'none'}}>
-                            <input className={method==='register'?((Object.keys(errors).length||formData.empty)?'unready':'ready'):'ready'} style={{textIndent:0}} type='submit' value={string}/>
+                        <Link to={method==='register'?'/newUser':'/'} style={{width:'100%', display:'flex', justifyContent:'center', textDecoration:'none'}}>
+                            <input className={method==='register'
+                                ?((Object.keys(errors).length||formData.empty)?'unready':'ready')
+                                :'ready'} style={{textIndent:0}} 
+                                type='submit' 
+                                value={string} 
+                                onClick={()=>{
+                                    if(method==='login') {/*dispatch(login(formData))*/}
+                                }}
+                            />
                         </Link>
                     </div>
             </form>
