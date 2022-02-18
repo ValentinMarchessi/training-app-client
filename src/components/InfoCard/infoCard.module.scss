@@ -1,14 +1,14 @@
 //IMPORT PALETA DE COLORES
 @use "../../config/color/configColors.scss" as c;
 
-.contentCards {
+.container {
   width: 100%;
   height: 20%;
+  position: relative;
   //   margin-left: 96px;
   //border-left: 3px solid c.$color-white;
 
   .cardRutes {
-    position: relative;
     display: block;
     height: 100%;
     border: 3px solid c.$color-button-bg;
@@ -35,4 +35,18 @@
       color: c.$color-white;
     }
   }
+}
+
+.disabled:after{
+  content: 'Ingrese a su cuenta para acceder a esta característica';
+  position: absolute;
+  width: 100%; height: 100%;
+  top: 0; left: 0;
+  color: white;
+  opacity: 0;
+  transition: opacity .1s ease-in-out;
+}
+
+.disabled:hover:after{
+  opacity: 1;
 }
