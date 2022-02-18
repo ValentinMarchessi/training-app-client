@@ -4,6 +4,7 @@ import "./App.scss";
 import Landing from "./Pages/Landing/Landing";
 import Home from './Pages/Home/Home'
 import Settings from './Pages/Settings/Settings'
+import SignUpSequence from './Pages/SignUpSequence/SignUpSequence';
 import Routine from './Pages/Routine/Routine.jsx'
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
                 <Route path='/' element={<Landing />} />
                 <Route path='/home' element={<Home />} />
                 <Route path='/settings' element={<Settings />} />
+                <Route path='/newUser' element={<SignUpSequence />} />
                 <Route path='/routine' element={<Routine />} />
             </Routes>
         </div>
