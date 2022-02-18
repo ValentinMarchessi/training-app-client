@@ -3,21 +3,25 @@ export const listInfo = [
         id: 1,
         img: "https://cdn.pixabay.com/photo/2015/09/09/18/08/race-932254_960_720.jpg",
         title: 'Sus Clientes',
+        route: 'clients'
     },
     {
         id: 2,
         img: "https://www.efdeportes.com/efd192/onlinept.jpg",
         title: 'Sus Rutinas',
+        route: 'routines'
     },
     {
         id: 3,
         img: "https://cdn.pixabay.com/photo/2015/09/09/18/08/race-932254_960_720.jpg",
         title: 'Sus Promociones',
+        route: 'offers'
     },
     {
         id: 4,
         img: "https://statics-cuidateplus.marca.com/cms/styles/natural/azblob/dieta-facil.jpg?itok=FRtVHBn8",
         title: 'Sus Dietas',
+        route: 'diets'
     },
 ]
 
@@ -25,12 +29,14 @@ export const listNewUser = [
 	{
 		id: 1,
 		img: 'https://cdn.pixabay.com/photo/2016/11/22/22/25/abs-1850926_960_720.jpg',
-		title: 'Entrenadores',
+        title: 'Entrenadores',
+        route: 'trainers'
 	},
 	{
 		id: 2,
 		img: 'https://cdn.pixabay.com/photo/2010/12/13/10/05/berries-2277_960_720.jpg',
-		title: 'Nutricionistas',
+        title: 'Nutricionistas',
+        route: 'nutritionists',
 	},
 	{
 		id: 3,
