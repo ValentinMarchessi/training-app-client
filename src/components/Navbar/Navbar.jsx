@@ -7,10 +7,8 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import HistoryIcon from '@mui/icons-material/History';
 import Avatar from '../../assets/images/dep.jpg'
 
-const Navbar = () => {
+const Navbar = ({ user }) => {
     const [active, setActive] = useState(false)
-
-    const user = null
 
     const handleClick = () => {
         console.log(1)
@@ -22,41 +20,41 @@ const Navbar = () => {
                 <HomeIcon className="homeItem" />
                 <span className="page" >Inicio</span>
             </div>
-            {user?
-            <div className="rightItems">
-                <div>
-                    <img className="avatarNavbar" src={Avatar} alt="" />
-                </div>
-                <div className="contentMenu">
-                    <MenuIcon onClick={handleClick} className="hamburgerItem" />
-                    <div id="contentSeting" className={active ? "contentSeting active" : "contentSeting"}>
-                        <div className="triangle" />
-                        <div className="contentList">
-                            <div className="itemList">
-                                <LogoutIcon className="iconItems" />
-                                <span className="textSeting" >Log out</span>
-                            </div>
-                            <div className="itemList">
-                                <SettingsIcon className="iconItems" />
-                                <span className="textSeting" >Settings</span>
-                            </div>
-                            <div className="itemList">
-                                <HistoryIcon className="iconItems" />
-                                <span className="textSeting" >History</span>
+            {user ?
+                <div className="rightItems">
+                    <div>
+                        <img className="avatarNavbar" src={Avatar} alt="" />
+                    </div>
+                    <div className="contentMenu">
+                        <MenuIcon onClick={handleClick} className="hamburgerItem" />
+                        <div id="contentSeting" className={active ? "contentSeting active" : "contentSeting"}>
+                            <div className="triangle" />
+                            <div className="contentList">
+                                <div className="itemList">
+                                    <LogoutIcon className="iconItems" />
+                                    <span className="textSeting" >Log out</span>
+                                </div>
+                                <div className="itemList">
+                                    <SettingsIcon className="iconItems" />
+                                    <span className="textSeting" >Settings</span>
+                                </div>
+                                <div className="itemList">
+                                    <HistoryIcon className="iconItems" />
+                                    <span className="textSeting" >History</span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            :<div className='guest'>
-                <div className='buttonA'>
-                    Sign up
-                </div>
-                <div className='buttonA'>
-                    Log in
-                </div>
-            </div>}
-            
+                : <div className='guest'>
+                    <div className='buttonA'>
+                        Sign up
+                    </div>
+                    <div className='buttonA'>
+                        Log in
+                    </div>
+                </div>}
+
         </div>
     )
 }

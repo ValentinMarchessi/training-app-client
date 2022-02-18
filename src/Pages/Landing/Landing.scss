@@ -14,6 +14,7 @@
     overflow: hidden;
     display: flex;
     scroll-behavior: smooth;
+    clip-path: path('m 0 0 v 610 h 236 Q 566 620 567 242 V 84 v -84 z');
     .background{
         min-width: 100%;
     }
