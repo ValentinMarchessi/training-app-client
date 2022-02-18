@@ -6,6 +6,7 @@ import Home from './Pages/Home/Home'
 import Settings from './Pages/Settings/Settings'
 import SignUpSequence from './Pages/SignUpSequence/SignUpSequence';
 import Routine from './Pages/Routine/Routine.jsx'
+import Routines from './Pages/Routines/Routines.jsx'
 import Search from './Pages/Search/Search.jsx'
 import RoutineDetail from './Pages/RoutineDetail/RoutineDetail';
 
@@ -18,6 +19,7 @@ function App() {
                 <Route path='/settings' element={<Settings />} />
                 <Route path='/newUser' element={<SignUpSequence />} />
                 <Route path='/routine' element={<Routine />} />
+                <Route path='/routines' element={<Routines />} />
                 <Route path='/search' element={<Search />} />
                 <Route path='/routineDetail' element={<RoutineDetail />} />
             </Routes>
