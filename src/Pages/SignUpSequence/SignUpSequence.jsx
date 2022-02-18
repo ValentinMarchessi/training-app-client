@@ -31,6 +31,7 @@ export default function SignUpSequence(){
                     <div className='userChoices'>
                         <div id='serviceChoice' onClick={()=>{
                             document.getElementById('clientChoice').style.pointerEvents='none'
+                            
                             document.getElementById('secondS').scrollIntoView()
                         }}>
                                 <img src={test1} alt='x'/>
@@ -43,6 +44,7 @@ export default function SignUpSequence(){
                                 userType: 'client'
                             })
                             document.getElementById('serviceChoice').style.pointerEvents='none'
+                            document.getElementById('secondS').style.display='none'
                             document.getElementById('thirdS').scrollIntoView()
                         }}>
                                 <img src={test2} alt='x'/>
@@ -98,6 +100,7 @@ export default function SignUpSequence(){
                         Sure
                     </div>
                     <div id='continue' onClick={()=>{
+                        document.getElementById('fourthS').style.display='none'
                         document.getElementById('fifthS').scrollIntoView()
                         setTimeout(()=>{
                             window.location.replace('/home')
