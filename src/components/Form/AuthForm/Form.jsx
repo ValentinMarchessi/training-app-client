@@ -7,10 +7,11 @@ import autoScroll from '../../../helpers/autoScroll/autoScroll'
 import validate from '../../../helpers/inputValidators/AuthValidator'
 import { useDispatch, useSelector } from 'react-redux'
 import { loginUser } from '../../../Redux/apiCalls/userLoginCall/userLoginCall'
+import {register} from '../../../Redux/apiCalls/registerCall/createRegister'
 import { Link, useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 
-export default function AuthForm({ method }) {
+export default function AuthForm({ method, cb }) {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const user = useSelector(state => state.user.currentUser)
@@ -24,6 +25,10 @@ export default function AuthForm({ method }) {
 
     let [errors, setErrors] = useState({})
 
+    useEffect(()=>{
+        if (user?.userId) navigate('/')
+    },[user, navigate])
+
     const Toast = Swal.mixin({
         toast: true,
         position: 'top-end',
@@ -35,7 +40,6 @@ export default function AuthForm({ method }) {
             toast.addEventListener('mouseleave', Swal.resumeTimer)
         }
     })
-
 
     let string
     if (method === 'register') string = 'Let\'s get started'
@@ -66,9 +70,17 @@ export default function AuthForm({ method }) {
                 title: 'Invalid Credentials'
             })
         } else {
-            loginUser(dispatch, formData)
-            if (user.id) return navigate('/')
-            else return setAlert(true)
+            if(method==='login'){
+                loginUser(dispatch, formData)
+            }
+            if(method==='register'){
+                //register(dispatch, formData)
+                navigate('/newUser', {state:{formData}})
+                //document.getElementById('form2').style.visibility='hidden'
+                //return cb()
+            }
+            
+            
         }
         setFormData({
             username: '',
@@ -90,18 +102,18 @@ export default function AuthForm({ method }) {
 
 
     return (
-        <div className='auth'>
+        <div className='auth' id='auth'>
 
             <form className='authForm' onSubmit={event => {
                 event.preventDefault()
                 if (method === 'register' && !Object.keys(errors).length) {
-                    alert('hacer conexiones de registro')
-                } else if (method === 'login') alert('hacer conexiones de logeo')
+                    
+                }
             }}>
                 <div>
                     <div>
                         <img src={google} alt='google' />
-                        <input ç
+                        <input
                             type='text'
                             name='username'
                             placeholder='Username'
@@ -150,20 +162,20 @@ export default function AuthForm({ method }) {
                         <span className={errors.confirmPassword ? 'active' : 'inactive'}>{errors.confirmPassword}</span>
 
                     </div>
-                    :
-
+                    :null}
+                    
                     <div style={{ alignItems: 'center' }}>
-                        <Link to={method === 'register' ? '/newUser' : '/'} style={{ width: '100%', display: 'flex', justifyContent: 'center', textDecoration: 'none' }}>
-                            <input className={method === 'register'
-                                ? ((Object.keys(errors).length || formData.empty) ? 'unready' : 'ready')
-                                : 'ready'} style={{ textIndent: 0 }}
-                                type='submit'
-                                value={string}
-                                onClick={handleSubmitClick}
-                            />
-                        </Link>
+                        
+                        <input className={method === 'register'
+                            ? ((Object.keys(errors).length || formData.empty) ? 'unready' : 'ready')
+                            : 'ready'} style={{ textIndent: 0 }}
+                            type='submit'
+                            value={string}
+                            onClick={handleSubmitClick}
+                        />
+                        
                     </div>
-                }
+                
             </form>
             <div className='mediaAuth'>
                 <p>Or {method === 'register' ? 'sign up' : 'log in'} with your social media</p>

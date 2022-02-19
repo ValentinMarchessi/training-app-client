@@ -15,7 +15,7 @@ const DisabledOverlay = Styled.div`
 const InfoCard = ({ img, title, disabled = false, route }) => {
 	return (
         <Container disabled={disabled}>
-            <Link to={`/${route}`}>
+            <Link to={`/search/${route}`}>
                 <div className={style.cardRutes} style={{ zIndex: '1' }}>
                     <img className={style.imgCardRutes} src={img} alt={title} />
                     <div className={style.contetTitleInfo}>{title}</div>

@@ -20,7 +20,7 @@ function App() {
                 <Route path='/newUser' element={<SignUpSequence />} />
                 <Route path='/routine' element={<Routine />} />
                 <Route path='/routines' element={<Routines />} />
-                <Route path='/search' element={<Search />} />
+                <Route path='/search/:type' element={<Search />} />
                 <Route path='/routineDetail' element={<RoutineDetail />} />
             </Routes>
         </div>

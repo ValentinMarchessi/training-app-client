@@ -47,7 +47,7 @@
     .homeItem {
       width: 50px;
       height: 50px;
-      margin-left: 69px;
+      margin-left: 4vw;
       color: c.$color-white;
     }
     .page {
@@ -66,17 +66,18 @@
     align-items: center;
 
     div{
-      height: 100%;
+      height: fit-content;
       width: 50%;
       margin: 0;
     }
 
     .avatarNavbar {
-        height: 100%;
-        width: 100%;
+        height: 75px;
+        width: 75px;
         border-radius: 100%;
         margin:0;
         object-fit: cover;
+        justify-self:center;
     }
 
     .contentMenu {
@@ -99,17 +100,17 @@
       .contentSeting {
         position: absolute;
         top: 110%;
-        right: 20px;
+        right: 3px;
         width: 237px;
         height: 0px;
         border-radius: 10px;
         background-color: c.$color-secondary-bg;
         transition: .7s;
-
+        //overflow: hidden;
         .triangle {
           width: 30px;
           height: 0px;
-          position: inherit;
+          position: absolute;
           top: -10%;
           right: 5%;
           clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
@@ -124,7 +125,7 @@
           flex-direction: column;
           justify-content: space-evenly;
           overflow: hidden;
-
+          height: 100%;
           .itemList {
             width: 184px;
             height: 46px;
@@ -154,9 +155,11 @@
         z-index: 999;
         height: 282px;
         transition: .7s;
+        
         .triangle{
           height: 30px;
           transition: .7s;
+          
         }
 
       }
