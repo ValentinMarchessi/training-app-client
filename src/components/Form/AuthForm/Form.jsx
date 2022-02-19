@@ -1,23 +1,40 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
 import './Form.scss'
 import google from '../../../assets/images/google.png'
 import facebook from '../../../assets/images/facebook.png'
 import twitter from '../../../assets/images/twitter.png'
 import autoScroll from '../../../helpers/autoScroll/autoScroll'
 import validate from '../../../helpers/inputValidators/AuthValidator'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { loginUser } from '../../../Redux/apiCalls/userLoginCall/userLoginCall'
+import { Link, useNavigate } from 'react-router-dom'
+import Swal from 'sweetalert2'
 
 export default function AuthForm({ method }) {
     const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const user = useSelector(state => state.user.currentUser)
 
     let [formData, setFormData] = useState({
+        username: '',
+        password: '',
         empty: true
     })
+    const [alert, setAlert] = useState(false)
 
     let [errors, setErrors] = useState({})
 
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+    })
 
 
     let string
@@ -36,9 +53,42 @@ export default function AuthForm({ method }) {
             [event.target.name]: event.target.value,
             empty: false
         })
+        setAlert(false)
         console.log(errors)
         console.log(formData)
     }
+
+    const handleSubmitClick = (e) => {
+        e.preventDefault()
+        if (!formData.username || !formData.password) {
+            Toast.fire({
+                icon: 'info',
+                title: 'Invalid Credentials'
+            })
+        } else {
+            loginUser(dispatch, formData)
+            if (user.id) return navigate('/')
+            else return setAlert(true)
+        }
+        setFormData({
+            username: '',
+            password: '',
+            empty: true
+        })
+    }
+
+    useEffect(() => {
+        const handleAlert = () => {
+            if (alert) return Toast.fire({
+                icon: 'info',
+                title: 'Invalid Credentials'
+            })
+            else return null
+        }
+        handleAlert()
+    }, [alert, Toast])
+
+
     return (
         <div className='auth'>
 
@@ -51,7 +101,13 @@ export default function AuthForm({ method }) {
                 <div>
                     <div>
                         <img src={google} alt='google' />
-                        <input type='text' name='username' placeholder='Username' onChange={event => inputHandler(event)} />
+                        <input ç
+                            type='text'
+                            name='username'
+                            placeholder='Username'
+                            value={formData.username}
+                            onChange={event => inputHandler(event)}
+                        />
                     </div>
                     {method === 'register' ? <span className={errors.username ? 'active' : 'inactive'}>{errors.username}</span> : null}
 
@@ -71,7 +127,13 @@ export default function AuthForm({ method }) {
                 <div>
                     <div>
                         <img src={google} alt='google' />
-                        <input type='password' name='password' placeholder='Password' onChange={inputHandler} />
+                        <input
+                            type='password'
+                            name='password'
+                            placeholder='Password'
+                            value={formData.password}
+                            onChange={inputHandler}
+                        />
                     </div>
                     {method === 'register'
                         ? <span className={errors.password ? 'active' : 'inactive'}>{errors.password} <span style={{ color: 'red' }}>{errors.passwordRequiredLength}</span> {formData.password && (errors.passwordRequiredLength && errors.passwordIncludesNumber) ? 'and' : null} <span style={{ color: 'red' }}>{errors.passwordIncludesNumber}</span></span>
@@ -97,19 +159,11 @@ export default function AuthForm({ method }) {
                                 : 'ready'} style={{ textIndent: 0 }}
                                 type='submit'
                                 value={string}
-                                onClick={() => {
-                                    if (method === 'login') { loginUser(dispatch, formData) }
-                                }}
+                                onClick={handleSubmitClick}
                             />
                         </Link>
                     </div>
                 }
-
-                <div style={{ alignItems: 'center' }}>
-                    <Link to={method === 'register' ? '/newUser' : '/home'} style={{ width: '100%', display: 'flex', justifyContent: 'center', textDecoration: 'none' }}>
-                        <input className={method === 'register' ? ((Object.keys(errors).length || formData.empty) ? 'unready' : 'ready') : 'ready'} style={{ textIndent: 0 }} type='submit' value={string} />
-                    </Link>
-                </div>
             </form>
             <div className='mediaAuth'>
                 <p>Or {method === 'register' ? 'sign up' : 'log in'} with your social media</p>
