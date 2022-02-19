@@ -9,6 +9,7 @@ import Routine from './Pages/Routine/Routine.jsx'
 import Routines from './Pages/Routines/Routines.jsx'
 import Search from './Pages/Search/Search.jsx'
 import RoutineDetail from './Pages/RoutineDetail/RoutineDetail';
+import Payment from './Pages/Payment/Payment';
 
 function App() {
     return (
@@ -22,6 +23,7 @@ function App() {
                 <Route path='/routines' element={<Routines />} />
                 <Route path='/search/:type' element={<Search />} />
                 <Route path='/routineDetail' element={<RoutineDetail />} />
+                <Route path='/payment/:routineID' element={<Payment />} />
             </Routes>
         </div>
     );

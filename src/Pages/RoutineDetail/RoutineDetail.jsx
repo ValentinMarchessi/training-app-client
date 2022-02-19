@@ -10,6 +10,8 @@ import { Link } from 'react-router-dom';
 
 export default function RoutineDetail() {
 
+    let id=123
+
     return (
 		<div className='routineDetailContainer'>
             <Navbar user={1}/>
@@ -37,16 +39,17 @@ export default function RoutineDetail() {
             <div id='mainInfo'>
                 <img src={test} id='mainDisplay' alt='main'/>
                 <div id='costInfo'>
-                    <h1 style={{margin:0}}>TITULO</h1>
 
                     <div className='footer'>
+                    <h1 style={{margin:0}}>TITULO</h1>
                         <div id='merit'>
                             <p id='rating'><img src={star} alt="star"/>4/5</p>
                             <p className='subtle'>(70 reseñas)</p>
                         </div>
                     </div>
-                    <p style={{fontWeight:'lighter'}}>Descripción breve</p>
-                    <h3>Profesor</h3>
+                    <p style={{fontWeight:'lighter', margin:0}}>Descripción breve</p>
+                    
+                    <h3 style={{margin:0}}>Profesor</h3>
                     <div id='userInfo'>
 
                         <img alt='user' src={user} />
@@ -63,7 +66,7 @@ export default function RoutineDetail() {
                         </div>
                         
 			        </div>
-                    <div style={{width:'100%'}}><button id='profile'>Comprar $5</button></div>
+                    <div style={{width:'100%'}}><Link to={`/payment/${id}`}><button id='profile'>Comprar $5</button></Link></div>
                     
                 </div>
             </div>
