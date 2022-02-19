@@ -27,6 +27,12 @@ export default function ProfileUser() {
             callback={onChange}
             selected="User Name"
           />
+          <Select
+            options={[1, 2, 3]}
+            label="Title"
+            callback={onChange}
+            selected="User Name"
+          />
         </div>
         <div className={S.containerSelectRight}>
           <Select
@@ -38,6 +44,12 @@ export default function ProfileUser() {
           <Select
             options={[1, 2, 3]}
             label="Hobby"
+            callback={onChange}
+            selected="User Name"
+          />
+          <Select
+            options={[1, 2, 3]}
+            label="Example"
             callback={onChange}
             selected="User Name"
           />
