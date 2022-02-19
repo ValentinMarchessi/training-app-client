@@ -14,8 +14,8 @@ function App() {
     return (
         <div className="App">
             <Routes>
-                <Route path='/' element={<Landing />} />
-                <Route path='/home' element={<Home />} />
+                <Route path='/' element={<Home />} />
+                <Route path='/landing' element={<Landing />} />
                 <Route path='/settings' element={<Settings />} />
                 <Route path='/newUser' element={<SignUpSequence />} />
                 <Route path='/routine' element={<Routine />} />
