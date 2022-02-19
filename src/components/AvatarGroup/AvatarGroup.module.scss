@@ -1,0 +1,35 @@
+@use '../../config/color/configColors.scss' as Colors;
+
+.avatarGroup {
+	position: relative;
+	display: flex;
+	gap: 5px;
+
+	#showMore {
+		background-color: Colors.$color-button-bg;
+		color: white;
+		border: none;
+		border-radius: 50%;
+		width: 60px;
+		aspect-ratio: 1/1;
+		text-align: center;
+		font-family: 'Montserrat';
+		font-size: 25px;
+	}
+}
+
+.allUsers {
+	display: none;
+	position: absolute;
+	background-color: #c2bdd5;
+	padding: 10px;
+	top: 120%;
+}
+
+.active {
+	display: flex;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 5px;
+}

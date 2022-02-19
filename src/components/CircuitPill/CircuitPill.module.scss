@@ -1,0 +1,44 @@
+@media screen and (max-width: 400px){
+    .pill{
+        flex-direction:column;
+
+        .separator{
+            height: 0 !important; 
+            width: 65%;
+        }
+
+        .section{
+            max-width: 90% !important;
+        }
+    }
+}
+
+.pill{
+    display: flex;
+    padding: 7px 10px;
+    background-color: #38363D;
+    gap: 10px;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+
+    h3{
+        font-size: 14px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .separator{
+        margin: 0;
+        height: 1.2rem;
+    }
+
+    .section{
+        max-width: 33%;
+        height: 100%;
+        display:flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+    }
+}

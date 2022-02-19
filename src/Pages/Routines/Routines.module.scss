@@ -1,0 +1,16 @@
+@use '../../config/mixins' as Mixins;
+
+.page{
+    @include Mixins.page;
+    color: white;
+    .header{
+        @include Mixins.header;
+    }
+    .body{
+        .routines{
+            .container{
+                padding: 20px;
+            }
+        }
+    }
+}

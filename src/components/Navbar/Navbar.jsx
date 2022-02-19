@@ -6,14 +6,24 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import LogoutIcon from '@mui/icons-material/Logout';
 import HistoryIcon from '@mui/icons-material/History';
 import Avatar from '../../assets/images/dep.jpg'
+import { Link } from 'react-router-dom';
+import { logoutUser } from '../../Redux/reducers/userReducer';
+import { useDispatch } from 'react-redux'
 
 const Navbar = ({ user }) => {
+    const dispatch = useDispatch()
     const [active, setActive] = useState(false)
 
     const handleClick = () => {
         console.log(1)
         setActive(!active)
     }
+
+    const handleClickLogout = (e) => {
+        e.preventDefault()
+        dispatch(logoutUser(user))
+    }
+
     return (
         <div className="topBarContainer">
             <div className="leftItems">
@@ -32,7 +42,7 @@ const Navbar = ({ user }) => {
                             <div className="contentList">
                                 <div className="itemList">
                                     <LogoutIcon className="iconItems" />
-                                    <span className="textSeting" >Log out</span>
+                                    <span className="textSeting" onClick={handleClickLogout} >Log out</span>
                                 </div>
                                 <div className="itemList">
                                     <SettingsIcon className="iconItems" />
@@ -48,10 +58,15 @@ const Navbar = ({ user }) => {
                 </div>
                 : <div className='guest'>
                     <div className='buttonA'>
-                        Sign up
+                        <Link style={{ textDecoration: 'none', color: 'inherit' }} className='link' to='/newUser'>
+                            Sign up
+                        </Link>
                     </div>
+
                     <div className='buttonA'>
-                        Log in
+                        <Link style={{ textDecoration: 'none', color: 'inherit' }} className='link' to='/landing'>
+                            Log in
+                        </Link>
                     </div>
                 </div>}
 
