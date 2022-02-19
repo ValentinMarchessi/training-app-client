@@ -6,11 +6,10 @@ import facebook from '../../../assets/images/facebook.png'
 import twitter from '../../../assets/images/twitter.png'
 import autoScroll from '../../../helpers/autoScroll/autoScroll'
 import validate from '../../../helpers/inputValidators/AuthValidator'
-import {useDispatch} from 'react-redux'
-//import login from 
+import { useDispatch } from 'react-redux'
+import { loginUser } from '../../../Redux/apiCalls/userLoginCall/userLoginCall'
 
 export default function AuthForm({ method }) {
-
     const dispatch = useDispatch()
 
     let [formData, setFormData] = useState({
@@ -86,30 +85,25 @@ export default function AuthForm({ method }) {
                             <img src={google} alt='google' />
                             <input type='password' name='confirmPassword' placeholder='Confirm password' onChange={inputHandler} />
                         </div>
-<<<<<<< HEAD
-                            <span className={errors.confirmPassword?'active':'inactive'}>{errors.confirmPassword}</span>
-                        
+                        <span className={errors.confirmPassword ? 'active' : 'inactive'}>{errors.confirmPassword}</span>
+
                     </div>
-                :   null}
-                
-                    <div style={{alignItems: 'center'}}>
-                        <Link to={method==='register'?'/newUser':'/'} style={{width:'100%', display:'flex', justifyContent:'center', textDecoration:'none'}}>
-                            <input className={method==='register'
-                                ?((Object.keys(errors).length||formData.empty)?'unready':'ready')
-                                :'ready'} style={{textIndent:0}} 
-                                type='submit' 
-                                value={string} 
-                                onClick={()=>{
-                                    if(method==='login') {/*dispatch(login(formData))*/}
+                    :
+
+                    <div style={{ alignItems: 'center' }}>
+                        <Link to={method === 'register' ? '/newUser' : '/'} style={{ width: '100%', display: 'flex', justifyContent: 'center', textDecoration: 'none' }}>
+                            <input className={method === 'register'
+                                ? ((Object.keys(errors).length || formData.empty) ? 'unready' : 'ready')
+                                : 'ready'} style={{ textIndent: 0 }}
+                                type='submit'
+                                value={string}
+                                onClick={() => {
+                                    if (method === 'login') { loginUser(dispatch, formData) }
                                 }}
                             />
                         </Link>
-=======
-                        <span className={errors.confirmPassword ? 'active' : 'inactive'}>{errors.confirmPassword}</span>
-
->>>>>>> registerAndLoginSuccess
                     </div>
-                    : null}
+                }
 
                 <div style={{ alignItems: 'center' }}>
                     <Link to={method === 'register' ? '/newUser' : '/home'} style={{ width: '100%', display: 'flex', justifyContent: 'center', textDecoration: 'none' }}>

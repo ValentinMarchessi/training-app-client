@@ -1,27 +1,14 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './home.scss';
-import { listInfo, listNews, listNewUser, listNewUserActive } from '../../data';
+import { listNews, listNewUser, listNewUserActive } from '../../data';
 import Navbar from '../../components/Navbar/Navbar';
 import NewsCard from '../../components/NewsCard/NewsCard';
 import InfoCard from '../../components/InfoCard/InfoCard';
 import CardContainer from '../../components/CardContainer/CardContainer.jsx';
-import { useDispatch, useSelector } from 'react-redux'
-import { loginUser } from '../../Redux/apiCalls/userLoginCall/userLoginCall';
+import { useSelector } from 'react-redux'
 
 const Home = () => {
-    const newUser = {
-        username: 'lucas',
-        password: 'heredia'
-    }
     const user = useSelector(state => state.user.currentUser)
-    const dispatch = useDispatch()
-
-    useEffect(() => {
-        const loginUserTest = (e) => {
-            loginUser(dispatch, newUser)
-        }
-        loginUserTest()
-    }, [dispatch])
 
     return (
         <div className="contentHomeTrainer">
