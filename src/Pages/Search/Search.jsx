@@ -5,13 +5,13 @@ import test from '../../assets/images/imageBg.png'
 import user from '../../assets/images/imageUser.jpg'
 import Navbar from '../../components/Navbar/Navbar';
 import SearchBar from '../../components/SearchBar/SearchBar';
-import { Link } from 'react-router-dom';
+import { Link, useParams  } from 'react-router-dom';
 
 export default function Search() {
 
-
+    const {type}= useParams()
     const elementosDeTest = 8
-
+console.log(type)
 
     return (
 		<div className='searchContainer'>

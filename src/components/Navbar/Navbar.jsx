@@ -7,7 +7,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import HistoryIcon from '@mui/icons-material/History';
 import Avatar from '../../assets/images/dep.jpg'
 import { Link } from 'react-router-dom';
-import { logoutUser } from '../../Redux/reducers/userReducer';
+import { logoutUser } from '../../Redux/reducers/userLoginReducer';
 import { useDispatch } from 'react-redux'
 
 const Navbar = ({ user }) => {
@@ -32,8 +32,9 @@ const Navbar = ({ user }) => {
             </div>
             {user ?
                 <div className="rightItems">
+                    <p>{user.username}</p>
                     <div>
-                        <img className="avatarNavbar" src={Avatar} alt="" />
+                        <img className="avatarNavbar" src={user.profileImg} alt="" />
                     </div>
                     <div className="contentMenu">
                         <MenuIcon onClick={handleClick} className="hamburgerItem" />
@@ -58,7 +59,7 @@ const Navbar = ({ user }) => {
                 </div>
                 : <div className='guest'>
                     <div className='buttonA'>
-                        <Link style={{ textDecoration: 'none', color: 'inherit' }} className='link' to='/newUser'>
+                        <Link style={{ textDecoration: 'none', color: 'inherit' }} className='link' to='/landing'>
                             Sign up
                         </Link>
                     </div>

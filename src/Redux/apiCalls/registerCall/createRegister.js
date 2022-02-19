@@ -2,7 +2,7 @@ import {
     registerStart,
     registerSuccess,
     registerFailure,
-  } from "../../Reducers/registerReducer.js";
+  } from "../../reducers/registerReducer.js";
   import { baseUrlDev } from "../../../config/requestMethod/publicRequest";
   
   //CREATE REGISTER
