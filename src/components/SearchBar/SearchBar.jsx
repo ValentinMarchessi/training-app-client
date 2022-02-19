@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './SearchBar.scss'
 
-export default function SearchBar() {
+export default function SearchBar({type}) {
 
     const [search, newSearch] = useState('')
     const [input, newInput] = useState('')
@@ -15,13 +15,13 @@ export default function SearchBar() {
             }}>
                 <div className='searchField'>
                     <div className='searchInput'>
-                        <input type='text' id='addInput' onChange={event=>{
+                        <input type='text' id='addInput' placeholder={`Search for ${type}`} onChange={event=>{
                             newInput(event.target.value)
                         }}/>
                         <input type='submit' id='submitInput' value='submit'/>
                     </div>
                     <div className='filters'>
-                        <button>
+                        {/* <button>
                             A - Z
                         </button>
                         <button>
@@ -29,12 +29,12 @@ export default function SearchBar() {
                         </button>
                         <button>
                             Price
-                        </button>
+                        </button> */}
                     </div>
                 </div>
             </form>
             
-            <div><h2 style={{height:'2rem', marginLeft:'10px'}}>{search?`Resultados para ${search}`:''}</h2></div>
+            <div><h2 style={{height:'2rem', margin:'5px', marginLeft:'10px'}}>{search?`Resultados para ${search}`:''}</h2></div>
 		</div>
 	);
 }
