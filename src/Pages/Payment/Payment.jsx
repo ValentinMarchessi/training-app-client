@@ -1,5 +1,5 @@
-import React from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+// import { useParams } from 'react-router-dom';
 import './Payment.scss';
 import test from '../../assets/images/imageBg.png'
 import user from '../../assets/images/imageUser.jpg'
@@ -8,12 +8,40 @@ import SearchBar from '../../components/SearchBar/SearchBar';
 import avatarPlaceholder from '../../assets/images/avatarPlaceholder.svg';
 import star from '../../assets/images/star.svg';
 import { Link } from 'react-router-dom';
+import StripeCheckout from "react-stripe-checkout";
+import { baseUrlDev } from '../../config/requestMethod/publicRequest'
+import Logo from '../../assets/images/dep.jpg'
+const KEY = "pk_test_51KTHNqKxK712fkWkpddjvo4wS93yK5sVKG0cUZ5bLcIsxXc5J8UUfToFNZYXf09altAHfam57Sgxi8dfKQIil2r600FLkfDU2C"
+
 
 export default function Home() {
+    // const { routineID } = useParams()
 
-    const { routineID } = useParams()
+    const [stripeToken, setStripeToken] = useState(null)
 
-    console.log(routineID)
+
+    const onToken = (token) => {
+        setStripeToken(token)
+        // console.log(token);
+    }
+
+
+    useEffect(() => {
+        const makeRequest = async () => {
+            try {
+                const res = await baseUrlDev.post("checkout/payment", {
+                    tokenId: stripeToken.id,
+                    amount: 500
+                })
+                console.log(res.data)
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        stripeToken && makeRequest()
+    }, [stripeToken])
+
+    console.log(stripeToken)
 
     return (
         <div>
@@ -51,9 +79,22 @@ export default function Home() {
                     <h3 style={{ margin: 0 }}>Total $5.40</h3>
 
                     {/* BOTON PARA REALIZAR EL COBRO CON STRIPE */}
-                    <div style={{ width: '100%' }}><button id='profile'>
-                        Continue to checkout
-                    </button></div>
+                    <div style={{ width: '100%' }}>
+                        <StripeCheckout
+                            name='TRAINING APP'
+                            image={Logo}
+                            billingAddress
+                            shippingAddress
+                            descriptions={`Your total is$500`}
+                            amount={500 * 100}
+                            token={onToken}
+                            stripeKey={KEY}
+                        >
+                            <button id='profile'>
+                                Continue to checkout
+                            </button>
+                        </StripeCheckout>
+                    </div>
 
                 </div>
             </div>

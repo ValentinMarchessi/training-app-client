@@ -23,7 +23,7 @@ function App() {
                 <Route path='/routines' element={<Routines />} />
                 <Route path='/search/:type' element={<Search />} />
                 <Route path='/routineDetail' element={<RoutineDetail />} />
-                <Route path='/payment/:routineID' element={<Payment />} />
+                <Route path='/payment/' element={<Payment />} />
             </Routes>
         </div>
     );
