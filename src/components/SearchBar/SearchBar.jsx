@@ -21,7 +21,7 @@ export default function SearchBar({type}) {
                         <input type='submit' id='submitInput' value='submit'/>
                     </div>
                     <div className='filters'>
-                        {/* <button>
+                        <button>
                             A - Z
                         </button>
                         <button>
@@ -29,7 +29,7 @@ export default function SearchBar({type}) {
                         </button>
                         <button>
                             Price
-                        </button> */}
+                        </button>
                     </div>
                 </div>
             </form>
