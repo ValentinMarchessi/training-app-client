@@ -11,16 +11,20 @@ export default function LandingPage(){
     
     useEffect(()=>{
         setTimeout(() => { 
-            autoScroll('carrousel', 'right', 'loop', 2)//Hace el carrusel. Se bugea un poco, por ahí después lo cambie
+            autoScroll('caroussel', 'right', 'loop', 2)//Hace el carrusel. Se bugea un poco, por ahí después lo cambie
         }, 1000);
         window.addEventListener('resize', ()=>autoScroll())
-    },[])
+
+        //Para ajustar el recorte del carrusel a cualquier dispositivo
+        const landingHeight = document.getElementsByClassName('landingContainer')[0].clientHeight;
+        document.getElementById('caroussel').style.clipPath = `path('m 0 0 v ${landingHeight} h 236 Q 566 620 567 242 V 84 v -84 z')`;
+    }, [])
 
     return(
         <div className='landingContainer'>
             <h1 className='title'>Training app</h1>
 
-            <div id='carrousel'>
+            <div id='caroussel'>
                 <img className='background' src={background} alt='1'/>
                 <img className='background' src={test1} alt='2'/>
                 <img className='background' src={test2} alt='3'/>
