@@ -15,6 +15,8 @@
 	background-color: $color;
 	border: hidden;
 	border-radius: 5px;
+	padding: 5px;
+    text-decoration: none;
 
 	&:active {
 		background-color: gray;
@@ -33,7 +35,6 @@
 
 @mixin page {
 	margin-top: 40px;
-	width: 90vw;
 	h1,
 	h2,
 	h3,
