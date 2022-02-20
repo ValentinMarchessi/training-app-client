@@ -1,0 +1,17 @@
+@use '../../config/color/configColors.scss' as Colors;
+
+.container{
+    background-color: Colors.$color-form-stroke;
+    padding: 10px;
+    border-radius: 10px;
+
+    h1{
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+
+    .pills{
+        display: flex;
+        gap: 10px;
+    }
+}
