@@ -14,6 +14,8 @@
 }
 
 .pill{
+    max-height: 80px;
+    height: fit-content;
     display: flex;
     padding: 7px 10px;
     background-color: #38363D;
@@ -23,14 +25,16 @@
     border-radius: 10px;
 
     h3{
-        font-size: 14px;
+        font-style:normal;
+        font-weight: 500;
+        font-size: 15px;
         overflow: hidden;
         text-overflow: ellipsis;
     }
 
     .separator{
         margin: 0;
-        height: 1.2rem;
+        height: 2rem;
     }
 
     .section{
