@@ -5,6 +5,8 @@ import exercisesReducer from '../reducers/exercisesReducer'
 import registerReducer from '../reducers/registerReducer'
 import routinesReducer from '../reducers/routinesReducer'
 import allUsersReducer from '../reducers/allUsersReducer'
+import allUsersTrainersReducer from '../reducers/allUsersTrainer'
+import allUsersNutritionitsReducer from '../reducers/allUsersNutritionist'
 
 
 export default configureStore({
@@ -14,6 +16,8 @@ export default configureStore({
         diets: dietsReducer,
         exercises: exercisesReducer,
         routines: routinesReducer,
-        allUsers: allUsersReducer
+        allUsers: allUsersReducer,
+        allUsersTrainer: allUsersTrainersReducer,
+        allUsersNutritionits: allUsersNutritionitsReducer
     },
 })
