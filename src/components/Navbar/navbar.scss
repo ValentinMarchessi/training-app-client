@@ -4,13 +4,13 @@
 //TOP CONTENT
 .topBarContainer {
   width: 100%;
-  height: 120px;
   position: sticky;
   display: flex;
   justify-content: space-between;
   flex-direction: row;
   background: c.$color-primary-bg;
   z-index: 99;
+  margin-top:10px;
 
   .guest{
     display: flex;
@@ -62,9 +62,9 @@
     right:0;
     display: flex;
     justify-content: center;
-    margin:10px;
     align-items: center;
-
+    height: fit-content;
+    margin-right: 4vw;
     div{
       height: fit-content;
       width: 50%;
@@ -72,8 +72,8 @@
     }
 
     .avatarNavbar {
-        height: 75px;
-        width: 75px;
+        height: 50px;
+        width: 50px;
         border-radius: 100%;
         margin:0;
         object-fit: cover;
@@ -99,7 +99,7 @@
       //SETING
       .contentSeting {
         position: absolute;
-        top: 110%;
+        top: 140%;
         right: 3px;
         width: 237px;
         height: 0px;

@@ -6,7 +6,7 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import LogoutIcon from '@mui/icons-material/Logout';
 import HistoryIcon from '@mui/icons-material/History';
 import Avatar from '../../assets/images/noUser.jpg'
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { logoutUser } from '../../Redux/reducers/userLoginReducer';
 import { useDispatch } from 'react-redux'
 
@@ -24,10 +24,14 @@ const Navbar = ({ user }) => {
         dispatch(logoutUser(user))
     }
 
+    const navigate = useNavigate()
+
     return (
         <div className="topBarContainer">
             <div className="leftItems">
-                <HomeIcon className="homeItem" />
+                <HomeIcon className="homeItem" onClick={()=>{
+                    navigate('/')
+                }}/>
                 <span className="page" >Inicio</span>
             </div>
             {user ?

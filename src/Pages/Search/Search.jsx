@@ -6,13 +6,36 @@ import user from '../../assets/images/imageUser.jpg'
 import Navbar from '../../components/Navbar/Navbar';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import { Link, useParams } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { getAllTrainers } from '../../Redux/apiCalls/allUsersTrainer/allUsersTrainer';
+import { getAllNutritionits } from '../../Redux/apiCalls/allUsersNutritionist/allUsersNutritionist';
+import { getAllRoutines } from '../../Redux/apiCalls/rutinesCall/getAllRoutines';
 
 export default function Search() {
     //Hacer dispatch segun el type
     const { type } = useParams()
-    const elementosDeTest = 60
+    const elementosDeTest = 61
 
-    const [currentType, setCurrentType] = useState([])
+    const dispatch = useDispatch()
+
+    const [currentType, setCurrentType] = useState(type)
+    console.log(type)
+
+    const RoutinesDB = useSelector(state=>state.routines.allRutines)
+    const TrainersDB = useSelector(state=>state.allUsersTrainer.usersTrainers)
+    const NutritionistsDB = useSelector(state=>state.allUsersNutritionits.usersNutritionits)
+
+    //Por si el usuario recarga la página.
+    window.addEventListener('load',()=>{
+        try{
+            if(!RoutinesDB?.length&&type==='routines') getAllRoutines(dispatch)
+            if(!TrainersDB?.length&&type==='trainers') getAllTrainers(dispatch)
+            if(!NutritionistsDB?.length&&type==='nutritionists') getAllNutritionits(dispatch)
+        } catch(err){
+            console.log(err)
+        }
+        
+    })
 
     let rating = 0
     let reviews = 0
@@ -20,8 +43,6 @@ export default function Search() {
     let ratingdir = 'up'
     let reviewsdir = 'up'
     let pricedir = 'up'
-
-
 
     const routines = {
         author: (index) => String.fromCodePoint(index).toString(),
@@ -60,90 +81,66 @@ export default function Search() {
         })
     }
 
-    let [currentobj, setObj] = useState(obj)
+    const [currentobj, setObj] = useState(obj)
 
-    useEffect(() => {
-
-    }, [currentobj])
-
-    let [inicio, setInicio] = useState(0)
+    const [inicio, setInicio] = useState(0)
 
     let current = currentobj.slice(inicio, inicio + 8)
 
-    let [alphaSort, setAlphaSort] = useState(false)
+    const [search, newSearch] = useState('')
+    const [input, newInput] = useState('')
 
+    const [reviewSort, setReviewSort] = useState(false)
+    const [scoreSort, setScoreSort] = useState(false)
+    const [priceSort, setPriceSort] = useState(false)
+		
+    function sortHandler(type){
+        let auxState
+        setInicio(0)
+
+        type==='reviews'?auxState=reviewSort:type==='reviews'?auxState=scoreSort:auxState=priceSort
+        setObj(currentobj.sort((a, b)=>a[type] < b[type] ? (auxState?-1:1) : a[type] > b[type]?(auxState?1:-1):0))
+        type==='reviews'?setReviewSort(!reviewSort):type==='reviews'?setScoreSort(!scoreSort):setPriceSort(!priceSort)
+    }   
+    
 
     return (
         <div className='searchContainer'>
             <Navbar user={1} />
-            <SearchBar type={type} />
+            {/* <SearchBar type={type} /> */}
+            <div className='searchBar'>
+                <form onSubmit={event=>{
+                    event.preventDefault()
+                    newSearch(input)
+                }}>
+                    <div className='searchField'>
+                        <div className='searchInput'>
+                            <input type='text' id='addInput' placeholder={`Search for ${type}`} onChange={event=>{
+                                newInput(event.target.value)
+                            }}/>
+                            <input type='submit' id='submitInput' value='submit'/>
+                        </div>
+                    
+                        
+                        <div className='filters'>
+                        <button onClick={() => sortHandler('reviews')}>
+                            Reviews
+                        </button>
+                        <button onClick={() => sortHandler('rating')}>
+                            Score
+                        </button>
+                        <button onClick={() => sortHandler('price')}>
+                            Price
+                        </button>
+                        </div>
+                    </div>
+                </form>
+                    <div style={{width:'80%'}}><h2 style={{height:'2rem', margin:'5px', marginLeft:'10px'}}>{search?`Resultados para ${search}`:''}</h2></div>
+                
+                
+		    </div>
 
-            <button onClick={() => {
-                if (alphaSort) {
-                    setObj(currentobj.sort((a, b) => {
-                        if (a.author.toLowerCase() < b.author.toLowerCase()) return -1
-                        if (a.author.toLowerCase() > b.author.toLowerCase()) return 1
-                        return 0
-                    }))
-                    setAlphaSort(false)
-                }
-                else {
-                    setObj(currentobj.sort((a, b) => {
-                        if (a.author.toLowerCase() < b.author.toLowerCase()) return 1
-                        if (a.author.toLowerCase() > b.author.toLowerCase()) return -1
-                        return 0
-                    })
-                    )
-                    setAlphaSort(true)
-                }
-                console.log(currentobj)
-            }}>
-                A - Z
-            </button>
-            <button onClick={() => {
-                if (alphaSort) {
-                    setObj(currentobj.sort((a, b) => {
-                        if (a.rating < b.rating) return -1
-                        if (a.rating > b.rating) return 1
-                        return 0
-                    }))
-                    setAlphaSort(false)
-                }
-                else {
-                    setObj(currentobj.sort((a, b) => {
-                        if (a.rating < b.rating) return 1
-                        if (a.rating > b.rating) return -1
-                        return 0
-                    })
-                    )
-                    setAlphaSort(true)
-                }
-                console.log(currentobj)
-            }}>
-                Score
-            </button>
-            <button onClick={() => {
-                if (alphaSort) {
-                    setObj(currentobj.sort((a, b) => {
-                        if (a.price < b.price) return -1
-                        if (a.price > b.price) return 1
-                        return 0
-                    }))
-                    setAlphaSort(false)
-                }
-                else {
-                    setObj(currentobj.sort((a, b) => {
-                        if (a.price < b.price) return 1
-                        if (a.price > b.price) return -1
-                        return 0
-                    })
-                    )
-                    setAlphaSort(true)
-                }
-                console.log(currentobj)
-            }}>
-                Price
-            </button>
+            
             <div id='paginationContainer'>
                 {current.map(element =>
                     <Link to='/routineDetail' style={{ textDecoration: 'none', color: 'unset', margin: '10px' }}>
@@ -160,19 +157,8 @@ export default function Search() {
                     </Link>
                 )}
             </div>
-            <button onClick={() => {
-                if (inicio === 0) return 0
-                else {
-                    setInicio(inicio - 8)
-                    current = currentobj.slice(inicio, inicio + 8)
-                }
-            }}>previous</button>
-            <button onClick={() => {
-                if (inicio + 8 < elementosDeTest) {
-                    setInicio(inicio + 8)
-                    current = currentobj.slice(inicio, inicio + 8)
-                }
-            }}>next</button>
+            <button onClick={() => inicio!==0 ? setInicio(inicio-8) : null}>previous</button>
+            <button onClick={() => inicio+8 < elementosDeTest ? setInicio(inicio+8) : null}>next</button>
         </div>
     );
 }
