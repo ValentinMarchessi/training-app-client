@@ -10,24 +10,20 @@
     flex-direction: column;
     background-color: #201F24;
     border-radius: 10px;
+    gap: 10px;
+    box-shadow: 0px 0px 3px rgba(0,0,0,.3);
 
     .separator{
         width: 80%;
     }
 
-    #header{
+    .section{
         display: flex;
         flex-direction: column;
         gap: 10px;
-    }
-
-    #circuits{
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-
-        span{
-            font-style:italic;
+        h2{
+            font-weight: 500;
+            font-size: 16px;
             align-self: center;
         }
     }
