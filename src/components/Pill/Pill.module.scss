@@ -1,0 +1,11 @@
+@use '../../config/color/configColors.scss' as Colors;
+
+.container{
+    padding: 2px 5px;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    max-width: 100px;
+    background-color: Colors.$color-button-bg;
+    border-radius: 5px;
+}
