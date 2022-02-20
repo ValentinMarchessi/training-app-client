@@ -1,19 +1,18 @@
 import {
-    getAllRoutinesStart,
-    getAllRoutinesSuccess,
-    getAllRoutinesFailure,
-  } from "../../Reducers/routinesReducer.js";
-  import { baseUrlDev } from "../../../config/requestMethod/publicRequest";
-  
-  //getAll Routines
-  
-  export const getAllRoutines = async (dispatch) => {
-    dispatch(getAllRoutinesStart());
+    getAllRutinesStart,
+    getAllRutinesSuccess,
+    getAllRutinesFailure,
+} from "../../reducers/routinesReducer";
+import { baseUrlDev } from "../../../config/requestMethod/publicRequest";
+
+//getAll Routines
+
+export const getAllRoutines = async (dispatch) => {
+    dispatch(getAllRutinesStart());
     try {
-      const res = await baseUrlDev.get('routine');
-      dispatch(getAllRoutinesSuccess(res.data));
+        const res = await baseUrlDev.get('routine');
+        dispatch(getAllRutinesSuccess(res.data));
     } catch (err) {
-      dispatch(getAllRoutinesFailure());
+        dispatch(getAllRutinesFailure());
     }
-  };
-  
+};

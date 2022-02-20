@@ -9,9 +9,9 @@ import avatarPlaceholder from '../../assets/images/avatarPlaceholder.svg';
 import star from '../../assets/images/star.svg';
 import { Link } from 'react-router-dom';
 
-export default function Home(){
+export default function Home() {
 
-    const {routineID} = useParams()
+    const { routineID } = useParams()
 
     console.log(routineID)
 
@@ -31,27 +31,30 @@ export default function Home(){
                     </div>
                     <div className='footer'>
                         <div id='merit'>
-                            <p id='rating'><img src={star} alt="star"/>4/5</p>
+                            <p id='rating'><img src={star} alt="star" />4/5</p>
                             <p className='subtle'>(70 reseñas)</p>
                         </div>
                     </div>
                 </div>
             </div>
             <div id='mainInfo'>
-                <img src={test} id='mainDisplay' alt='main'/>
+                <img src={test} id='mainDisplay' alt='main' />
                 <div id='costInfo'>
 
                     <div className='footer'>
-                    <h1 style={{margin:0}}>Price resume</h1>
-                        
+                        <h1 style={{ margin: 0 }}>Price resume</h1>
+
                     </div>
-                    <p style={{fontWeight:'lighter', margin:0}}>Subtotal $5</p>
-                    <p style={{fontWeight:'lighter', margin:0}}>Service fee $0.40</p>
-                    
-                    <h3 style={{margin:0}}>Total $5.40</h3>
-                    
-                    <div style={{width:'100%'}}><button id='profile'>Continue to checkout</button></div>
-                    
+                    <p style={{ fontWeight: 'lighter', margin: 0 }}>Subtotal $5</p>
+                    <p style={{ fontWeight: 'lighter', margin: 0 }}>Service fee $0.40</p>
+
+                    <h3 style={{ margin: 0 }}>Total $5.40</h3>
+
+                    {/* BOTON PARA REALIZAR EL COBRO CON STRIPE */}
+                    <div style={{ width: '100%' }}><button id='profile'>
+                        Continue to checkout
+                    </button></div>
+
                 </div>
             </div>
         </div>
