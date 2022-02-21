@@ -44,7 +44,7 @@ export default function Routines() {
 				<Link to='/'>
 					<img id={style.icon} src={home} alt="home" />
 				</Link>
-				<h1>Mis Rutinas</h1>
+				<h1>My Routines</h1>
 				<hr />
 			</div>
 			<div className={style.body}>
@@ -56,7 +56,7 @@ export default function Routines() {
 					</div>
 				</div>
 				<Link id={style.create} to="create">
-					Crear Rutina
+					Create Routine
 				</Link>
 			</div>
 		</div>
