@@ -7,9 +7,11 @@ import autoScroll from '../../../helpers/autoScroll/autoScroll'
 import validate from '../../../helpers/inputValidators/AuthValidator'
 import { useDispatch, useSelector } from 'react-redux'
 import { loginUser } from '../../../Redux/apiCalls/userLoginCall/userLoginCall'
-import {register} from '../../../Redux/apiCalls/registerCall/createRegister'
+import { register } from '../../../Redux/apiCalls/registerCall/createRegister'
 import { Link, useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
+import { authentication } from '../../../firebase/config-firestore/firabase';
+import { signInWithPopup, GoogleAuthProvider, FacebookAuthProvider } from 'firebase/auth'
 
 export default function AuthForm({ method, cb }) {
     const dispatch = useDispatch()
@@ -25,9 +27,9 @@ export default function AuthForm({ method, cb }) {
 
     let [errors, setErrors] = useState({})
 
-    useEffect(()=>{
+    useEffect(() => {
         if (user?.userId) navigate('/')
-    },[user, navigate])
+    }, [user, navigate])
 
     const Toast = Swal.mixin({
         toast: true,
@@ -70,17 +72,17 @@ export default function AuthForm({ method, cb }) {
                 title: 'Invalid Credentials'
             })
         } else {
-            if(method==='login'){
+            if (method === 'login') {
                 loginUser(dispatch, formData)
             }
-            if(method==='register'){
+            if (method === 'register') {
                 //register(dispatch, formData)
-                navigate('/newUser', {state:{formData}})
+                navigate('/newUser', { state: { formData } })
                 //document.getElementById('form2').style.visibility='hidden'
                 //return cb()
             }
-            
-            
+
+
         }
         setFormData({
             username: '',
@@ -101,13 +103,31 @@ export default function AuthForm({ method, cb }) {
     }, [alert, Toast])
 
 
+    const singInWithGoogle = () => {
+        const provider = new GoogleAuthProvider()
+        signInWithPopup(authentication, provider)
+            .then((res) => {
+                console.log(res)
+            })
+            .catch((err) => console.log(err.message))
+    }
+
+    const singInWithFacebook = () => {
+        const provider = new FacebookAuthProvider()
+        signInWithPopup(authentication, provider)
+            .then((res) => {
+                console.log(res)
+            })
+            .catch((err) => console.log(err.message))
+    }
+
     return (
         <div className='auth' id='auth'>
 
             <form className='authForm' onSubmit={event => {
                 event.preventDefault()
                 if (method === 'register' && !Object.keys(errors).length) {
-                    
+
                 }
             }}>
                 <div>
@@ -162,26 +182,26 @@ export default function AuthForm({ method, cb }) {
                         <span className={errors.confirmPassword ? 'active' : 'inactive'}>{errors.confirmPassword}</span>
 
                     </div>
-                    :null}
-                    
-                    <div style={{ alignItems: 'center' }}>
-                        
-                        <input className={method === 'register'
-                            ? ((Object.keys(errors).length || formData.empty) ? 'unready' : 'ready')
-                            : 'ready'} style={{ textIndent: 0 }}
-                            type='submit'
-                            value={string}
-                            onClick={handleSubmitClick}
-                        />
-                        
-                    </div>
-                
+                    : null}
+
+                <div style={{ alignItems: 'center' }}>
+
+                    <input className={method === 'register'
+                        ? ((Object.keys(errors).length || formData.empty) ? 'unready' : 'ready')
+                        : 'ready'} style={{ textIndent: 0 }}
+                        type='submit'
+                        value={string}
+                        onClick={handleSubmitClick}
+                    />
+
+                </div>
+
             </form>
             <div className='mediaAuth'>
                 <p>Or {method === 'register' ? 'sign up' : 'log in'} with your social media</p>
                 <div>
-                    <img src={google} alt='google' />
-                    <img src={facebook} alt='google' />
+                    <img src={google} alt='google' onClick={singInWithGoogle} />
+                    <img src={facebook} alt='google' onClick={singInWithFacebook} />
                     <img src={twitter} alt='google' />
                 </div>
             </div>

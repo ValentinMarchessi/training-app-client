@@ -8,10 +8,10 @@ import done from '../../../src/assets/images/done.png'
 import { Link, Navigate, useLocation } from 'react-router-dom'
 import Select from '../../components/Select/Select.jsx'
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage"
-import app from '../../firebase'
+import app from '../../firebase/config-firestore/firabase'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import {register} from '../../Redux/apiCalls/registerCall/createRegister'
+import { register } from '../../Redux/apiCalls/registerCall/createRegister'
 import AuthForm from '../../components/Form/AuthForm/Form.jsx'
 import { width } from '@mui/system'
 
@@ -25,18 +25,18 @@ export default function SignUpSequence() {
 
     const location = useLocation()
     console.log(location)
-    
+
     const [userData, setUserData] = useState({
         ...location.state.formData
     })
-    
+
     const [imgUpdate, setImgUpdate] = useState()
 
     useEffect(() => {
         console.log(userData)
-        
+
     }, [userData, imgUpdate])
-    
+
     const handleImage = (e) => {
         e.preventDefault()
         //Para que las imagen con el mismo nombre no se pisen
@@ -75,12 +75,12 @@ export default function SignUpSequence() {
                 // Handle successful uploads on complete
                 // For instance, get the download URL: https://firebasestorage.googleapis.com/...
                 getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-                    
+
                     setUserData({
                         ...userData,
                         profile_img: downloadURL
                     })
-                    
+
                 }
                 );
             })
@@ -215,7 +215,7 @@ export default function SignUpSequence() {
                     <div style={{ width: '80%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                         <div id='uploadfile'>
                             <label htmlFor='file' id='uploadLabel'>Upload a photo</label>
-                            <input type='file' name='file' onChange={(event)=>{
+                            <input type='file' name='file' onChange={(event) => {
                                 setImgUpdate(event.target.files[0])
 
                                 let img = document.getElementById('upload')
@@ -223,21 +223,21 @@ export default function SignUpSequence() {
                                 if (!event.target.files[0]) return
                                 if (event.target.files[0]?.type.includes('image')) {
                                     if (event.target.files[0]?.size >= 1000000) return alert('Max file size: 1MB')
-                                    
-                                    
-                                    
+
+
+
                                     var fileReader = new FileReader();
                                     fileReader.onload = function (fileLoadedEvent) {
                                         fileReader.onloadend = () => {
-                                            
+
                                             img.src = fileReader.result
                                             document.getElementById('uploadLabel').innerText = 'Click to change the image'
                                         }
 
-                                        
+
                                     }
                                     fileReader.readAsDataURL(event.target.files[0])
-                                }  
+                                }
 
 
                                 let input = document.createElement('button')
@@ -256,16 +256,16 @@ export default function SignUpSequence() {
                                 if (!imgUpdate) {
                                     document.getElementById('options').append(input)
                                 }
-                            }}/>
+                            }} />
                             <img id='upload' src='' alt='' />
                             <div id='options'>
                                 {imgUpdate
-                                ?<button type='button' id='up' onClick={(event)=>{handleImage(event)}}>
-                                    Upload
-                                </button>
-                                :null}
+                                    ? <button type='button' id='up' onClick={(event) => { handleImage(event) }}>
+                                        Upload
+                                    </button>
+                                    : null}
                             </div>
-                            
+
                             {/* <input type='file' name='file' onChange={(event) => {
                                 
                                 
@@ -302,18 +302,18 @@ export default function SignUpSequence() {
                                     img.src = ''
                                 }
                             }} /> */}
-                            
+
                         </div>
                     </div>
                 </div>
                 <div id='continue' onClick={(event) => {
-                    
-                    
+
+
                     setUserData({ ...userData, bmi: userData.weight / ((userData.height / 100) ** 2) })
                     console.log(userData)
                     register(dispatch, userData)
                     document.getElementById('fifthS').scrollIntoView()
-                    
+
                     navigate('/landing')
                     // setTimeout(() => {
                     //     navigate('/')
