@@ -10,6 +10,9 @@ import Routines from './Pages/Routines/Routines.jsx';
 import Search from './Pages/Search/Search.jsx';
 import RoutineDetail from './Pages/RoutineDetail/RoutineDetail';
 import Payment from './Pages/Payment/Payment';
+import RoutineForm from './Pages/RoutineForm/RoutineForm';
+import ExerciseForm from './components/ExerciseForm/ExerciseForm';
+import Exercises from './Pages/Exercises/Exercises';
 import RecipeForm from './Pages/RecipeForm/RecipeForm';
 
 
@@ -23,6 +26,9 @@ function App() {
                 <Route path='/newUser' element={<SignUpSequence />} />
                 <Route path='/routine' element={<Routine />} />
                 <Route path='/routines' element={<Routines />} />
+                <Route path='/routines/create' element={<RoutineForm />} />
+                <Route path='/exercises' element={<Exercises/>} />
+                <Route path='/exercises/create' element={<ExerciseForm/>} />
                 <Route path='/search/:type' element={<Search />} />
                 <Route path='/routineDetail' element={<RoutineDetail />} />
                 <Route path='/payment/' element={<Payment />} />

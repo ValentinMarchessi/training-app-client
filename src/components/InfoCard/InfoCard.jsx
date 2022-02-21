@@ -79,7 +79,7 @@ const InfoCard = ({ img, title, disabled = false, route }) => {
 
 	return (
         <Container disabled={disabled}>
-            <Link to={`/search/${route}`}>
+            <Link to={route}>
                 <div className={style.cardRutes} style={{ zIndex: '1' }} onClick={handleSearchType}>
                     <img className={style.imgCardRutes} src={img} alt={title} />
                     <div className={style.contetTitleInfo}>{title}</div>

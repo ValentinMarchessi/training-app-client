@@ -1,0 +1,22 @@
+@use '../../config/mixins' as Mixins;
+@use '../../config/color/configColors.scss' as Colors;
+
+.page{
+    @include Mixins.page;
+    color: white;
+    .header{
+        @include Mixins.header;
+    }
+    .body{
+        display: flex;
+        flex-direction: column;
+
+        #create{
+            @include Mixins.blue-button;
+            margin: 40px auto;
+        }
+    }
+    .container{
+        margin: 0 10px;
+    }
+}

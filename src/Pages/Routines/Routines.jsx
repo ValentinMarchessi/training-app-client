@@ -1,5 +1,5 @@
 import style from './Routines.module.scss';
-import clipboard from '../../assets/images/clipboard.svg';
+import home from '../../assets/images/home.svg';
 import RoutineBox from '../../components/RoutineBox/RoutineBox';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -40,21 +40,25 @@ export default function Routines() {
 
     return (
 		<div className={style.page}>
-            <div className={style.header}>
-                <img id={style.icon} src={clipboard} alt='clipboard' />
-                <h1>Mis Rutinas</h1>
-                <hr/>
-            </div>
-            <div className={style.body}>
-                <div className={style.routines}>
-                    <div className={style.container}>
-						{routines.map((routine, index) => 
-							<RoutineBox key={index} {...routine}/>
-						)}
-                    </div>
+			<div className={style.header}>
+				<Link to='/'>
+					<img id={style.icon} src={home} alt="home" />
+				</Link>
+				<h1>My Routines</h1>
+				<hr />
+			</div>
+			<div className={style.body}>
+				<div className={style.routines}>
+					<div className={style.container}>
+						{routines.map((routine, index) => (
+							<RoutineBox key={index} {...routine} />
+						))}
+					</div>
 				</div>
-				<Link id={style.create} to='create'>Crear Rutina</Link>
-            </div>
+				<Link id={style.create} to="create">
+					Create Routine
+				</Link>
+			</div>
 		</div>
 	);
 }
