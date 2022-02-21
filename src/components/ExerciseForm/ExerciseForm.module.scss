@@ -1,0 +1,24 @@
+@use '../../config/mixins' as mixins;
+
+form{
+    font-family: 'Montserrat';
+    width: 20%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    color: white;
+
+    label{
+        align-self: left;
+    }
+
+    button{
+        @include mixins.blue-button;
+        margin-top: 10%;
+    }
+}
+
+#error{
+    text-transform: capitalize;
+}

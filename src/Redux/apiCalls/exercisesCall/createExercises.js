@@ -2,7 +2,7 @@ import {
     createExercisesStart,
     createExercisesSuccess,
     createExercisesFailure,
-  } from "../../Reducers/exercisesReducer.js";
+  } from "../../reducers/exercisesReducer";
   import { baseUrlDev } from "../../../config/requestMethod/publicRequest";
   
   //CREATE EXERCISES
