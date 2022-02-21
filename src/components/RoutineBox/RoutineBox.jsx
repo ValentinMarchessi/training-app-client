@@ -1,24 +1,27 @@
 import style from './RoutineBox.module.scss';
-import Box from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
 import AvatarGroup from '../AvatarGroup/AvatarGroup.jsx';
 import CircuitPill from '../CircuitPill/CircuitPill.jsx';
-export default function RoutineBox({ name, users, circuits, diet }) {
+import DietPill from '../DietPill/DietPill.jsx';
 
+export default function RoutineBox({ name, users, circuits, diet }) {
     return (
 		<div className={style.box}>
-			<div id={style.header}>
+			<div className={style.section}>
 				<h1>{name}</h1>
-				<AvatarGroup users={users} max={4} />
+				<AvatarGroup users={users} max={5} />
 			</div>
 			<hr className={style.separator} />
-            <div id={style.circuits}>
-                <span>Circuitos</span>
-				{circuits.map((circuit) => (
-					<CircuitPill {...circuit} />
+			<div className={style.section}>
+				<h2>Circuitos</h2>
+				{circuits.map((circuit, index) => (
+					<CircuitPill key={index} {...circuit} />
 				))}
 			</div>
 			<hr className={style.separator} />
+			<div className={style.section}>
+				<h2>Dieta</h2>
+				<DietPill {...diet} />
+			</div>
 		</div>
 	);
 }

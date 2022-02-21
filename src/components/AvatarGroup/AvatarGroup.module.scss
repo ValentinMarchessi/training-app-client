@@ -15,21 +15,34 @@
 		text-align: center;
 		font-family: 'Montserrat';
 		font-size: 25px;
+
+		transition: .1s ease-in-out;
+
+		&:hover{
+			background-color: aquamarine;
+		}
 	}
 }
-
 .allUsers {
 	display: none;
+	max-height: 0;
 	position: absolute;
-	background-color: #c2bdd5;
+	background-color: #38363D;
 	padding: 10px;
 	top: 120%;
+	border-radius: 10px;
+	border: 1px solid#9d9d9dd6;
 }
 
-.active {
-	display: flex;
-    align-content: flex-start;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 5px;
+
+.active {	
+	display: grid;
+	grid-template-columns: auto auto auto auto auto auto;
+	max-height:400px;
+	opacity: 1;
+	transform: skewY(0);
+
+	img{
+		opacity: 1;
+	}
 }
