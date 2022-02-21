@@ -1,4 +1,4 @@
-@import '../../config/color/configColors.scss';
+@import '../../config/colors';
 
 #options{
     display:flex;
@@ -7,7 +7,7 @@
     overflow: hidden;
     
     button{
-        background-color:$color-button-bg;
+        background-color:$button-bg;
         border:0;
         width: 100%;
         text-align: center;
@@ -61,7 +61,7 @@
     overflow: hidden;
 .sequenceContainer{
     >h2{
-        color:$color-option-bg
+        color:$option-bg
     }
     height: 100%;
     display: flex;
@@ -85,7 +85,7 @@
         max-height: 200px;
     }
     #erase{
-        background-color: $color-fonts-highlight-error;
+        background-color: $fonts-highlight-error;
         border:0;
         &:hover{
             background-color: rgb(156, 33, 33);
@@ -120,7 +120,7 @@
             z-index: 2;
             height: 40px;
             background-color: transparent;
-            border: 2px solid $color-secondary-bg;
+            border: 2px solid $secondary-bg;
             border-radius: 10px;
             appearance: none;
         }
@@ -152,7 +152,7 @@
         }
     }
     #continue, #wait{
-        background-color:$color-button-bg;
+        background-color:$button-bg;
         border:0;
         width: fit-content;
         text-align: center;
@@ -170,7 +170,7 @@
     }
     #wait{
         background-color:transparent;
-        border: 2px solid $color-button-bg;
+        border: 2px solid $button-bg;
         opacity:0;
         visibility:hidden;
     }

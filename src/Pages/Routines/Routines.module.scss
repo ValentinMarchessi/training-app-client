@@ -1,5 +1,5 @@
 @use '../../config/mixins' as Mixins;
-@use '../../config/color/configColors.scss' as Colors;
+@use '../../config/colors' as Colors;
 
 .page{
     @include Mixins.page;
@@ -15,7 +15,7 @@
             .container{
                 width: 90%;
                 margin:auto;
-                background-color: Colors.$color-container-bg;
+                background-color: Colors.$container-bg;
                 display: flex;
                 padding: 20px;
                 gap: 30px;

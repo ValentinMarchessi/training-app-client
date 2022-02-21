@@ -1,9 +1,9 @@
-@use '../../config/color/configColors.scss' as Colors;
-@use '../../config/fontSize/configFontSize.scss' as FontSize;
+@use '../../config/colors' as Colors;
+@use '../../config/fontSize' as FontSize;
 @use '../../config/mixins' as Mixins;
 
 .searchContainer{
-    background-color: Colors.$color-primary-bg;
+    background-color: Colors.$primary-bg;
     display: flex;
     flex-wrap:wrap;
     justify-content: space-around;
@@ -24,7 +24,7 @@
 
 
     button{
-        background-color: Colors.$color-button-bg;
+        background-color: Colors.$button-bg;
         border:0;
         border-radius: 10px;
         color:white;

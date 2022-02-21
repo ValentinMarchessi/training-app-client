@@ -1,10 +1,10 @@
-@use '../fontSize/configFontSize.scss' as FontSize;
-@use '../color/configColors.scss' as Colors;
+@use '../fontSize' as FontSize;
+@use '../colors' as Colors;
 @use '../fontWeight' as FontWeight;
 
 @mixin medium-bold-font {
 	font-family: Montserrat;
-	font-size: FontSize.$font-medium;
+	font-size: FontSize.$medium;
 	font-weight: FontWeight.$bold;
 }
 
@@ -29,7 +29,7 @@
 }
 
 @mixin blue-button {
-	@include button(Colors.$color-button-bg);
+	@include button(Colors.$button-bg);
 	@include medium-bold-font;
 }
 

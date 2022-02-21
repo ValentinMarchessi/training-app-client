@@ -1,5 +1,5 @@
 //IMPORT PALETA DE COLORES
-@use "../../config/color/configColors.scss" as c;
+@use "../../config/colors" as c;
 
 //TOP CONTENT
 .topBarContainer {
@@ -8,7 +8,7 @@
   display: flex;
   justify-content: space-between;
   flex-direction: row;
-  background: c.$color-primary-bg;
+  background: c.$primary-bg;
   z-index: 99;
   margin-top:10px;
 
@@ -21,7 +21,7 @@
     .buttonA{
       display: flex;
       justify-content: center;
-      background-color:c.$color-button-bg;
+      background-color:c.$button-bg;
       border:0;
       width: 40%;
       align-self: center;
@@ -35,26 +35,6 @@
       color:white;
       line-height: 55px;
   }
-  }
-
-  .leftItems {
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    flex-direction: row;
-    //   background: red;
-
-    .homeItem {
-      width: 50px;
-      height: 50px;
-      margin-left: 4vw;
-      color: c.$color-white;
-    }
-    .page {
-      font-size: 30px;
-      font-weight: bold;
-      color: c.$color-white;
-    }
   }
 
   //CONTENEDOR DE IMG Y HAMBURGER
@@ -92,7 +72,7 @@
       .hamburgerItem {
         width: 57px;
         height: 52px;
-        color: c.$color-white;
+        color: c.$white;
         cursor: pointer;
       }
 
@@ -104,7 +84,7 @@
         width: 237px;
         height: 0px;
         border-radius: 10px;
-        background-color: c.$color-secondary-bg;
+        background-color: c.$secondary-bg;
         transition: .7s;
         //overflow: hidden;
         .triangle {
@@ -114,7 +94,7 @@
           top: -10%;
           right: 5%;
           clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-          background-color: c.$color-secondary-bg;
+          background-color: c.$secondary-bg;
           transition: .7s;
         }
 
@@ -135,7 +115,7 @@
             .iconItems {
               width: 46px;
               height: 46px;
-              color: c.$color-white;
+              color: c.$white;
             }
 
             .textSeting {
@@ -144,7 +124,7 @@
               display: flex;
               justify-content: center;
               align-items: center;
-              color: c.$color-white;
+              color: c.$white;
               font-size: 30px;
               font-weight: bold;
             }
