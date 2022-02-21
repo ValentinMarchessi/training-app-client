@@ -7,7 +7,7 @@ import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import { useState } from "react";
 import {useNavigate} from 'react-router-dom'
 //COMPONENTS
-import ContainerUser from "../../components/ContainerUser/ContainerUser";
+import ContainerUser from "./ContainerUser/ContainerUser";
 
 export default function Settings() {
   const [config, setConfig] = useState("Account data");
