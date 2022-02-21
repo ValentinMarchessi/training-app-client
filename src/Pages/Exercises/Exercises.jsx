@@ -17,7 +17,7 @@ export default function Exercises() {
 
     useEffect(() => {
         getAllExercises(dispatch,{userId: user.userId, token: user.accessToken})
-    },[dispatch, user, getAllExercises, exercises])
+    },[dispatch, user, getAllExercises])
 
 	return (
 		<div className={style.page}>
