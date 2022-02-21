@@ -170,6 +170,7 @@ export default function SignUpSequence() {
                         document.getElementById('fourthS').style.display = 'none'
                         document.getElementById('fifthS').scrollIntoView()
                         setTimeout(() => {
+                            register(dispatch, userData)
                             navigate('/landing')
                         }, 2000)
                     }}>

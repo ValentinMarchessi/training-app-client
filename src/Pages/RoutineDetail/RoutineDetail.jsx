@@ -66,7 +66,7 @@ export default function RoutineDetail() {
                         </div>
                         
 			        </div>
-                    <div style={{width:'100%'}}><Link to={`/payment/${id}`}><button id='profile'>Comprar $5</button></Link></div>
+                    <div style={{width:'100%'}}><Link to={`/payment`}><button id='profile'>Comprar $5</button></Link></div>
                     
                 </div>
             </div>
