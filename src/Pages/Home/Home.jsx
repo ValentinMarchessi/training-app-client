@@ -10,7 +10,6 @@ const Home = () => {
     return (
         <div className="contentHomeTrainer">
             <Navbar user={user} />
-            {user.type === 'trainer' && <HomeTrainer/>}
         </div>
     );
 };

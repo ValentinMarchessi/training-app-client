@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import './Form.scss'
-import google from '../../../assets/images/google.png'
-import facebook from '../../../assets/images/facebook.png'
-import twitter from '../../../assets/images/twitter.png'
-import autoScroll from '../../../helpers/autoScroll/autoScroll'
-import validate from '../../../helpers/inputValidators/AuthValidator'
+import google from '../../../../assets/images/google.png'
+import facebook from '../../../../assets/images/facebook.png'
+import twitter from '../../../../assets/images/twitter.png'
+import autoScroll from '../../../../helpers/autoScroll/autoScroll'
+import validate from '../../../../helpers/inputValidators/AuthValidator'
 import { useDispatch, useSelector } from 'react-redux'
-import { loginUser } from '../../../Redux/apiCalls/userLoginCall/userLoginCall'
-import { register } from '../../../Redux/apiCalls/registerCall/createRegister'
+import { loginUser } from '../../../../Redux/apiCalls/userLoginCall/userLoginCall'
+import { register } from '../../../../Redux/apiCalls/registerCall/createRegister'
 import { Link, useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
-import { authentication } from '../../../firebase/config-firestore/firabase';
+import { authentication } from '../../../../firebase/config-firestore/firabase';
 import { signInWithPopup, GoogleAuthProvider, FacebookAuthProvider } from 'firebase/auth'
 
 export default function AuthForm({ method, cb }) {
