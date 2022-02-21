@@ -34,7 +34,7 @@ export default function LandingPage(){
 
             </div>
 
-            <Link to='/home'><div id='guest'>Continue as guest</div></Link>
+            <Link to='/'><div id='guest'>Continue as guest</div></Link>
 
             <div className='choices'>
                 <h1 id='logInText' onClick={() => {
