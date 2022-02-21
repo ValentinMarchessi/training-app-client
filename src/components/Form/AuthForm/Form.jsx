@@ -108,6 +108,13 @@ export default function AuthForm({ method, cb }) {
         signInWithPopup(authentication, provider)
             .then((res) => {
                 console.log(res)
+                setFormData({
+                    username: res.user.displayName,
+                    password: res.user.uid,
+                    email:res.user.email,
+                    empty: false
+                })
+                method==='register'?navigate('/newUser', { state: { formData } }):loginUser(dispatch, formData)
             })
             .catch((err) => console.log(err.message))
     }

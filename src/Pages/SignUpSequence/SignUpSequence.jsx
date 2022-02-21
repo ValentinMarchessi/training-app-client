@@ -183,13 +183,13 @@ export default function SignUpSequence() {
                 <h1 id='title'>Please describe yourself</h1>
                 <p id='title' style={{ fontSize: '15px', color: '#6b6979', padding: 0 }}>We will use this data to deliver a better experience</p>
                 <div id='userForm'>
-                    <Select options={['Male', 'Female', 'Other']} label='Gender' callback={event => {
+                    <Select options={[{value:'Male', display:'Male'}, {value:'Female',  display:'Female'}, {value:'Other',  display:'Other'}]} label='Gender' callback={event => {
                         setUserData({ ...userData, gender: event.target.value })
                     }} />
-                    <Select options={['Argentina']} label='Country' callback={event => {
+                    <Select options={[{value:'Argentina', display:'Argentina'}]} label='Country' callback={event => {
                         setUserData({ ...userData, country: event.target.value })
                     }} />
-                    <Select options={[1, 2, 3, 4, 5, 6, 7]} label='Weekly training days' callback={event => {
+                    <Select options={[1, 2, 3, 4, 5, 6, 7].map(e=>{return {value:e, display:e}})} label='Weekly training days' callback={event => {
                         setUserData({ ...userData, training_days: event.target.value })
                     }} />
 
@@ -224,17 +224,12 @@ export default function SignUpSequence() {
                                 if (event.target.files[0]?.type.includes('image')) {
                                     if (event.target.files[0]?.size >= 1000000) return alert('Max file size: 1MB')
 
-
-
                                     var fileReader = new FileReader();
                                     fileReader.onload = function (fileLoadedEvent) {
                                         fileReader.onloadend = () => {
-
                                             img.src = fileReader.result
                                             document.getElementById('uploadLabel').innerText = 'Click to change the image'
                                         }
-
-
                                     }
                                     fileReader.readAsDataURL(event.target.files[0])
                                 }
@@ -265,44 +260,6 @@ export default function SignUpSequence() {
                                     </button>
                                     : null}
                             </div>
-
-                            {/* <input type='file' name='file' onChange={(event) => {
-                                
-                                
-                                let img = document.getElementById('upload')
-                                
-                                if (!event.target.files[0]) return
-                                if (event.target.files[0]?.type.includes('image')) {
-                                    if (event.target.files[0]?.size >= 1000000) return alert('Max file size: 1MB')
-                                    
-                                    
-                                    
-                                    var fileReader = new FileReader();
-                                    fileReader.onload = function (fileLoadedEvent) {
-                                        fileReader.onloadend = () => {
-                                            
-                                            img.src = fileReader.result
-                                            document.getElementById('uploadLabel').innerText = 'Click to change the image'
-                                        }
-
-                                        
-                                    }
-                                    fileReader.readAsDataURL(event.target.files[0])
-                                    return
-
-                                }
-                                else {
-                                    alert('Make sure your file is an image')
-
-                                    document.getElementById('uploadLabel').innerText = 'Make sure your file is an image'
-                                    setUserData({
-                                        ...userData,
-                                        profile_img: '',
-                                    })
-                                    img.src = ''
-                                }
-                            }} /> */}
-
                         </div>
                     </div>
                 </div>
