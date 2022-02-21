@@ -3,7 +3,7 @@ import background from '../../assets/images/landingBackground.png'
 import test1 from '../../assets/images/carrousel1.jpg'
 import test2 from '../../assets/images/carrousel2.jpg'
 import './Landing.scss'
-import AuthForm from '../../components/Form/AuthForm/Form'
+import AuthForm from './Form/Form';
 import autoScroll from '../../helpers/autoScroll/autoScroll' // Documentación en el .js
 import { Link } from 'react-router-dom'
 

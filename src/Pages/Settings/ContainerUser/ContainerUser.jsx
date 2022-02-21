@@ -4,9 +4,9 @@ import S from "./ContainerUser.module.scss";
 import User from "../../assets/images/imageUser.jpg";
 //COMPONENTS
 import AccountUser from '../AccountUser/AccountUser'
-import ProfileUser from '../../components/ProfileUser/ProfileUser'
-import PaymentMethod from '../../components/PaymentMethod/PaymentMethod'
-import HistoryUser from '../../components/HistoryUser/HistoryUser'
+import ProfileUser from '../../../components/ProfileUser/ProfileUser'
+import PaymentMethod from '../../../components/PaymentMethod/PaymentMethod'
+import HistoryUser from '../../../components/HistoryUser/HistoryUser'
 
 
 export default function ContainerUser({config}) {

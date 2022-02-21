@@ -1,6 +1,6 @@
 import style from './RoutineBox.module.scss';
 import AvatarGroup from '../AvatarGroup/AvatarGroup.jsx';
-import CircuitPill from '../CircuitPill/CircuitPill.jsx';
+import CircuitPill from '../../Pages/Routines/CircuitPill/CircuitPill.jsx';
 import DietPill from '../DietPill/DietPill.jsx';
 
 export default function RoutineBox({ name, users, circuits, diet }) {
