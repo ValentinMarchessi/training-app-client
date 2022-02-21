@@ -1,16 +1,20 @@
 @forward "./Pages/Settings/Settings.module.scss";
 
-html, body {
+html,
+body {
   background-color: #2e2c3b;
   height: 100%;
 }
 
-:root{
+:root {
   height: 100%;
 }
 
 .App {
   height: 100vh;
+  .link {
+    text-decoration: none;
+  }
 }
 
 .App-logo {

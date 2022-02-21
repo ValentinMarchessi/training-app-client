@@ -9,8 +9,8 @@ export default function RoutineCard({ name, author, authorTitle, rating, reviews
 			<div className={style.profile}>
                 <img id={style.avatar} alt={author} src={avatar ? avatar : avatarPlaceholder} />
                 <div className={style.info}>
-				    <h1>{author}</h1>
-                    <h2>{authorTitle}</h2>
+				    <h1 style={{color:'white'}}>{author}</h1>
+                    <h2 style={{color:'white'}}>{authorTitle}</h2>
                 </div>
 			</div>
 			<div className={style.body}>
