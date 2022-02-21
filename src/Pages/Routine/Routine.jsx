@@ -1,6 +1,7 @@
 import style from './Routine.module.scss';
-import Exercise from '../../components/Exercise/Exercise.jsx';
+import ExerciseCard from '../../components/ExerciseCard/ExerciseCard.jsx';
 import * as React from 'react';
+import { useSelector } from 'react-redux';
 
 /*
     PROPS
@@ -15,34 +16,7 @@ import * as React from 'react';
     }
 */
 
-const exercises = [
-	{
-		name: 'Burpee',
-		sets: 3,
-		reps: 12,
-		videoId: 'auBLPXO8Fww',
-	},
-	{
-		name: 'Burpee',
-		sets: 3,
-		reps: 12,
-		videoId: 'auBLPXO8Fww',
-	},
-	{
-		name: 'Burpee',
-		sets: 3,
-		reps: 12,
-		videoId: 'auBLPXO8Fww',
-	},
-	{
-		name: 'Burpee',
-		sets: 3,
-		reps: 12,
-		videoId: 'auBLPXO8Fww',
-	},
-];
-
-export default function Routine() {
+export default function Routine({exercises}) {
     return (
 		<div className={style.page}>
 			<div className={style.header}>
@@ -51,8 +25,8 @@ export default function Routine() {
 			</div>
 			<div className={style.body}>
 				<div className={style.exerciseContainer}>
-					{exercises.map((exercise, index) => (
-						<Exercise key={index} name={exercise.name} sets={exercise.sets} reps={exercise.reps} videoId={exercise.videoId} />
+					{exercises && exercises.map((exercise, index) => (
+						<ExerciseCard key={index} {...exercise} />
 					))}
 				</div>
 				<button id={style.start}>Empezar</button>
