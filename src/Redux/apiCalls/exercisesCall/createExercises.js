@@ -10,7 +10,7 @@ import {
   export const createExercises = async (dispatch,data) => {
     dispatch(createExercisesStart());
     try {
-      const res = await baseUrlDev.post('exercise',data);
+      const res = await baseUrlDev.post(`exercise/${data.userId}`, data.body, { headers: {token: data.token} });
       dispatch(createExercisesSuccess(res.data));
     } catch (err) {
       dispatch(createExercisesFailure());
