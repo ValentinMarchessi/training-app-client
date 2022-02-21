@@ -9,7 +9,8 @@ import PaymentMethod from '../../components/PaymentMethod/PaymentMethod'
 import HistoryUser from '../../components/HistoryUser/HistoryUser'
 
 
-export default function ContainerUser() {
+export default function ContainerUser({config}) {
+  console.log(config)
   return (
     <div className={S.containerContentCenter}>
       <div className={S.containerUser}>
@@ -17,7 +18,13 @@ export default function ContainerUser() {
         <p>User Name</p>
         <input type="button" value="Delete account" />
       </div>
-      <PaymentMethod/>
+      {
+      (config === "Account data") ? <AccountUser/> :
+      (config === "Profile") ?  <ProfileUser/> :
+      (config === "Payment method") ?  <PaymentMethod/> :
+      (config === "History user") ?  <HistoryUser/> :
+      <AccountUser/>
+      }
     </div>
   );
 }
