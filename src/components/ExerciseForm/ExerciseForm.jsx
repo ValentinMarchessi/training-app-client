@@ -1,18 +1,29 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import style from './ExerciseForm.module.scss';
 import { createExercises } from '../../Redux/apiCalls/exercisesCall/createExercises';
 
+const testingState = {
+	title: 'Burpee',
+	description: 'Mix of jumping jacks and push ups, an excelent whole body exercise.',
+	video: 'youtubeURL',
+};
+
 export default function ExerciseForm() {
 	const [form, setForm] = useState({
-		name: null, //string
-		reps: null, //number
-		sets: null, //number
-		video: null,//string
+		title: null, //string
+		description: null, //number
+		video: null, //string
 	});
+
+	useEffect(() => {
+		setForm(testingState);
+	}, [testingState, setForm]);
+
 	const [error, setError] = useState('');
 
-    const dispatch = useDispatch();
+	const dispatch = useDispatch();
+	const user = useSelector((store) => store.user.currentUser);
 
 	function handleInput(event) {
 		const { name, value } = event.target;
@@ -22,33 +33,28 @@ export default function ExerciseForm() {
 		});
 	}
 
-    function handleSubmit(event) {
-        event.preventDefault();
+	function handleSubmit(event) {
+		event.preventDefault();
 		for (const field in form) {
-            if (!form[field]) return setError(`${field} is required!`)
-            setError('') ;
+			if (!form[field]) return setError(`${field} is required!`);
+			setError('');
 		}
 		if (!error) {
-            console.log(form);
-            createExercises(dispatch,form);
-            /*
-            ACA VA EL REDUX/ENDPOINTS DE LA API
-            */
+			console.log(form, user.userId, user.accessToken);
+			createExercises(dispatch, { userId: user.userId, token: user.accessToken, body: form });
 		}
 	}
 
 	return (
 		<form className={style.form} onSubmit={handleSubmit}>
-			<label htmlFor="name">Name</label>
-			<input name="name" type="text" onChange={handleInput} />
-			<label htmlFor="reps">Reps</label>
-			<input name="reps" type="number" onChange={handleInput} min={1} />
-			<label htmlFor="sets">Sets</label>
-			<input name="sets" type="number" onChange={handleInput} min={0} />
+			<label htmlFor="title">Title</label>
+			<input name="title" type="text" onChange={handleInput} />
+			<label htmlFor="description">Description</label>
+			<textarea name="description" onChange={handleInput}></textarea>
 			<label htmlFor="video">Video</label>
 			<input name="video" type="text" onChange={handleInput} />
 			<button type="submit">Create</button>
-            {error && <p id={style.error}>{error}</p>}
+			{error && <p id={style.error}>{error}</p>}
 		</form>
 	);
 }
