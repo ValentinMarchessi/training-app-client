@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./navbar.scss";
-import HomeIcon from "@mui/icons-material/Home";
 import MenuIcon from "@mui/icons-material/Menu";
 import SettingsIcon from "@mui/icons-material/Settings";
 import LogoutIcon from "@mui/icons-material/Logout";
@@ -9,6 +8,10 @@ import Avatar from "../../assets/images/noUser.jpg";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { logoutUser } from "../../Redux/reducers/userLoginReducer";
 import { useDispatch } from "react-redux";
+
+import GuestPanel from './GuestPanel/GuestPanel';
+import UserPanel from './UserPanel/UserPanel';
+import Breadcrumbs from './Breadcrumbs/Breadcrumbs';
 
 const Navbar = ({ user }) => {
   const dispatch = useDispatch();
@@ -32,15 +35,7 @@ const Navbar = ({ user }) => {
 
   return (
     <div className="topBarContainer">
-      <div className="leftItems">
-        <HomeIcon
-          className="homeItem"
-          onClick={() => {
-            redir("/");
-          }}
-        />
-        <span className="page">Inicio</span>
-      </div>
+      <Breadcrumbs/>
       {user ? (
         <div className="rightItems">
           <p>{user.username}</p>
