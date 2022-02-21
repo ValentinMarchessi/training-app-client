@@ -7,12 +7,12 @@ import InfoCard from '../../components/InfoCard/InfoCard';
 import CardContainer from '../../components/CardContainer/CardContainer.jsx';
 import { useDispatch, useSelector } from 'react-redux'
 // import { getAllTrainers } from '../../Redux/apiCalls/allUsersTrainer/allUsersTrainer';
-import { getAllNutritionits } from '../../Redux/apiCalls/allUsersNutritionist/allUsersNutritionist';
+// import { getAllNutritionits } from '../../Redux/apiCalls/allUsersNutritionist/allUsersNutritionist';
 // import { getAllRoutines } from '../../Redux/apiCalls/rutinesCall/getAllRoutines';
 
 const Home = () => {
     const user = useSelector(state => state.user.currentUser)
-    const dispatch = useDispatch()
+    // const dispatch = useDispatch()
 
     //GET ALL ROUTINES COMPLETE
     // useEffect(() => {
