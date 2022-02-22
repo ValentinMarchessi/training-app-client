@@ -1,6 +1,6 @@
 import style from './Routines.module.scss';
 import home from '../../assets/images/home.svg';
-import RoutineBox from '../../components/RoutineBox/RoutineBox';
+import RoutineBox from './RoutineBox/RoutineBox';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 

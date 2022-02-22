@@ -1,4 +1,4 @@
-@import '../../config/color/configColors.scss';
+@import '../../config/colors';
 
 .landingContainer{
     width: 100%;
@@ -77,10 +77,10 @@
     bottom:10%;
     right:5vw;
     scroll-behavior: smooth;
-    background-color: $color-secondary-bg;
+    background-color: $secondary-bg;
     border-radius: 20px;
 }
 
 #logInText{
-    border-bottom: 10px solid $color-button-bg;
+    border-bottom: 10px solid $button-bg;
 }

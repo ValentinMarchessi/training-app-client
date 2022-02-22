@@ -3,16 +3,17 @@ import { Routes, Route } from 'react-router-dom';
 import "./App.scss";
 import Landing from "./Pages/Landing/Landing";
 import Home from './Pages/Home/Home';
-import HomeNutritionist from './Pages/Home/HomeNutritionist/HomeNutritionist';
-import HomeTrainer from './Pages/Home/HomeTrainer/HomeTrainer';
-import HomeGuest from './Pages/Home/HomeGuest/HomeGuest';
+import Routines from './Pages/Routines/Routines';
 
 
 function App() {
     return (
         <div className="App">
             <Routes>
-                <Route path='/home' element={<Home />}/>
+                <Route path='/' element={<Landing/>}/>
+                <Route path='/home' element={<Home />} />
+                <Route path='/routines' element={<Routines />}>
+                </Route>
             </Routes>
         </div>
     );

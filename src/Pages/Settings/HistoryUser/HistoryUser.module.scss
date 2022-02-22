@@ -1,10 +1,10 @@
-@use "../../config/color/configColors.scss" as c;
-@use "../../config/fontSize/configFontSize.scss" as f;
+@use "../../config/colors" as c;
+@use "../../config/fontSize" as f;
 
 .container {
     margin: 20px auto;
     width: 95%;
     height: 100%;
-    background: c.$color-option2-bg;
+    background: c.$option2-bg;
     border-radius: 5px;
   }

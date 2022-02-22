@@ -1,5 +1,5 @@
 @use '../../config/mixins' as Mixins;
-@use '../../config/color/configColors.scss' as Colors;
+@use '../../config/colors' as Colors;
 
 .page{
     @include Mixins.page;

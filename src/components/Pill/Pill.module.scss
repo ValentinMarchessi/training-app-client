@@ -1,4 +1,4 @@
-@use '../../config/color/configColors.scss' as Colors;
+@use '../../config/colors' as Colors;
 
 .container{
     padding: 2px 5px;
@@ -6,6 +6,6 @@
     justify-content: space-between;
     gap: 10px;
     max-width: 100px;
-    background-color: Colors.$color-button-bg;
+    background-color: Colors.$button-bg;
     border-radius: 5px;
 }

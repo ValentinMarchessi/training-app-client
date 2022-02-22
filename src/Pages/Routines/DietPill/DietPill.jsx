@@ -1,10 +1,10 @@
 import style from './DietPill.module.scss';
-import Pill from '../Pill/Pill.jsx';
+import Pill from '../../../components/Pill/Pill.jsx';
 
-import bolt from '../../assets/images/bolt.svg';
-import wheat from '../../assets/images/wheat.svg';
-import fish from '../../assets/images/fish.svg';
-import drumstick from '../../assets/images/drumstick.svg';
+import bolt from '../../../assets/images/bolt.svg';
+import wheat from '../../../assets/images/wheat.svg';
+import fish from '../../../assets/images/fish.svg';
+import drumstick from '../../../assets/images/drumstick.svg';
 
 export default function DietPill({ name, energy, carbs, fats, proteins }) {
 	return (

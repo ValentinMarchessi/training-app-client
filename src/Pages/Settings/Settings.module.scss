@@ -1,5 +1,5 @@
-@use "../../config/color/configColors.scss" as c;
-@use "../../config/fontSize/configFontSize.scss" as f;
+@use "../../config/colors" as c;
+@use "../../config/fontSize" as f;
 
 .container {
   //GENERAL
@@ -15,23 +15,23 @@
       display: flex;
       align-self: flex-start;
       .menuIcon {
-        color: c.$color-white;
+        color: c.$white;
         margin: 50px 0 0 70px;
       }
       h2 {
         letter-spacing: 1px;
         margin: 50px 0 0 8px;
-        font-size: f.$font-big;
-        color: c.$color-white;
+        font-size: f.$big;
+        color: c.$white;
         display: inline-block;
       }
     }
   }
   .contentSideMenu {
     list-style-type: none;
-    color: c.$color-white;
+    color: c.$white;
     letter-spacing: 0.2px;
-    font-size: f.$font-small;
+    font-size: f.$small;
     margin: 15px 0 0 50px;
     li {
       margin-top: 5px;
@@ -54,13 +54,13 @@
       align-items: center;
       width: 50px;
       height: 50px;
-      background: c.$color-primary-bg;
+      background: c.$primary-bg;
       margin: 25px 15px 0 15px;
       padding: 15px;
       border-radius: 50%;
-      border: 1px solid c.$color-white;
+      border: 1px solid c.$white;
       .btnIcon {
-        color: c.$color-white;
+        color: c.$white;
         font-size: 30px;
       }  
     }
@@ -71,7 +71,7 @@
     }
     p {
       margin: 3px;
-      color: c.$color-white;
+      color: c.$white;
       letter-spacing: 2px;
     }
   }
