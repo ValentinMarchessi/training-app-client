@@ -16,9 +16,9 @@ const updateUser = createSlice({
     updateSuccess: (state, action) => {
       const { uid, field, value } = action.payload;
       state.isFetching = false;
-      state.userId = uid,
-        state.field = field,
-        state.value = value;
+      state.userId = uid;
+      state.field = field;
+      state.value = value;
     },
     updateFailure: (state) => {
       state.isFetching = false;
