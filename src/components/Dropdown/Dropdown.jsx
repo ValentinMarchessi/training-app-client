@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import style from './Dropdown.module.scss';
-import clickOutsideElementEL from '../../helpers/clickOutsideElementEL';
+import clickAwayEventListener from '../../helpers/clickAwayEventListener';
 
 /*
 	USO DE <Dropdown/>
@@ -24,7 +24,7 @@ export default function Dropdown({ ToggleElement, align = 'left', children }) {
 	
 	useEffect(() => {
 		const dropdown = document.getElementsByClassName(style.container);
-		clickOutsideElementEL(dropdown[0], () => setActive(false));
+		clickAwayEventListener(dropdown[0], () => setActive(false));
 	}, [clickOutsideElementEL]);
 
     function handleExpand() {setActive(!active);}
