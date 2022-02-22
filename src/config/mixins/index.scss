@@ -34,7 +34,6 @@
 }
 
 @mixin page {
-	margin-top: 40px;
 	h1,
 	h2,
 	h3,
@@ -48,9 +47,8 @@
 }
 
 @mixin header {
-	margin: 3% 5%;
+	padding: 1% 3%;
 	display: flex;
-	width: fit-content;
 	gap: 20px;
 
 	#icon{
