@@ -1,5 +1,5 @@
 import * as React from 'react';
-import style from './CardContainer.module.scss';
+import styleModule from './CardContainer.module.scss';
 /*
     PROPS
 
@@ -19,14 +19,16 @@ import style from './CardContainer.module.scss';
 
     ----- OJO: al pasar el CardElement, se pasa como un objeto, no como un elemento JSX. -----
     ej: <CardContainer cards={cardArray} CardElement={InfoCards}/>
+
+    direction = 'row'|'column'
 */
 
-export default function CardContainer({ cards, CardElement }) {
+export default function CardContainer({ cards, CardElement, direction = 'row' }) {
     return (
-        <div className={style.container}>
-            {cards.map(card => 
-                <CardElement {...card}/>
-            )}
-        </div>
-    );
+		<div style={{flexDirection: direction}} className={styleModule.container}>
+			{cards.map((card) => (
+				<CardElement {...card} />
+			))}
+		</div>
+	);
 }
