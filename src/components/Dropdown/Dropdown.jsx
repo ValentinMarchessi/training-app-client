@@ -25,7 +25,7 @@ export default function Dropdown({ ToggleElement, align = 'left', children }) {
 	useEffect(() => {
 		const dropdown = document.getElementsByClassName(style.container);
 		clickAwayEventListener(dropdown[0], () => setActive(false));
-	}, [clickOutsideElementEL]);
+	}, [clickAwayEventListener]);
 
     function handleExpand() {setActive(!active);}
 	
