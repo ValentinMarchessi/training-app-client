@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import "./App.scss";
 
 //PAGES
-import { Exercises, Home, Landing, Routines } from './Pages';
+import { Exercises, Home, Landing, Routines, SignUpSequence } from './Pages';
 import { ExercisesCreate, ExercisesView } from './Pages/Exercises';
 
 function App() {
@@ -11,6 +11,7 @@ function App() {
         <div className="App">
             <Routes>
                 <Route path='/' element={<Landing/>}/>
+                <Route path='/newUser' element={<SignUpSequence/>}/>
                 <Route path='/home' element={<Home />} />
                 <Route path='/routines' element={<Routines />}></Route>
                 <Route path='/exercises' element={<Exercises />}>
