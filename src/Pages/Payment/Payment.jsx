@@ -6,7 +6,7 @@ import user from '../../assets/images/imageUser.jpg'
 import avatarPlaceholder from '../../assets/images/avatarPlaceholder.svg';
 import { Navbar, Searchbar } from '../../components';
 import { star } from '../../assets/images/icons';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import StripeCheckout from "react-stripe-checkout";
 import { baseUrlDev } from '../../config/requestMethod/publicRequest'
 import Logo from '../../assets/images/dep.jpg'
@@ -16,11 +16,14 @@ const KEY = "pk_test_51KTHNqKxK712fkWkpddjvo4wS93yK5sVKG0cUZ5bLcIsxXc5J8UUfToFNZ
 export default function Home() {
     // const { routineID } = useParams()
 
+    const navigate=useNavigate()
+
     const [stripeToken, setStripeToken] = useState(null)
 
 
     const onToken = (token) => {
         setStripeToken(token)
+        navigate('/')
         // console.log(token);
     }
 
@@ -32,6 +35,7 @@ export default function Home() {
                     tokenId: stripeToken.id,
                     amount: 500
                 })
+                navigate('/')
                 console.log(res.data)
             } catch (error) {
                 console.log(error);

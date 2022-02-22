@@ -28,8 +28,8 @@ export default function AuthForm({ method, cb }) {
     let [errors, setErrors] = useState({})
 
     useEffect(() => {
-        if (user?.userId) navigate('/')
-    }, [user, navigate])
+        user&&navigate('/home')
+    }, [user, navigate, formData])
 
     const Toast = Swal.mixin({
         toast: true,
@@ -54,11 +54,27 @@ export default function AuthForm({ method, cb }) {
             [event.target.name]: event.target.value
         }))
 
-        setFormData({
-            ...formData,
-            [event.target.name]: event.target.value,
-            empty: false
-        })
+        if(method==='login'&&event.target.name==='username'){ 
+            (/\S+@\S+\.\S+/.test(event.target.value))
+            ?   setFormData({
+                    email: event.target.value,
+                    password:formData.password,
+                    empty: false
+                })
+            :   setFormData({
+                    username: event.target.value,
+                    password:(formData.password??''),
+                    empty: false
+                })
+        }
+        else{
+            setFormData({
+                ...formData,
+                [event.target.name]: event.target.value,
+                empty: false
+            })     
+        }
+
         setAlert(false)
         console.log(errors)
         console.log(formData)
@@ -66,23 +82,15 @@ export default function AuthForm({ method, cb }) {
 
     const handleSubmitClick = (e) => {
         e.preventDefault()
-        if (!formData.username || !formData.password) {
+        if ((!formData.username&&!formData.email) || !formData.password) {
             Toast.fire({
                 icon: 'info',
                 title: 'Invalid Credentials'
             })
         } else {
-            if (method === 'login') {
-                loginUser(dispatch, formData)
-            }
-            if (method === 'register') {
-                //register(dispatch, formData)
-                navigate('/newUser', { state: { formData } })
-                //document.getElementById('form2').style.visibility='hidden'
-                //return cb()
-            }
-
-
+            if (method === 'login') loginUser(dispatch, formData)
+            
+            if (method === 'register') navigate('/newUser', { state: { formData } })
         }
         setFormData({
             username: '',
@@ -107,14 +115,15 @@ export default function AuthForm({ method, cb }) {
         const provider = new GoogleAuthProvider()
         signInWithPopup(authentication, provider)
             .then((res) => {
-                console.log(res)
-                setFormData({
+                let data = {
                     username: res.user.displayName,
                     password: res.user.uid,
-                    email:res.user.email,
-                    empty: false
-                })
-                method==='register'?navigate('/newUser', { state: { formData } }):loginUser(dispatch, formData)
+                    email: res.user.email,
+                    empty: false 
+                }
+                method==='register'
+                ? navigate('/newUser', { state: data })
+                : loginUser(dispatch, data)
             })
             .catch((err) => console.log(err.message))
     }
@@ -143,7 +152,7 @@ export default function AuthForm({ method, cb }) {
                         <input
                             type='text'
                             name='username'
-                            placeholder='Username'
+                            placeholder={method==='login'?'Username or email':'Username'}
                             value={formData.username}
                             onChange={event => inputHandler(event)}
                         />

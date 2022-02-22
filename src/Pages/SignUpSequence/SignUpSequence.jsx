@@ -26,7 +26,7 @@ export default function SignUpSequence() {
     console.log(location)
 
     const [userData, setUserData] = useState({
-        ...location.state.formData
+        ...location.state
     })
 
     const [imgUpdate, setImgUpdate] = useState()
@@ -169,6 +169,7 @@ export default function SignUpSequence() {
                         document.getElementById('fourthS').style.display = 'none'
                         document.getElementById('fifthS').scrollIntoView()
                         setTimeout(() => {
+                            register(dispatch, userData)
                             navigate('/landing')
                         }, 2000)
                     }}>
@@ -243,6 +244,10 @@ export default function SignUpSequence() {
                                     setImgUpdate(null)
                                     document.getElementById('options').removeChild(input)
                                     document.getElementById('uploadLabel').innerText = 'Upload a photo'
+                                    setUserData({
+                                        ...userData,
+                                        profile_img: ''
+                                    })
                                     event.target.value = ''
                                     return
                                 })
@@ -270,10 +275,9 @@ export default function SignUpSequence() {
                     register(dispatch, userData)
                     document.getElementById('fifthS').scrollIntoView()
 
-                    navigate('/landing')
-                    // setTimeout(() => {
-                    //     navigate('/')
-                    // }, 2000)
+                    setTimeout(() => {
+                        navigate('/')
+                    }, 1500)
                 }}>
                     Continue
                 </div>
