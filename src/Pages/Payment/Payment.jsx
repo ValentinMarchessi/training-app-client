@@ -3,10 +3,9 @@ import React, { useEffect, useState } from 'react';
 import './Payment.scss';
 import test from '../../assets/images/imageBg.png'
 import user from '../../assets/images/imageUser.jpg'
-import Navbar from '../../components/Navbar/Navbar';
-import SearchBar from '../../components/SearchBar/SearchBar';
 import avatarPlaceholder from '../../assets/images/avatarPlaceholder.svg';
-import star from '../../assets/images/star.svg';
+import { Navbar, Searchbar } from '../../components';
+import { star } from '../../assets/images/icons';
 import { Link } from 'react-router-dom';
 import StripeCheckout from "react-stripe-checkout";
 import { baseUrlDev } from '../../config/requestMethod/publicRequest'

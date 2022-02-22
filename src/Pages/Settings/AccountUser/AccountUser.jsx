@@ -1,7 +1,7 @@
 //STYLES
 import S from "./AccountUser.module.scss";
 //IMAGES (Estáticas por el momento)
-import Portada from "../../assets/images/imageBg.png";
+import Portada from "../../../assets/images/imageBg.png";
 //MUI ICONS
 import GoogleIcon from "@mui/icons-material/Google";
 import FacebookOutlinedIcon from "@mui/icons-material/FacebookOutlined";

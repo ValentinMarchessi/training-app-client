@@ -1,6 +1,6 @@
 import style from './RoutineCard.module.scss';
-import avatarPlaceholder from '../../assets/images/avatarPlaceholder.svg';
-import star from '../../assets/images/star.svg';
+import avatarPlaceholder from '../../../assets/images/avatarPlaceholder.svg';
+import {star} from '../../../assets/images/icons';
 
 export default function RoutineCard({ name, author, authorTitle, rating, reviews, price, image, avatar }) {
     /* De ser necesaria una refactorización, se puede extraer un componente SmallProfile del div con className={style.profile}*/

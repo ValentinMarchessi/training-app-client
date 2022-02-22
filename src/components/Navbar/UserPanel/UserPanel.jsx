@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { logoutUser } from '../../../Redux/reducers/userLoginReducer';
 
-import Dropdown from '../../../components/Dropdown/Dropdown';
+import { Dropdown } from '../../../components';
 
 import style from './UserPanel.module.scss';
 
