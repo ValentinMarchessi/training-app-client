@@ -1,5 +1,5 @@
 import DietCard from './DietCard/DietCard.jsx';
-import style from './MyDiets.module.scss';
+import style from './Diets.module.scss';
 
 import { clipboard, closeButton } from '../../assets/images/icons';
     
