@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import "./App.scss";
 
 //PAGES
-import { Exercises, Home, Landing } from './Pages';
+import { Exercises, Home, Landing, Routines } from './Pages';
 import { ExercisesCreate, ExercisesView } from './Pages/Exercises';
 
 function App() {
