@@ -1,11 +1,11 @@
-@use "../../config/color/configColors.scss" as c;
-@use "../../config/fontSize/configFontSize.scss" as f;
+@use "../../../config/colors" as c;
+@use "../../../config/fontSize" as f;
  
  //CONTENT CENTER
  .containerContentCenter {
     display: flex;
     flex-direction: column;
-    background: c.$color-secondary-bg;
+    background: c.$secondary-bg;
     width: 50%;
     height: 90vh;
     margin-top: 30px;
@@ -32,26 +32,26 @@
         width: 100px;
         height: 90px;
         border-radius: 50%;
-        border: 5px solid c.$color-secondary-bg;
+        border: 5px solid c.$secondary-bg;
       }
       p {
         position: relative;
         left: -80px;
-        color: c.$color-white;
+        color: c.$white;
       }
       input {
         height: 30px;
-        background: c.$color-secondary-bg;
-        color: c.$color-fonts-highlight-error;
-        border: 1px solid c.$color-fonts-highlight-error;
+        background: c.$secondary-bg;
+        color: c.$fonts-highlight-error;
+        border: 1px solid c.$fonts-highlight-error;
         border-radius: 4px;
         margin: 15px 25px 0 0;
       }
       input:hover {
           transition: .3s;
           cursor: pointer;
-        background: c.$color-fonts-highlight-error;
-        color: c.$color-white;
+        background: c.$fonts-highlight-error;
+        color: c.$white;
       }
     }
     

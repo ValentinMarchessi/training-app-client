@@ -1,0 +1,25 @@
+@use '../../../config/colors' as Colors;
+
+.contentMenu {
+	color: white;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+
+	.item {
+		display: flex;
+		gap: 10px;
+
+		a {
+			cursor: pointer;
+		}
+	}
+
+	#logout {
+		a {
+			color: #F35555;
+		}
+	}
+}

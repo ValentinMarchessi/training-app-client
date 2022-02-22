@@ -1,0 +1,21 @@
+@use "../../../config/colors" as color;
+
+.container {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: row;
+    gap: 20px;
+    //   background: red;
+
+    .homeItem {
+      width: 50px;
+      height: 50px;
+      color: color.$white;
+    }
+    .breadcrumb {
+      font-size: 30px;
+      font-weight: bold;
+      color: color.$white;
+    }
+}

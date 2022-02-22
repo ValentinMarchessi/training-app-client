@@ -1,5 +1,5 @@
-@use '../../config/color/configColors.scss' as Colors;
-@use '../../config/fontSize/configFontSize.scss' as FontSize;
+@use '../../config/colors' as Colors;
+@use '../../config/fontSize' as FontSize;
 @use '../../config/mixins' as Mixins;
 
 .searchBar{
@@ -46,7 +46,7 @@ form{
         width: 100%;
     }
     button{
-        background-color: Colors.$color-button-bg;
+        background-color: Colors.$button-bg;
         border:0;
         border-radius: 10px;
         color:white;

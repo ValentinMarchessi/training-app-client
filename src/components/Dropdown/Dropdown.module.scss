@@ -1,0 +1,45 @@
+@use '../../config/mixins/' as mixins;
+@use '../../config/colors/' as colors;
+
+.container {
+    @include mixins.medium-bold-font;
+    text-align: center;
+    position: relative;
+
+	#dropdown {
+        border-radius: 5px;
+		position: absolute;
+        background-color: colors.$secondary-bg;
+        height: fit-content;
+		display: flex;
+        flex-direction:column;
+        gap: 10px;
+		padding: 10px 10px;
+        // transform: scaleY(0);
+        visibility: hidden;
+        transform-origin: top;
+        transition: visibility ease-out;
+	}
+
+    #expand{
+        width:fit-content;
+        cursor:pointer;
+    }
+
+    .active{
+        animation: dropdown .1s ease-out;
+        visibility: visible !important;
+    }
+}
+
+
+@keyframes dropdown{
+    0% {
+        opacity: 0;
+        transform:scaleY(0)
+    }
+    100% {
+        opacity: 1;
+        transform:scaleY(1)
+    }
+}

@@ -1,12 +1,12 @@
-@use "../../config/color/configColors.scss" as c;
-@use "../../config/fontSize/configFontSize.scss" as f;
+@use "../../../config/colors" as c;
+@use "../../../config/fontSize" as f;
 
 .container {
   position: relative;
   top: -40px;
   display: flex;
   flex-direction: column;
-  background: c.$color-secondary-bg;
+  background: c.$secondary-bg;
   width: 50%;
   height: 90vh;
   margin-top: 30px;
@@ -14,7 +14,7 @@
   margin: 20px auto;
   width: 95%;
   height: 100%;
-  background: c.$color-option2-bg;
+  background: c.$option2-bg;
   border-radius: 5px;
   .containerImg {
     border-radius: 10px 10px 0 0;
@@ -35,26 +35,26 @@
       width: 100px;
       height: 90px;
       border-radius: 50%;
-      border: 5px solid c.$color-secondary-bg;
+      border: 5px solid c.$secondary-bg;
     }
     p {
       position: relative;
       left: -80px;
-      color: c.$color-white;
+      color: c.$white;
     }
     input {
       height: 30px;
-      background: c.$color-secondary-bg;
-      color: c.$color-fonts-highlight-error;
-      border: 1px solid c.$color-fonts-highlight-error;
+      background: c.$secondary-bg;
+      color: c.$fonts-highlight-error;
+      border: 1px solid c.$fonts-highlight-error;
       border-radius: 4px;
       margin: 15px 25px 0 0;
     }
     input:hover {
       transition: 0.3s;
       cursor: pointer;
-      background: c.$color-fonts-highlight-error;
-      color: c.$color-white;
+      background: c.$fonts-highlight-error;
+      color: c.$white;
     }
   }
 
@@ -62,23 +62,23 @@
     margin: 10px;
     label {
       margin: 7px 7px 7px 10px;
-      color: c.$color-white;
-      font-size: f.$font-small;
+      color: c.$white;
+      font-size: f.$small;
     }
     input {
-      background-color: c.$color-secondary-bg;
+      background-color: c.$secondary-bg;
       margin: 7px 0 0px 30px;
       border: none;
       outline: none;
       padding: 5px;
       border-radius: 5px 0 0 5px;
-      color: c.$color-white;
+      color: c.$white;
     }
     .inputBtn {
       margin: 0;
       width: 50px;
       border-radius: 0 5px 5px 0;
-      background-color: c.$color-button-bg;
+      background-color: c.$button-bg;
     }
     .inputBtn:hover {
       cursor: pointer;
@@ -93,8 +93,8 @@
     label {
       position: relative;
       left: -100px;
-      font-size: f.$font-small;
-      color: c.$color-white;
+      font-size: f.$small;
+      color: c.$white;
       margin-left: 20px;
     }
     .containerIcons {
@@ -102,15 +102,15 @@
       .icon {
         border-radius: 50%;
         padding: 2px;
-        color: c.$color-option-bg;
+        color: c.$option-bg;
         margin: 0 10px;
-        border: 1px solid c.$color-option-bg;
+        border: 1px solid c.$option-bg;
       }
       .icon:hover {
         cursor: pointer;
         transition: 0.3s;
-        color: c.$color-white;
-        border: 1px solid c.$color-white;
+        color: c.$white;
+        border: 1px solid c.$white;
       }
     }
   }
@@ -119,11 +119,11 @@
     justify-content: flex-end;
     button {
       margin: 10px;
-      background: c.$color-button-bg;
+      background: c.$button-bg;
       padding: 9px;
       border: none;
       border-radius: 5px;
-      color: c.$color-white;
+      color: c.$white;
     }
     button:hover {
       cursor: pointer;

@@ -1,12 +1,9 @@
-import InfoPill from '../InfoPill/InfoPill.jsx';
 import style from './DietCard.module.scss';
 import Divider from '@mui/material/Divider';
 import Stack from '@mui/material/Stack';
-import Avatar from '../../components/Avatar/Avatar.jsx';
-import wheat from '../../assets/images/wheat.svg';
-import fish from '../../assets/images/fish.svg';
-import drumstick from '../../assets/images/drumstick.svg';
-import bolt from '../../assets/images/bolt.svg';
+
+import { InfoPill, Avatar } from '../../../components';
+import { wheat, fish, drumstick, bolt } from '../../../assets/images/icons';
 
 /* PROPS
 name: string

@@ -1,10 +1,10 @@
-@use '../fontSize/configFontSize.scss' as FontSize;
-@use '../color/configColors.scss' as Colors;
+@use '../fontSize' as FontSize;
+@use '../colors' as Colors;
 @use '../fontWeight' as FontWeight;
 
 @mixin medium-bold-font {
 	font-family: Montserrat;
-	font-size: FontSize.$font-medium;
+	font-size: FontSize.$medium;
 	font-weight: FontWeight.$bold;
 }
 
@@ -29,12 +29,11 @@
 }
 
 @mixin blue-button {
-	@include button(Colors.$color-button-bg);
+	@include button(Colors.$button-bg);
 	@include medium-bold-font;
 }
 
 @mixin page {
-	margin-top: 40px;
 	h1,
 	h2,
 	h3,
@@ -48,9 +47,8 @@
 }
 
 @mixin header {
-	margin: 3% 5%;
+	padding: 1% 3%;
 	display: flex;
-	width: fit-content;
 	gap: 20px;
 
 	#icon{

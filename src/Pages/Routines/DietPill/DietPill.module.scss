@@ -1,7 +1,7 @@
-@use '../../config/color/configColors.scss' as Colors;
+@use '../../../config/colors' as Colors;
 
 .container{
-    background-color: Colors.$color-form-stroke;
+    background-color: Colors.$form-stroke;
     padding: 10px;
     border-radius: 10px;
 

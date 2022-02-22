@@ -1,0 +1,26 @@
+//IMPORT PALETA DE COLORES
+@use "../../config/colors" as Color;
+@use "../../config/mixins" as Mixins;
+
+//TOP CONTENT
+.container {
+  @include Mixins.header;
+  position: sticky;
+  justify-content: space-between;
+  background: Color.$primary-bg;
+  z-index: 99;
+
+  .userArea{
+    width: 20%;
+    min-width: 100px;
+    display: flex;
+    gap: 10px;
+    flex-basis: content;
+    align-items: center;
+
+    #username{
+      @include Mixins.medium-bold-font;
+      color: white;
+    }
+  }
+}

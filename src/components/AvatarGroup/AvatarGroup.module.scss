@@ -1,4 +1,4 @@
-@use '../../config/color/configColors.scss' as Colors;
+@use '../../config/colors' as Colors;
 
 .avatarGroup {
 	position: relative;
@@ -6,7 +6,7 @@
 	gap: 5px;
 
 	#showMore {
-		background-color: Colors.$color-button-bg;
+		background-color: Colors.$button-bg;
 		color: white;
 		border: none;
 		border-radius: 50%;

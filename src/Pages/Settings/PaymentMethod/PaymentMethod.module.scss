@@ -1,11 +1,11 @@
-@use "../../config/color/configColors.scss" as c;
-@use "../../config/fontSize/configFontSize.scss" as f;
+@use "../../../config/colors" as c;
+@use "../../../config/fontSize" as f;
 
 .container {
   margin: 20px auto;
   width: 95%;
   height: 100%;
-  background: c.$color-option2-bg;
+  background: c.$option2-bg;
   border-radius: 5px;
   display: flex;
   justify-content: space-around;
@@ -30,7 +30,7 @@
         flex-direction: column;
         p {
           margin: 15px;
-          color: c.$color-white;
+          color: c.$white;
         }
         p:hover {
           cursor: pointer;
@@ -41,11 +41,11 @@
     }
     button {
       margin: 10px;
-      background: c.$color-button-bg;
+      background: c.$button-bg;
       padding: 9px;
       border: none;
       border-radius: 5px;
-      color: c.$color-white;
+      color: c.$white;
     }
     button:hover {
       cursor: pointer;
@@ -58,13 +58,13 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    background: c.$color-secondary-bg;
+    background: c.$secondary-bg;
     margin: 15px 0;
     width: 35%;
     height: 70%;
     border-radius: 15px;
     h4 {
-      color: c.$color-white;
+      color: c.$white;
       margin: 0;
     }
     .contentCart {
@@ -72,19 +72,19 @@
       justify-content: space-around;
       width: 100%;
       .contentCartLeft {
-        color: c.$color-white;
+        color: c.$white;
       }
       .contentCartRight {
-        color: c.$color-white;
+        color: c.$white;
       }
     }
     button {
       margin: 10px;
-      background: c.$color-button-bg;
+      background: c.$button-bg;
       padding: 9px;
       border: none;
       border-radius: 5px;
-      color: c.$color-white;
+      color: c.$white;
     }
     button:hover {
       cursor: pointer;

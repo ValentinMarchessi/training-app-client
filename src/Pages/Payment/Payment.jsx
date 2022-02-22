@@ -3,11 +3,10 @@ import React, { useEffect, useState } from 'react';
 import './Payment.scss';
 import test from '../../assets/images/imageBg.png'
 import user from '../../assets/images/imageUser.jpg'
-import Navbar from '../../components/Navbar/Navbar';
-import SearchBar from '../../components/SearchBar/SearchBar';
 import avatarPlaceholder from '../../assets/images/avatarPlaceholder.svg';
-import star from '../../assets/images/star.svg';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { Navbar, Searchbar } from '../../components';
+import { star } from '../../assets/images/icons';
+import { Link, useNavigate } from 'react-router-dom';
 import StripeCheckout from "react-stripe-checkout";
 import { baseUrlDev } from '../../config/requestMethod/publicRequest'
 import Logo from '../../assets/images/dep.jpg'
