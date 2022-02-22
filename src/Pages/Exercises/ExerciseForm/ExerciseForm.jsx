@@ -9,7 +9,7 @@ const testingState = {
 	video: 'youtubeURL',
 };
 
-export default function ExerciseForm() {
+export default function ExerciseForm({onAdd, onClose}) {
 	const [form, setForm] = useState({
 		title: null, //string
 		description: null, //number
@@ -42,6 +42,7 @@ export default function ExerciseForm() {
 		if (!error) {
 			console.log(form, user.userId, user.accessToken);
 			createExercises(dispatch, { userId: user.userId, token: user.accessToken, body: form });
+			onAdd();
 		}
 	}
 
@@ -52,8 +53,8 @@ export default function ExerciseForm() {
 			<label htmlFor="description">Description</label>
 			<textarea name="description" onChange={handleInput}></textarea>
 			<label htmlFor="video">Video</label>
-			<input name="video" type="text" onChange={handleInput} />
-			<button type="submit">Create</button>
+			<input name="video" type="file" onChange={handleInput} />
+			<button id={style.submit} type="submit">Add</button>
 			{error && <p id={style.error}>{error}</p>}
 		</form>
 	);

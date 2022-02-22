@@ -1,0 +1,17 @@
+@use '../../config/mixins/' as Mixins;
+
+#content {
+    @include Mixins.overlay;
+    border-radius: 10px;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 15px;
+
+    button#close{
+        @include Mixins.red-button;
+        width:fit-content;
+        align-self: end;
+    }
+}

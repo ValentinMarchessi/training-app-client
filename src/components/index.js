@@ -8,6 +8,7 @@ import Navbar from './Navbar/Navbar.jsx';
 import Pill from './Pill/Pill.jsx';
 import SearchBar from './SearchBar/SearchBar.jsx';
 import Select from './Select/Select.jsx';
+import Overlay from './Overlay/Overlay.jsx';
 
 export {
     Avatar,
@@ -20,4 +21,5 @@ export {
     Pill,
     SearchBar,
     Select,
+    Overlay,
 }
