@@ -5,14 +5,24 @@ import "./App.scss";
 //PAGES
 import { Exercises, Home, Landing, Routines } from './Pages';
 import { ExercisesCreate, ExercisesView } from './Pages/Exercises';
+//HOMES
+import HomeClient from './Pages/Home/HomeClient/HomeClient';
+import HomeProfesional from './Pages/Home/HomeProfesional/HomeProfesional';
+
 
 function App() {
     return (
         <div className="App">
             <Routes>
                 <Route path='/' element={<Landing/>}/>
-                <Route path='/home' element={<Home />} />
+                
+                <Route path='/home' element={<Home />}> 
+                    <Route path='client' element={<HomeClient/>} />
+                    <Route path='profesional' element={<HomeProfesional/>} />
+                </Route>
+                
                 <Route path='/routines' element={<Routines />}></Route>
+
                 <Route path='/exercises' element={<Exercises />}>
                     <Route index element={<ExercisesView/>}/>
                     <Route path='create' element={<ExercisesCreate/>}/>

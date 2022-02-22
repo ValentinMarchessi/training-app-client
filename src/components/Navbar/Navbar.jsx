@@ -21,7 +21,7 @@ const Navbar = () => {
 		<div className={style.container}>
 			<Breadcrumbs />
 			<div className={style.userArea}>
-        		<p id={style.username}>{user ? user.name : 'Guest'}</p>
+				<p id={style.username}>{user ? user.name : 'Guest'}</p>
 				<Avatar src={user ? user.avatar : avatarPlaceholder} />
 				{user ? <UserPanel /> : <GuestPanel />}
 			</div>
