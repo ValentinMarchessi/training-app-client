@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import style from './ExerciseForm.module.scss';
-import { createExercises } from '../../Redux/apiCalls/exercisesCall/createExercises';
+import { createExercises } from '../../../Redux/apiCalls/exercisesCall/createExercises';
 
 const testingState = {
 	title: 'Burpee',

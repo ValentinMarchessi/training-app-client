@@ -1,10 +1,10 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom';
 import "./App.scss";
-import Landing from "./Pages/Landing/Landing";
-import Home from './Pages/Home/Home';
-import Routines from './Pages/Routines/Routines';
 
+//PAGES
+import { Exercises, Home, Landing } from './Pages';
+import { ExercisesCreate, ExercisesView } from './Pages/Exercises';
 
 function App() {
     return (
@@ -12,7 +12,10 @@ function App() {
             <Routes>
                 <Route path='/' element={<Landing/>}/>
                 <Route path='/home' element={<Home />} />
-                <Route path='/routines' element={<Routines />}>
+                <Route path='/routines' element={<Routines />}></Route>
+                <Route path='/exercises' element={<Exercises />}>
+                    <Route index element={<ExercisesView/>}/>
+                    <Route path='create' element={<ExercisesCreate/>}/>
                 </Route>
             </Routes>
         </div>

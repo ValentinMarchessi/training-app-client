@@ -1,12 +1,9 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 import style from './Exercises.module.scss';
-import home from '../../assets/images/home.svg';
-import CardContainer from '../../components/CardContainer/CardContainer.jsx';
-import ExerciseCard from '../../components/ExerciseCard/ExerciseCard';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllExercises } from '../../Redux/apiCalls/exercisesCall/getAllExercises.js'
-import ExerciseForm from '../../components/ExerciseForm/ExerciseForm';
+import Navbar from '../../components/Navbar/Navbar';
 
 const mock = [{title: 'asd', description: 'asd', video: 'https://www.youtube.com/watch?v=Uy2nUNX38xE'}]
 
@@ -15,25 +12,15 @@ export default function Exercises() {
     const exercises = useSelector((store) => store.exercises.allExercises);
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        getAllExercises(dispatch,{userId: user.userId, token: user.accessToken})
+	useEffect(() => {
+        if(user) getAllExercises(dispatch,{userId: user.userId, token: user.accessToken})
     },[dispatch, user, getAllExercises])
 
 	return (
 		<div className={style.page}>
-			<div className={style.header}>
-				<Link to="/">
-					<img id={style.icon} src={home} alt="home" />
-				</Link>
-				<h1>My Exercises</h1>
-				<hr />
-			</div>
-            <div className={style.body}>
-                <div className={style.container}>
-                    <CardContainer cards={exercises} CardElement={ExerciseCard} />
-                </div>
-
-                <ExerciseForm/>
+			<Navbar />
+			<div className={style.body}>
+				<Outlet/>
 			</div>
 		</div>
 	);
