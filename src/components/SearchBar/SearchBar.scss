@@ -15,15 +15,16 @@
     height: -moz-fit-content;
     height: fit-content;
     align-items: center;
+
+    form{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
 }
 
-form{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
 .searchField{
     width: 80%;
     display: flex;
