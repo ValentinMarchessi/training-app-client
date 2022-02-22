@@ -9,7 +9,7 @@ import Pill from './Pill/Pill.jsx';
 import SearchBar from './SearchBar/SearchBar.jsx';
 import Select from './Select/Select.jsx';
 
-export default {
+export {
     Avatar,
     AvatarGroup,
     CardContainer,
