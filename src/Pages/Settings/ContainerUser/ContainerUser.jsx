@@ -1,12 +1,12 @@
 //STYLES
 import S from "./ContainerUser.module.scss";
 //IMAGES (Estáticas por el momento)
-import User from "../../assets/images/imageUser.jpg";
+import User from "../../../assets/images/imageUser.jpg";
 //COMPONENTS
 import AccountUser from '../AccountUser/AccountUser'
-import ProfileUser from '../../../components/ProfileUser/ProfileUser'
-import PaymentMethod from '../../../components/PaymentMethod/PaymentMethod'
-import HistoryUser from '../../../components/HistoryUser/HistoryUser'
+import ProfileUser from '../ProfileUser/ProfileUser'
+import PaymentMethod from '../PaymentMethod/PaymentMethod'
+import HistoryUser from '../HistoryUser/HistoryUser'
 
 
 export default function ContainerUser({config}) {

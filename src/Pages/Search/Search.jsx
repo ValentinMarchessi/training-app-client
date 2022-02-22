@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import RoutineCard from '../../components/RoutineCard/RoutineCard';
 import './Search.scss'
 import test from '../../assets/images/imageBg.png'
 import user from '../../assets/images/imageUser.jpg'
-import Navbar from '../../components/Navbar/Navbar';
-import SearchBar from '../../components/SearchBar/SearchBar';
 import { Link, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllTrainers } from '../../Redux/apiCalls/allUsersTrainer/allUsersTrainer';
 import { getAllNutritionits } from '../../Redux/apiCalls/allUsersNutritionist/allUsersNutritionist';
 import { getAllRoutines } from '../../Redux/apiCalls/rutinesCall/getAllRoutines';
+
+import { Navbar, Searchbar } from '../../components';
+import RoutineCard from './RoutineCard/RoutineCard';
 
 export default function Search() {
     //Hacer dispatch segun el type

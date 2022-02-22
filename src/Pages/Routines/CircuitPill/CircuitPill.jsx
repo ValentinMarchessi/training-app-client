@@ -1,6 +1,5 @@
 import style from './CircuitPill.module.scss';
-import run from '../../../assets/images/run.svg';
-import clock from '../../../assets/images/clock.svg';
+import { run, clock } from '../../../assets/images/icons';
 
 export default function CircuitPill({ id, name, length, duration }) {
 	//id queda guardado para routing a una ruta de detalles

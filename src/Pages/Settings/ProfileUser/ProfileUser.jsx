@@ -1,8 +1,8 @@
 //STYLES
 import S from "./ProfileUser.module.scss";
 //COMPONENTS
-import Select from "../Select/Select";
-
+import { Select } from '../../../components';
+  
 export default function ProfileUser() {
   function onChange() {}
   return (

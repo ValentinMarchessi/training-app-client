@@ -12,7 +12,6 @@ import app from '../../firebase/config-firestore/firabase'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { register } from '../../Redux/apiCalls/registerCall/createRegister'
-import AuthForm from '../../components/Form/AuthForm/Form.jsx'
 import { width } from '@mui/system'
 
 export default function SignUpSequence() {

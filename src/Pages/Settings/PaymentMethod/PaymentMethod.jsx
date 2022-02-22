@@ -1,9 +1,9 @@
 //STYLES
 import S from "./PaymentMethod.module.scss";
 //IMAGES
-import masterCard from "../../assets/images/masterCard.png";
-import BBVAIcon from "../../assets/images/BBVAIcon.png";
-import meliIcon from "../../assets/images/meliIcon.png";
+import masterCard from "../../../assets/images/masterCard.png";
+import BBVAIcon from "../../../assets/images/BBVAIcon.png";
+import meliIcon from "../../../assets/images/meliIcon.png";
 
 export default function PaymentMethod() {
   return (

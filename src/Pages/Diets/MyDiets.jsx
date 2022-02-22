@@ -1,7 +1,7 @@
-import DietCard from '../../components/DietCard/DietCard.jsx';
+import DietCard from './DietCard/DietCard.jsx';
 import style from './MyDiets.module.scss';
-import clipboard from '../../assets/images/clipboard.svg';
-import closeButton from '../../assets/images/closeButton.svg';
+
+import { clipboard, closeButton } from '../../assets/images/icons';
     
 const diet = {
     name: 'Dieta Cetogénica',
