@@ -1,104 +1,32 @@
-import React, { useState } from "react";
-import "./navbar.scss";
-import MenuIcon from "@mui/icons-material/Menu";
-import SettingsIcon from "@mui/icons-material/Settings";
-import LogoutIcon from "@mui/icons-material/Logout";
-import HistoryIcon from "@mui/icons-material/History";
-import Avatar from "../../assets/images/noUser.jpg";
-import { Link, Navigate, useNavigate } from "react-router-dom";
-import { logoutUser } from "../../Redux/reducers/userLoginReducer";
-import { useDispatch } from "react-redux";
+import React, { useState } from 'react';
+import Avatar from '../../components/Avatar/Avatar';
+import avatarPlaceholder from '../../assets/images/avatarPlaceholder.svg';
+
+import style from './Navbar.module.scss';
 
 import GuestPanel from './GuestPanel/GuestPanel';
 import UserPanel from './UserPanel/UserPanel';
 import Breadcrumbs from './Breadcrumbs/Breadcrumbs';
 
-const Navbar = ({ user }) => {
-  const dispatch = useDispatch();
-  const [active, setActive] = useState(false);
+import avatarMock from '../../assets/images/imageUser.jpg'
 
-  const handleClick = () => {
-    console.log(1);
-    setActive(!active);
-  };
+const user = {
+	name: 'Eve',
+	avatar: avatarMock,
+};
 
-  const handleClickLogout = (e) => {
-    e.preventDefault();
-    dispatch(logoutUser(user));
-  };
 
-  const redir = useNavigate();
-
-  function onRedir() {
-    redir("/settings");
-  }
-
-  return (
-    <div className="topBarContainer">
-      <Breadcrumbs/>
-      {user ? (
-        <div className="rightItems">
-          <p>{user.username}</p>
-          <div>
-            <img
-              className="avatarNavbar"
-              src={user.profileImg ?? Avatar}
-              alt=""
-            />
-          </div>
-          <div className="contentMenu">
-            <MenuIcon onClick={handleClick} className="hamburgerItem" />
-            <div
-              id="contentSeting"
-              className={active ? "contentSeting active" : "contentSeting"}
-            >
-              <div className="triangle" />
-              <div className="contentList">
-                <div className="itemList">
-                  <LogoutIcon className="iconItems" />
-                  <span className="textSeting" onClick={handleClickLogout}>
-                    Log out
-                  </span>
-                </div>
-                <div className="itemList">
-                  <SettingsIcon className="iconItems" />
-                  <span className="textSeting" onClick={onRedir}>
-                    Settings
-                  </span>
-                </div>
-                <div className="itemList">
-                  <HistoryIcon className="iconItems" />
-                  <span className="textSeting">History</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      ) : (
-        <div className="guest">
-          <div className="buttonA">
-            <Link
-              style={{ textDecoration: "none", color: "inherit" }}
-              className="link"
-              to="/landing"
-            >
-              Sign up
-            </Link>
-          </div>
-
-          <div className="buttonA">
-            <Link
-              style={{ textDecoration: "none", color: "inherit" }}
-              className="link"
-              to="/landing"
-            >
-              Log in
-            </Link>
-          </div>
-        </div>
-      )}
-    </div>
-  );
+const Navbar = () => {
+	return (
+		<div className={style.container}>
+			<Breadcrumbs />
+			<div className={style.userArea}>
+        		<p id={style.username}>{user ? user.name : 'Guest'}</p>
+				<Avatar src={user ? user.avatar : avatarPlaceholder} />
+				{user ? <UserPanel /> : <GuestPanel />}
+			</div>
+		</div>
+	);
 };
 
 export default Navbar;

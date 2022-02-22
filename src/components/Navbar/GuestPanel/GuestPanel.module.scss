@@ -1,0 +1,13 @@
+@use '../../../config/colors' as Color;
+@use '../../../config/mixins' as Mixins;
+
+.container {
+	display: flex;
+    gap: 30px;
+	align-items: center;
+	justify-content: space-evenly;
+
+	.buttonA {
+		@include Mixins.blue-button;
+	}
+}
