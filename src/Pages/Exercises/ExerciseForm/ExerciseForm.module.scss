@@ -2,10 +2,11 @@
 
 .form{
     font-family: 'Montserrat';
-    //width: 20%;
     margin: auto;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     gap: 6px;
     color: white;
 
@@ -13,9 +14,13 @@
         align-self: left;
     }
 
-    button{
+    #submit{
         @include mixins.blue-button;
         margin-top: 10%;
+    }
+
+    input[type=file]{
+        max-width: -moz-available;
     }
 }
 

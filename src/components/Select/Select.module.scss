@@ -25,7 +25,8 @@
             border: 2px solid colors.$secondary-bg;
             border-radius: 10px;
             appearance: none;
-            padding-left: 10px;
+            padding-right: 35px !important;
+            text-overflow: ellipsis;
 
             option{
                 color:black;

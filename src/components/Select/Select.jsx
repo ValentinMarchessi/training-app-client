@@ -30,7 +30,7 @@ export default function Select({ options, label, callback }) {
             <div className={style.select}>
                 <select onChange={callback}>
                     <option value="" selected disabled hidden>Selección</option>
-                    {options.length?options.map(option => <option key={option.value} value={option.value}>{option.display}</option>):null}
+                    {options.length?options.map(option => <option key={option.value} value={option.value}>{option.display??option.value}</option>):null}
                 </select>
             </div>
         </div>
