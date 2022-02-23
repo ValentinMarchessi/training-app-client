@@ -7,7 +7,6 @@ import style from './Navbar.module.scss';
 import GuestPanel from './GuestPanel/GuestPanel';
 import UserPanel from './UserPanel/UserPanel';
 import Breadcrumbs from './Breadcrumbs/Breadcrumbs';
-
 import avatarMock from '../../assets/images/imageUser.jpg'
 import { useSelector } from 'react-redux';
 

@@ -1,13 +1,12 @@
 import style from './GuestPanel.module.scss';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function GuestPanel() {
+	const navigate=useNavigate()
 	return (
 		<div className={style.container}>
-			<div className={style.buttonA}>
-				<Link style={{ textDecoration: 'none', color: 'inherit' }} className={style.link} to="/">
+			<div className={style.buttonA} onClick={()=>navigate('/', {state:'register'})}>
 					Sign up
-				</Link>
 			</div>
 			<div className={style.buttonA}>
 				<Link style={{ textDecoration: 'none', color: 'inherit' }} className={style.link} to="/">

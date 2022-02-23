@@ -5,10 +5,13 @@ import test2 from '../../assets/images/carrousel2.jpg'
 import './Landing.scss'
 import AuthForm from './Form/AuthForm/Form';
 import autoScroll from '../../helpers/autoScroll/autoScroll' // Documentación en el .js
-import { Link } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 
 
 export default function LandingPage(){
+
+    const navigate=useNavigate()
+    const location=useLocation()
     
     useEffect(()=>{
         setTimeout(() => { 
@@ -16,10 +19,16 @@ export default function LandingPage(){
         }, 1000);
         window.addEventListener('resize', ()=>autoScroll())
 
+        document.getElementById('logInText').style.borderBottom = '10px solid #3f59b8'
+
         //Para ajustar el recorte del carrusel a cualquier dispositivo
         const landingHeight = document.getElementsByClassName('landingContainer')[0].clientHeight;
         document.getElementById('caroussel').style.clipPath = `path('m 0 0 v ${landingHeight} h 236 Q 566 620 567 242 V 84 v -84 z')`;
-
+        if(location.state==='register') {
+            document.getElementById('signUpText').style.borderBottom = '10px solid #3f59b8'
+            document.getElementById('logInText').style.borderBottom = '10px solid transparent'
+            autoScroll('authform', 'right')
+        }
     }, [])
 
     return (
@@ -33,26 +42,30 @@ export default function LandingPage(){
                 <img className='background' src={test2} alt='3'/>
 
             </div>
-
             <Link to='/home'><div id='guest'>Continue as guest</div></Link>
-
             <div className='choices'>
-                <h1 id='logInText' onClick={() => {
-                    autoScroll('form', 'left')
-                    document.getElementById('logInText').style.borderBottom = '10px solid #3f59b8'
-                    document.getElementById('signUpText').style.borderBottom = '10px solid transparent'
-                }}>Log In</h1>
+                <div id='optionselect'>
+                    <h2 id='logInText' onClick={() => {
+                        autoScroll('authform', 'left')
+                        document.getElementById('logInText').style.borderBottom = '10px solid #3f59b8'
+                        document.getElementById('signUpText').style.borderBottom = '10px solid transparent'
+                    }}>Log In</h2>
 
-                <hr />
-                <h1 id='signUpText' onClick={() => {
-                    autoScroll('form', 'right')
-                    document.getElementById('signUpText').style.borderBottom = '10px solid #3f59b8'
-                    document.getElementById('logInText').style.borderBottom = '10px solid transparent'
-                }}>Sign Up</h1>
-            </div>
-            <div id='form'>
-                <AuthForm method={'login'} />
-                <AuthForm method={'register'} />
+                    <hr />
+                    <h2 id='signUpText' onClick={() => {
+                        autoScroll('authform', 'right')
+                        document.getElementById('signUpText').style.borderBottom = '10px solid #3f59b8'
+                        document.getElementById('logInText').style.borderBottom = '10px solid transparent'
+                    }}>Sign Up</h2>
+                    <hr />
+                    <h2 id='guest' style={{marginLeft:10}} onClick={() => {
+                        navigate('/home/client')
+                    }}>Continue as guest</h2>
+                </div>
+                <div id='authform'>
+                    <AuthForm method={'login'} />
+                    <AuthForm method={'register'} />
+                </div>
             </div>
 
         </div>

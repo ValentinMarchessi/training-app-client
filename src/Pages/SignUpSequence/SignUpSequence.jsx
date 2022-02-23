@@ -5,6 +5,7 @@ import test2 from '../../../src/assets/images/test2.png'
 import test3 from '../../../src/assets/images/test3.png'
 import test4 from '../../../src/assets/images/test4.png'
 import done from '../../../src/assets/images/done.png'
+import rank from '../../../src/assets/images/rank.jpg'
 import { Link, Navigate, useLocation } from 'react-router-dom'
 import Select from '../../components/Select/Select.jsx'
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage"
@@ -12,7 +13,8 @@ import app from '../../firebase/config-firestore/firabase'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { register } from '../../Redux/apiCalls/registerCall/createRegister'
-import { width } from '@mui/system'
+import { loginUser } from '../../Redux/apiCalls/userLoginCall/userLoginCall'
+import { countries } from './countries'
 
 export default function SignUpSequence() {
 
@@ -38,6 +40,12 @@ export default function SignUpSequence() {
 
     const handleImage = (e) => {
         e.preventDefault()
+        let preventSubmit=document.getElementById('last')
+        preventSubmit.disabled='true'
+                preventSubmit.style.opacity=.2
+                preventSubmit.innerText='Uploading...'
+                preventSubmit.style.cursor='progress'
+                document.getElementsByTagName('html')[0].style.cursor='progress'
         //Para que las imagen con el mismo nombre no se pisen
         const fileName = new Date().getTime() + imgUpdate.name
         //Traer del storage los datos
@@ -55,6 +63,10 @@ export default function SignUpSequence() {
             (snapshot) => {
                 // Observe state change events such as progress, pause, and resume
                 // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+                
+
+                
+
                 const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
                 console.log('Upload is ' + progress + '% done');
                 switch (snapshot.state) {
@@ -77,9 +89,13 @@ export default function SignUpSequence() {
 
                     setUserData({
                         ...userData,
-                        profile_img: downloadURL
+                        profile_img: imgUpdate?downloadURL:''
                     })
-
+                    preventSubmit.disabled=false
+                    preventSubmit.style.opacity=1
+                    preventSubmit.innerText='Continue'
+                    preventSubmit.style.cursor='pointer'
+                    document.getElementsByTagName('html')[0].style.cursor='default'
                 }
                 );
             })
@@ -87,6 +103,36 @@ export default function SignUpSequence() {
 
     return (
         <div id='mainSequenceContainer'>
+            <div className='sequenceContainer'>
+                <h2>Training app</h2>
+                <h1 id='title'>Welcome to Training App!</h1>
+
+                <div className='choiceContainer'>
+                    <h1 id='looking'>Here you'll find...</h1>
+
+                    <div className='userChoices'>
+                        <div id='serviceChoice'>
+                            <img src={test1} alt='x' />
+                            <h2>A curated list of professionals</h2>
+                        </div>
+
+                        <div id='clientChoice'>
+                            <img src={test2} alt='x' />
+                            <h2>People eager to train</h2>
+                        </div>
+
+                        <div id='clientChoice'>
+                            <img src={rank} alt='x' />
+                            <h2>A competitive environment</h2>
+                        </div>
+                    </div>
+                    <button className='continue' onClick={() => {
+                            document.getElementById('firstS').scrollIntoView()
+                        }}>Let's get to it</button>
+
+                </div>
+            </div>
+
             <div className='sequenceContainer' id='firstS'>
                 <h2>Training app</h2>
                 <h1 id='title'>Tell us... what brings you here?</h1>
@@ -149,7 +195,7 @@ export default function SignUpSequence() {
                             <h2 style={userData.is_nutritionist ? { height: 52, padding: 10, backgroundColor: '#3f59b8' } : null}>Nutritionist</h2>
                         </div>
                     </div>
-                    <div id={(userData.is_nutritionist || userData.is_personal_trainer) ? 'continue' : 'wait'} onClick={() => {
+                    <div className={(userData.is_nutritionist || userData.is_personal_trainer) ? 'continue' : 'wait'} onClick={() => {
                         document.getElementById('thirdS').scrollIntoView()
                     }}>Continue</div>
                 </div>
@@ -160,12 +206,12 @@ export default function SignUpSequence() {
                 <h1 id='title' style={{ marginTop: '60px' }}>Want to complete your profile now?</h1>
 
                 <div id='divisor'>
-                    <div id='continue' onClick={() => {
+                    <div className='continue' onClick={() => {
                         document.getElementById('fourthS').scrollIntoView()
                     }}>
                         Sure
                     </div>
-                    <div id='continue' onClick={() => {
+                    <div className='continue' onClick={() => {
                         document.getElementById('fourthS').style.display = 'none'
                         document.getElementById('fifthS').scrollIntoView()
                         setTimeout(() => {
@@ -186,7 +232,7 @@ export default function SignUpSequence() {
                     <Select options={[{value:'Male', display:'Male'}, {value:'Female',  display:'Female'}, {value:'Other',  display:'Other'}]} label='Gender' callback={event => {
                         setUserData({ ...userData, gender: event.target.value })
                     }} />
-                    <Select options={[{value:'Argentina', display:'Argentina'}]} label='Country' callback={event => {
+                    <Select options={countries} label='Country' callback={event => {
                         setUserData({ ...userData, country: event.target.value })
                     }} />
                     <Select options={[1, 2, 3, 4, 5, 6, 7].map(e=>{return {value:e, display:e}})} label='Weekly training days' callback={event => {
@@ -212,23 +258,24 @@ export default function SignUpSequence() {
                         </div>
                     </div>
 
-                    <div style={{ width: '80%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                    <div style={{ width: '80%', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                         <div id='uploadfile'>
-                            <label htmlFor='file' id='uploadLabel'>Upload a photo</label>
-                            <input type='file' name='file' onChange={(event) => {
+                            <input content='Click to upload an image' id='uploadinput' type='file' name='file' onChange={(event) => {
                                 setImgUpdate(event.target.files[0])
 
                                 let img = document.getElementById('upload')
-
+                                
                                 if (!event.target.files[0]) return
                                 if (event.target.files[0]?.type.includes('image')) {
                                     if (event.target.files[0]?.size >= 1000000) return alert('Max file size: 1MB')
-
+                                    
                                     var fileReader = new FileReader();
                                     fileReader.onload = function (fileLoadedEvent) {
                                         fileReader.onloadend = () => {
                                             img.src = fileReader.result
-                                            document.getElementById('uploadLabel').innerText = 'Click to change the image'
+                                            document.getElementById('uploadinput').setAttribute('content', 'Click to change the image')
+                                            document.getElementById('up').style.display='unset'
+                                            document.getElementById('up').disabled=false
                                         }
                                     }
                                     fileReader.readAsDataURL(event.target.files[0])
@@ -236,19 +283,21 @@ export default function SignUpSequence() {
 
 
                                 let input = document.createElement('button')
-                                input.innerText = 'X'
+                                input.innerText = 'Remove'
                                 input.setAttribute('id', 'erase')
                                 input.setAttribute('type', 'button')
                                 input.addEventListener('click', () => {
                                     img.src = ''
-                                    setImgUpdate(null)
+                                    document.getElementById('up').disabled=false
+                                    document.getElementById('up').style.display='unset'
+                                    setImgUpdate('')
                                     document.getElementById('options').removeChild(input)
-                                    document.getElementById('uploadLabel').innerText = 'Upload a photo'
                                     setUserData({
                                         ...userData,
                                         profile_img: ''
                                     })
                                     event.target.value = ''
+                                    document.getElementById('uploadinput').setAttribute('content', 'Click to upload an image')
                                     return
                                 })
 
@@ -259,7 +308,11 @@ export default function SignUpSequence() {
                             <img id='upload' src='' alt='' />
                             <div id='options'>
                                 {imgUpdate
-                                    ? <button type='button' id='up' onClick={(event) => { handleImage(event) }}>
+                                    ? <button type='button' id='up' onClick={(event) => { 
+                                        handleImage(event)
+                                        document.getElementById('up').style.display='none'
+                                        document.getElementById('up').disabled=true
+                                         }}>
                                         Upload
                                     </button>
                                     : null}
@@ -267,20 +320,17 @@ export default function SignUpSequence() {
                         </div>
                     </div>
                 </div>
-                <div id='continue' onClick={(event) => {
-
+                <button className='continue' id='last' onClick={(event) => {
 
                     setUserData({ ...userData, bmi: userData.weight / ((userData.height / 100) ** 2) })
                     console.log(userData)
-                    register(dispatch, userData)
                     document.getElementById('fifthS').scrollIntoView()
-
                     setTimeout(() => {
-                        navigate('/home')
+                        register(dispatch,userData).then(()=>loginUser(dispatch,userData)).then(()=>navigate('/home'));
                     }, 1500)
                 }}>
                     Continue
-                </div>
+                </button>
             </div>
 
             <div className='sequenceContainer' id='fifthS'>
