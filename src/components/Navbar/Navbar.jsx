@@ -14,12 +14,13 @@ import { useSelector } from 'react-redux';
 
 const Navbar = () => {
 	const user = useSelector(store => store.user.currentUser)
+	console.log(user);
 	return (
 		<div className={style.container}>
 			<Breadcrumbs />
 			<div className={style.userArea}>
 				<p id={style.username}>{user ? user.username : 'Guest'}</p>
-				<Avatar src={(user && user.avatar) ? user.avatar : avatarPlaceholder} />
+				<Avatar src={user && user.profileImg ? user.profileImg : avatarPlaceholder} style={{height: '50px'}}/>
 				{user ? <UserPanel /> : <GuestPanel />}
 			</div>
 		</div>
