@@ -1,12 +1,10 @@
 //IMPORT PALETA DE COLORES
 @use "../../config/colors" as c;
 @use "../../config/breakpoints/breakpoint.scss" as b;
+@use "../../config/mixins/" as Mixins;
 
-.contentHomeTrainer {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
+.page {
+  @include Mixins.page;
 
   //BOTTON CONTENT
   .downContainer {
