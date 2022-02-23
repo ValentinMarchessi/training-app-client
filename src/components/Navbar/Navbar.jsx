@@ -7,29 +7,20 @@ import style from './Navbar.module.scss';
 import GuestPanel from './GuestPanel/GuestPanel';
 import UserPanel from './UserPanel/UserPanel';
 import Breadcrumbs from './Breadcrumbs/Breadcrumbs';
-
-import avatarMock from '../../assets/images/noUser.jpg'
-
-// const user = {
-// 	name: 'Eve',
-// 	avatar: avatarMock,
-// };
+import avatarMock from '../../assets/images/imageUser.jpg'
+import { useSelector } from 'react-redux';
 
 
-const Navbar = (user) => {
-	let thisUser = user.user
+const Navbar = () => {
+	const user = useSelector(store => store.user.currentUser)
+	console.log(user);
 	return (
 		<div className={style.container}>
 			<Breadcrumbs />
 			<div className={style.userArea}>
-			{thisUser
-			?(<>
-				<p id={style.username}>{thisUser.name}</p>
-				<Avatar src={thisUser.profileImg??avatarMock}/>
-				<UserPanel />
-			</>)
-			:<GuestPanel />}
-
+				<p id={style.username}>{user ? user.username : 'Guest'}</p>
+				<Avatar src={user && user.profileImg ? user.profileImg : avatarPlaceholder} style={{height: '50px'}}/>
+				{user ? <UserPanel /> : <GuestPanel />}
 			</div>
 		</div>
 	);

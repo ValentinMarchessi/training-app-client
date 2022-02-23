@@ -1,6 +1,7 @@
 import DietCard from './DietCard/DietCard.jsx';
 import style from './Diets.module.scss';
 
+import { Navbar } from '../../components';
 import { clipboard, closeButton } from '../../assets/images/icons';
     
 const diet = {
@@ -23,14 +24,7 @@ const diet = {
 export default function MyDiets() {
     return (
 		<div className={style.page}>
-            <div className={style.header}>
-                <div className={style.breadcrumbs}>
-                    <img id={style.icon} src={clipboard} alt="clipboard" />
-                    <h1>Mis dietas</h1>
-                    <hr />
-                </div>
-            <img id={style.close} src={closeButton} alt="close"/>
-			</div>
+            <Navbar/>
 			<div className={style.body}>
 				<h1 id={style.myPlans}>Planes</h1>
 				<div className={style.plans}>

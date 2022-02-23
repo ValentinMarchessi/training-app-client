@@ -2,7 +2,7 @@ import style from './Routines.module.scss';
 import RoutineBox from './RoutineBox/RoutineBox';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { home } from '../../assets/images/icons';
+import { Navbar } from '../../components';
 
 const mockRoutine = {
 	name: 'Calistenia',
@@ -40,13 +40,7 @@ export default function Routines() {
 
     return (
 		<div className={style.page}>
-			<div className={style.header}>
-				<Link to='/'>
-					<img id={style.icon} src={home} alt="home" />
-				</Link>
-				<h1>My Routines</h1>
-				<hr />
-			</div>
+			<Navbar/>
 			<div className={style.body}>
 				<div className={style.routines}>
 					<div className={style.container}>

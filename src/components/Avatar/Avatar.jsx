@@ -1,5 +1,5 @@
-import style from './Avatar.module.scss';
+import styles from './Avatar.module.scss';
 
-export default function Avatar({ alt, src }) {
-    return <img className={style.avatar} alt={alt} src={src}/>
+export default function Avatar({ alt, src, style }) {
+    return <img style={style} className={styles.avatar} alt={alt} src={src}/>
 }

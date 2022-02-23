@@ -8,7 +8,7 @@ export default function RoutineBox({ name, users, circuits, diet }) {
 		<div className={style.box}>
 			<div className={style.section}>
 				<h1>{name}</h1>
-				<AvatarGroup users={users} max={5} />
+				<AvatarGroup users={users} max={5} avatarStyle={{height: '60px'}} />
 			</div>
 			<hr className={style.separator} />
 			<div className={style.section}>
