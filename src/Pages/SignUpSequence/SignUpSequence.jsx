@@ -170,7 +170,7 @@ export default function SignUpSequence() {
                         document.getElementById('fifthS').scrollIntoView()
                         setTimeout(() => {
                             register(dispatch, userData)
-                            navigate('/landing')
+                            navigate('/home')
                         }, 2000)
                     }}>
                         I'd rather not
@@ -276,7 +276,7 @@ export default function SignUpSequence() {
                     document.getElementById('fifthS').scrollIntoView()
 
                     setTimeout(() => {
-                        navigate('/')
+                        navigate('/home')
                     }, 1500)
                 }}>
                     Continue
