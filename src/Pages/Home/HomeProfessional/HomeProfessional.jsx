@@ -10,12 +10,12 @@ import recipes from '../../../assets/images/recipes.jpg';
 import shopping from '../../../assets/images/shopping.jpg';
 import client from '../../../assets/images/client.png';
 //STYLES
-import s from './HomeProfesional.module.scss'
+import s from './HomeProfessional.module.scss'
 import { useNavigate } from 'react-router-dom';
 
 
 
-const HomeProfesional = () => {
+const HomeProfessional = () => {
       const navigate = useNavigate();
 
       return (
@@ -39,4 +39,4 @@ const HomeProfesional = () => {
 			</div>
 		);
 }
-export default HomeProfesional;
+export default HomeProfessional;
