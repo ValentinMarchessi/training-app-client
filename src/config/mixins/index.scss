@@ -15,9 +15,16 @@
 	background-color: $color;
 	border: hidden;
 	border-radius: 5px;
-	padding: 5px;
+	padding: 5px 15px;
 	text-decoration: none;
-
+	font-weight: 600;
+	transition: .3s;
+	box-sizing: content-box;
+	text-align: center;
+	cursor: pointer;
+	&:hover{
+		filter: brightness(120%);
+	}
 	&:active {
 		background-color: gray;
 	}

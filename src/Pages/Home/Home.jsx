@@ -8,7 +8,7 @@ const Home = () => {
     const user = useSelector(state => state.user.currentUser)
     return (
         <div className="contentHomeTrainer">
-            <Navbar/>
+            <Navbar user={user}/>
             <Outlet></Outlet>
         </div>
     );

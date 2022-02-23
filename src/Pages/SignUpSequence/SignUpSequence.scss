@@ -1,4 +1,5 @@
 @import '../../config/colors';
+@import '../../config/mixins';
 
 #options{
     display:flex;
@@ -7,20 +8,10 @@
     overflow: hidden;
     
     button{
-        background-color:$button-bg;
-        border:0;
+        @include blue-button;
         width: 100%;
-        text-align: center;
-        align-self: center;
-        box-sizing: content-box;
-        font-size: 30px;
-        height: 45px;
-        font-weight: 600;
-        transition: .7s;
-        opacity:1;
-        cursor: pointer;
-        border: 2px solid transparent;
-        margin-bottom:20px;
+        min-height: 45px;
+        border-radius: 0;
     }
     #up{
         &:hover{
@@ -39,14 +30,14 @@
         border-radius: 0 !important;
         
         &::after{
-            content:'Click here to select an image';
+            content:attr(content);
             font-size: 20px;
             text-align: center;
             padding:10px;
             box-sizing: border-box;
             width: 100%;
             height: 100%;
-            background-color: rgb(75, 75, 75);
+            background-color: #252525;
             z-index: 3;
             position: absolute;
             top:0;
@@ -59,6 +50,9 @@
     height: 100%;
     scroll-behavior: smooth;
     overflow: hidden;
+    *{
+        outline: none;
+    }
 .sequenceContainer{
     >h2{
         color:$option-bg
@@ -66,11 +60,11 @@
     height: 100%;
     display: flex;
     flex-direction: column;
+    overflow: auto;
     #uploadfile{
         display: flex;
         flex-direction: column;
         height:fit-content;
-        width: 50%;
         min-width: 270px;
         *{
             padding:0;
@@ -83,6 +77,7 @@
         padding:0;
         width: 100%;
         max-height: 200px;
+        object-fit: contain;
     }
     #erase{
         background-color: $fonts-highlight-error;
@@ -95,19 +90,21 @@
         outline-style: none;
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-evenly;
+        justify-content: center;
+        gap:10px;
         label,span{
             padding:5px 5px 5px 10px;
         }
         >div{
-            width: 30%;
             padding:0;
             min-width: 200px;
-            margin-top:5px;
-            @media (max-width:420px) {
-                min-width: 80%;
+            select, option{
+                width: 100%;
             }
-            
+            overflow: hidden;
+            @media (max-width:420px) {
+                width: 80%;
+            }
             div{
                 padding:0;
             }
@@ -151,28 +148,20 @@
             }
         }
     }
-    #continue, #wait{
-        background-color:$button-bg;
-        border:0;
-        width: fit-content;
-        text-align: center;
+    .continue, .wait{
+        @include blue-button;
         align-self: center;
-        box-sizing: content-box;
         font-size: 30px;
         height: 45px;
         font-weight: 600;
-        border-radius: 10px;
-        transition: .7s;
-        opacity:1;
-        cursor: pointer;
-        border: 2px solid transparent;
         margin-bottom:20px;
     }
-    #wait{
-        background-color:transparent;
-        border: 2px solid $button-bg;
+    .wait{
+        cursor:default;
+        pointer-events: none;
         opacity:0;
         visibility:hidden;
+        transition:.7s;
     }
     #title{
         text-align: center;
