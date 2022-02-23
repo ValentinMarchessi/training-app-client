@@ -1,21 +1,27 @@
 import HomeIcon from '@mui/icons-material/Home';
 import style from './Breadcrumbs.module.scss';
-import { Link, Navigate, useNavigate, useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import getBreadcrumbs from '../../../helpers/getBreadcrumbs/getBreadcrumbs.ts';
 
 export default function Breadcrumbs() {
 	const location = useLocation();
-	const redir = useNavigate();
+
+	const locations = location.pathname.split('/').filter(e => e !== "");
+	const breadcrumbs = getBreadcrumbs(location.pathname);
 	
-	console.log(location);
 	return (
 		<div className={style.container}>
-			<HomeIcon
-				className={style.homeItem}
-				onClick={() => {
-					redir('/home');
-				}}
-			/>
-            <span className={style.breadcrumb}>Home</span>
+			<Link to="/home">
+				<HomeIcon className={style.homeItem} />
+			</Link>
+			{locations.map((e,i) => (
+				<>
+					<hr id={style.divider} />
+					<Link className={style.breadcrumb} to={breadcrumbs[i]}>
+						{e}
+					</Link>
+				</>
+			))}
 		</div>
 	);
 }
