@@ -1,6 +1,7 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom';
 import "./App.scss";
+import CreateRecipe from './components/CreateRecipe/CreateRecipe';
 
 //PAGES
 import { Exercises, Home, Landing, Routines, SignUpSequence } from './Pages';
@@ -10,13 +11,13 @@ function App() {
     return (
         <div className="App">
             <Routes>
-                <Route path='/' element={<Landing/>}/>
-                <Route path='/newUser' element={<SignUpSequence/>}/>
+                <Route path='/' element={<Landing />} />
+                <Route path='/newUser' element={<SignUpSequence />} />
                 <Route path='/home' element={<Home />} />
                 <Route path='/routines' element={<Routines />}></Route>
                 <Route path='/exercises' element={<Exercises />}>
-                    <Route index element={<ExercisesView/>}/>
-                    <Route path='create' element={<ExercisesCreate/>}/>
+                    <Route index element={<ExercisesView />} />
+                    <Route path='create' element={<ExercisesCreate />} />
                 </Route>
             </Routes>
         </div>
