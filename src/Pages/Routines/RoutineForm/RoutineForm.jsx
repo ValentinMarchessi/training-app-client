@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { CreateRoutines } from '../../../Redux/apiCalls/rutinesCall/createRoutines.js';
+import { createRoutines } from '../../../Redux/apiCalls/rutinesCall/createRoutines.js';
 
 const RoutineForm = () => {
       const [data, setData] = useState({
@@ -26,7 +26,7 @@ const RoutineForm = () => {
                   e.preventDefault();
             } else {
                   e.preventDefault();
-                  CreateRoutines(dispatch, data, currentUser.accessToken);
+                  createRoutines(dispatch, data, currentUser.accessToken);
                   alert('Routine Created');
             }
       };
