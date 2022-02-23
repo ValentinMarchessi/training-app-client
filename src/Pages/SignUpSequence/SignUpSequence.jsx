@@ -14,7 +14,7 @@ import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { register } from '../../Redux/apiCalls/registerCall/createRegister'
 import { loginUser } from '../../Redux/apiCalls/userLoginCall/userLoginCall'
-import { countries } from './counties'
+import { countries } from './countries'
 
 export default function SignUpSequence() {
 
