@@ -42,7 +42,7 @@ export default function LandingPage(){
                 <img className='background' src={test2} alt='3'/>
 
             </div>
-            <Link to='/home'><div id='guest'>Continue as guest</div></Link>
+
             <div className='choices'>
                 <div id='optionselect'>
                     <h2 id='logInText' onClick={() => {
