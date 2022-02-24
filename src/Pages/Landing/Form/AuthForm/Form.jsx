@@ -27,7 +27,7 @@ export default function AuthForm({ method, cb }) {
     let [errors, setErrors] = useState({})
 
     useEffect(() => {
-        user&&navigate('/home'+(user.PTrainer||user.Nutritionist?'/profesional':'/client'))
+        user&&navigate('/home')
     }, [user, navigate, formData])
 
     const Toast = Swal.mixin({

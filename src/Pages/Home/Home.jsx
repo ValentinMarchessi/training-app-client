@@ -12,7 +12,7 @@ const Home = () => {
 	return (
 		<div className={styles.page}>
 			<Navbar />
-			{user && (user.isTrainer || user.isNutritionist) ? <HomeProfessional/> : <HomeClient/>}
+			{user && (user.PTrainer || user.Nutritionist) ? <HomeProfessional/> : <HomeClient/>}
 		</div>
 	);
 };
