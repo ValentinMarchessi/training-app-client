@@ -11,6 +11,7 @@
     max-width: 20rem;
 
     label{
+        pointer-events: none;
         width: inherit;
         position:absolute;
         transition: all .2s;
