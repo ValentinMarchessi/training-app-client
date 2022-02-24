@@ -5,11 +5,9 @@ import "./App.scss";
 import CreateRecipe from './components/CreateRecipe/CreateRecipe';
 
 //PAGES
-import { Diets, Exercises, Landing, Routines, Search, SignUpSequence } from './Pages';
+import { Diets, Exercises, Landing, Routines, Search, SignUpSequence, Home } from './Pages';
 import Recipes from './Pages/Recipes/Recipes';
 import { ExercisesCreate, ExercisesView } from './Pages/Exercises';
-import HomeClient from './Pages/Home/HomeClient/HomeClient';
-import HomeProfessional from './Pages/Home/HomeProfessional/HomeProfessional';
 import RecipeContainer from './Pages/Recipes/components/RecipeContainer/RecipeContainer';
 
 
@@ -18,8 +16,7 @@ function App() {
         <div className="App">
             <Routes>
                 <Route path='/' element={<Landing />} />
-                <Route path='/home/client' element={<HomeClient/>}/>
-                <Route path='/home/profesional' element={<HomeProfessional/>}/>
+                <Route path='/home' element={<Home/>}/>
                 <Route path='/shop' element={<Search />} />
                 <Route path='/newUser' element={<SignUpSequence />} />
                 <Route path='/routines' element={<Routines />}></Route>
