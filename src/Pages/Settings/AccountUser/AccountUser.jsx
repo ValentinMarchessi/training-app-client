@@ -1,37 +1,81 @@
 //STYLES
-import S from "./AccountUser.module.scss";
-//MUI ICONS
-import GoogleIcon from "@mui/icons-material/Google";
-import FacebookOutlinedIcon from "@mui/icons-material/FacebookOutlined";
-import TwitterIcon from "@mui/icons-material/Twitter";
-import UserBanner from "../UserBanner/UserBanner";
+import S from './AccountUser.module.scss';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { TextInput } from '../../../components';
+import NetworkContainer from './NetworkContainer/NetworkContainer';
+import PasswordChange from './PasswordChange/PasswordChange';
 
 export default function AccountUser() {
-  return (
-    <div className={S.container}>
-      <form className={S.containerInputs}>
-        <label>User Name</label>
-        <div>
-          <input type="text" />
-          <input className={S.inputBtn} type="button" value="Edit" />
-        </div>
-        <label>Email</label>
-        <div>
-          <input type="text" />
-          <input className={S.inputBtn} type="button" value="Edit" />
-        </div>
-      </form>
-      <div className={S.containerNetworks}>
-        <label>Linked with </label>
-        <div className={S.containerIcons}>
-          <GoogleIcon className={S.icon} />
-          <FacebookOutlinedIcon className={S.icon} />
-          <TwitterIcon className={S.icon} />
-        </div>
-      </div>
-      <div className={S.formBtn}>
-        <button>Change password</button>
-      </div>
-    </div>
-  );
+	const { username, email } = useSelector((store) => store.user.currentUser);
+	const [state, setState] = useState({
+		username: username,
+		email: email,
+	});
+
+	const [canSave, setCanSave] = useState(false);
+	const [passwordForm, setPasswordForm] = useState({
+		newPassword: '',
+		confirmPassword: '',
+		error: '',
+	});
+
+	useEffect(() => {
+		console.log(state);
+		if (state.username !== username || state.email !== email || (!passwordForm.error && passwordForm.newPassword)) setCanSave(true);
+		else setCanSave(false);
+	}, [state, username, email, setCanSave, passwordForm]);
+
+	useEffect(() => {
+		if (passwordForm.newPassword !== passwordForm.confirmPassword) setPasswordForm(pwf => {
+			return {
+				...pwf,
+				error: 'Passwords must match!'
+			}
+		})
+		else setPasswordForm(pwf => {
+			return {
+				...pwf,
+				error: ''
+			}
+		})
+	},[passwordForm.newPassword, passwordForm.confirmPassword])
+
+	function handleTextInputs(event) {
+		const { name, value } = event.target;
+		if (name === 'username')
+			setState({
+				...state,
+				username: value || username,
+			});
+		if (name === 'email')
+			setState({
+				...state,
+				email: value || email,
+			});
+	}
+
+	function handlePasswordInputs(event) {
+		const { name, value } = event.target;
+		setPasswordForm({
+			...passwordForm,
+			[name]: value,
+		})
+	}
+
+	function handleSaveChanges() {
+		
+	}
+
+	return (
+		<div className={S.container}>
+			<TextInput id={S.username} required placeholder={username} label="Username" name="username" onBlur={handleTextInputs} />
+			<TextInput id={S.email} required placeholder={email} label="E-Mail" name="email" onBlur={handleTextInputs} />
+			<NetworkContainer id={S.networks} />
+			<PasswordChange id={S.password} handlePasswords={handlePasswordInputs} error={passwordForm.error} />
+			<div id={S.saveChanges}>
+				<button disabled={!canSave} onClick={handleSaveChanges}>Save Changes</button>
+			</div>
+		</div>
+	);
 }

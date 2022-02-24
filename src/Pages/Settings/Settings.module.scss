@@ -14,10 +14,11 @@
   }
 
   .midContainer{
-    width: 50%;
+    width: 60%;
     display: flex;
     flex-direction: column;
     border-radius: 20px;
+    overflow: hidden;
   }
 
   //BTN EXIT
