@@ -2,6 +2,10 @@
 @use '../colors' as Colors;
 @use '../fontWeight' as FontWeight;
 
+@mixin font{
+	font-family: Montserrat;
+}
+
 @mixin medium-bold-font {
 	font-family: Montserrat;
 	font-size: FontSize.$medium;
@@ -56,9 +60,16 @@
 	h4,
 	p,
 	span {
+		color: white;
 		font-family: 'Montserrat';
 		margin: 0;
 		height: fit-content;
+	}
+	a{
+		text-decoration: none;
+	}
+	a:visited{
+		color: white;
 	}
 	margin: 0 40px;
 }
