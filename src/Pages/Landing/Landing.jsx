@@ -59,7 +59,7 @@ export default function LandingPage(){
                     }}>Sign Up</h2>
                     <hr />
                     <h2 id='guest' style={{marginLeft:10}} onClick={() => {
-                        navigate('/home/client')
+                        navigate('/home')
                     }}>Continue as guest</h2>
                 </div>
                 <div id='authform'>

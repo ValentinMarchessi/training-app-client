@@ -7,7 +7,8 @@ import autoScroll from '../../../../helpers/autoScroll/autoScroll'
 import validate from '../../../../helpers/inputValidators/AuthValidator'
 import { useDispatch, useSelector } from 'react-redux'
 import { loginUser } from '../../../../Redux/apiCalls/userLoginCall/userLoginCall'
-import { useNavigate } from 'react-router-dom'
+import { register } from '../../../../Redux/apiCalls/registerCall/createRegister'
+import { Link, useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import { authentication } from '../../../../firebase/config-firestore/firabase';
 import { signInWithPopup, GoogleAuthProvider, FacebookAuthProvider } from 'firebase/auth'
@@ -27,14 +28,14 @@ export default function AuthForm({ method, cb }) {
     let [errors, setErrors] = useState({})
 
     useEffect(() => {
-        user&&navigate('/home'+(user.PTrainer||user.Nutritionist?'/profesional':'/client'))
+        user&&navigate('/home')
     }, [user, navigate, formData])
 
     const Toast = Swal.mixin({
         toast: true,
         position: 'top-end',
         showConfirmButton: false,
-        timer: 2500,
+        timer: 3000,
         timerProgressBar: true,
         didOpen: (toast) => {
             toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -89,7 +90,7 @@ export default function AuthForm({ method, cb }) {
         } else {
             if (method === 'login') loginUser(dispatch, formData)
             
-            if (method === 'register') navigate('/newUser', { state: { ...formData } })
+            if (method === 'register') navigate('/newUser', { state: { formData } })
         }
         setFormData({
             username: '',
@@ -108,18 +109,6 @@ export default function AuthForm({ method, cb }) {
         }
         handleAlert()
     }, [alert, Toast])
-
-    
-    useEffect(()=>{//Para que los errores de input en los registros (password 8 caracteres etc) no aparezcan si la form está vacia
-        let activeErrors=Array.from(document.getElementsByClassName('active'))
-        let inactiveErrors=Array.from(document.getElementsByClassName('inactive'))
-        let inputs = document.querySelectorAll(method==='register'?'.authinput':null)
-        const validInputs = Array.from(inputs).filter( input => input.value === "");
-        //console.log(activeErrors)
-        (validInputs.length===4?activeErrors:inactiveErrors).forEach(e=>{
-            e.setAttribute('class',validInputs.length===4?'inactive':'active')
-        })
-    },[errors])
 
 
     const singInWithGoogle = () => {
@@ -165,7 +154,6 @@ export default function AuthForm({ method, cb }) {
                             name='username'
                             placeholder={method==='login'?'Username or email':'Username'}
                             value={formData.username}
-                            className={method==='register'?'authinput':''}
                             onChange={event => inputHandler(event)}
                         />
                     </div>
@@ -177,7 +165,7 @@ export default function AuthForm({ method, cb }) {
                     ? <div>
                         <div>
                             <img src={google} alt='google' />
-                            <input type='text' name='email' className={method==='register'?'authinput':''} placeholder='Email' onChange={inputHandler} />
+                            <input type='text' name='email' placeholder='Email' onChange={inputHandler} />
                         </div>
 
                         <span className={errors.email ? 'active' : 'inactive'}>{errors.email}</span>
@@ -191,7 +179,6 @@ export default function AuthForm({ method, cb }) {
                             type='password'
                             name='password'
                             placeholder='Password'
-                            className={method==='register'?'authinput':''}
                             value={formData.password}
                             onChange={inputHandler}
                         />
@@ -206,7 +193,7 @@ export default function AuthForm({ method, cb }) {
                     ? <div>
                         <div>
                             <img src={google} alt='google' />
-                            <input type='password' name='confirmPassword' className={method==='register'?'authinput':''} placeholder='Confirm password' onChange={inputHandler} />
+                            <input type='password' name='confirmPassword' placeholder='Confirm password' onChange={inputHandler} />
                         </div>
                         <span className={errors.confirmPassword ? 'active' : 'inactive'}>{errors.confirmPassword}</span>
 

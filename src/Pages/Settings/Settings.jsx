@@ -5,9 +5,11 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 //HOOKS
 import { useState } from "react";
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import { Outlet, Link } from "react-router-dom";
 //COMPONENTS
-import ContainerUser from "./ContainerUser/ContainerUser";
+import Sidebar from "./Sidebar/Sidebar";
+import UserBanner from "./UserBanner/UserBanner";
 
 export default function Settings() {
   const [config, setConfig] = useState("Account data");
@@ -21,26 +23,30 @@ export default function Settings() {
   }
 
   return (
-    <div className={S.container}>
-      <div className={S.containerSideMenu}>
-        <div className={S.containerSideMenuTitle}>
-          <SettingsIcon className={S.menuIcon} />
-          <h2>Settings</h2>
-        </div>
-        <ul className={S.contentSideMenu}>
-          <li onClick={(e) => onClick(e)}>Account data</li>
-          <li onClick={(e) => onClick(e)}>Profile</li>
-          <li onClick={(e) => onClick(e)}>Payment method</li>
-          <li onClick={(e) => onClick(e)}>History user</li>
-        </ul>
-      </div>
-      <ContainerUser config={config} />
-      <div className={S.containerBtn}>
-        <button onClick={onRedir}>
-          <CloseRoundedIcon className={S.btnIcon} />
-        </button>
-        <p>Exit</p>
-      </div>
-    </div>
+		<div className={S.page}>
+			<Sidebar
+				id={S.sidebar}
+				header={
+					<>
+						<SettingsIcon id={S.icon} />
+						<h2>Settings</h2>
+					</>
+				}>
+				<Link to="">Account data</Link>
+				<Link to="profile">Profile</Link>
+				<Link to="payment">Payment method</Link>
+				<Link to="history">History user</Link>
+			</Sidebar>
+		  	<div className={S.midContainer}>
+			  <UserBanner />
+			  <Outlet/>
+			</div>
+			<div className={S.containerBtn}>
+				<button onClick={onRedir}>
+					<CloseRoundedIcon className={S.btnIcon} />
+				</button>
+				<p>Exit</p>
+			</div>
+		</div>
   );
 }
