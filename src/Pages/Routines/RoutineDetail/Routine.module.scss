@@ -1,0 +1,135 @@
+
+.container {
+    width: 100%;
+    text-align: center;
+}
+.day{
+    width: 100%;
+    padding: 5px 0 5px 0;
+    border-radius: 15px;
+    background-color: #2E2C3B;
+    font-size: 30px;
+}
+.exerciseImg{
+    width: 100%;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #2E2C3B;
+}
+.dayExercises{
+    margin-bottom: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.exercise {
+    background-color: #C4C4C4;
+    width: 400px;
+    margin-top:10px;
+    margin-right: 10px;
+    margin-left: 10px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    cursor: pointer;
+}
+.contentSelect select{
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+}
+.contentselect select{
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+}
+.contentSelect select::-ms-expand {
+    display: none;
+}
+.contentSelect{
+	max-width: 250px;
+	position: relative;
+}
+
+.contentSelect select{
+	display: inline-block;
+	width: 100%;
+	cursor: pointer;
+    padding: 7px 10px;
+    height: 42px;
+    outline: 0; 
+    border: 0;
+	border-radius: 0;
+	background: #2E2C3B;
+	font-size: 1em;
+	color: #999;
+	border:2px solid #201F24;
+    border-radius: 12px;
+    position: relative;
+    transition: all 0.25s ease;
+}
+
+.contentSelect select:hover{
+	background: #5e5b74;
+}
+.contentSelect i{
+	position: absolute;
+	right: 20px;
+	top: calc(50% - 13px);
+	width: 16px;
+	height: 16px;
+	display: block;
+	border-left:4px solid #3F59B8;
+	border-bottom:4px solid #3F59B8;
+	transform: rotate(-45deg);
+	transition: all 0.25s ease;
+}
+
+.contentSelect:hover i{
+	margin-top: 3px;
+}
+
+body::-webkit-scrollbar{
+    background: #1C1C1C;
+    border-radius: 5px;
+    width: 12px;
+}
+body::-webkit-scrollbar-thumb{
+    background: #3F59B8;
+}
+.title{
+    margin-top: 10px;
+    background-color: #5e5b74;
+    text-align: start;
+    padding-left: 10px;
+    margin-top: 10px;
+    font-size: 20px;
+}
+.nameExercise {
+    color: #2E2C3B;
+    font-size: 17px;
+    line-height: 17px;
+}
+.diet {
+    text-align: start;
+    background-color: #C4C4C4;
+    margin-left: 10px;
+    border-bottom: 1px solid #2E2C3B;
+    font-size: 17px;
+    color: #2E2C3B;
+}
+.dietUlt{
+    text-align: start;
+    background-color: #C4C4C4;
+    margin-left: 10px;
+    font-size: 17px;
+    color: #2E2C3B;
+}
+.exit {
+    width: 30%;
+    background-color: #3F59B8;
+    color: white;
+    padding: 10px;
+    border: none;
+    font-size: 30px;
+    border-radius: 15px;
+    cursor: pointer;
+}

@@ -8,6 +8,7 @@ import { ExercisesCreate, ExercisesView } from './Pages/Exercises';
 //HOMES
 import HomeClient from './Pages/Home/HomeClient/HomeClient';
 import HomeProfesional from './Pages/Home/HomeProfesional/HomeProfesional';
+import Routine from './Pages/Routines/RoutineDetail/Routine';
 
 
 function App() {
@@ -21,7 +22,9 @@ function App() {
                 </Route>
                 <Route path='/shop' element={<Search/>}/>
                 <Route path='/newUser' element={<SignUpSequence/>}/>
-                <Route path='/routines' element={<Routines />}></Route>
+                <Route path='/routines' element={<Routines />}>
+                </Route>
+                <Route path='/routines/:routineId' element={<Routine />}/>
                 <Route path='/diets' element={<Diets/>}/>
                 <Route path='/exercises' element={<Exercises />}>
                     <Route index element={<ExercisesView/>}/>
