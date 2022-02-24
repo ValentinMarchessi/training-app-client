@@ -6,7 +6,7 @@ import { useState } from 'react';
 export default function ExercisesCreate() {
     const [overlay, setOverlay] = useState(false)
     const overlayStyle = {
-        backgroundColor: '#201F24',
+        backgroundColor: '#201f24c3',
 	};
     
     const handleOverlay = {
