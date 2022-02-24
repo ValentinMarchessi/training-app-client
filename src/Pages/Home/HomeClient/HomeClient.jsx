@@ -1,8 +1,8 @@
 import React from "react";
 import { useSelector } from "react-redux";
 //COMPONENTS
-import ButtonHomeMenu from "../../../components/ButtonHomeMenu/ButtonHomeMenu";
-import NewsCard from '../NewsCard/NewsCard';
+import ButtonHomeMenu from "../components/ButtonHomeMenu/ButtonHomeMenu";
+import NewsCard from '../components/NewsCard/NewsCard';
 //IMAGES
 import fitness from '../../../assets/images/imageBg.png';
 import diets from '../../../assets/images/diets.jpg';

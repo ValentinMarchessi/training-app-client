@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useField } from '../../hooks/useField//useField'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { postCreateRecipes } from '../../Redux/apiCalls/recipesCall/createRecipes';
-import './createRecipe.scss';
+import s from './createRecipe.module.scss';
+
+//IMAGES
+import pencil from '../../assets/images/icons/pencil.svg';
+import thunder from '../../assets/images/icons/thunder.svg';
+import balance from '../../assets/images/icons/balance.svg';
 
 
 const CreateRecipe = () => {
@@ -13,7 +18,8 @@ const CreateRecipe = () => {
     {/* Aqui atrapariamos el Id del usuario para mandar */ }
     // const location = useLocation()
     const navigate = useNavigate()
-    const userId = "b43a718c-406b-4b79-88b0-a0830b020f7f"
+    const userId = useSelector(state => state.user?.currentUser.userId);
+    const token = useSelector(state => state.user?.currentUser.accessToken)
 
     {/* UseField toma los datos y devuelte 3 valores... */ }
     const titleRecipe = useField({ type: 'text' })
@@ -63,66 +69,95 @@ const CreateRecipe = () => {
 
 
     const handleSubmit = (e) => {
-        e.preventDefault()
-        postCreateRecipes(dispatch, userId, recipe)
-        navigate(`/diets/${userId}`)
+        e.preventDefault();
+        window.location.reload();
+        postCreateRecipes(dispatch, userId, recipe,token);
     }
 
 
     return (
-        <div className='overlay'>
-            <div className="contentModal">
-                <div className="closeBtn">X</div>
-                <form className='contentItemsForm' onSubmit={handleSubmit} >
-                    <h3 className='titleModal'>Comida</h3>
-                    <input
-                        {...titleRecipe}
-                        name='title'
-                        placeholder='Title...'
+        <div className={s.container}>
+            <div className={s.contentModal}>
+                <form className={s.contentItemsForm} onSubmit={handleSubmit} >
+                    <h3 className={s.titleModal}>Receta</h3>
+
+                    <div className={s.inputContainer}>
+                        <img src={pencil} alt='pencil' className={s.icon}/>
+                        <input
+                            {...titleRecipe}
+                            name='title'
+                            placeholder='Title'
+                            className={s.textInput}
+                        />
+                    </div>
+
+                    <textarea
+                        className={s.descriptionInput}
+                        placeholder='Description'
+                        rows='10'
+                        cols='40'
                     />
-                    <input
-                        {...kcal}
-                        name='kcal'
-                        placeholder='Energie...'
-                    />
-                    <input
-                        {...grs}
-                        name='ration'
-                        placeholder='Ration...'
-                    />
-                    <input
-                        {...descriptionRecipe}
-                        name='description'
-                        placeholder='Description...'
-                    />
-                    <div className="contentItems">
-                        <div className="contentItem">
-                            <input className='inputCreateRutine'
+
+                    <div className={s.contentItems}>
+                        <div className={s.contentItem}>
+                            <label>Kcal</label>
+                            <input className={s.inputCreateRutine}
+                                {...kcal}
+                                name='kcal'
+                                placeholder='0'
+                                className={s.numberInput}
+
+                            />
+                        </div>
+
+                        <div className={s.contentItem}>
+                            <label>Grs per plate</label>
+                            <input className={s.inputCreateRutine}
+                                {...grs}
+                                name='grs'
+                                placeholder='0'
+                                className={s.numberInput}
+
+                            />
+                        </div>
+
+                        <div className={s.contentItem}>
+                            <label>% Carbohydrates</label>
+                            <input className={s.inputCreateRutine}
                                 {...carbohydratesRecipe}
                                 name='carbohydrates'
                                 placeholder='0'
+                                className={s.numberInput}
+
                             />
                         </div>
-                        <div className="contentItem">
-                            <input className='inputCreateRutine'
+
+                        <div className={s.contentItem}>
+                            <label>% Grease</label>
+                            <input className={s.inputCreateRutine}
                                 {...greaseRecipe}
                                 name='grass'
                                 placeholder='0'
+                                className={s.numberInput}
+
                             />
                         </div>
-                        <div className="contentItem">
-                            <input className='inputCreateRutine'
+
+                        <div className={s.contentItem}>
+                            <label>% Proteins</label>
+                            <input className={s.inputCreateRutine}
                                 {...proteinsRecipe}
                                 name='protein'
                                 placeholder='0'
+                                className={s.numberInput}
                             />
                         </div>
                     </div>
-                    <button style={{ background: '#5fff82' }} >Agregar</button>
+                    <input type='submit'className={s.submitButton} value='Add Recipe'/>
                 </form>
             </div>
         </div>
     )
 }
 
-export default CreateRecipe
+export default CreateRecipe;

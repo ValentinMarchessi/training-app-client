@@ -1,0 +1,137 @@
+@use "../../config/mixins/" as mixins;
+@use "../../config/colors/" as colors;
+
+.container{
+  display: flex;
+  position: relative;
+  width: 300px;
+  padding: 20px 50px;
+  background-color: colors.$secondary-bg;
+  border-radius: 10px;
+
+  .contentModal{
+    width: 100%;
+    
+    .contentItemsForm{
+      display: flex;
+      margin-top: 10px;
+      align-items: center;
+      flex-direction: column;
+      gap: 13px;
+      color:white;
+      font-family: 'Montserrat';
+    }
+  }
+}
+
+
+
+
+.inputContainer{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: colors.$background-text;
+  border-radius: 15px;
+  padding: 0px 50px;
+  height: 28px;
+  width: 80%;
+  position: relative;
+
+
+
+  
+  .icon{
+    width: 15px;
+    position: absolute;
+    left: 10px;
+  }
+
+}
+
+.textInput{
+  border: none;
+  color: white;
+  width: 100%;
+  background-color: transparent;
+  font-family: 'Montserrat';
+}
+.textInput::placeholder{
+  text-align: center;
+  color: rgb(206, 206, 206);
+}
+.textInput:focus{
+  outline: none;
+}
+
+.descriptionInput{
+  margin: 0px;
+  resize: none;
+  font-family: 'Montserrat';
+  background-color: colors.$background-text;
+  border-radius: 5px;
+  color: white;
+}
+.descriptionInput::placeholder{
+  color: rgb(206, 206, 206);
+}
+.descriptionInput:focus{
+  outline: none;
+}
+
+.contentItems{
+  display: flex;
+  flex-wrap: wrap;
+  gap:30px;
+  justify-content: center;
+  width: 400px;
+}
+
+.contentItem{
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+  width: 35%;
+  background-color: colors.$option-bg;
+  border-radius: 10px;
+}
+
+label{
+  position: absolute;
+  top: 0;
+  font-size: 14px;
+}
+
+.numberInput{
+  text-align: center; 
+  width: 40%;
+  height: 40px;
+  margin-top: 15px;
+  border-radius: 10px;
+  border: none;
+  font-family: 'Montserrat';
+  font-size: 20px;
+}
+.numberInput:focus{
+  outline: none;
+}
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+
+.submitButton{
+  margin-top: 10px;
+  border: none;
+  background-color: colors.$button-success;
+  width: 90px;
+  height: 30px;
+  border-radius: 5px;
+  font-family: 'Montserrat';
+  font-weight: bold;
+  cursor: pointer;
+}
