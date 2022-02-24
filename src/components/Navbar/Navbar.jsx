@@ -13,7 +13,6 @@ import { useSelector } from 'react-redux';
 
 const Navbar = () => {
 	const user = useSelector(store => store.user.currentUser)
-	console.log(user);
 	return (
 		<div className={style.container}>
 			<Breadcrumbs />
