@@ -42,7 +42,7 @@ export default function LandingPage(){
                 <img className='background' src={test2} alt='3'/>
 
             </div>
-            <Link to='/home'><div id='guest'>Continue as guest</div></Link>
+
             <div className='choices'>
                 <div id='optionselect'>
                     <h2 id='logInText' onClick={() => {
@@ -59,7 +59,7 @@ export default function LandingPage(){
                     }}>Sign Up</h2>
                     <hr />
                     <h2 id='guest' style={{marginLeft:10}} onClick={() => {
-                        navigate('/home')
+                        navigate('/home/client')
                     }}>Continue as guest</h2>
                 </div>
                 <div id='authform'>
