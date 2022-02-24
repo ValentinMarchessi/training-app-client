@@ -9,34 +9,23 @@
   background-color: colors.$secondary-bg;
   border-radius: 10px;
 
-  .closeBtn{
-    width: fit-content;
-    padding: 5px 8px;
-    border-radius: 2px;
-    background-color: colors.$fonts-highlight-error;
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin: 10px 10px 0px 0px;
-    cursor: pointer;
+  .contentModal{
+    width: 100%;
+    
+    .contentItemsForm{
+      display: flex;
+      margin-top: 10px;
+      align-items: center;
+      flex-direction: column;
+      gap: 13px;
+      color:white;
+      font-family: 'Montserrat';
+    }
   }
-
-}
-
-.contentModal{
-  width: 100%;
 }
 
 
-.contentItemsForm{
-  display: flex;
-  margin-top: 10px;
-  align-items: center;
-  flex-direction: column;
-  gap: 13px;
-  color:white;
-  font-family: 'Montserrat';
-}
+
 
 .inputContainer{
   display: flex;
@@ -48,12 +37,16 @@
   height: 28px;
   width: 80%;
   position: relative;
-}
 
-.icon{
-  width: 15px;
-  position: absolute;
-  left: 10px;
+
+
+  
+  .icon{
+    width: 15px;
+    position: absolute;
+    left: 10px;
+  }
+
 }
 
 .textInput{
@@ -140,4 +133,5 @@ input[type=number]::-webkit-outer-spin-button {
   border-radius: 5px;
   font-family: 'Montserrat';
   font-weight: bold;
+  cursor: pointer;
 }

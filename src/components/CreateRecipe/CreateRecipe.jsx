@@ -69,14 +69,14 @@ const CreateRecipe = () => {
 
 
     const handleSubmit = (e) => {
-        e.preventDefault()
-        postCreateRecipes(dispatch, userId, recipe,token)
+        e.preventDefault();
+        window.location.reload();
+        postCreateRecipes(dispatch, userId, recipe,token);
     }
 
 
     return (
         <div className={s.container}>
-            <div className={s.closeBtn}>X</div>
             <div className={s.contentModal}>
                 <form className={s.contentItemsForm} onSubmit={handleSubmit} >
                     <h3 className={s.titleModal}>Receta</h3>
@@ -92,8 +92,8 @@ const CreateRecipe = () => {
                     </div>
 
                     <textarea
-                        placeholder='Description'
                         className={s.descriptionInput}
+                        placeholder='Description'
                         rows='10'
                         cols='40'
                     />
@@ -160,4 +160,4 @@ const CreateRecipe = () => {
     )
 }
 
-export default CreateRecipe
+export default CreateRecipe;

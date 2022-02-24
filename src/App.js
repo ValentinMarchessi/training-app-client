@@ -9,6 +9,8 @@ import Recipes from './Pages/Recipes/Recipes';
 import { ExercisesCreate, ExercisesView } from './Pages/Exercises';
 import HomeClient from './Pages/Home/HomeClient/HomeClient';
 import HomeProfessional from './Pages/Home/HomeProfessional/HomeProfessional';
+import RecipeContainer from './Pages/Recipes/components/RecipeContainer/RecipeContainer';
+
 
 function App() {
     return (
@@ -26,7 +28,7 @@ function App() {
                     <Route path='create' element={<ExercisesCreate />} />
                 </Route>
                 <Route path='/recipes' element={<Recipes/>}/>
-                <Route path='test' element={<CreateRecipe/>}/>
+                <Route path='test' element={<RecipeContainer/>}/>
             </Routes>
         </div>
     );
