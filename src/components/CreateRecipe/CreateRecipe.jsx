@@ -7,8 +7,6 @@ import s from './createRecipe.module.scss';
 
 //IMAGES
 import pencil from '../../assets/images/icons/pencil.svg';
-import thunder from '../../assets/images/icons/thunder.svg';
-import balance from '../../assets/images/icons/balance.svg';
 
 
 const CreateRecipe = () => {
