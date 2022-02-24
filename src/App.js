@@ -5,10 +5,11 @@ import "./App.scss";
 import CreateRecipe from './components/CreateRecipe/CreateRecipe';
 
 //PAGES
-import { Diets, Exercises, Landing, Routines, Search, SignUpSequence, Home } from './Pages';
+import { Diets, Exercises, Landing, Routines, Search, SignUpSequence, Home, Settings } from './Pages';
 import Recipes from './Pages/Recipes/Recipes';
 import { ExercisesCreate, ExercisesView } from './Pages/Exercises';
 import RecipeContainer from './Pages/Recipes/components/RecipeContainer/RecipeContainer';
+import { AccountUser, HistoryUser, PaymentMethod, ProfileUser } from './Pages/Settings';
 
 
 function App() {
@@ -24,6 +25,12 @@ function App() {
                 <Route path='/exercises' element={<Exercises />}>
                     <Route index element={<ExercisesView />} />
                     <Route path='create' element={<ExercisesCreate />} />
+                </Route>
+                <Route path='/settings' element={<Settings/>}>
+                    <Route index element={<AccountUser/>}/>
+                    <Route path='profile' element={<ProfileUser/>}/>
+                    <Route path='payment' element={<PaymentMethod/>}/>
+                    <Route path='history' element={<HistoryUser/>}/>
                 </Route>
                 <Route path='/recipes' element={<Recipes/>}/>
                 <Route path='test' element={<RecipeContainer/>}/>
