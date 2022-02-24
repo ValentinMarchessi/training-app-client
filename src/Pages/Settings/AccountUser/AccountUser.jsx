@@ -1,18 +1,14 @@
 //STYLES
 import S from "./AccountUser.module.scss";
-//IMAGES (Estáticas por el momento)
-import Portada from "../../../assets/images/imageBg.png";
 //MUI ICONS
 import GoogleIcon from "@mui/icons-material/Google";
 import FacebookOutlinedIcon from "@mui/icons-material/FacebookOutlined";
 import TwitterIcon from "@mui/icons-material/Twitter";
+import UserBanner from "../UserBanner/UserBanner";
 
 export default function AccountUser() {
   return (
     <div className={S.container}>
-      <div className={S.containerImg}>
-        <img src={Portada} alt="background img" />
-      </div>
       <form className={S.containerInputs}>
         <label>User Name</label>
         <div>

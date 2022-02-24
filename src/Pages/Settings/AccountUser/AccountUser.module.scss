@@ -5,59 +5,12 @@
   position: relative;
   display: flex;
   flex-direction: column;
+  padding: 20px;
+  gap: 30px;
   background: c.$secondary-bg;
-  width: 50%;
-  height: 90vh;
-  margin: 0px auto 20px auto;
-  border-radius: 10px;
-  width: 95%;
-  height: 100%;
   background: c.$option2-bg;
-  border-radius: 5px;
-  .containerImg {
-    border-radius: 10px 10px 0 0;
-    overflow: hidden;
-    height: 200px;
-    img {
-      width: 100%;
-      object-fit: scale-down;
-    }
-  }
-  .containerUser {
-    display: flex;
-    justify-content: space-between;
-    img {
-      position: relative;
-      top: -25px;
-      left: 50px;
-      width: 100px;
-      height: 90px;
-      border-radius: 50%;
-      border: 5px solid c.$secondary-bg;
-    }
-    p {
-      position: relative;
-      left: -80px;
-      color: c.$white;
-    }
-    input {
-      height: 30px;
-      background: c.$secondary-bg;
-      color: c.$fonts-highlight-error;
-      border: 1px solid c.$fonts-highlight-error;
-      border-radius: 4px;
-      margin: 15px 25px 0 0;
-    }
-    input:hover {
-      transition: 0.3s;
-      cursor: pointer;
-      background: c.$fonts-highlight-error;
-      color: c.$white;
-    }
-  }
 
   .containerInputs {
-    margin: 10px;
     label {
       margin: 7px 7px 7px 10px;
       color: c.$white;
@@ -89,11 +42,8 @@
     flex-direction: column;
     align-items: center;
     label {
-      position: relative;
-      left: -100px;
       font-size: f.$small;
       color: c.$white;
-      margin-left: 20px;
     }
     .containerIcons {
       margin: 7px 25px;

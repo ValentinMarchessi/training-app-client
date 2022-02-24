@@ -8,8 +8,8 @@ import { useState } from "react";
 import { useNavigate } from 'react-router-dom'
 import { Outlet, Link } from "react-router-dom";
 //COMPONENTS
-import ContainerUser from "./ContainerUser/ContainerUser";
 import Sidebar from "./Sidebar/Sidebar";
+import UserBanner from "./UserBanner/UserBanner";
 
 export default function Settings() {
   const [config, setConfig] = useState("Account data");
@@ -24,8 +24,8 @@ export default function Settings() {
 
   return (
 		<div className={S.page}>
-      <Sidebar
-        id={S.sidebar}
+			<Sidebar
+				id={S.sidebar}
 				header={
 					<>
 						<SettingsIcon id={S.icon} />
@@ -36,10 +36,11 @@ export default function Settings() {
 				<Link to="profile">Profile</Link>
 				<Link to="payment">Payment method</Link>
 				<Link to="history">History user</Link>
-      </Sidebar>
-      
-      <ContainerUser />
-      
+			</Sidebar>
+		  	<div className={S.midContainer}>
+			  <UserBanner />
+			  <Outlet/>
+			</div>
 			<div className={S.containerBtn}>
 				<button onClick={onRedir}>
 					<CloseRoundedIcon className={S.btnIcon} />
