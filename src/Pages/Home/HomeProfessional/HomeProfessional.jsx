@@ -45,7 +45,6 @@ const HomeProfessional = () => {
 
       return (
 			<div>
-				<Navbar/>
 				<div className={s.container}>
 					<div className={s.left}>
 						<div className={s.newsContainer}>
