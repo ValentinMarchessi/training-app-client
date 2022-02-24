@@ -2,6 +2,10 @@
 @use '../colors' as Colors;
 @use '../fontWeight' as FontWeight;
 
+@mixin font{
+	font-family: Montserrat;
+}
+
 @mixin medium-bold-font {
 	font-family: Montserrat;
 	font-size: FontSize.$medium;
@@ -55,10 +59,18 @@
 	h3,
 	h4,
 	p,
-	span {
+	span,
+	label {
+		color: white;
 		font-family: 'Montserrat';
 		margin: 0;
 		height: fit-content;
+	}
+	a{
+		text-decoration: none;
+	}
+	a:visited{
+		color: white;
 	}
 	margin: 0 40px;
 }
@@ -87,7 +99,7 @@
 @mixin overlay {
 	position: absolute;
 	align-self: center;
-	background-color: blue;
+	background-color: rgb(0, 0, 255);
 	transition: visibility 1s;
 }
 

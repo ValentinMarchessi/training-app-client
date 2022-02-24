@@ -35,7 +35,7 @@ export default function ExercisesView() {
 		setSearch(value);
 	}
 
-	const cards = mock.filter(e => e.title.startsWith(search))
+	const cards = exercises.filter(e => e.title.startsWith(search))
 
 	return (
 		<>

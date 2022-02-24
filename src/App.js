@@ -1,5 +1,6 @@
-import React from 'react'
+import React from 'react';
 import { Routes, Route } from 'react-router-dom';
+
 import "./App.scss";
 import CreateRecipe from './components/CreateRecipe/CreateRecipe';
 
