@@ -3,15 +3,13 @@
 
 .container {
   position: relative;
-  top: -40px;
   display: flex;
   flex-direction: column;
   background: c.$secondary-bg;
   width: 50%;
   height: 90vh;
-  margin-top: 30px;
+  margin: 0px auto 20px auto;
   border-radius: 10px;
-  margin: 20px auto;
   width: 95%;
   height: 100%;
   background: c.$option2-bg;

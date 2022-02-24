@@ -1,52 +1,28 @@
 @use "../../config/colors" as c;
 @use "../../config/fontSize" as f;
+@use "../../config/mixins" as Mixins;
 
-.container {
+.page {
   //GENERAL
+  @include Mixins.page;
   display: flex;
-  justify-content: space-between;
-  //SIDE MENU
-  .containerSideMenu {
-    width: 20%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    .containerSideMenuTitle {
-      display: flex;
-      align-self: flex-start;
-      .menuIcon {
-        color: c.$white;
-        margin: 50px 0 0 70px;
-      }
-      h2 {
-        letter-spacing: 1px;
-        margin: 50px 0 0 8px;
-        font-size: f.$big;
-        color: c.$white;
-        display: inline-block;
-      }
+  justify-content: space-around;
+  margin-top: 20px;
+
+  #icon{
+    color: white;
+  }
+
+  #sidebar{
+    a:s{
+
     }
   }
-  .contentSideMenu {
-    list-style-type: none;
-    color: c.$white;
-    letter-spacing: 0.2px;
-    font-size: f.$small;
-    margin: 15px 0 0 50px;
-    li {
-      margin-top: 5px;
-    }
-    li:hover{
-        transition: .3s;
-        cursor: pointer;
-        text-decoration: underline;
-    }
-  } 
+
   //BTN EXIT
   .containerBtn {
     display: flex;
     flex-direction: column;
-    width: 25%;
     align-items: center;
     button {
       display: flex;
@@ -55,7 +31,6 @@
       width: 50px;
       height: 50px;
       background: c.$primary-bg;
-      margin: 25px 15px 0 15px;
       padding: 15px;
       border-radius: 50%;
       border: 1px solid c.$white;

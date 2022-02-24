@@ -1,30 +1,24 @@
 //STYLES
 import S from "./ContainerUser.module.scss";
-//IMAGES (Estáticas por el momento)
-import User from "../../../assets/images/imageUser.jpg";
 //COMPONENTS
-import AccountUser from '../AccountUser/AccountUser'
-import ProfileUser from '../ProfileUser/ProfileUser'
-import PaymentMethod from '../PaymentMethod/PaymentMethod'
-import HistoryUser from '../HistoryUser/HistoryUser'
+import { Outlet } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { Avatar } from '../../../components';
 
 
-export default function ContainerUser({config}) {
-  console.log(config)
+export default function ContainerUser() {
+  const user = useSelector(store => store.user.currentUser);
+  console.log(user)
   return (
-    <div className={S.containerContentCenter}>
+		<div className={S.containerContentCenter}>
       <div className={S.containerUser}>
-        <img src={User} alt="img user" />
-        <p>User Name</p>
-        <input type="button" value="Delete account" />
-      </div>
-      {
-      (config === "Account data") ? <AccountUser/> :
-      (config === "Profile") ?  <ProfileUser/> :
-      (config === "Payment method") ?  <PaymentMethod/> :
-      (config === "History user") ?  <HistoryUser/> :
-      <AccountUser/>
-      }
-    </div>
+        <div id={S.user}>
+          <Avatar src={user.profileImg}/>
+          <h1>{user.username}</h1>
+        </div>
+				<input type="button" value="Delete account" />
+			</div>
+			<Outlet />
+		</div>
   );
 }
