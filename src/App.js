@@ -1,6 +1,8 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import './App.scss';
+
+import "./App.scss";
+import CreateRecipe from './components/CreateRecipe/CreateRecipe';
 
 //PAGES
 import { Diets, Exercises, Home, Landing, Routines, Search, Settings, SignUpSequence } from './Pages';

@@ -99,7 +99,7 @@
 @mixin overlay {
 	position: absolute;
 	align-self: center;
-	background-color: blue;
+	background-color: rgb(0, 0, 255);
 	transition: visibility 1s;
 }
 
