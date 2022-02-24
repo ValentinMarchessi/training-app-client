@@ -9,6 +9,7 @@ import Pill from './Pill/Pill.jsx';
 import SearchBar from './SearchBar/SearchBar.jsx';
 import Select from './Select/Select.jsx';
 import Overlay from './Overlay/Overlay.jsx';
+import TextInput from './TextInput/TextInput.jsx';
 
 export {
     Avatar,
@@ -22,4 +23,5 @@ export {
     SearchBar,
     Select,
     Overlay,
+    TextInput,
 }
