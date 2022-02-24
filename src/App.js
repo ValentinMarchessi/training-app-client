@@ -4,15 +4,19 @@ import "./App.scss";
 import CreateRecipe from './components/CreateRecipe/CreateRecipe';
 
 //PAGES
-import { Diets, Exercises, Home, Landing, Routines, Search, SignUpSequence } from './Pages';
+import { Diets, Exercises, Landing, Routines, Search, SignUpSequence } from './Pages';
+import Recipes from './Pages/Recipes/Recipes';
 import { ExercisesCreate, ExercisesView } from './Pages/Exercises';
+import HomeClient from './Pages/Home/HomeClient/HomeClient';
+import HomeProfessional from './Pages/Home/HomeProfessional/HomeProfessional';
 
 function App() {
     return (
         <div className="App">
             <Routes>
                 <Route path='/' element={<Landing />} />
-                <Route path='/home' element={<Home />} />
+                <Route path='/home/client' element={<HomeClient/>}/>
+                <Route path='/home/profesional' element={<HomeProfessional/>}/>
                 <Route path='/shop' element={<Search />} />
                 <Route path='/newUser' element={<SignUpSequence />} />
                 <Route path='/routines' element={<Routines />}></Route>
@@ -21,6 +25,8 @@ function App() {
                     <Route index element={<ExercisesView />} />
                     <Route path='create' element={<ExercisesCreate />} />
                 </Route>
+                <Route path='/recipes' element={<Recipes/>}/>
+                <Route path='test' element={<CreateRecipe/>}/>
             </Routes>
         </div>
     );

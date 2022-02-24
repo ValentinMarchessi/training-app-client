@@ -5,6 +5,7 @@ import { configureStore, combineReducers } from '@reduxjs/toolkit';
 // import dietsReducer from '../reducers/dietsReducer';
 // import exercisesReducer from '../reducers/exercisesReducer';
 import registerReducer from '../reducers/registerReducer';
+import recipesReducer from '../reducers/recipesReducer'
 // import routinesReducer from '../reducers/routinesReducer';
 // import updateUserReducer from '../reducers/updateUserReducer';
 import userLoginReducer from '../reducers/userLoginReducer';
@@ -28,7 +29,8 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
     user: userLoginReducer,
-    register: registerReducer
+    register: registerReducer,
+    recipes : recipesReducer
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
