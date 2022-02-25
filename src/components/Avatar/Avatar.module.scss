@@ -1,10 +1,9 @@
-#placeholder {
-	display: flex;
+#thumb {
+  display: flex;
+
+  img {
     background-color: gray;
-	border-radius: 50%;
-	.avatar {
-		aspect-ratio: 1/1;
-        border-radius: inherit;
-		object-fit: cover;
-	}
+    border-radius: 50%;
+    max-width: 80px;
+  }
 }
