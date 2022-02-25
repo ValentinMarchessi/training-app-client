@@ -6,12 +6,13 @@ import styles from './TextInput.module.scss';
 
     label: string
     onBlur: function,        es un evento que se dispara cuando se pierde el foco del input
+    onChange: function,      es un evento que se dispara cuando se enfoca el input
     error: string,           se muestra debajo del input
     placeholder: string,     valor inicial y por defecto del input, opcional
     required: prop           notifica un error cuando el campo está vacío
 */
 
-export default function TextInput({ id, label, onBlur, error, placeholder, required, type='text', name }) {
+export default function TextInput({ id, label, onBlur, onChange, error, placeholder, required, type='text', name }) {
     const [state, setState] = useState({
         value: placeholder,
         error: error,
@@ -35,7 +36,7 @@ export default function TextInput({ id, label, onBlur, error, placeholder, requi
     return (
 		<form id={id} className={styles.container}>
 			<label style={labelStyle}>{label}</label>
-			<input id={styles.input} name={name} placeholder={placeholder} type={type} onBlur={onBlur} onChange={handleChange}></input>
+			<input id={styles.input} name={name} placeholder={placeholder} type={type} onBlur={onBlur} onChange={(event)=>{handleChange(event); onChange(event)}}></input>
 			{state.error && <span id={styles.error}>{state.error}</span>}
 		</form>
 	);

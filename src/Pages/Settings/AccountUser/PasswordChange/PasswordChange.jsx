@@ -6,8 +6,8 @@ export default function PasswordChange({handlePasswords, error}) {
 
 	const PasswordFields = (
 		<>
-			<TextInput name="newPassword" label="New Password" onBlur={handlePasswords} type="password" />
-			<TextInput name="confirmPassword" label="Confirm Password" onBlur={handlePasswords} type="password" error={error} />
+			<TextInput name="newPassword" label="New Password" required={true} onChange={handlePasswords} type="password" error={error.newPasswordError}/>
+			<TextInput name="confirmPassword" label="Confirm Password" required={true} onChange={handlePasswords} type="password" error={error.conPasswordError} />
 		</>
 	);
 
