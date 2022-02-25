@@ -1,8 +1,8 @@
 //STYLES
 import S from './AccountUser.module.scss';
 import { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { TextInput } from '../../../components';
+import { useSelector } from 'react-redux';
+import { Input } from '../../../components';
 import NetworkContainer from './NetworkContainer/NetworkContainer';
 import PasswordChange from './PasswordChange/PasswordChange';
 import { updateUser } from '../../../Redux/apiCalls/updateUserCall/updateUserCall';
@@ -51,7 +51,7 @@ export default function AccountUser() {
 		})
 	},[passwordForm.newPassword, passwordForm.confirmPassword])
 
-	function handleTextInputs(event) {
+	function handleInputs(event) {
 		const { name, value } = event.target;
 		if (name === 'username')
 			setState({
@@ -102,14 +102,14 @@ export default function AccountUser() {
 	}
 
 	return (
-		<div className={S.container}>
-			<TextInput id={S.username} required placeholder={username} label="Username" name="username" onChange={validateInputs} error={state.usernameError}/>
-			<TextInput id={S.email} required placeholder={email} label="E-Mail" name="email" onChange={validateInputs} error={state.emailError}/>
+		<form className={S.container} autoComplete='off'>
+			<Input id={S.username} placeholder={username} label="Username" name="username" onBlur={handleInputs} />
+			<Input id={S.email} placeholder={email} label="E-Mail" name="email" onBlur={handleInputs} />
 			<NetworkContainer id={S.networks} />
 			<PasswordChange id={S.password} handlePasswords={validateInputs} error={passwordForm} />
 			<div id={S.saveChanges}>
 				<button disabled={!canSave} onClick={handleSaveChanges}>Save Changes</button>
 			</div>
-		</div>
+		</form>
 	);
 }

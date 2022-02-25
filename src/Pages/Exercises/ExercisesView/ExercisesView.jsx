@@ -6,16 +6,6 @@ import { getAllExercises } from '../../../Redux/apiCalls/exercisesCall/getAllExe
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-const mock = [
-	{ title: 'asd', description: 'asd', video: 'https://www.youtube.com/watch?v=Uy2nUNX38xE' },
-	{ title: 'prueba', description: 'asd', video: 'https://www.youtube.com/watch?v=Uy2nUNX38xE' },
-	{ title: 'del', description: 'asd', video: 'https://www.youtube.com/watch?v=Uy2nUNX38xE' },
-	{ title: 'search', description: 'asd', video: 'https://www.youtube.com/watch?v=Uy2nUNX38xE' },
-	{ title: 'asd', description: 'asd', video: 'https://www.youtube.com/watch?v=Uy2nUNX38xE' },
-	{ title: 'asfg', description: 'asd', video: 'https://www.youtube.com/watch?v=Uy2nUNX38xE' },
-];
-
-
 export default function ExercisesView() {
 	const [search, setSearch] = useState('');
 	const user = useSelector((store) => store.user.currentUser);

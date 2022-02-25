@@ -1,13 +1,13 @@
 import { useState } from 'react';
-import { TextInput } from '../../../../components';
+import { Input } from '../../../../components';
 
 export default function PasswordChange({handlePasswords, error}) {
 	const [active, setActive] = useState(false)
 
 	const PasswordFields = (
 		<>
-			<TextInput name="newPassword" label="New Password" required={true} onChange={handlePasswords} type="password" error={error.newPasswordError}/>
-			<TextInput name="confirmPassword" label="Confirm Password" required={true} onChange={handlePasswords} type="password" error={error.conPasswordError} />
+			<Input name="newPassword" label="New Password" onBlur={handlePasswords} type="password" />
+			<Input name="confirmPassword" label="Confirm Password" onBlur={handlePasswords} type="password" error={error} />
 		</>
 	);
 

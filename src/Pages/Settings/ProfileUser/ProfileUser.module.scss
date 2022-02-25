@@ -1,39 +1,19 @@
 @use "../../../config/colors" as c;
 @use "../../../config/fontSize" as f;
+@use "../../../config/mixins" as Mixins;
 
 .container {
-    background: c.$option2-bg;
+    background: c.$secondary-bg;
+    display: grid;
+    grid-template-columns: auto auto;
     padding: 20px;
-    display:flex;
-    flex-direction: column;
-    justify-content: space-between;
-    .containerSelect{
-      display: flex;
-      justify-content: space-evenly;
-      .containerSelectLeft{
-        margin: 20px 20px 20px 20px;
-      }
-      .containerSelectRight{
-        margin: 20px 20px 20px 20px;
-      }
-    }
-    .containerBtn{
-      position: relative;
-      margin: 20px;
-      top: -10px;
-      align-self: center;
-      button {
-        width: 70px;
-        background: c.$button-bg;
-        padding: 9px;
-        border: none;
-        border-radius: 5px;
-        color: c.$white;
-      }
-      button:hover{
-          cursor: pointer;
-          transition: .3s;
-          opacity: .8;
-      }
+    button{
+      @include Mixins.blue-button;
+      width: 100px;
+      max-width: 20%;
+      grid-row: 5;
+      grid-column: 1 / span 2;
+      justify-self: center;
+      height: 2rem;
     }
   }
