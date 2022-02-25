@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router-dom';
 
 export default function AccountUser() {
 
-	const navigate=useNavigate()
+	const navigate=useNavigate()//
 
 	let user
 	const { username, email, userId, accessToken } = user = useSelector((store) => store.user.currentUser);
