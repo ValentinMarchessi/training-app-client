@@ -22,17 +22,24 @@ import style from './Select.module.scss';
     }
 */
 
-export default function Select({ options, label, callback }) {
-    console.log(options)
+export default function Select({ options, label, onSelect }) {
     return (
-        <div className={style.container}>
-            <span>{label}</span>
-            <div className={style.select}>
-                <select onChange={callback}>
-                    <option value="" selected disabled hidden>Selección</option>
-                    {options.length?options.map(option => <option key={option.value} value={option.value}>{option.display??option.value}</option>):null}
-                </select>
-            </div>
-        </div>
-    )
+		<div className={style.container}>
+			<span>{label}</span>
+			<div className={style.select}>
+				<select onChange={onSelect}>
+					<option value="" selected disabled hidden>
+						Selección
+					</option>
+					{options.length
+						? options.map((option, index) => (
+								<option key={index} value={option.value ?? option}>
+									{option.display ?? option.value ?? option}
+								</option>
+						  ))
+						: null}
+				</select>
+			</div>
+		</div>
+	);
 }
