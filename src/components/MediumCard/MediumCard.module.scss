@@ -1,0 +1,30 @@
+@use '../../config/colors'as Colors;
+
+.container {
+  padding: 8px 16px;
+  display: grid;
+  grid-template-rows: repeat(3, auto);
+  gap: 8px;
+  max-width: 224px;
+
+  background-color: Colors.$secondary-bg;
+
+  border-radius: 2px;
+
+  min-height: 296px;
+
+  align-items: center;
+  justify-items: center;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 700;
+  color: Colors.$white;
+}
+
+.body {
+  font-size: 15px;
+  font-weight: 700;
+  color: Colors.$white;
+}
