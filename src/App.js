@@ -7,10 +7,9 @@ import "./App.scss";
 import { Diets, Exercises, Landing, Routines, Search, SignUpSequence, Home, Settings } from './Pages';
 import Recipes from './Pages/Recipes/Recipes';
 import { ExercisesCreate, ExercisesView } from './Pages/Exercises';
-import RecipeContainer from './Pages/Recipes/components/RecipeContainer/RecipeContainer';
 import { AccountUser, HistoryUser, PaymentMethod, ProfileUser } from './Pages/Settings';
 import CreateDiet from './components/CreateDiet/CreateDiet';
-
+import CreateRecipe from './components/CreateRecipe/CreateRecipe';
 
 function App() {
     return (
@@ -22,7 +21,7 @@ function App() {
                 <Route path='/newUser' element={<SignUpSequence />} />
                 <Route path='/routines' element={<Routines />}></Route>
                 <Route path='/diets' element={<Diets />}>
-                    <Route path='createRecipe' element={<CreateDiet />} />
+                    <Route path='createDiet' element={<CreateDiet />} />
                 </Route>
                 <Route path='/exercises' element={<Exercises />}>
                     <Route index element={<ExercisesView />} />
@@ -35,7 +34,7 @@ function App() {
                     <Route path='history' element={<HistoryUser />} />
                 </Route>
                 <Route path='/recipes' element={<Recipes />} />
-                <Route path='test' element={<RecipeContainer />} />
+                <Route path='test' element={<CreateRecipe/>} />
             </Routes>
         </div>
     );

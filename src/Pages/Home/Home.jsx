@@ -8,7 +8,6 @@ import HomeClient from './HomeClient/HomeClient';
 const Home = () => {
 	const user = useSelector(state => state.user.currentUser)
 	console.log(user)
-	/* La store no está guardando isTrainer ni isNutritionist, hay que revisar */
 	return (
 		<div className={styles.page}>
 			<Navbar />
