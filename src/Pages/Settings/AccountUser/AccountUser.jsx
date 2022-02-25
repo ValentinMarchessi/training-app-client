@@ -1,7 +1,7 @@
 //STYLES
 import S from './AccountUser.module.scss';
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Input } from '../../../components';
 import NetworkContainer from './NetworkContainer/NetworkContainer';
 import PasswordChange from './PasswordChange/PasswordChange';
@@ -10,6 +10,8 @@ import { logoutUser } from '../../../Redux/reducers/userLoginReducer';
 import { useNavigate } from 'react-router-dom';
 
 export default function AccountUser() {
+
+	const dispatch = useDispatch()
 
 	const navigate=useNavigate()//
 
@@ -27,8 +29,6 @@ export default function AccountUser() {
 		newPasswordError: '',
 		conPasswordError:'',
 	});
-
-	const dispatch = useDispatch()
 
 	useEffect(() => {
 		console.log(state);
