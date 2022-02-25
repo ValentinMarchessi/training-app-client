@@ -1,69 +1,56 @@
 //STYLES
-import S from "./ProfileUser.module.scss";
+import styles from './ProfileUser.module.scss';
 //COMPONENTS
-import { Select } from '../../../components';
-  
+import { NumberInput, Select, Input } from '../../../components';
+import { useSelector } from 'react-redux';
+import { formatString } from '../../../helpers/to_camelCase/index.ts';
+import { style } from '@mui/system';
+import { useState } from 'react';
+
 export default function ProfileUser() {
-  function onChange() {}
-  return (
-    <div className={S.container}>
-      <div className={S.containerSelect}>
-        <div className={S.containerSelectLeft}>
-          <Select
-            options={[1, 2, 3]}
-            label="First Name"
-            callback={onChange}
-            selected="User Name"
-          />
-          <Select
-            options={[1, 2, 3]}
-            label="Last Name"
-            callback={onChange}
-            selected="User Name"
-          />
-          <Select
-            options={[1, 2, 3]}
-            label="Title"
-            callback={onChange}
-            selected="User Name"
-          />
-          <Select
-            options={[1, 2, 3]}
-            label="Title"
-            callback={onChange}
-            selected="User Name"
-          />
-        </div>
-        <div className={S.containerSelectRight}>
-          <Select
-            options={[1, 2, 3]}
-            label="Career"
-            callback={onChange}
-            selected="User Name"
-          />
-          <Select
-            options={[1, 2, 3]}
-            label="Hobby"
-            callback={onChange}
-            selected="User Name"
-          />
-          <Select
-            options={[1, 2, 3]}
-            label="Example"
-            callback={onChange}
-            selected="User Name"
-          />
-          <Select
-            options={[1, 2, 3]}
-            label="Example"
-            callback={onChange}
-            selected="User Name"
-          />
-        </div>
-      </div>
-      <div className={S.containerBtn}>
-        <button>Save</button>
-      </div>
-    </div>
-  );
+	const user = useSelector((store) => store.user);
+	const [error, setError] = useState({
+		firstName: '',
+		lastName: '',
+		specialization: '',
+		height: '',
+		weight: '',
+	})
+
+	function handleTextFields(event) {
+		const { name, value } = event.target;
+
+		if (name === 'firstName') {
+			
+		}
+	}
+
+	function handleNumberField(event) {
+		
+	}
+
+	const textFields = ['First Name', 'Last Name', 'Specialization'].map(field => 
+		<Input
+			key={formatString(field, 'camelCase')}
+			name={formatString(field, 'camelCase')}
+			label={field}
+			onBlur={handleTextFields}
+			error={error[formatString(field, 'camelCase')]}
+		/>
+	)
+	return (
+		<div className={styles.container}>
+			{textFields}
+			<Input
+				type='number'
+				label='Height'
+				name='height'
+				inlineLabel='cm'
+				min={1}
+				max={300} 
+				onBlur={handleNumberField}
+			/>
+			<button id={styles.save}>Save</button>
+		</div>
+	);
 }
