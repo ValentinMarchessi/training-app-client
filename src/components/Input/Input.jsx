@@ -6,13 +6,14 @@ import styles from './Input.module.scss';
 
     label: string
     onBlur: function,        es un evento que se dispara cuando se pierde el foco del input
+    onChange: function,      es un evento que se dispara cuando se enfoca el input
     error: string,           se muestra debajo del input
     placeholder: string,     valor inicial y por defecto del input, opcional
     required: prop           notifica un error cuando el campo está vacío
     type: 'text' | 'email' | 'password' | 'number'  NO LOS PROBÉ CON OTROS TIPOS, PROBABLEMENTE SE ROMPA
 */  
 
-export default function Input({ id, label, onBlur, error, placeholder, required, type = 'text'|'email'|'password'|'number', name, inlineLabel }) {
+export default function Input({ id, label, onBlur, error, placeholder, required, type = 'text'|'email'|'password'|'number', options, name, inlineLabel }) {
     const [state, setState] = useState({
         value: placeholder,
         error: error,
@@ -37,7 +38,7 @@ export default function Input({ id, label, onBlur, error, placeholder, required,
 		<div id={id} className={styles.container}>
 			<label style={labelStyle}>{label}</label>
 			{inlineLabel && <span id={styles.inlineLabel}>{inlineLabel}</span>}
-			<input id={styles.input} name={name} placeholder={placeholder} type={type} onBlur={onBlur} onChange={handleChange} autoComplete="off"></input>
+			<input id={styles.input} name={name} placeholder={placeholder} type={type} onBlur={onBlur} onChange={handleChange} {...options} autoComplete="off"></input>
 			{state.error && <span id={styles.error}>{state.error}</span>}
 		</div>
 	);

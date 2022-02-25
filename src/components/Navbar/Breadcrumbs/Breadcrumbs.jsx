@@ -16,8 +16,8 @@ export default function Breadcrumbs() {
 			</Link>
 			{locations.map((e,i) => (
 				<>
-					<hr id={style.divider} />
-					<Link className={style.breadcrumb} to={breadcrumbs[i]}>
+					<hr key={i} id={style.divider} />
+					<Link key={i} className={style.breadcrumb} to={breadcrumbs[i]}>
 						{e}
 					</Link>
 				</>

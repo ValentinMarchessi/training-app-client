@@ -4,7 +4,7 @@ import { Routes, Route } from 'react-router-dom';
 import "./App.scss";
 
 //PAGES
-import { Diets, Exercises, Landing, Routines, Search, SignUpSequence, Home, Settings } from './Pages';
+import { Diets, Exercises, Landing, Routines, Search, SignUpSequence, Home, Settings, Payment } from './Pages';
 import Recipes from './Pages/Recipes/Recipes';
 import { ExercisesCreate, ExercisesView } from './Pages/Exercises';
 import { AccountUser, HistoryUser, PaymentMethod, ProfileUser } from './Pages/Settings';
@@ -33,8 +33,10 @@ function App() {
                     <Route path='payment' element={<PaymentMethod />} />
                     <Route path='history' element={<HistoryUser />} />
                 </Route>
-                <Route path='/recipes' element={<Recipes />} />
                 <Route path='test' element={<CreateRecipe/>} />
+                <Route path='/recipes' element={<Recipes/>}/>
+                <Route path='/payment' element={<Payment/>} />
+
             </Routes>
         </div>
     );
