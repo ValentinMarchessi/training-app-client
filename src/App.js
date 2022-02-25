@@ -1,15 +1,15 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
-
+import { Route, Routes } from 'react-router-dom';
 import "./App.scss";
-
+import CreateDiet from './components/CreateDiet/CreateDiet';
 //PAGES
-import { Diets, Exercises, Landing, Routines, Search, SignUpSequence, Home, Settings, Payment } from './Pages';
-import Recipes from './Pages/Recipes/Recipes';
+import { Clients, Diets, Exercises, Home, Landing, Payment, Routines, Search, Settings, SignUpSequence } from './Pages';
 import { ExercisesCreate, ExercisesView } from './Pages/Exercises';
+
 import { AccountUser, HistoryUser, PaymentMethod, ProfileUser } from './Pages/Settings';
 import CreateDiet from './components/CreateDiet/CreateDiet';
 import CreateRecipe from './components/CreateRecipe/CreateRecipe';
+
 
 function App() {
     return (
@@ -20,6 +20,7 @@ function App() {
                 <Route path='/shop' element={<Search />} />
                 <Route path='/newUser' element={<SignUpSequence />} />
                 <Route path='/routines' element={<Routines />}></Route>
+                <Route path='/clients' element={<Clients />}></Route>
                 <Route path='/diets' element={<Diets />}>
                     <Route path='createDiet' element={<CreateDiet />} />
                 </Route>
@@ -36,6 +37,7 @@ function App() {
                 <Route path='test' element={<CreateRecipe/>} />
                 <Route path='/recipes' element={<Recipes/>}/>
                 <Route path='/payment' element={<Payment/>} />
+
 
             </Routes>
         </div>
