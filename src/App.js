@@ -5,9 +5,10 @@ import CreateDiet from './components/CreateDiet/CreateDiet';
 //PAGES
 import { Clients, Diets, Exercises, Home, Landing, Payment, Routines, Search, Settings, SignUpSequence } from './Pages';
 import { ExercisesCreate, ExercisesView } from './Pages/Exercises';
-import RecipeContainer from './Pages/Recipes/components/RecipeContainer/RecipeContainer';
-import Recipes from './Pages/Recipes/Recipes';
+
 import { AccountUser, HistoryUser, PaymentMethod, ProfileUser } from './Pages/Settings';
+import CreateDiet from './components/CreateDiet/CreateDiet';
+import CreateRecipe from './components/CreateRecipe/CreateRecipe';
 
 
 function App() {
@@ -21,7 +22,7 @@ function App() {
                 <Route path='/routines' element={<Routines />}></Route>
                 <Route path='/clients' element={<Clients />}></Route>
                 <Route path='/diets' element={<Diets />}>
-                    <Route path='createRecipe' element={<CreateDiet />} />
+                    <Route path='createDiet' element={<CreateDiet />} />
                 </Route>
                 <Route path='/exercises' element={<Exercises />}>
                     <Route index element={<ExercisesView />} />
@@ -33,9 +34,10 @@ function App() {
                     <Route path='payment' element={<PaymentMethod />} />
                     <Route path='history' element={<HistoryUser />} />
                 </Route>
-                <Route path='/recipes' element={<Recipes />} />
-                <Route path='test' element={<RecipeContainer />} />
-                <Route path='/payment' element={<Payment />} />
+                <Route path='test' element={<CreateRecipe/>} />
+                <Route path='/recipes' element={<Recipes/>}/>
+                <Route path='/payment' element={<Payment/>} />
+
 
             </Routes>
         </div>

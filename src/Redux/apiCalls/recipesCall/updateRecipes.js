@@ -2,15 +2,20 @@ import {
     updateRecipesStart,
     updateRecipesSuccess,
     updateRecipesFailure,
-  } from "../../Reducers/recipesReducer.js";
+  } from "../../reducers/recipesReducer";
   import { baseUrlDev } from "../../../config/requestMethod/publicRequest";
   
   //update RECIPE
   
-  export const updateRecipes = async (dispatch,id,value) => {
+  export const updateRecipes = async (dispatch,recipeId, userId, value, token) => {
     dispatch(updateRecipesStart());
     try {
-      const res = await baseUrlDev.put(`recipe/${id}`,value);
+      const res = await baseUrlDev.put(`recipe/${recipeId}/${userId}`,value,{
+        headers:{
+          token
+        }
+      });
+
       dispatch(updateRecipesSuccess(res.data));
     } catch (err) {
       dispatch(updateRecipesFailure());
