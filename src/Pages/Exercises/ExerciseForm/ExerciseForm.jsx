@@ -18,10 +18,6 @@ export default function ExerciseForm({onAdd, onClose}) {
 		video: null, //string
 	});
 
-	// useEffect(() => {
-	// 	setForm(testingState);
-	// }, [testingState, setForm]);
-
 	const [error, setError] = useState({});
 
 	const dispatch = useDispatch();
@@ -44,7 +40,7 @@ export default function ExerciseForm({onAdd, onClose}) {
 			submit.style.opacity=1
 			submit.innerText='Submit'
 		}
-		setForm({
+		if(name!=='video') setForm({
 			...form,
 			[name]: value,
 		});
@@ -52,7 +48,17 @@ export default function ExerciseForm({onAdd, onClose}) {
 
 	useEffect(()=>{
 		console.log('errors: ',error)
-	},[error])
+		
+	},[error, form])
+
+	useEffect(()=>{
+		console.log(form)
+		if(Object.values(form).filter(e=>e===null).length===0) {
+			console.log(Object.values(form))
+			createExercises(dispatch, { userId: user.userId, token: user.accessToken, body: form });
+			onAdd();
+		}
+	},[form])
 
 	const [videosrc, setSrc]=useState('')
 
@@ -98,23 +104,25 @@ export default function ExerciseForm({onAdd, onClose}) {
             () => {
                 getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
 					console.log(downloadURL)
-                    setForm({
-                        ...form,
-                        video: downloadURL
-                    })
-					
+					///if(downloadURL)
+					setForm({
+						...form,
+						video: downloadURL
+					})
+					console.log(downloadURL)
                     preventSubmit.disabled=false
                     preventSubmit.style.opacity=1
                     preventSubmit.innerText='Done'
                     preventSubmit.style.cursor='pointer'
                     document.getElementsByTagName('html')[0].style.cursor='default'
 					
-					if (!error) {
+					if (Object.values(error).filter(e=>e==='').length===Object.values(error).length) {
+						
 						console.log(form, user.userId, user.accessToken);
-						createExercises(dispatch, { userId: user.userId, token: user.accessToken, body: form });
-						onAdd();
+						//createExercises(dispatch, { userId: user.userId, token: user.accessToken, body: form });
+						//onAdd();
 					}
-					console.log(form)
+					
                 });
             })
     }
@@ -139,7 +147,6 @@ export default function ExerciseForm({onAdd, onClose}) {
 						handleInput(event)
 						setVideoUpdate(file)
 						setSrc(fileURL)
-						setForm({...form, video:'up'})
 
 						let input = document.createElement('button')
 						input.innerText = 'Remove'
