@@ -5,7 +5,7 @@ import "./App.scss";
 import CreateRecipe from './components/CreateRecipe/CreateRecipe';
 
 //PAGES
-import { Diets, Exercises, Landing, Routines, Search, SignUpSequence, Home, Settings } from './Pages';
+import { Diets, Exercises, Landing, Routines, Search, SignUpSequence, Home, Settings, Payment } from './Pages';
 import Recipes from './Pages/Recipes/Recipes';
 import { ExercisesCreate, ExercisesView } from './Pages/Exercises';
 import RecipeContainer from './Pages/Recipes/components/RecipeContainer/RecipeContainer';
@@ -33,7 +33,8 @@ function App() {
                     <Route path='history' element={<HistoryUser/>}/>
                 </Route>
                 <Route path='/recipes' element={<Recipes/>}/>
-                <Route path='test' element={<RecipeContainer/>}/>
+                <Route path='test' element={<RecipeContainer />} />
+                <Route path='/payment' element={<Payment/>} />
             </Routes>
         </div>
     );
