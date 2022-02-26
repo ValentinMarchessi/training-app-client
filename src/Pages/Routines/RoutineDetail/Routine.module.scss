@@ -3,13 +3,6 @@
     width: 100%;
     text-align: center;
 }
-.day{
-    width: 100%;
-    padding: 5px 0 5px 0;
-    border-radius: 15px;
-    background-color: #2E2C3B;
-    font-size: 30px;
-}
 .exerciseImg{
     width: 100%;
     padding-bottom: 5px;
@@ -86,43 +79,12 @@
 .contentSelect:hover i{
 	margin-top: 3px;
 }
-
-body::-webkit-scrollbar{
-    background: #1C1C1C;
-    border-radius: 5px;
-    width: 12px;
-}
-body::-webkit-scrollbar-thumb{
-    background: #3F59B8;
-}
-.title{
-    margin-top: 10px;
-    background-color: #5e5b74;
-    text-align: start;
-    padding-left: 10px;
-    margin-top: 10px;
-    font-size: 20px;
-}
 .nameExercise {
     color: #2E2C3B;
     font-size: 17px;
     line-height: 17px;
 }
-.diet {
-    text-align: start;
-    background-color: #C4C4C4;
-    margin-left: 10px;
-    border-bottom: 1px solid #2E2C3B;
-    font-size: 17px;
-    color: #2E2C3B;
-}
-.dietUlt{
-    text-align: start;
-    background-color: #C4C4C4;
-    margin-left: 10px;
-    font-size: 17px;
-    color: #2E2C3B;
-}
+
 .exit {
     width: 30%;
     background-color: #3F59B8;

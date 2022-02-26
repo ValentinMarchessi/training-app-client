@@ -2,9 +2,11 @@ import style from '../Routines.module.scss';
 import styleRoutine from './Routine.module.scss';
 import exerciseImg from '../../../assets/images/routines.png'
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useParams } from 'react-router-dom';
 import { home } from '../../../assets/images/icons';
 import ExerciseView from '../../Exercises/ExerciseView/ExerciseView'
+import { getRoutinesById } from '../../../Redux/apiCalls/rutinesCall/getRoutinesById';
 
 const exercise= {title:"titulo",description:"descripcion",video:"video"}
 const days=["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
@@ -15,23 +17,30 @@ const mockRoutine = {
 
 export default function Routine() {
 	
-    const [dayOption,setDayOption]=useState(0);
+    const [dayOption,setDayOption]=useState("Monday");
     const [exercise,setExercise]=useState({viewing:false});
+    const routineId=useParams().routineId;
+    const routine=useSelector(state=>state.routines.rutinesById);
+    const dispatch=useDispatch();
+    useEffect(()=>{
+        getRoutinesById(dispatch, { routineId })
+    },[dispatch])
 
     const changeDayOption=(e)=>{
-        setDayOption(e.target.value*1);
+        setDayOption(e.target.value);
     }
     const viewExercise=(e,j)=>{
-        setExercise({...mockRoutine.exercises[dayOption][j],viewing:true,allExercises:mockRoutine.exercises,dayOption,j})
+        if(routine.days)
+        setExercise({...routine.days[dayOption][j],viewing:true,allExercises:routine.days,dayOption,j})
     }
 
     return (
-		<div className={`${style.page} ${styleRoutine.scroll}`}>
+		<div className={`${style.page}`}>
 			<div className={style.header}>
 				<Link to='/'>
 					<img id={style.icon} src={home} alt="home" />
 				</Link>
-				{!exercise.viewing?<h1>Routine: {mockRoutine.name}</h1>: <h1>Exercise: {exercise.allExercises[exercise.dayOption][exercise.j].title}</h1>}
+				{!exercise.viewing?<h1>Routine: {routine?.name}</h1>: <h1>Exercise: {exercise.allExercises[exercise.dayOption][exercise.j].title}</h1>}
 				<hr />
 			</div>
 			<div>
@@ -41,13 +50,13 @@ export default function Routine() {
                         <form>
                             <div className={styleRoutine.contentSelect}>
                                 <select onChange={changeDayOption}> 
-                                    {days.map((d,i)=><option value={i} key={i}>{d}</option>)}
+                                    {days.map((d,i)=><option value={d} key={i}>{d}</option>)}
                                 </select>
                                 <i></i>
                             </div>
                         </form>
                         <div className={styleRoutine.dayExercises}>
-                            {mockRoutine.exercises[dayOption]?.map((e,j)=>
+                            {routine.days&&routine.days[dayOption]?.map((e,j)=>
                                 <div key={j} className={styleRoutine.exercise} onClick={(e)=>viewExercise(e,j,dayOption)}>
                                     <img className={styleRoutine.exerciseImg} src={exerciseImg}/>
                                     <p className={styleRoutine.nameExercise}>
