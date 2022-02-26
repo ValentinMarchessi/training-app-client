@@ -8,12 +8,6 @@ import { home } from '../../../assets/images/icons';
 import ExerciseView from '../../Exercises/ExerciseView/ExerciseView'
 import { getRoutinesById } from '../../../Redux/apiCalls/rutinesCall/getRoutinesById';
 
-const exercise= {title:"titulo",description:"descripcion",video:"video"}
-const days=["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
-const mockRoutine = {
-    name:"nombre de rutina",
-	exercises: [[{title:"tituloPrimeroLunes",description:"descripcion",video:"video"},exercise,exercise],[{title:"tituloPrimeroMARTES",description:"descripcion",video:"video"},exercise],null,null,null,null,null],
-};
 
 export default function Routine() {
 	
