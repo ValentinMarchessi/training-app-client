@@ -1,9 +1,8 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import "./App.scss";
-import CreateDiet from './components/CreateDiet/CreateDiet';
 //PAGES
-import { Clients, Diets, Exercises, Home, Landing, Payment, Routines, Search, Settings, SignUpSequence } from './Pages';
+import { Clients, Diets, Exercises, Home, Landing, Payment, Routines, Search, Settings, SignUpSequence, Recipes } from './Pages';
 import { ExercisesCreate, ExercisesView } from './Pages/Exercises';
 
 import { AccountUser, HistoryUser, PaymentMethod, ProfileUser } from './Pages/Settings';
