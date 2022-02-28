@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useField } from "../../hooks/useField/useField";
+// import { useField } from "../../hooks/useField/useField";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllRecipesByUserId } from "../../Redux/apiCalls/recipesCall/getAllRecipesByUser";
+import { createDiets } from "../../Redux/apiCalls/dietsCall/createDiets";
 
 const days = [
   "monday",
@@ -46,13 +47,17 @@ const CreateDiet = () => {
     price: "",
     plain: [],
   });
-//   FUNCION ONCHANGE DE MEALS
+  //   FUNCION ONCHANGE DE MEALS
   const handleChangeSelectMeals = (e) => {
+    for (let i = 0; i < meals[e.target.name].length; i++) {
+      if (meals[e.target.name][i] === e.target.value) {
+        return alert("RECIPE YA ESTA");
+      }
+    }
     setMeals({
       ...meals,
       [e.target.name]: [...meals[e.target.name], e.target.value],
     });
-    onHandleNewDiet();
   };
   //   FUNCION ONCHANGE DE PLAIN
   const handleChangeSelectPlain = (e) => {
@@ -66,22 +71,63 @@ const CreateDiet = () => {
     setDiet({
       ...diet,
       [e.target.name]: e.target.value,
-      plain: [newPlain],
     });
   };
   useEffect(() => {
     setNewPlain({
-        ...newPlain,
-        meals: { ...meals },
-      });
+      ...newPlain,
+      meals: { ...meals },
+    });
   }, [meals]);
 
-  useEffect(() => {
-    setDiet({
-        ...diet, 
-        plain: [newPlain],
+  function onCreateDayDiet(e) {
+    e.preventDefault();
+    for (let i = 0; i < diet.plain.length; i++) {
+      if (diet.plain[i].day === newPlain.day) {
+        return alert("EL DIA YA ESTA");
+      }
+    }
+    if (meals.breakfast.length === 0) {
+      return alert("DEBE SELECCIONAR UNA BF");
+    }
+    if (meals.lunch.length === 0) {
+      return alert("DEBE SELECCIONAR UNA L");
+    }
+    if (meals.dinner.length === 0) {
+      return alert("DEBE SELECCIONAR UNA D");
+    }
+    if (newPlain.day !== "" && newPlain.day !== "Days") {
+      setDiet({
+        ...diet,
+        plain: [...diet.plain, newPlain],
       });
-  }, [newPlain]);
+      setMeals({
+        breakfast: [],
+        lunch: [],
+        dinner: [],
+      });
+      setNewPlain({
+        day: "",
+        meals: {},
+      });
+    } else {
+      return alert("DEBE SELECIONAR UN DIA");
+    }
+  }
+
+  function onSendDiet(e) {
+    e.preventDefault();
+    if (diet.title !== "" && diet.price !== "") {
+      setDiet({
+        title: "",
+        price: "",
+        plain: [],
+      });
+      createDiets(dispatch, userId, diet);
+    } else {
+      return alert("DEBE AGREGAR UN TITULO Y UN PRECIO");
+    }
+  }
 
   return (
     <div>
@@ -94,6 +140,7 @@ const CreateDiet = () => {
           <input onChange={onHandleNewDiet} value={diet.price} name="price" />
         </div>
         <div className="formCenter">
+          <button onClick={onCreateDayDiet}>CREATE DAY'S DIET</button>
           <select
             value={newPlain.day}
             name="day"
@@ -143,6 +190,7 @@ const CreateDiet = () => {
             ))}
           </select>
         </div>
+        <button onClick={onSendDiet}>ENVIAR DIET A DDBB</button>
       </form>
     </div>
   );
