@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import "./App.scss";
 //PAGES
+
 import {
   Clients,
   Recipes,
@@ -16,6 +17,8 @@ import {
   SignUpSequence,
 } from "./Pages";
 import { ExercisesCreate, ExercisesView } from "./Pages/Exercises";
+
+
 
 import {
   AccountUser,
