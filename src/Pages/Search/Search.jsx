@@ -10,32 +10,40 @@ import { getAllRoutines } from '../../Redux/apiCalls/rutinesCall/getAllRoutines'
 
 import { Navbar, Searchbar } from '../../components';
 import RoutineCard from './RoutineCard/RoutineCard';
+import { Select } from '../../components';
 
 export default function Search() {
     //Hacer dispatch segun el type
-    const { type } = useParams()
     const elementosDeTest = 61
 
     const dispatch = useDispatch()
 
-    const [currentType, setCurrentType] = useState(type)
-    console.log(type)
+    const {accessToken} = useSelector(state=>state.user.currentUser.accessToken)
+
+    const [currentType, setCurrentType] = useState('')
+    console.log(currentType)
 
     const RoutinesDB = useSelector(state=>state.routines.allRutines)
-    const TrainersDB = useSelector(state=>state.allUsersTrainer.usersTrainers)
-    const NutritionistsDB = useSelector(state=>state.allUsersNutritionits.usersNutritionits)
+    const TrainersDB = useSelector(state=>state.trainers.usersTrainers)
+    const NutritionistsDB = useSelector(state=>state.nutritionists.usersNutritionits)
 
     //Por si el usuario recarga la página.
     window.addEventListener('load',()=>{
         try{
-            if(!RoutinesDB?.length&&type==='routines') getAllRoutines(dispatch)
-            if(!TrainersDB?.length&&type==='trainers') getAllTrainers(dispatch)
-            if(!NutritionistsDB?.length&&type==='nutritionists') getAllNutritionits(dispatch)
+            if(!RoutinesDB?.length&&currentType==='routines') getAllRoutines(dispatch)
+            if(!TrainersDB?.length&&currentType==='trainers') getAllTrainers(dispatch)
+            if(!NutritionistsDB?.length&&currentType==='nutritionists') getAllNutritionits(dispatch)
         } catch(err){
             console.log(err)
         }
         
     })
+
+    useEffect(()=>{
+        if(!RoutinesDB?.length&&currentType==='routines') getAllRoutines(dispatch)
+        if(!TrainersDB?.length&&currentType==='trainers') getAllTrainers(dispatch)
+        if(!NutritionistsDB?.length&&currentType==='nutritionists') getAllNutritionits(dispatch)
+    },[currentType])
 
     let rating = 0
     let reviews = 0
@@ -103,11 +111,15 @@ export default function Search() {
         type==='reviews'?setReviewSort(!reviewSort):type==='reviews'?setScoreSort(!scoreSort):setPriceSort(!priceSort)
     }   
     
+    function typeHandler(event){
+        setCurrentType(event.target.value)
+    }
 
     return (
+        <>
+        <Navbar/>
+           
         <div className='searchContainer'>
-            <Navbar user={1} />
-            {/* <SearchBar type={type} /> */}
             <div className='searchBar'>
                 <form onSubmit={event=>{
                     event.preventDefault()
@@ -115,7 +127,7 @@ export default function Search() {
                 }}>
                     <div className='searchField'>
                         <div className='searchInput'>
-                            <input type='text' id='addInput' placeholder={`Search for ${type}`} onChange={event=>{
+                            <input type='text' id='addInput' placeholder={`Search for ${currentType}`} onChange={event=>{
                                 newInput(event.target.value)
                             }}/>
                             <input type='submit' id='submitInput' value='submit'/>
@@ -132,6 +144,7 @@ export default function Search() {
                         <button onClick={() => sortHandler('price')}>
                             Price
                         </button>
+                        <Select callback={typeHandler} options={[{value:'routines'},{value:'nutritionists'},{value:'trainers'}]}/>
                         </div>
                     </div>
                 </form>
@@ -160,5 +173,6 @@ export default function Search() {
             <button onClick={() => inicio!==0 ? setInicio(inicio-8) : null}>previous</button>
             <button onClick={() => inicio+8 < elementosDeTest ? setInicio(inicio+8) : null}>next</button>
         </div>
+        </>
     );
 }

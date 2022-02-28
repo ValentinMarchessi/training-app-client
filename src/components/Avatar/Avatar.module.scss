@@ -1,8 +1,11 @@
-$w_and_h: 60px;
+#thumb {
+  display: flex;
 
-.avatar{
-    height: $w_and_h;
-    width: $w_and_h;
-    border-radius: 50%;
+  img {
+    background-color: gray;
     object-fit: cover;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    max-width: 80px;
+  }
 }

@@ -1,7 +1,7 @@
 @use '../../config/mixins/' as mixins;
 @use '../../config/colors/' as colors;
 
-.container {
+#container {
     @include mixins.medium-bold-font;
     text-align: center;
     position: relative;

@@ -2,7 +2,7 @@ import style from './DietCard.module.scss';
 import Divider from '@mui/material/Divider';
 import Stack from '@mui/material/Stack';
 
-import { InfoPill, Avatar } from '../../../components';
+import { InfoPill, AvatarGroup } from '../../../components';
 import { wheat, fish, drumstick, bolt } from '../../../assets/images/icons';
 
 /* PROPS
@@ -28,14 +28,10 @@ export default function DietCard({ name, clients, weekly }) {
 	}
 
 	return (
-		<Stack sx={{ height: 150, p: 2, borderRadius: 3, bgcolor: '#201f24', justifyContent:"space-evenly" }} direction="row" divider={<Divider orientation="vertical" flexItem />} spacing={2}>
+		<Stack sx={{ color:'white', height: 150, p: 2, borderRadius: 3, bgcolor: '#201f24', justifyContent: 'space-evenly' }} direction="row" divider={<Divider orientation="vertical" flexItem />} spacing={2}>
 			<div className={style.info}>
 				<h1>{name}</h1>
-				<div className={style.avatarGroup}>
-					{clients.map((client) => (
-						<Avatar alt={client.name} src={client.avatar} />
-					))}
-				</div>
+				<AvatarGroup users={clients} max={5} avatarStyle={{ height: '60px' }} />
 			</div>
 			<div className={style.section}>
 				<h2>Promedio Diario</h2>

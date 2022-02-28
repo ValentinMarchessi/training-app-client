@@ -1,0 +1,16 @@
+@use '../../../config/mixins/' as Mixins;
+
+.container{
+    @include Mixins.font;
+    #header{
+        display: flex;
+        gap: 5px;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+    .content{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+}
