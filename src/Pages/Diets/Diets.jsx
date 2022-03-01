@@ -3,7 +3,7 @@ import style from './Diets.module.scss';
 
 import { Navbar } from '../../components';
 import { clipboard, closeButton } from '../../assets/images/icons';
-import CreateDiet from '../../components/CreateDiet/CreateDiet.jsx';
+import CreateDiet from './CreateDiet/CreateDiet.jsx';
 
 const diet = {
     name: 'Dieta Cetogénica',

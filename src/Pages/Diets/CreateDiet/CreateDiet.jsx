@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 // import { useField } from "../../hooks/useField/useField";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllRecipesByUserId } from "../../Redux/apiCalls/recipesCall/getAllRecipesByUser";
-import { createDiets } from "../../Redux/apiCalls/dietsCall/createDiets";
+import { getAllRecipesByUserId } from "../../../Redux/apiCalls/recipesCall/getAllRecipesByUser";
+import { createDiets } from "../../../Redux/apiCalls/dietsCall/createDiets";
 
 const days = [
   "monday",

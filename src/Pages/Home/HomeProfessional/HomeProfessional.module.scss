@@ -16,12 +16,9 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
-      flex-wrap: nowrap;
-      position: absolute;
-      width: 520px;
-      left: 50px;
-      height: 570px;
-      overflow: scroll;
+      width: 40%;
+      max-height: 80vh;
+      overflow-y: auto;
 }
 
 .newsContainer::-webkit-scrollbar{
