@@ -17,15 +17,13 @@ import {
   SignUpSequence,
 } from "./Pages";
 import { ExercisesCreate, ExercisesView } from "./Pages/Exercises";
-
 import {
   AccountUser,
   HistoryUser,
   PaymentMethod,
   ProfileUser,
 } from "./Pages/Settings";
-import CreateDiet from "./components/CreateDiet/CreateDiet";
-import CreateRecipe from "./components/CreateRecipe/CreateRecipe";
+import CreateDiet from "./Pages/Diets/CreateDiet/CreateDiet";
 
 function App() {
   return (
@@ -49,7 +47,6 @@ function App() {
           <Route path="payment" element={<PaymentMethod />} />
           <Route path="history" element={<HistoryUser />} />
         </Route>
-        <Route path="test" element={<CreateRecipe />} />
         <Route path="/recipes" element={<Recipes />} />
         <Route path="/payment" element={<Payment />} />
       </Routes>
@@ -57,4 +54,4 @@ function App() {
   );
 }
 
-export default App;
+  export default App;
