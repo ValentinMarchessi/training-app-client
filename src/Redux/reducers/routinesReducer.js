@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const routinesSlice = createSlice({
   name: "routines",
   initialState: {
+    allRoutines: [],
     routinesById: {},
     createdRoutines: {},
     updatedRoutines: {},

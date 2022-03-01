@@ -5,44 +5,6 @@ import { createRoutines } from '../../../Redux/apiCalls/rutinesCall/createRoutin
 import style from './RoutineForm.module.scss';
 
 
-// {
-//       "owner": "UUID del creador de la rutina",
-//       "title": "Nombre de la rutina",
-//       "price": 1500,
-//       "exercises": [
-//             [
-//                   {
-//                         "title": "ejercicio1",
-//                         "description": "descr1",
-//                         "video": "video1"
-//                   },
-//                   {
-//                         "title": "ejercicio2",
-//                         "description": "descr2",
-//                         "video": "video2"
-//                   }
-//             ],
-//             null,
-//             [
-//                   {
-//                         "title": "ejercicio1",
-//                         "description": "descr1",
-//                         "video": "video1"
-//                   },
-//                   {
-//                         "title": "ejercicio2",
-//                         "description": "descr2",
-//                         "video": "video2"
-//                   }
-//             ]
-//             , null
-//             , null
-//             , null
-//             , null
-//       ]
-// };
-
-
 export default function RoutineForm() {
 
       const { userId, accessToken } = useSelector(state => state.user.currentUser);
@@ -78,11 +40,11 @@ export default function RoutineForm() {
       });
 
       const template = (e) => {
-            return (e && {
+            return {
                   title: e.title,
                   description: e.description,
                   video: e.video,
-            }) || '';
+            };
       };
 
       const addExercise = (e) => {
@@ -93,7 +55,6 @@ export default function RoutineForm() {
             };
 
             const isAdded = data.exercises[day].find(ex => ex.title === current.name);
-
             // remove if added twice
             if (isAdded) {
                   let newExercises = data.exercises[day].filter(ex => ex.title !== isAdded.title);
@@ -124,7 +85,7 @@ export default function RoutineForm() {
                         ...data,
                         exercises: Object.values(data.exercises).map(e => (e.length && e) || null)
                   }
-            }
+            };
             const error = Object.keys(obj.values).map(key => (!obj.values[key] || !obj.values[key].length) && key).filter(e => e)[0];
             if (error) {
                   alert(`Error! field '${error}' can't be empty.`);
@@ -135,9 +96,6 @@ export default function RoutineForm() {
                   alert('Routine Created');
             }
       };
-
-      console.log(data);
-      console.log(data.exercises.length);
 
       return (
             <div className={style.formContainer} onChange={async (e) => await handleChange(e)}>
