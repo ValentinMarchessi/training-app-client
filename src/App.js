@@ -10,6 +10,7 @@ import { ExercisesCreate, ExercisesView } from './Pages/Exercises';
 import RecipeContainer from './Pages/Recipes/components/RecipeContainer/RecipeContainer';
 import { AccountUser, HistoryUser, PaymentMethod, ProfileUser } from './Pages/Settings';
 import CreateDiet from './components/CreateDiet/CreateDiet';
+import Success from './components/Success/Success';
 
 
 function App() {
@@ -34,10 +35,10 @@ function App() {
                     <Route path='payment' element={<PaymentMethod />} />
                     <Route path='history' element={<HistoryUser />} />
                 </Route>
-                <Route path='/recipes' element={<Recipes/>}/>
+                <Route path='/recipes' element={<Recipes />} />
                 <Route path='test' element={<RecipeContainer />} />
-                <Route path='/payment' element={<Payment/>} />
-
+                <Route path='/payment' element={<Payment />} />
+                <Route path='/success' element={<Success />} />
             </Routes>
         </div>
     );

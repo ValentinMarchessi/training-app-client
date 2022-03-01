@@ -9,6 +9,7 @@ import recipesReducer from '../reducers/recipesReducer'
 import routinesReducer from '../reducers/routinesReducer';
 import updateUserReducer from '../reducers/updateUserReducer';
 import userLoginReducer from '../reducers/userLoginReducer';
+import transactionReducer from '../reducers/transactionReducer';
 import {
     persistStore,
     persistReducer,
@@ -36,6 +37,7 @@ const rootReducer = combineReducers({
     updateUser: updateUserReducer,
     trainers: allUsersTrainersReducer,
     nutrists: allUsersNutritionitsReducer,
+    transaction: transactionReducer
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
