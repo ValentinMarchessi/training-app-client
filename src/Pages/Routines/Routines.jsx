@@ -1,8 +1,8 @@
-import style from './Routines.module.scss';
-import RoutineBox from './RoutineBox/RoutineBox';
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { Navbar } from '../../components';
+import RoutineBox from './RoutineBox/RoutineBox';
+import RoutineForm from './RoutineForm/RoutineForm';
+import style from './Routines.module.scss';
 
 const mockRoutine = {
 	name: 'Calistenia',
@@ -36,11 +36,17 @@ export default function Routines() {
 	useEffect(() => {
 		//request a la API, por ahora esto es un mock
 		setRoutines(mockData);
-	},[setRoutines])
+	}, [setRoutines]);
 
-    return (
+	const toggleForm = () => {
+		let form = document.querySelector('#routineForm');
+		form.classList.toggle(`${style.formOpen}`);
+		form.classList.toggle(`${style.formClose}`);
+	};
+
+	return (
 		<div className={style.page}>
-			<Navbar/>
+			<Navbar />
 			<div className={style.body}>
 				<div className={style.routines}>
 					<div className={style.container}>
@@ -49,9 +55,10 @@ export default function Routines() {
 						))}
 					</div>
 				</div>
-				<Link id={style.create} to="create">
-					Create Routine
-				</Link>
+				<button className={style.create} onClick={toggleForm}>Create Routine</button>
+				<div className={style.formClose} id='routineForm'>
+					<RoutineForm />
+				</div>
 			</div>
 		</div>
 	);

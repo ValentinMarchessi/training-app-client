@@ -1,79 +1,79 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const rutinesSlice = createSlice({
-  name: "rutines",
+const routinesSlice = createSlice({
+  name: "routines",
   initialState: {
-    allRutines: [],
-    rutinesById: {},
-    createdRutines: {},
-    updatedRutines: {},
-    deletedRutines: {},
+    routinesById: {},
+    createdRoutines: {},
+    updatedRoutines: {},
+    deletedRoutines: {},
     isFetching: false,
     error: false,
   },
   reducers: {
-    // GET ALL Rutines
-    getAllRutinesStart: (state) => {
+    // GET ALL Routines
+    getAllRoutinesStart: (state) => {
       state.isFetching = true;
     },
-    getAllRutinesSuccess: (state, action) => {
+    getAllRoutinesSuccess: (state, action) => {
       console.log(action);
       state.isFetching = false;
-      state.allRutines = action.payload;
+      state.allRoutines = action.payload;
     },
-    getAllRutinesFailure: (state) => {
+    getAllRoutinesFailure: (state) => {
+      state.isFetching = true;
+      state.error = true;
+    },
+    allRoutines: [],
+
+    //GET ID Routines
+    getRoutinesByIdStart: (state) => {
+      state.isFetching = true;
+    },
+    getRoutinesByIdSuccess: (state, action) => {
+      state.isFetching = false;
+      state.routinesById = action.payload;
+    },
+    getRoutinesByIdFailure: (state) => {
       state.isFetching = true;
       state.error = true;
     },
 
-    //GET ID Rutines
-    getRutinesByIdStart: (state) => {
+    // CREATE Routines
+    createRoutinesStart: (state) => {
       state.isFetching = true;
     },
-    getRutinesByIdSuccess: (state, action) => {
+    createRoutinesSuccess: (state, action) => {
       state.isFetching = false;
-      state.rutinesById = action.payload;
+      state.createdRoutines = action.payload;
     },
-    getRutinesByIdFailure: (state) => {
+    createRoutinesFailure: (state) => {
       state.isFetching = true;
       state.error = true;
     },
 
-    // CREATE Rutines
-    createRutinesStart: (state) => {
+    //UPDATE Routines
+    updateRoutinesStart: (state) => {
       state.isFetching = true;
     },
-    createRutinesSuccess: (state, action) => {
+    updateRoutinesSuccess: (state, action) => {
       state.isFetching = false;
-      state.createdRutines = action.payload;
+      state.updatedRoutines = action.payload;
     },
-    createRutinesFailure: (state) => {
+    updateRoutinesFailure: (state) => {
       state.isFetching = true;
       state.error = true;
     },
 
-    //UPDATE Rutines
-    updateRutinesStart: (state) => {
+    // DELETE  Routines
+    deleteRoutinesStart: (state) => {
       state.isFetching = true;
     },
-    updateRutinesSuccess: (state, action) => {
+    deleteRoutinesSuccess: (state, action) => {
       state.isFetching = false;
-      state.updatedRutines = action.payload;
+      state.deletedRoutines = action.payload;
     },
-    updateRutinesFailure: (state) => {
-      state.isFetching = true;
-      state.error = true;
-    },
-
-    // DELETE  Rutines
-    deleteRutinesStart: (state) => {
-      state.isFetching = true;
-    },
-    deleteRutinesSuccess: (state, action) => {
-      state.isFetching = false;
-      state.deletedRutines = action.payload;
-    },
-    deleteRutinesFailure: (state) => {
+    deleteRoutinesFailure: (state) => {
       state.isFetching = true;
       state.error = true;
     },
@@ -81,21 +81,21 @@ const rutinesSlice = createSlice({
 });
 
 export const {
-  getAllRutinesStart,
-  getAllRutinesSuccess,
-  getAllRutinesFailure,
-  getRutinesByIdStart,
-  getRutinesByIdSuccess,
-  getRutinesByIdFailure,
-  createRutinesStart,
-  createRutinesSuccess,
-  createRutinesFailure,
-  updateRutinesStart,
-  updateRutinesSuccess,
-  updateRutinesFailure,
-  deleteRutinesStart,
-  deleteRutinesSuccess,
-  deleteRutinesFailure,
-} = rutinesSlice.actions;
+  getAllRoutinesStart,
+  getAllRoutinesSuccess,
+  getAllRoutinesFailure,
+  getRoutinesByIdStart,
+  getRoutinesByIdSuccess,
+  getRoutinesByIdFailure,
+  createRoutinesStart,
+  createRoutinesSuccess,
+  createRoutinesFailure,
+  updateRoutinesStart,
+  updateRoutinesSuccess,
+  updateRoutinesFailure,
+  deleteRoutinesStart,
+  deleteRoutinesSuccess,
+  deleteRoutinesFailure,
+} = routinesSlice.actions;
 
-export default rutinesSlice.reducer;
+export default routinesSlice.reducer;
