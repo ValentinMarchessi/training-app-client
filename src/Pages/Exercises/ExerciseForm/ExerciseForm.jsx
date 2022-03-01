@@ -171,7 +171,7 @@ export default function ExerciseForm({onAdd, onClose}) {
 
 				{videosrc
 					?<video src={videosrc} id='exerciseVideo' name='preview' onDurationChange={(event)=>{
-						if(event.target.duration>20) {
+						if(event.target.duration>60) {
 							setSrc(null)
 							setVideoUpdate('')
 							document.querySelector('input[name="video"]').value=''

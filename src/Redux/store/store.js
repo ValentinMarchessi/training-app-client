@@ -9,6 +9,7 @@ import recipesReducer from '../reducers/recipesReducer'
 import routinesReducer from '../reducers/routinesReducer';
 import updateUserReducer from '../reducers/updateUserReducer';
 import userLoginReducer from '../reducers/userLoginReducer';
+import transactionReducer from '../reducers/transactionReducer';
 import newsReducer from '../reducers/newsReducer';
 import {
     persistStore,
@@ -37,7 +38,8 @@ const rootReducer = combineReducers({
     diets: dietsReducer,
     nutritionists: allUsersNutritionitsReducer,
     trainers: allUsersTrainersReducer,
-    news : newsReducer
+    transaction: transactionReducer,
+    news : newsReducer,
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

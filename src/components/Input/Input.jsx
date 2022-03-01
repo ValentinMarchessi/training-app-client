@@ -13,7 +13,7 @@ import styles from './Input.module.scss';
     type: 'text' | 'email' | 'password' | 'number'  NO LOS PROBÉ CON OTROS TIPOS, PROBABLEMENTE SE ROMPA
 */  
 
-export default function Input({ id, label, onBlur, error, placeholder, required, type = 'text'|'email'|'password'|'number', options, name, inlineLabel }) {
+export default function Input({ id, label, onBlur, onChange, error, placeholder, required, type = 'text'|'email'|'password'|'number', options, name, inlineLabel }) {
     const [state, setState] = useState({
         value: placeholder,
         error: error,
@@ -31,15 +31,16 @@ export default function Input({ id, label, onBlur, error, placeholder, required,
 
     function handleChange(event) {
         const { value } = event.target;
-        value ? setState({...state, value}) : setState({...state, value: placeholder});
+        value ? setState({ ...state, value }) : setState({ ...state, value: placeholder });
+        onChange && typeof onChange === 'function' && onChange(event)
     }
 
     return (
 		<div id={id} className={styles.container}>
 			<label style={labelStyle}>{label}</label>
-			{inlineLabel && <span id={styles.inlineLabel}>{inlineLabel}</span>}
-			<input id={styles.input} name={name} placeholder={placeholder} type={type} onBlur={onBlur} onChange={handleChange} {...options} autoComplete="off"></input>
-			{state.error && <span id={styles.error}>{state.error}</span>}
+			{inlineLabel && <span className={styles.inlineLabel}>{inlineLabel}</span>}
+			<input className={styles.input} name={name} placeholder={placeholder} type={type} onBlur={onBlur} onChange={handleChange} {...options} autoComplete="off"></input>
+			{state.error && <span className={styles.error}>{state.error}</span>}
 		</div>
 	);
 }

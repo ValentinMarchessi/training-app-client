@@ -3,35 +3,27 @@
 
 .cardNews {
   position: relative;
-  width: 500px;
-  height: 280px;
-  border: 8px solid c.$button-bg;
-  border-radius: 5px;
-  margin-bottom: 5px;
-  box-sizing: border-box;
   cursor: pointer;
 
-
   .imgCardNews {
-    width: 100%;
+    width:100%;
     height: 100%;
+    border-radius: 10px;
     object-fit: cover;
-
   }
 
   .contentTitleNews {
-    width: 250px;
-    height: 45px;
+    //background-color: c.$secondary-bg;
+    background-image: linear-gradient(0deg, c.$secondary-bg,rgba(0,0,0,0));
+    background-size: 100px;
     position: absolute;
-    top: 0;
+    padding: 1rem 1rem;
+    padding-top: 3rem;
+    bottom: 4px;
     left: 0;
-    display: inline-flex;
-    // justify-content: flex-start;
-    // align-items: flex-start;
-    font-size: 30px;
+    font-size: 20px;
     font-weight: bold;
-    margin-top: 23px;
-    margin-left: 42px;
     color: c.$white;
+    border-radius: 0 0 10px 10px;
   }
 }
