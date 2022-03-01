@@ -1,8 +1,4 @@
-import {
-    createRoutinesStart,
-    createRoutinesSuccess,
-    createRoutinesFailure,
-  } from "../../reducers/routinesReducer.js";
+import {createRoutinesFailure, createRoutinesStart, createRoutinesSuccess} from '../../reducers/routinesReducer'
   import { baseUrlDev } from "../../../config/requestMethod/publicRequest";
   
   //CREATE Routines
@@ -16,4 +12,3 @@ import {
       dispatch(createRoutinesFailure());
     }
   };
-  

@@ -37,8 +37,6 @@ function App() {
                 <Route path='test' element={<CreateRecipe/>} />
                 <Route path='/recipes' element={<Recipes/>}/>
                 <Route path='/payment' element={<Payment/>} />
-
-
             </Routes>
         </div>
     );
