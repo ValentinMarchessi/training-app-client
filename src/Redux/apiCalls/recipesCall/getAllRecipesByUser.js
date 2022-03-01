@@ -1,21 +1,21 @@
 import {
-      getAllRecipesStart,
-      getAllRecipesSuccess,
-      getAllRecipesFailure,
+    getAllRecipesByUserIdStart,
+    getAllRecipesByUserIdSuccess,
+    getAllRecipesByUserIdFailure,
 } from "../../reducers/recipesReducer";
 import { baseUrlDev } from "../../../config/requestMethod/publicRequest";
 
 //getAll RECIPES
-export const getAllRecipesByUser = async (dispatch,userId, token) => {
-dispatch(getAllRecipesStart());
-try {
-      const res = await baseUrlDev.get(`recipe/user/${userId}`,{
-            headers:{
-                  token
+export const getAllRecipesByUserId = async (dispatch, userId, token) => {
+    dispatch(getAllRecipesByUserIdStart());
+    try {
+        const res = await baseUrlDev.get(`recipe/user/${userId}`, {
+            headers: {
+                token
             }
-      });
-      dispatch(getAllRecipesSuccess(res.data));
-} catch (err) {
-      dispatch(getAllRecipesFailure());
-}
+        });
+        dispatch(getAllRecipesByUserIdSuccess(res.data));
+    } catch (err) {
+        dispatch(getAllRecipesByUserIdFailure());
+    }
 };

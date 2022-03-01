@@ -1,14 +1,16 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
-// import allUsersNutritionitsReducer from '../reducers/allUsersNutritionist';
-// import allUsersReducer from '../reducers/allUsersReducer';
-// import allUsersTrainersReducer from '../reducers/allUsersTrainer';
-// import dietsReducer from '../reducers/dietsReducer';
-// import exercisesReducer from '../reducers/exercisesReducer';
+import allUsersNutritionitsReducer from '../reducers/allUsersNutritionist';
+import allUsersReducer from '../reducers/allUsersReducer';
+import allUsersTrainersReducer from '../reducers/allUsersTrainer';
+import dietsReducer from '../reducers/dietsReducer';
+import exercisesReducer from '../reducers/exercisesReducer';
 import registerReducer from '../reducers/registerReducer';
 import recipesReducer from '../reducers/recipesReducer'
-// import routinesReducer from '../reducers/routinesReducer';
-// import updateUserReducer from '../reducers/updateUserReducer';
+import routinesReducer from '../reducers/routinesReducer';
+import updateUserReducer from '../reducers/updateUserReducer';
 import userLoginReducer from '../reducers/userLoginReducer';
+import transactionReducer from '../reducers/transactionReducer';
+import newsReducer from '../reducers/newsReducer';
 import {
     persistStore,
     persistReducer,
@@ -30,7 +32,14 @@ const persistConfig = {
 const rootReducer = combineReducers({
     user: userLoginReducer,
     register: registerReducer,
-    recipes : recipesReducer
+    recipes : recipesReducer,
+    routines: routinesReducer,
+    exercises: exercisesReducer,
+    diets: dietsReducer,
+    nutritionists: allUsersNutritionitsReducer,
+    trainers: allUsersTrainersReducer,
+    transaction: transactionReducer,
+    news : newsReducer,
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
@@ -47,16 +56,17 @@ export const store = configureStore({
 
 export let persistor = persistStore(store)
 
-// export default configureStore({
-//     reducer: {
-//         user: userLoginReducer,
-//         register: registerReducer,
-//         updateUser: updateUserReducer,
-//         diets: dietsReducer,
-//         exercises: exercisesReducer,
-//         routines: routinesReducer,
-//         allUsers: allUsersReducer,
-//         allUsersTrainer: allUsersTrainersReducer,
-//         allUsersNutritionits: allUsersNutritionitsReducer
-//     },
-// });
+export default configureStore({
+    reducer: {
+        user: userLoginReducer,
+        register: registerReducer,
+        updateUser: updateUserReducer,
+        diets: dietsReducer,
+        exercises: exercisesReducer,
+        routines: routinesReducer,
+        allUsers: allUsersReducer,
+        allUsersTrainer: allUsersTrainersReducer,
+        allUsersNutritionits: allUsersNutritionitsReducer,
+        news : newsReducer
+    },
+});

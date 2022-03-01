@@ -6,6 +6,7 @@ import styles from './Input.module.scss';
 
     label: string
     onBlur: function,        es un evento que se dispara cuando se pierde el foco del input
+    onChange: function,      es un evento que se dispara cuando se enfoca el input
     error: string,           se muestra debajo del input
     placeholder: string,     valor inicial y por defecto del input, opcional
     required: prop           notifica un error cuando el campo está vacío
