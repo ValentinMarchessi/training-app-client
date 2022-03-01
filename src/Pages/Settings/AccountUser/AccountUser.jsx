@@ -1,12 +1,19 @@
 //STYLES
 import S from './AccountUser.module.scss';
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Input } from '../../../components';
 import NetworkContainer from './NetworkContainer/NetworkContainer';
 import PasswordChange from './PasswordChange/PasswordChange';
+import { useNavigate } from 'react-router-dom';
+import { logoutUser } from '../../../Redux/reducers/userLoginReducer';
+import updateUser from '../../../Redux/reducers/updateUserReducer';
 
 export default function AccountUser() {
+	let user;
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
+	const {userId, accessToken} = user = useSelector(store => store.user?.currentUser);
 	const { username, email } = useSelector((store) => store.user.currentUser);
 	const [state, setState] = useState({
 		username: username,
