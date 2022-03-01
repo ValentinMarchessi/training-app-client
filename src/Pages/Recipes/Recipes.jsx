@@ -5,7 +5,7 @@ import { Navbar } from '../../components';
 import { getAllRecipesByUserId } from '../../Redux/apiCalls/recipesCall/getAllRecipesByUser'
 import { useDispatch, useSelector } from 'react-redux';
 import RecipeContainer from './components/RecipeContainer/RecipeContainer';
-import CreateRecipe from '../../components/CreateRecipe/CreateRecipe'
+import CreateRecipe from './components/CreateRecipe/CreateRecipe'
 
 const Recipes = () => {
     const dispatch = useDispatch();

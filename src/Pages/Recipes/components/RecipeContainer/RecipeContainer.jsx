@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { deleteRecipes }  from '../../../../Redux/apiCalls/recipesCall/deleteRecipes';
-import CreateRecipe from '../../../../components/CreateRecipe/CreateRecipe'
+import CreateRecipe from '../CreateRecipe/CreateRecipe'
 import s from './RecipeContainer.module.scss';
 //RECIBE EL OBJETO COMPLETO DE LA RECETA
 

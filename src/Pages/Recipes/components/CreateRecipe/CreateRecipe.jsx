@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { useField } from '../../hooks/useField//useField'
+import { useField } from '../../../../hooks/useField/useField'
 import { useDispatch, useSelector } from 'react-redux'
-import { postCreateRecipes } from '../../Redux/apiCalls/recipesCall/createRecipes';
-import { updateRecipes } from '../../Redux/apiCalls/recipesCall/updateRecipes';
+import { postCreateRecipes } from '../../../../Redux/apiCalls/recipesCall/createRecipes';
+import { updateRecipes } from '../../../../Redux/apiCalls/recipesCall/updateRecipes';
 import s from './createRecipe.module.scss';
 
 //IMAGES
-import pencil from '../../assets/images/icons/pencil.svg';
+import pencil from '../../../../assets/images/icons/pencil.svg';
 
 
 const CreateRecipe = ( { object } ) => {
