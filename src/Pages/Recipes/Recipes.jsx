@@ -38,7 +38,7 @@ const Recipes = () => {
                 <CreateRecipe object={data}/>
             </div>
             <div className={s.recipesContainer} key='recipesContainer'>
-                {recipes.map(recipe => <RecipeContainer recipe={recipe} user={{ userId, token }} onClick={formReveal} />)}
+                {recipes && recipes.map(recipe => <RecipeContainer recipe={recipe} user={{ userId, token }} onClick={formReveal} />)}
             </div>
         </div>
     </div>

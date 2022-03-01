@@ -7,15 +7,15 @@ import NetworkContainer from './NetworkContainer/NetworkContainer';
 import PasswordChange from './PasswordChange/PasswordChange';
 import { useNavigate } from 'react-router-dom';
 import { logoutUser } from '../../../Redux/reducers/userLoginReducer';
-import updateUser from '../../../Redux/reducers/updateUserReducer';
+import { updateUser } from '../../../Redux/apiCalls/updateUserCall/updateUserCall';
 
 export default function AccountUser() {
 	let user;
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
-	const {userId, accessToken} = user = useSelector(store => store.user?.currentUser);
+	const { userId, accessToken } = user = useSelector(store => store.user.currentUser);
 	const { username, email } = useSelector((store) => store.user.currentUser);
-	const [state, setState] = useState({
+	const [ state, setState ] = useState({
 		username: username,
 		email: email,
 		newPassword: '',
@@ -60,10 +60,11 @@ export default function AccountUser() {
 		setState({...state, [name]:value});
 	}
 
-	function handleSaveChanges() {
-		updateUser(dispatch, accessToken, userId, {username:state.username, email:state.email, password:state.password})
-		dispatch(logoutUser(user))
-		navigate('/')
+	function handleSaveChanges(e) {
+		e.preventDefault();
+		updateUser(dispatch, accessToken, userId, { username: state.username, email: state.email, password: state.password })
+		dispatch(logoutUser(user));
+		navigate('/');
 	}
 
 	return (
