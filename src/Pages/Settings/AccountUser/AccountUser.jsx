@@ -11,70 +11,64 @@ export default function AccountUser() {
 	const [state, setState] = useState({
 		username: username,
 		email: email,
-	});
-
-	const [canSave, setCanSave] = useState(false);
-	const [passwordForm, setPasswordForm] = useState({
 		newPassword: '',
 		confirmPassword: '',
-		error: '',
 	});
+	const [canSave, setCanSave] = useState(false);
+	const [error, setError] = useState({
+		username: '',
+		email: '',
+		newPassword: '',
+		confirmPassword: '',
+	})
 
 	useEffect(() => {
-		console.log(state);
-		if (state.username !== username || state.email !== email || (!passwordForm.error && passwordForm.newPassword)) setCanSave(true);
+		if (Object.values(error).every(error => error === '') && Object.values(state).some(field => field !== '')) setCanSave(true);
 		else setCanSave(false);
-	}, [state, username, email, setCanSave, passwordForm]);
+	}, [state, error, setCanSave]);
 
 	useEffect(() => {
-		if (passwordForm.newPassword !== passwordForm.confirmPassword) setPasswordForm(pwf => {
-			return {
-				...pwf,
-				error: 'Passwords must match!'
-			}
-		})
-		else setPasswordForm(pwf => {
-			return {
-				...pwf,
-				error: ''
-			}
-		})
-	},[passwordForm.newPassword, passwordForm.confirmPassword])
+			setError((error) =>
+				!/(?=.*\d).{8,}$/.test(state.newPassword) ?
+					{ ...error, newPassword: 'Must contain 8 characters and 1 number' } :
+					{ ...error, newPassword: '' })
+			setError((error) => 
+				state.newPassword !== state.confirmPassword ?
+					{ ...error, confirmPassword: 'Passwords must match.' } :
+					{ ...error, confirmPassword: ''});
+			setError((error) =>
+				state.username.length < 5 ? 
+					{ ...error, username: 'Must be at least 5 characters long.' } : 
+					{ ...error, username: ''}
+			)
+			setError((error) =>
+				!/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(state.email) ?
+					{ ...error, email: 'Invalid email' } :
+					{ ...error, email: ''}
+			);
+	}, [state,setError])
 
 	function handleInputs(event) {
 		const { name, value } = event.target;
-		if (name === 'username')
-			setState({
-				...state,
-				username: value || username,
-			});
-		if (name === 'email')
-			setState({
-				...state,
-				email: value || email,
-			});
-	}
-
-	function handlePasswordInputs(event) {
-		const { name, value } = event.target;
-		setPasswordForm({
-			...passwordForm,
-			[name]: value,
-		})
+		setState({...state, [name]:value});
 	}
 
 	function handleSaveChanges() {
-		
+		updateUser(dispatch, accessToken, userId, {username:state.username, email:state.email, password:state.password})
+		dispatch(logoutUser(user))
+		navigate('/')
 	}
 
 	return (
-		<form className={S.container} autoComplete='off'>
-			<Input id={S.username} placeholder={username} label="Username" name="username" onBlur={handleInputs} />
-			<Input id={S.email} placeholder={email} label="E-Mail" name="email" onBlur={handleInputs} />
+		<form className={S.container} autoComplete="off">
+			<Input id={S.username} placeholder={username} label="Username" name="username" onChange={handleInputs} error={error.username} />
+			<Input id={S.email} placeholder={email} label="E-Mail" name="email" onChange={handleInputs} error={error.email} />
 			<NetworkContainer id={S.networks} />
-			<PasswordChange id={S.password} handlePasswords={handlePasswordInputs} error={passwordForm.error} />
+			<PasswordChange id={S.password} handlePasswords={handleInputs} error={error} />
 			<div id={S.saveChanges}>
-				<button disabled={!canSave} onClick={handleSaveChanges}>Save Changes</button>
+				<button disabled={!canSave} onClick={handleSaveChanges}>
+					Save Changes
+				</button>
 			</div>
 		</form>
 	);
