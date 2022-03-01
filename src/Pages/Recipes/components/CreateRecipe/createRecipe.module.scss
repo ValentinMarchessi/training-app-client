@@ -1,5 +1,5 @@
-@use '../../config/mixins/' as mixins;
-@use '../../config/colors/' as colors;
+@use '../../../../config/mixins/' as mixins;
+@use '../../../../config/colors/' as colors;
 
 .container {
 	display: flex;
@@ -95,6 +95,12 @@
 		top: 0;
 		font-size: 14px;
 	}
+
+	input[type='number']::-webkit-inner-spin-button,
+	input[type='number']::-webkit-outer-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
+	}
 }
 
 .numberInput {
@@ -109,11 +115,6 @@
 }
 .numberInput:focus {
 	outline: none;
-}
-input[type='number']::-webkit-inner-spin-button,
-input[type='number']::-webkit-outer-spin-button {
-	-webkit-appearance: none;
-	margin: 0;
 }
 
 .submitButton {

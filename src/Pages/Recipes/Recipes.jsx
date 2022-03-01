@@ -5,7 +5,7 @@ import { Navbar } from '../../components';
 import { getAllRecipesByUserId } from '../../Redux/apiCalls/recipesCall/getAllRecipesByUser'
 import { useDispatch, useSelector } from 'react-redux';
 import RecipeContainer from './components/RecipeContainer/RecipeContainer';
-import CreateRecipe from '../../components/CreateRecipe/CreateRecipe'
+import CreateRecipe from './components/CreateRecipe/CreateRecipe'
 
 const Recipes = () => {
     const dispatch = useDispatch();
@@ -38,7 +38,7 @@ const Recipes = () => {
                 <CreateRecipe object={data}/>
             </div>
             <div className={s.recipesContainer} key='recipesContainer'>
-                {recipes.map(recipe => <RecipeContainer recipe={recipe} user={{ userId, token }} onClick={formReveal} />)}
+                {recipes && recipes.map(recipe => <RecipeContainer recipe={recipe} user={{ userId, token }} onClick={formReveal} />)}
             </div>
         </div>
     </div>
