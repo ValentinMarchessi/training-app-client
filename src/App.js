@@ -18,8 +18,6 @@ import {
 } from "./Pages";
 import { ExercisesCreate, ExercisesView } from "./Pages/Exercises";
 
-
-
 import {
   AccountUser,
   HistoryUser,
