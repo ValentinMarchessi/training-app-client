@@ -1,114 +1,82 @@
 //STYLES
 import S from './AccountUser.module.scss';
 import { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Input } from '../../../components';
 import NetworkContainer from './NetworkContainer/NetworkContainer';
 import PasswordChange from './PasswordChange/PasswordChange';
-import { updateUser } from '../../../Redux/apiCalls/updateUserCall/updateUserCall';
-import { logoutUser } from '../../../Redux/reducers/userLoginReducer';
 import { useNavigate } from 'react-router-dom';
+import { logoutUser } from '../../../Redux/reducers/userLoginReducer';
+import { updateUser } from '../../../Redux/apiCalls/updateUserCall/updateUserCall';
 
 export default function AccountUser() {
-
-	const dispatch = useDispatch()
-
-	const navigate=useNavigate()//
-
-	let user
-	const { username, email, userId, accessToken } = user = useSelector((store) => store.user.currentUser);
-	const [state, setState] = useState({
+	let user;
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
+	const { userId, accessToken } = user = useSelector(store => store.user.currentUser);
+	const { username, email } = useSelector((store) => store.user.currentUser);
+	const [ state, setState ] = useState({
 		username: username,
 		email: email,
-	});
-
-	const [canSave, setCanSave] = useState(false);
-	const [passwordForm, setPasswordForm] = useState({
 		newPassword: '',
 		confirmPassword: '',
-		newPasswordError: '',
-		conPasswordError:'',
 	});
+	const [canSave, setCanSave] = useState(false);
+	const [error, setError] = useState({
+		username: '',
+		email: '',
+		newPassword: '',
+		confirmPassword: '',
+	})
 
 	useEffect(() => {
-		console.log(state);
-		if (state.username !== username || state.email !== email || (!passwordForm.error && passwordForm.newPassword)) setCanSave(true);
+		if (Object.values(error).every(error => error === '') && Object.values(state).some(field => field !== '')) setCanSave(true);
 		else setCanSave(false);
-	}, [state, username, email, setCanSave, passwordForm]);
+	}, [state, error, setCanSave]);
 
 	useEffect(() => {
-		if (passwordForm.newPassword !== passwordForm.confirmPassword) setPasswordForm(pwf => {
-			return {
-				...pwf,
-				conPasswordError: 'Passwords must match!'
-			}
-		})
-		else setPasswordForm(pwf => {
-			return {
-				...pwf,
-				conPasswordError: ''
-			}
-		})
-	},[passwordForm.newPassword, passwordForm.confirmPassword])
+			setError((error) =>
+				!/(?=.*\d).{8,}$/.test(state.newPassword) ?
+					{ ...error, newPassword: 'Must contain 8 characters and 1 number' } :
+					{ ...error, newPassword: '' })
+			setError((error) => 
+				state.newPassword !== state.confirmPassword ?
+					{ ...error, confirmPassword: 'Passwords must match.' } :
+					{ ...error, confirmPassword: ''});
+			setError((error) =>
+				state.username.length < 5 ? 
+					{ ...error, username: 'Must be at least 5 characters long.' } : 
+					{ ...error, username: ''}
+			)
+			setError((error) =>
+				!/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(state.email) ?
+					{ ...error, email: 'Invalid email' } :
+					{ ...error, email: ''}
+			);
+	}, [state,setError])
 
 	function handleInputs(event) {
 		const { name, value } = event.target;
-		if (name === 'username')
-			setState({
-				...state,
-				username: value || username,
-			});
-		if (name === 'email')
-			setState({
-				...state,
-				email: value || email,
-			});
+		setState({...state, [name]:value});
 	}
 
-	function validateInputs(event){
-		const { name, value } = event.target;
-		console.log(username===state.username)
-		if(name==='newPassword')
-			setPasswordForm(
-				value?!/(?=.*\d).{8,}$/.test(value)
-				?{...passwordForm, newPasswordError: 'Must contain 8 characters and 1 number'}
-				:{...passwordForm, newPasswordError: '', newPassword: value, }
-				:{...passwordForm}
-			)
-		if(name==='confirmPassword')
-			setPasswordForm({
-				...passwordForm, confirmPassword: value
-			})
-		if(name==='username')
-			setState(
-				value?value.length<5
-				?{...state, usernameError: 'Must contain at least 5 characters'}
-				:{...state, usernameError: '', username:value}
-				:{...state, usernameError: '', username:username}
-			)
-		if(name==='email')
-			setState(
-				value?!/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(value)
-				?{...state, emailError: 'Invalid email'}
-				:{...state, emailError: '', email: value}
-				:{...state, emailError: ''}
-			)
-	}
-
-	function handleSaveChanges() {
-		updateUser(dispatch, accessToken, userId, {username:state.username, email:state.email, password:passwordForm.newPassword})
-		dispatch(logoutUser(user))
-		navigate('/')
+	function handleSaveChanges(e) {
+		e.preventDefault();
+		updateUser(dispatch, accessToken, userId, { username: state.username, email: state.email, password: state.password })
+		dispatch(logoutUser(user));
+		navigate('/');
 	}
 
 	return (
-		<form className={S.container} autoComplete='off'>
-			<Input id={S.username} placeholder={username} label="Username" name="username" onBlur={handleInputs} />
-			<Input id={S.email} placeholder={email} label="E-Mail" name="email" onBlur={handleInputs} />
+		<form className={S.container} autoComplete="off">
+			<Input id={S.username} placeholder={username} label="Username" name="username" onChange={handleInputs} error={error.username} />
+			<Input id={S.email} placeholder={email} label="E-Mail" name="email" onChange={handleInputs} error={error.email} />
 			<NetworkContainer id={S.networks} />
-			<PasswordChange id={S.password} handlePasswords={validateInputs} error={passwordForm} />
+			<PasswordChange id={S.password} handlePasswords={handleInputs} error={error} />
 			<div id={S.saveChanges}>
-				<button disabled={!canSave} onClick={handleSaveChanges}>Save Changes</button>
+				<button disabled={!canSave} onClick={handleSaveChanges}>
+					Save Changes
+				</button>
 			</div>
 		</form>
 	);
