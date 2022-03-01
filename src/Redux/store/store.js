@@ -10,6 +10,7 @@ import routinesReducer from '../reducers/routinesReducer';
 import updateUserReducer from '../reducers/updateUserReducer';
 import userLoginReducer from '../reducers/userLoginReducer';
 import transactionReducer from '../reducers/transactionReducer';
+import newsReducer from '../reducers/newsReducer';
 import {
     persistStore,
     persistReducer,
@@ -31,13 +32,14 @@ const persistConfig = {
 const rootReducer = combineReducers({
     user: userLoginReducer,
     register: registerReducer,
-    recipes: recipesReducer,
+    recipes : recipesReducer,
+    routines: routinesReducer,
     exercises: exercisesReducer,
     diets: dietsReducer,
-    updateUser: updateUserReducer,
+    nutritionists: allUsersNutritionitsReducer,
     trainers: allUsersTrainersReducer,
-    nutrists: allUsersNutritionitsReducer,
-    transaction: transactionReducer
+    transaction: transactionReducer,
+    news : newsReducer,
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
@@ -64,6 +66,7 @@ export default configureStore({
         routines: routinesReducer,
         allUsers: allUsersReducer,
         allUsersTrainer: allUsersTrainersReducer,
-        allUsersNutritionits: allUsersNutritionitsReducer
+        allUsersNutritionits: allUsersNutritionitsReducer,
+        news : newsReducer
     },
 });

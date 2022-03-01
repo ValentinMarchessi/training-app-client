@@ -2,7 +2,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import style from './Breadcrumbs.module.scss';
 import { Link, useLocation } from 'react-router-dom';
 import getBreadcrumbs from '../../../helpers/getBreadcrumbs/getBreadcrumbs.ts';
-import { useSelector } from 'react-redux';
+import { Fragment } from 'react';
 
 export default function Breadcrumbs() {
 	const location = useLocation();
@@ -15,12 +15,12 @@ export default function Breadcrumbs() {
 				<HomeIcon className={style.homeItem} />
 			</Link>
 			{locations.map((e,i) => (
-				<>
-					<hr key={i} id={style.divider} />
-					<Link key={i} className={style.breadcrumb} to={breadcrumbs[i]}>
+				<Fragment key={`fragment-${i}`}>
+					<hr key={`divider-${i}`} id={style.divider} />
+					<Link key={`breadcrumb-${i}`} className={style.breadcrumb} to={breadcrumbs[i]}>
 						{e}
 					</Link>
-				</>
+				</Fragment>
 			))}
 		</div>
 	);

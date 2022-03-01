@@ -9,12 +9,31 @@
       flex-direction: column;
       gap: 20px;
       position: absolute;
-      right: 30px;
+      right: 50px;
 }
 
 .newsContainer{
       display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex-wrap: nowrap;
       position: absolute;
-      width: 700px;
-      left: 20px;
+      width: 520px;
+      left: 50px;
+      height: 570px;
+      overflow: scroll;
+}
+
+.newsContainer::-webkit-scrollbar{
+      display: none;
+}
+
+
+@media (min-width: 1600px ){
+      .buttonContainer{
+            right: 150px;
+      }
+      .newsContainer{
+            left: 150px;
+      }
 }
