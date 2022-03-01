@@ -123,6 +123,7 @@ const CreateDiet = () => {
         price: "",
         plain: [],
       });
+      console.log(diet);
       createDiets(dispatch, userId, diet);
     } else {
       return alert("DEBE AGREGAR UN TITULO Y UN PRECIO");

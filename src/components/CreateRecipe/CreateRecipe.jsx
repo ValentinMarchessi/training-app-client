@@ -14,62 +14,41 @@ const CreateRecipe = ( { object } ) => {
     const userId = useSelector(state => state.user?.currentUser.userId);
     const token = useSelector(state => state.user?.currentUser.accessToken)
 
-    //UseField toma los datos y devuelte 3 valores... 
-    const titleRecipe = useField({ type: 'text' })
-    const descriptionRecipe = useField({ type: 'textarea' })
-    const kcal = useField({ type: 'number' })
-    const grs = useField({ type: 'number' })
-    const carbohydratesRecipe = useField({ type: 'number' })
-    const greaseRecipe = useField({ type: 'number' })
-    const proteinsRecipe = useField({ type: 'number' })
+    console.log(object)
 
-    {/* Estado para guardar la newReceta para dispachar */ }
+    //Estado para guardar la newReceta para dispachar
     const [recipe, setRecipe] = useState({
-        title: '',
-        description: '',
-        kcal: 0,
-        grs: 0,
-        carbohydrates: 0,
-        grease: 0,
-        proteins: 0
-    })
+        title: object ? object.title : '',
+        description: object ? object.description : '',
+        kcal: object ? object.kcal : 0,
+        grs: object ? object.grs : 0,
+        carbohydrates: object ? object.carbohydrates : 0,
+        grease: object ? object.grease : 0,
+        proteins: object ? object.proteins : 0
+    });
 
-    useEffect(() => {
-        const handleChageRecipe = () => {
-            setRecipe(prev => {
-                return {
-                    ...prev,
-                    title: titleRecipe.value,
-                    description: descriptionRecipe.value,
-                    kcal: kcal.value || 0,
-                    grs: grs.value || 0,
-                    carbohydrates: carbohydratesRecipe.value || 0,
-                    grease: greaseRecipe.value || 0,
-                    proteins: proteinsRecipe.value || 0,
-                }
-            })
-        }
-        handleChageRecipe()
-    }, [
-        titleRecipe.value,
-        descriptionRecipe.value,
-        kcal.value,
-        grs.value,
-        carbohydratesRecipe.value,
-        greaseRecipe.value,
-        proteinsRecipe.value
-    ])
+
+    const handleChange = (target) =>{
+        console.log(target.name)
+        console.log(target.value)
+        setRecipe(prev => {
+            return {
+                ...prev,
+                [target.name] : target.value 
+            }
+        });
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        console.log('Esta es la receta que se enviará',recipe)
         if(object){
             updateRecipes(dispatch, userId, object.id ,recipe, token );
         }else{
             postCreateRecipes(dispatch, userId, recipe,token);
         }
-        // window.location.reload();
+        window.location.reload();
     }
-
 
     return (
         <div className={s.container}>
@@ -79,18 +58,21 @@ const CreateRecipe = ( { object } ) => {
 
                     <div className={s.inputContainer}>
                         <img src={pencil} alt='pencil' className={s.icon}/>
-                        <input
-                            {...titleRecipe}
+                        <input type='text'
                             name='title'
-                            placeholder={object ? object.title : 'Title'}
+                            placeholder='Title'
+                            value={recipe.title}
                             className={s.textInput}
+                            onChange={(e)=> handleChange(e.target)}
                         />
                     </div>
 
                     <textarea
+                        name='description'
                         className={s.descriptionInput}
                         placeholder='Description'
-                        value={object?.description}
+                        value={recipe.description}
+                        onChange={(e)=> handleChange(e.target)}
                         rows='10'
                         cols='40'
                     />
@@ -98,61 +80,61 @@ const CreateRecipe = ( { object } ) => {
                     <div className={s.contentItems}>
                         <div className={s.contentItem}>
                             <label>Kcal</label>
-                            <input className={s.inputCreateRutine}
-                                {...kcal}
+                            <input type='number' 
+                                className={s.inputCreateRutine}
                                 name='kcal'
-                                value={object?.kcal}
+                                value={recipe.kcal}
                                 placeholder='0'
                                 className={s.numberInput}
-
+                                onChange={(e)=> handleChange(e.target)}
                             />
                         </div>
 
                         <div className={s.contentItem}>
                             <label>Grs per plate</label>
-                            <input className={s.inputCreateRutine}
-                                {...grs}
+                            <input type='number' 
+                                className={s.inputCreateRutine}
                                 name='grs'
-                                value={object?.grs}
+                                value={recipe.grs}
                                 placeholder='0'
                                 className={s.numberInput}
-
+                                onChange={(e)=> handleChange(e.target)}
                             />
                         </div>
 
                         <div className={s.contentItem}>
                             <label>% Carbohydrates</label>
-                            <input className={s.inputCreateRutine}
-                                {...carbohydratesRecipe}
+                            <input type='number'
+                                className={s.inputCreateRutine}
                                 name='carbohydrates'
-                                value={object?.carbohydrates}
+                                value={recipe.carbohydrates}
                                 placeholder='0'
                                 className={s.numberInput}
-
+                                onChange={(e)=> handleChange(e.target)}
                             />
                         </div>
 
                         <div className={s.contentItem}>
                             <label>% Grease</label>
-                            <input className={s.inputCreateRutine}
-                                {...greaseRecipe}
-                                name='grass'
-                                value={object?.grease}
+                            <input type='number' 
+                                className={s.inputCreateRutine}
+                                name='grease'
+                                value={recipe.grease}
                                 placeholder='0'
                                 className={s.numberInput}
-
+                                onChange={(e)=> handleChange(e.target)}
                             />
                         </div>
 
                         <div className={s.contentItem}>
                             <label>% Proteins</label>
-                            <input className={s.inputCreateRutine}
-                                {...proteinsRecipe}
-                                name='protein'
-                                value={object?.proteins}
+                            <input type='number' 
+                                className={s.inputCreateRutine}
+                                name='proteins'
+                                value={recipe.proteins}
                                 placeholder='0'
                                 className={s.numberInput}
-                            />
+                                onChange={(e)=> handleChange(e.target)}/>
                         </div>
                     </div>
                     <input type='submit'className={s.submitButton} value='Add Recipe'/>

@@ -3,13 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { createRoutines } from '../../../Redux/apiCalls/rutinesCall/createRoutines.js';
 
 const RoutineForm = () => {
+      const currentUser = useSelector(state => state.currentUser);
       const [data, setData] = useState({
-            owner: currentUser.id,
+            owner: currentUser?.id,
             title: '',
             price: 0,
             exercises: [] // need to fetch from state / props
       });
-      const currentUser = useSelector(state => state.currentUser);
       const dispatch = useDispatch();
 
       const handleChange = (e) => {
@@ -32,13 +32,13 @@ const RoutineForm = () => {
       };
 
       return <div>
-            <form action="" onChange={(e) => handleChange(e)}>
+            <form onChange={(e) => handleChange(e)}>
                   <label>Title</label>
                   <input type='text' id='title' />
                   <label>price</label>
                   <input type='number' id='price' />
                   <label>Exercises</label>
-
+                  {/* Aqui deberia de ir una seleccion de los ejercicios creados y poder elegir la cantidad de repeticiones, las series, y el descanso entre ejercicios */}
                   <input type='submit' value='Create recipe' onClick={(e) => handleSubmit(e)} />
             </form>
       </div>;
