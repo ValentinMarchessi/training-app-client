@@ -1,25 +1,20 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
-import { useField } from '../../hooks/useField//useField'
+import { useField } from '../../../../hooks/useField/useField'
 import { useDispatch, useSelector } from 'react-redux'
-import { postCreateRecipes } from '../../Redux/apiCalls/recipesCall/createRecipes';
+import { postCreateRecipes } from '../../../../Redux/apiCalls/recipesCall/createRecipes';
+import { updateRecipes } from '../../../../Redux/apiCalls/recipesCall/updateRecipes';
 import s from './createRecipe.module.scss';
 
 //IMAGES
-import pencil from '../../assets/images/icons/pencil.svg';
+import pencil from '../../../../assets/images/icons/pencil.svg';
 
 
-const CreateRecipe = () => {
-    {/* Se crea dispatch */ }
+const CreateRecipe = ( { object } ) => {
     const dispatch = useDispatch()
-
-    {/* Aqui atrapariamos el Id del usuario para mandar */ }
-    // const location = useLocation()
-    const navigate = useNavigate()
     const userId = useSelector(state => state.user?.currentUser.userId);
     const token = useSelector(state => state.user?.currentUser.accessToken)
 
-    {/* UseField toma los datos y devuelte 3 valores... */ }
+    //UseField toma los datos y devuelte 3 valores... 
     const titleRecipe = useField({ type: 'text' })
     const descriptionRecipe = useField({ type: 'textarea' })
     const kcal = useField({ type: 'number' })
@@ -65,11 +60,14 @@ const CreateRecipe = () => {
         proteinsRecipe.value
     ])
 
-
     const handleSubmit = (e) => {
         e.preventDefault();
-        window.location.reload();
-        postCreateRecipes(dispatch, userId, recipe,token);
+        if(object){
+            updateRecipes(dispatch, userId, object.id ,recipe, token );
+        }else{
+            postCreateRecipes(dispatch, userId, recipe,token);
+        }
+        // window.location.reload();
     }
 
 
@@ -84,7 +82,7 @@ const CreateRecipe = () => {
                         <input
                             {...titleRecipe}
                             name='title'
-                            placeholder='Title'
+                            placeholder={object ? object.title : 'Title'}
                             className={s.textInput}
                         />
                     </div>
@@ -92,6 +90,7 @@ const CreateRecipe = () => {
                     <textarea
                         className={s.descriptionInput}
                         placeholder='Description'
+                        value={object?.description}
                         rows='10'
                         cols='40'
                     />
@@ -102,6 +101,7 @@ const CreateRecipe = () => {
                             <input className={s.inputCreateRutine}
                                 {...kcal}
                                 name='kcal'
+                                value={object?.kcal}
                                 placeholder='0'
                                 className={s.numberInput}
 
@@ -113,6 +113,7 @@ const CreateRecipe = () => {
                             <input className={s.inputCreateRutine}
                                 {...grs}
                                 name='grs'
+                                value={object?.grs}
                                 placeholder='0'
                                 className={s.numberInput}
 
@@ -124,6 +125,7 @@ const CreateRecipe = () => {
                             <input className={s.inputCreateRutine}
                                 {...carbohydratesRecipe}
                                 name='carbohydrates'
+                                value={object?.carbohydrates}
                                 placeholder='0'
                                 className={s.numberInput}
 
@@ -135,6 +137,7 @@ const CreateRecipe = () => {
                             <input className={s.inputCreateRutine}
                                 {...greaseRecipe}
                                 name='grass'
+                                value={object?.grease}
                                 placeholder='0'
                                 className={s.numberInput}
 
@@ -146,6 +149,7 @@ const CreateRecipe = () => {
                             <input className={s.inputCreateRutine}
                                 {...proteinsRecipe}
                                 name='protein'
+                                value={object?.proteins}
                                 placeholder='0'
                                 className={s.numberInput}
                             />
