@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import style from './ExerciseView.module.scss';
 
 
 function extractYTvideoId(url = '') {
 	if (url) {
 		const regex = /(?:https?:\/\/)?(?:www\.)?youtu\.?be(?:\.com)?\/?.*(?:watch|embed)?(?:.*v=|v\/|\/)([\w\-_]+)\&?/;
-		return url.match(regex) && url.match(regex)[1] || '';
+		return (url.match(regex) && url.match(regex)[1]) || ('');
 	}
 }
 
@@ -25,7 +25,7 @@ export default function ExerciseView({ title, description, number,video,allExerc
 			<div >
 				<p>{allExercises[dayOption][i].title}</p>
                 <p>{allExercises[dayOption][i].description}</p>
-                <p className={style.number}>x30</p>
+                <p className={style.number}></p>
                 <div className={style.contNext}>
                     {i>0&&<button onClick={prev}className={style.next}>{"<"}</button>}
                     {i+1<allExercises[dayOption].length&&<button onClick={next}className={style.next}>{">"}</button>}

@@ -10,7 +10,15 @@ import { getRoutinesById } from '../../../Redux/apiCalls/rutinesCall/getRoutines
 
 
 export default function Routine() {
-	
+	const days=[
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday",
+        ];
     const [dayOption,setDayOption]=useState("Monday");
     const [exercise,setExercise]=useState({viewing:false});
     const routineId=useParams().routineId;
@@ -44,7 +52,9 @@ export default function Routine() {
                         <form>
                             <div className={styleRoutine.contentSelect}>
                                 <select onChange={changeDayOption}> 
-                                    {days.map((d,i)=><option value={d} key={i}>{d}</option>)}
+                                    {days.map((d,i)=>
+                                    d===dayOption?<option selected value={d} key={i}>{d}</option>:<option value={d} key={i}>{d}</option>
+                                    )}
                                 </select>
                                 <i></i>
                             </div>
@@ -52,7 +62,7 @@ export default function Routine() {
                         <div className={styleRoutine.dayExercises}>
                             {routine.days&&routine.days[dayOption]?.map((e,j)=>
                                 <div key={j} className={styleRoutine.exercise} onClick={(e)=>viewExercise(e,j,dayOption)}>
-                                    <img className={styleRoutine.exerciseImg} src={exerciseImg}/>
+                                    <img className={styleRoutine.exerciseImg} src={exerciseImg} alt='ExerciseImg'/>
                                     <p className={styleRoutine.nameExercise}>
                                         {e.title}<br/>
                                     </p>
