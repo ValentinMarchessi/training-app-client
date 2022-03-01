@@ -2,6 +2,11 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import "./App.scss";
 //PAGES
+import Recipes from './Pages/Recipes/Recipes';
+import RecipeContainer from './Pages/Recipes/components/RecipeContainer/RecipeContainer';
+import { AccountUser, HistoryUser, PaymentMethod, ProfileUser } from './Pages/Settings';
+import CreateDiet from './components/CreateDiet/CreateDiet';
+import Success from './components/Success/Success';
 
 import {
   Clients,
@@ -51,7 +56,6 @@ function App() {
         <Route path="/payment" element={<Payment />} />
       </Routes>
     </div>
-  );
-}
+);
 
   export default App;
