@@ -1,8 +1,9 @@
-import React from 'react';
+import React,{useEffect} from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getNews } from '../../../Redux/apiCalls/getNewsCall/getNewsCall';
 //COMPONENTS
 import ButtonHomeMenu from '../components/ButtonHomeMenu/ButtonHomeMenu';
 import NewsCard from '../components/NewsCard/NewsCard';
-import Navbar  from '../../../components/Navbar/Navbar';
 //IMAGES
 import routines from '../../../assets/images/imageBg.png';
 import excercise from '../../../assets/images/routines.png';
@@ -13,12 +14,12 @@ import client from '../../../assets/images/client.png';
 //STYLES
 import s from './HomeProfessional.module.scss'
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-
-
 
 const HomeProfessional = () => {
-      const navigate = useNavigate();
+	const navigate = useNavigate();
+	const dispatch = useDispatch();
+	const news = useSelector(state => state.news.news)
+	console.log(news)
 	const user = useSelector(state => state.user.currentUser);
 	const pTrainerButtons = <div className={s.buttonContainer}>
 		<ButtonHomeMenu onClick={() => navigate('/clients')} title="Clients" background={client} />
@@ -43,12 +44,19 @@ const HomeProfessional = () => {
 		<ButtonHomeMenu onClick={() => navigate('/shop')} title="Shop" background={shopping} />
 	</div>
 
+
+	useEffect(()=>{
+		getNews(dispatch);
+	},[])
+
       return (
 			<div>
 				<div className={s.container}>
 					<div className={s.left}>
 						<div className={s.newsContainer}>
-							<NewsCard />
+							{news ? news.combined.map(item =>{
+								return <NewsCard title={item.title} img={item.image_url} url={item.url}/>
+							}) : <NewsCard/>}
 						</div>
 					</div>
 
