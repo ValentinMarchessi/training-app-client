@@ -10,6 +10,7 @@ const rutinesSlice = createSlice({
     deletedRutines: {},
     isFetching: false,
     error: false,
+    users:[],
   },
   reducers: {
     // GET ALL Rutines
@@ -17,7 +18,6 @@ const rutinesSlice = createSlice({
       state.isFetching = true;
     },
     getAllRutinesSuccess: (state, action) => {
-      console.log(action);
       state.isFetching = false;
       state.allRutines = action.payload;
     },
@@ -25,7 +25,18 @@ const rutinesSlice = createSlice({
       state.isFetching = true;
       state.error = true;
     },
-
+    //GET users routine
+    getAllUsersRutinesStart: (state) => {
+      state.isFetching = true;
+    },
+    getAllUsersRutinesSuccess: (state, action) => {
+      state.isFetching = false;
+      state.users = action.payload;
+    },
+    getAllUsersRutinesFailure: (state) => {
+      state.isFetching = true;
+      state.error = true;
+    },
     //GET ID Rutines
     getRutinesByIdStart: (state) => {
       state.isFetching = true;
@@ -84,6 +95,9 @@ export const {
   getAllRutinesStart,
   getAllRutinesSuccess,
   getAllRutinesFailure,
+  getAllUsersRutinesStart,
+  getAllUsersRutinesSuccess,
+  getAllUsersRutinesFailure,
   getRutinesByIdStart,
   getRutinesByIdSuccess,
   getRutinesByIdFailure,
