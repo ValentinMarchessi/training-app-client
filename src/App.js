@@ -4,7 +4,6 @@ import './App.scss';
 //PAGES
 import {
   Clients,
-  Diets,
   Exercises,
   Home,
   Landing,
@@ -16,13 +15,13 @@ import {
   Recipes,
 } from "./Pages";
 import { ExercisesCreate, ExercisesView } from "./Pages/Exercises";
+import { Diets, CreateDiet, ViewDiets } from "./Pages/Diets";
 import {
   AccountUser,
   HistoryUser,
   PaymentMethod,
   ProfileUser,
 } from "./Pages/Settings";
-import CreateDiet from "./Pages/Diets/CreateDiet/CreateDiet";
 import CreateRecipe from "./Pages/Recipes/components/CreateRecipe/CreateRecipe";
 import RoutineDetail from "./Pages/Routines/RoutineDetail/Routine";
 
@@ -37,9 +36,11 @@ function App() {
         <Route path="/routines" element={<Routines />}>
           <Route path=":routineId" element={<RoutineDetail />} />
         </Route>
-        <Route path="/clients" element={<Clients />}></Route>
-        <Route path="/diets" element={<Diets />}></Route>
-        <Route path="createDiet" element={<CreateDiet />} />
+        <Route path="/clients" element={<Clients />}/>
+		<Route path="/diets" element={<Diets />}>
+			<Route index element={<ViewDiets/>}/>
+        	<Route path="create" element={<CreateDiet />} />	  
+		</Route>
         <Route path="/exercises" element={<Exercises />}>
           <Route index element={<ExercisesView />} />
           <Route path="create" element={<ExercisesCreate />} />
