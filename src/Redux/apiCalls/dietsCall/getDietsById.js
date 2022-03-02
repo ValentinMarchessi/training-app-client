@@ -10,14 +10,15 @@ import {
   export const getDietsById = async (dispatch,id,token) => {
     dispatch(getDietsByIdStart());
     try {
-      const res = await baseUrlDev.get(`diet/${id}`,
+      const res = await baseUrlDev.get(`diet/user/${id}`,
       {
         headers:{
             token
         }
-    });
+      });
       dispatch(getDietsByIdSuccess(res.data));
     } catch (err) {
+      console.log(err);
       dispatch(getDietsByIdFailure());
     }
   };

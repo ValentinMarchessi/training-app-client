@@ -2,7 +2,6 @@ import style from './ViewDiets.module.scss';
 import DietCard from '../DietCard/DietCard.jsx';
 import { useEffect } from 'react';
 import { getDietsById } from '../../../Redux/apiCalls/dietsCall/getDietsById';
-import { getAllDiets } from '../../../Redux/apiCalls/dietsCall/getAllDiets';
 import { useDispatch, useSelector } from 'react-redux';
 
 const diet = {
@@ -28,17 +27,32 @@ export default function ViewDiets() {
 	const diets = useSelector(store => store.diets.dietsById);
 
 	useEffect(() => {
-		getAllDiets(dispatch, user.userId, user.accessToken);
+		getDietsById(dispatch, user.userId, user.accessToken);
 		console.log(diets);
-	}, [getDietsById]);
+	}, [getDietsById, dispatch, user.userId, user.accessToken]);
+
+	const dietCards = diets.map(diet =>
+		<div key={diet.id}>
+			<h1>{diet.title}</h1>
+			{diet.plain.map(o => 
+				<div>
+					{o.day}
+					<h2>Breakfast</h2>
+					{o.meals.breakfast.map(meal => <p>{meal}</p>)}
+					<h2>Lunch</h2>
+					{o.meals.lunch.map(meal => <p>{meal}</p>)}
+					<h2>Dinner</h2>
+					{o.meals.dinner.map(meal => <p>{meal}</p>)}
+				</div>
+			)}
+		</div>
+	)
 
 	return (
 		<div className={style.body}>
 			<h1 id={style.myPlans}>Planes</h1>
+			{dietCards}
 			<div className={style.plans}>
-				<DietCard name={diet.name} clients={diet.clients} weekly={diet.weekly} />
-				<DietCard name={diet.name} clients={diet.clients} weekly={diet.weekly} />
-				<DietCard name={diet.name} clients={diet.clients} weekly={diet.weekly} />
 				<DietCard name={diet.name} clients={diet.clients} weekly={diet.weekly} />
 			</div>
 		</div>
