@@ -1,3 +1,9 @@
+import { Diets } from "..";
 import CreateDiet from "./CreateDiet/CreateDiet";
+import ViewDiets from "./ViewDiets/ViewDiets";
 
-export { CreateDiet };
+export {
+    Diets,
+    CreateDiet,
+    ViewDiets,
+}

@@ -1,0 +1,64 @@
+@use "../../../config/colors/index.scss" as c;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .navBar {
+    .navBarInputs {
+      display: flex;
+      flex-direction: row;
+      margin: 20px;
+      label {
+        color: c.$white;
+        font-size: 30px;
+      }
+      input {
+        margin: 15px 30px;
+      }
+    }
+  }
+  button {
+    margin: 25px;
+    padding: 10px;
+    background: transparent;
+    color: c.$white;
+    border-radius: 15px;
+    border: 2px solid c.$white;
+  }
+  button:hover {
+    cursor: pointer;
+  }
+  form {
+    display: flex;
+    justify-content: center;
+    select {
+      margin: 25px;
+      padding: 10px;
+      background: transparent;
+      color: c.$white;
+      border-radius: 15px;
+      border: 2px solid c.$white;
+      option {
+        color: #000;
+      }
+    }
+  }
+  .containerCreateDiet {
+    background: c.$secondary-bg;
+    width: 90%;
+    border-radius: 15px;
+    .containerTitleAndPrice {
+      display: flex;
+      justify-content: space-evenly;
+      color: c.$white;
+    }
+    .containerDays {
+        margin: 20px;
+      h3 {
+        color: c.$white;
+      }
+    }
+  }
+}
