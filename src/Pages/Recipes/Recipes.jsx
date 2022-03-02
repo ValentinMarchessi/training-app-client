@@ -13,11 +13,10 @@ const Recipes = () => {
     const userId = useSelector(state => state.user?.currentUser.userId);
     const token = useSelector(state => state.user?.currentUser.accessToken);
     const recipes = useSelector(state => state.recipes.allRecipesByUserId);
-
     const formReveal = (edit, value) => {
         let form = document.querySelector('#recipeForm');
         if(edit){
-            console.log(value);
+            console.log('Este es el valor',value);
             setData(value);
         } else{
             setData({});
@@ -38,7 +37,7 @@ const Recipes = () => {
                 <CreateRecipe object={data}/>
             </div>
             <div className={s.recipesContainer} key='recipesContainer'>
-                {recipes && recipes.map(recipe => <RecipeContainer recipe={recipe} user={{ userId, token }} onClick={formReveal} />)}
+                {recipes ? recipes.map(recipe => <RecipeContainer recipe={recipe} user={{ userId, token }} onClick={formReveal} />) : null}
             </div>
         </div>
     </div>
