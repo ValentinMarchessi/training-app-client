@@ -14,13 +14,14 @@ export default function Breadcrumbs() {
 			<Link to="/home">
 				<HomeIcon className={style.homeItem} />
 			</Link>
+			<hr id={style.divider} />
 			{locations.map((e,i) => (
-				<>
-					<hr key={i} id={style.divider} />
-					<Link key={i} className={style.breadcrumb} to={breadcrumbs[i]}>
+				<div key={i} id={style.div}>{/*Para que dejen de aparecer errores en la consola*/}
+					
+					<Link className={style.breadcrumb} to={breadcrumbs[i]}>
 						{e}
 					</Link>
-				</>
+				</div>
 			))}
 		</div>
 	);

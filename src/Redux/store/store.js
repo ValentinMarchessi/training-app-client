@@ -58,6 +58,7 @@ export default configureStore({
         register: registerReducer,
         updateUser: updateUserReducer,
         diets: dietsReducer,
+        recipes : recipesReducer,
         exercises: exercisesReducer,
         routines: routinesReducer,
         allUsers: allUsersReducer,

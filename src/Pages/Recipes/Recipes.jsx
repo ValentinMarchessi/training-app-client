@@ -14,10 +14,16 @@ const Recipes = () => {
     const token = useSelector(state => state.user?.currentUser.accessToken);
     const recipes = useSelector(state => state.recipes.allRecipesByUserId);
 
+    let recipe
+    const {createdRecipes, updatedRecipes, deletedRecipes} = recipe = useSelector(state => state.recipes);
+
+    
+
+   // console.log(createdRecipes, updatedRecipes)
+
     const formReveal = (edit, value) => {
         let form = document.querySelector('#recipeForm');
         if(edit){
-            console.log(value);
             setData(value);
         } else{
             setData({});
@@ -28,17 +34,17 @@ const Recipes = () => {
 
     useEffect(() => {
         getAllRecipesByUserId(dispatch, userId, token);
-    }, [])
+    }, [createdRecipes,updatedRecipes,deletedRecipes])
 
     return <div>
         <Navbar />
         <div className={s.container}>
             <button className={s.addRecipeButton} onClick={formReveal}>Create Recipe</button>
             <div className={s.formClose} id='recipeForm' key='createRecipe'>
-                <CreateRecipe object={data}/>
+                <CreateRecipe object={data} onSuccess={formReveal}/>
             </div>
             <div className={s.recipesContainer} key='recipesContainer'>
-                {recipes.map(recipe => <RecipeContainer recipe={recipe} user={{ userId, token }} onClick={formReveal} />)}
+                {recipes.map((recipe,i) => <RecipeContainer recipe={recipe} key={i} user={{ userId, token }} onClick={formReveal} />)}
             </div>
         </div>
     </div>

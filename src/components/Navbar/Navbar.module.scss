@@ -16,7 +16,7 @@
     display: flex;
     gap: 10px;
     flex-basis: content;
-    align-items: center;
+    align-items: flex-start;
 
     #username{
       @include Mixins.medium-bold-font;

@@ -3,36 +3,36 @@ import { useField } from '../../hooks/useField//useField'
 import { useDispatch, useSelector } from 'react-redux'
 import { postCreateRecipes } from '../../Redux/apiCalls/recipesCall/createRecipes';
 import { updateRecipes } from '../../Redux/apiCalls/recipesCall/updateRecipes';
+import { getAllRecipesByUserId } from '../../Redux/apiCalls/recipesCall/getAllRecipesByUser'
 import s from './createRecipe.module.scss';
 
 //IMAGES
 import pencil from '../../assets/images/icons/pencil.svg';
 
 
-const CreateRecipe = ( { object } ) => {
+const CreateRecipe = ( { object, onSuccess } ) => {
     const dispatch = useDispatch()
     const userId = useSelector(state => state.user?.currentUser.userId);
     const token = useSelector(state => state.user?.currentUser.accessToken)
 
+    //console.log(object)
+
     //UseField toma los datos y devuelte 3 valores... 
     const titleRecipe = useField({ type: 'text' })
     const descriptionRecipe = useField({ type: 'textarea' })
-    const kcal = useField({ type: 'number' })
-    const grs = useField({ type: 'number' })
-    const carbohydratesRecipe = useField({ type: 'number' })
-    const greaseRecipe = useField({ type: 'number' })
-    const proteinsRecipe = useField({ type: 'number' })
+    const kcal = useField({ type: 'number', quantity:'absolute' })
+    const grs = useField({ type: 'number', quantity:'absolute' })
+    const carbohydratesRecipe = useField({ type: 'number', quantity:'%' })
+    const greaseRecipe = useField({ type: 'number', quantity:'%' })
+    const proteinsRecipe = useField({ type: 'number', quantity:'%' })
 
-    {/* Estado para guardar la newReceta para dispachar */ }
-    const [recipe, setRecipe] = useState({
-        title: '',
-        description: '',
-        kcal: 0,
-        grs: 0,
-        carbohydrates: 0,
-        grease: 0,
-        proteins: 0
-    })
+    /* Estado para guardar la newReceta para dispachar */
+    const [recipe, setRecipe] = useState(object)
+
+    useEffect(()=>{
+        
+    },[recipe])
+    //console.log(recipe, object)
 
     useEffect(() => {
         const handleChageRecipe = () => {
@@ -50,6 +50,7 @@ const CreateRecipe = ( { object } ) => {
             })
         }
         handleChageRecipe()
+        console.log(recipe)
     }, [
         titleRecipe.value,
         descriptionRecipe.value,
@@ -67,14 +68,19 @@ const CreateRecipe = ( { object } ) => {
         }else{
             postCreateRecipes(dispatch, userId, recipe,token);
         }
-        // window.location.reload();
+        getAllRecipesByUserId(dispatch, userId, token);
+
+        onSuccess()
+
+
+
     }
 
 
     return (
         <div className={s.container}>
             <div className={s.contentModal}>
-                <form className={s.contentItemsForm} onSubmit={handleSubmit} >
+                <form className={s.contentItemsForm} onSubmit={handleSubmit}>
                     <h3 className={s.titleModal}>Receta</h3>
 
                     <div className={s.inputContainer}>
@@ -82,15 +88,16 @@ const CreateRecipe = ( { object } ) => {
                         <input
                             {...titleRecipe}
                             name='title'
-                            placeholder={object ? object.title : 'Title'}
+                            placeholder={object?.title}
                             className={s.textInput}
                         />
                     </div>
 
                     <textarea
+                        {...descriptionRecipe}
+                        name='description'
                         className={s.descriptionInput}
-                        placeholder='Description'
-                        value={object?.description}
+                        placeholder={object?.description}
                         rows='10'
                         cols='40'
                     />
@@ -98,23 +105,20 @@ const CreateRecipe = ( { object } ) => {
                     <div className={s.contentItems}>
                         <div className={s.contentItem}>
                             <label>Kcal</label>
-                            <input className={s.inputCreateRutine}
+                            <input
                                 {...kcal}
                                 name='kcal'
-                                value={object?.kcal}
-                                placeholder='0'
+                                placeholder={object?.kcal}
                                 className={s.numberInput}
-
                             />
                         </div>
 
                         <div className={s.contentItem}>
                             <label>Grs per plate</label>
-                            <input className={s.inputCreateRutine}
+                            <input
                                 {...grs}
                                 name='grs'
-                                value={object?.grs}
-                                placeholder='0'
+                                placeholder={object?.grs}
                                 className={s.numberInput}
 
                             />
@@ -122,23 +126,22 @@ const CreateRecipe = ( { object } ) => {
 
                         <div className={s.contentItem}>
                             <label>% Carbohydrates</label>
-                            <input className={s.inputCreateRutine}
+                            <input
                                 {...carbohydratesRecipe}
                                 name='carbohydrates'
-                                value={object?.carbohydrates}
-                                placeholder='0'
+                                placeholder={object?.carbohydrates}
                                 className={s.numberInput}
+                                
 
                             />
                         </div>
 
                         <div className={s.contentItem}>
                             <label>% Grease</label>
-                            <input className={s.inputCreateRutine}
+                            <input
                                 {...greaseRecipe}
                                 name='grass'
-                                value={object?.grease}
-                                placeholder='0'
+                                placeholder={object?.grease}
                                 className={s.numberInput}
 
                             />
@@ -146,11 +149,10 @@ const CreateRecipe = ( { object } ) => {
 
                         <div className={s.contentItem}>
                             <label>% Proteins</label>
-                            <input className={s.inputCreateRutine}
+                            <input
                                 {...proteinsRecipe}
                                 name='protein'
-                                value={object?.proteins}
-                                placeholder='0'
+                                placeholder={object?.proteins}
                                 className={s.numberInput}
                             />
                         </div>

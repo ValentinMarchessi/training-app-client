@@ -7,5 +7,7 @@ import Routines from './Routines/Routines.jsx';
 import Search from './Search/Search.jsx';
 import Settings from './Settings/Settings.jsx';
 import SignUpSequence from './SignUpSequence/SignUpSequence.jsx';
+import Recipes from './Recipes/Recipes.jsx'
+import Clients from './Clients/Clients.jsx';
 
-export { Diets, Exercises, Home, Landing, Payment, Routines, Search, Settings, SignUpSequence };
+export { Diets, Exercises, Home, Landing, Payment, Routines, Search, Settings, SignUpSequence, Recipes, Clients };

@@ -30,7 +30,7 @@
 	justify-content: center;
 	background-color: colors.$background-text;
 	border-radius: 15px;
-	padding: 0px 50px;
+	padding: 0 10px 0 40px;
 	height: 28px;
 	width: 80%;
 	position: relative;
@@ -48,9 +48,10 @@
 	width: 100%;
 	background-color: transparent;
 	font-family: 'Montserrat';
+	text-align: left;
 }
 .textInput::placeholder {
-	text-align: center;
+	
 	color: rgb(206, 206, 206);
 }
 .textInput:focus {
