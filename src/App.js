@@ -24,7 +24,7 @@ function App() {
                 <Route path='/newUser' element={<SignUpSequence/>}/>
                 <Route path='/routines' element={<Routines />}>
                 </Route>
-                <Route path='/routines/:routineId' element={<Routine />}/>
+                <Route path='/routines/info/:routineId' element={<Routine />}/>
                 <Route path='/diets' element={<Diets/>}/>
                 <Route path='/exercises' element={<Exercises />}>
                     <Route index element={<ExercisesView/>}/>
