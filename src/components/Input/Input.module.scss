@@ -1,0 +1,53 @@
+@use '../../config/colors/' as Color;
+
+.container{
+    font-family: 'Montserrat';
+    height: 4rem;
+    position: relative;
+    width:90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 20rem;
+    justify-self: center;
+
+    label{
+        pointer-events: none;
+        width: inherit;
+        position:absolute;
+        transition: all .2s;
+    }
+    .input{
+        width: inherit;
+        font-family: 'Montserrat';
+        font-size: 20px;
+        color: white;
+        background-color: transparent;
+        border: none;
+        border-bottom: 2px solid gray;
+
+        &:focus{
+            outline: none; 
+        }
+    }
+
+    .inlineLabel{
+        position:absolute;
+        right: 10%;
+    }
+
+    &:focus-within label{
+        transform: translateY(-1.4rem);
+        font-size: .8rem;
+    }
+
+    .error{
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+        font-size: small;
+        color: Color.$fonts-highlight-error;
+        overflow: hidden;
+        overflow-wrap: break-word;
+    }
+}

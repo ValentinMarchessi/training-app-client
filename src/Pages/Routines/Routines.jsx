@@ -1,10 +1,10 @@
-import style from './Routines.module.scss';
-import RoutineBox from './RoutineBox/RoutineBox';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { home } from '../../assets/images/icons';
 import { getUserRoutines } from '../../Redux/apiCalls/rutinesCall/getUserRoutines';
+import { Navbar } from '../../components';
+import RoutineBox from './RoutineBox/RoutineBox';
+import RoutineForm from './RoutineForm/RoutineForm';
+import style from './Routines.module.scss';
 
 // const mockRoutine = {
 // 	name: 'Calistenia',
@@ -47,15 +47,15 @@ export default function Routines() {
 	},[])
 	
 
-    return (
+	const toggleForm = () => {
+		let form = document.querySelector('#routineForm');
+		form.classList.toggle(`${style.formOpen}`);
+		form.classList.toggle(`${style.formClose}`);
+	};
+
+	return (
 		<div className={style.page}>
-			<div className={style.header}>
-				<Link to='/'>
-					<img id={style.icon} src={home} alt="home" />
-				</Link>
-				<h1>My Routines</h1>
-				<hr />
-			</div>
+			<Navbar />
 			<div className={style.body}>
 				<div className={style.routines}>
 					<div className={style.container}>
@@ -66,9 +66,10 @@ export default function Routines() {
 						))}
 					</div>
 				</div>
-				<Link id={style.create} to="create">
-					Create Routine
-				</Link>
+				<button className={style.create} onClick={toggleForm}>Create Routine</button>
+				<div className={style.formClose} id='routineForm'>
+					<RoutineForm />
+				</div>
 			</div>
 		</div>
 	);

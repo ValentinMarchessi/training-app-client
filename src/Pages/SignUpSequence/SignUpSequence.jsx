@@ -214,10 +214,10 @@ export default function SignUpSequence() {
                     <div className='continue' onClick={() => {
                         document.getElementById('fourthS').style.display = 'none'
                         document.getElementById('fifthS').scrollIntoView()
-                        setTimeout(()=>
-                            register(dispatch, userData).then(()=>loginUser(dispatch,userData)).then(()=>navigate('/home'+(userData.userType==='client'?'/client':'/profesional')))
-                        , 500)
-                        
+                        setTimeout(() => {
+                            register(dispatch, userData)
+                            navigate('/home')
+                        }, 2000)
                     }}>
                         I'd rather not
                     </div>
@@ -325,10 +325,9 @@ export default function SignUpSequence() {
                     setUserData({ ...userData, bmi: userData.weight / ((userData.height / 100) ** 2) })
                     console.log(userData)
                     document.getElementById('fifthS').scrollIntoView()
-
-                    setTimeout(() => 
-                        register(dispatch, userData).then(()=>loginUser(dispatch,userData)).then(()=>navigate('/home'+(userData.userType==='client'?'/client':'/profesional')))
-                    , 500)
+                    setTimeout(() => {
+                        register(dispatch,userData).then(()=>loginUser(dispatch,userData)).then(()=>navigate('/home'));
+                    }, 1500)
                 }}>
                     Continue
                 </button>

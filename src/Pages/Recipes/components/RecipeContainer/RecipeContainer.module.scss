@@ -1,0 +1,105 @@
+@use "../../../../config/colors/" as colors;
+
+.container{
+      display: flex;
+      text-align: center;
+      flex-direction: column;
+      width:300px;
+      height: 420px;
+      background-color: colors.$secondary-bg;
+      margin-bottom: 50px;
+      border-radius: 8px;
+      padding: 10px;
+      overflow: hidden;
+      h4{
+            margin: 0px;
+            font-family: 'Montserrat';
+      }
+      .title{
+            font-size: 30px;
+            color: white;
+            font-family: 'Montserrat';
+            margin: 0px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+      }
+
+      .fakeImage{
+            width: 90%;
+            height: 100px;
+            background-color: #fff;
+            margin: auto;
+            margin-bottom: 0px;
+            margin-top: 10px;
+            border-radius: 8px;
+      }
+
+
+      .nutritionalInfo{
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+
+            .element{
+                  text-align: center;
+                  width: 120px;
+                  border-radius: 4px;
+                  background-color: colors.$option-bg;
+      
+                  .elementTitle{
+                        color: #fff;
+                        font-size: 13px;
+                  }
+                  .elementData{
+                        color: #fff;
+                        font-size: 25px;
+                  }
+            }
+      }
+      .deleteButton{
+            margin-top: 20px;
+            width: 200px;
+            height: 25px;
+            margin: auto;
+            margin-bottom: 0px;
+            border: none;
+            border-radius: 5px;
+            background-color: colors.$fonts-highlight-error;
+            color: white;
+            font-family: 'Montserrat';
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+      }
+      .editButton{
+            width: 200px;
+            height: 25px;
+            margin: auto;
+            margin-top: 15px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: colors.$button-bg;
+            color: white;
+            font-family: 'Montserrat';
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+      }
+
+      .formClose{
+            margin-top: 40px;
+            background-color: white;
+            width: 300px;
+            height: 100px;
+            padding: 10px;
+      }
+
+      .formOpen{
+            display: flex;
+            position: absolute;
+            margin-top: 40px;
+            z-index: 1;
+      }
+}

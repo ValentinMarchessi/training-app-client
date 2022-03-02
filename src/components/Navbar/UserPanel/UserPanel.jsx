@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { logoutUser } from '../../../Redux/reducers/userLoginReducer';
 
@@ -15,7 +14,6 @@ import HistoryIcon from '@mui/icons-material/History';
 export default function UserPanel() {
 	const user = useSelector((store) => store.user.currentUser);
 	const dispatch = useDispatch();
-	const [active, setActive] = useState(false);
 
 	const redir = useNavigate();
 
@@ -24,7 +22,6 @@ export default function UserPanel() {
 	}
 
 	const handleLogOut = (e) => {
-		console.log('LogOut handler triggered')
 		e.preventDefault();
 		dispatch(logoutUser(user));
 	};

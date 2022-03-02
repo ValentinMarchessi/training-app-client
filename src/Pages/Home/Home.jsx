@@ -1,17 +1,19 @@
 import React, { useEffect } from 'react';
-import './home.scss';
+import styles from './Home.module.scss';
 import Navbar from '../../components/Navbar/Navbar';
-import { useDispatch, useSelector } from 'react-redux'
-import { Outlet } from 'react-router-dom';
+import { useSelector } from 'react-redux'
+import HomeProfessional from './HomeProfessional/HomeProfessional';
+import HomeClient from './HomeClient/HomeClient';
 
 const Home = () => {
-    const user = useSelector(state => state.user.currentUser)
-    return (
-        <div className="contentHomeTrainer">
-            <Navbar user={user}/>
-            <Outlet></Outlet>
-        </div>
-    );
+	const user = useSelector(state => state.user.currentUser)
+	console.log(user)
+	return (
+		<div className={styles.page}>
+			<Navbar />
+			{user && (user.PTrainer || user.Nutritionist) ? <HomeProfessional/> : <HomeClient/>}
+		</div>
+	);
 };
 
 export default Home;

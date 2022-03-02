@@ -14,8 +14,14 @@
       color: color.$white;
     }
     .breadcrumb {
+      text-transform: capitalize;
+      text-decoration: none;
       font-size: 30px;
       font-weight: bold;
       color: color.$white;
+    }
+
+    #divider{
+      height:50%;
     }
 }
