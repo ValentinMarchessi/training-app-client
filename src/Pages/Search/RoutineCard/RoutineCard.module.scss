@@ -2,7 +2,7 @@ $card-width: 350px;
 $card-height: 250px;
 $profile-height: 40px;
 $profile-margin: 10px;
-$profile-padding: 4px;
+$profile-padding: 6px;
 $body-height: 200px;
 
 .card{
@@ -30,6 +30,7 @@ $body-height: 200px;
             border-radius: 50%;
             width: $profile-height;
             height: inherit;
+            object-fit: cover;
         }
 
         .info{
