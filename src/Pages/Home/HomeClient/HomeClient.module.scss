@@ -14,7 +14,13 @@
 
 .newsContainer{
       display: flex;
-      position: absolute;
-      width: 700px;
-      left: 20px;
+      flex-direction: column;
+      gap: 10px;
+      width: 40%;
+      max-height: 80vh;
+      overflow-y: auto;
+}
+
+.newsContainer::-webkit-scrollbar{
+      display: none;
 }
