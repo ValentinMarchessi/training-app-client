@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 // import { useParams } from 'react-router-dom';
 import styles from './Payment.module.scss';
-import user from '../../assets/images/imageUser.jpg';
+import user_avatar from '../../assets/images/imageUser.jpg';
 import { star } from '../../assets/images/icons';
 import yoga from '../../assets/images/yoga.jpg';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -14,16 +14,17 @@ import { style } from '@mui/system';
 import { Avatar, Navbar } from '../../components';
 const KEY = 'pk_test_51KTHNqKxK712fkWkpddjvo4wS93yK5sVKG0cUZ5bLcIsxXc5J8UUfToFNZYXf09altAHfam57Sgxi8dfKQIil2r600FLkfDU2C';
 
-export default function Home() {
+export default function Payment() {
 	{
 		/* Traigo los datos del usuario */
 	}
-	const currentUser = useSelector((state) => state.user.currentUser);
+	const user = useSelector((state) => state.user.currentUser);
 	const dispatch = useDispatch();
 
 	// const location = useLocation()
 
-	const { routineID } = useParams()
+	//const { routineID } = useParams()
+	const routineId = '130833bb-07e3-405b-8d55-4ba86d76b8a6';
 
 	const navigate = useNavigate();
 
@@ -45,7 +46,7 @@ export default function Home() {
 					},
 					{
 						headers: {
-							token: currentUser.accessToken,
+							token: user.accessToken,
 						},
 					}
                 );
@@ -53,13 +54,13 @@ export default function Home() {
                 console.log(amount, id, receipt_url, payment_method_details);
                 const data = {
                     id: id,
-					productId: routineID,
+					productId: routineId,
 					amount: amount,
 					method: payment_method_details,
 					receipt: receipt_url,
 				};
 				//res && navigate('/success', { state: { data: res.data } });
-				res && postCreateTransaction(dispatch, routineID, currentUser.id, data, currentUser.accessToken);
+				res && postCreateTransaction(dispatch, routineId, user.userId, data, user.accessToken);
 			} catch (error) {
 				console.log(error);
 			}
@@ -94,7 +95,7 @@ export default function Home() {
 
 					<div id={styles.routineCard}>
 						<div id={styles.user}>
-							<Avatar src={user} />
+							<Avatar src={user_avatar} />
 							<div className={styles.info}>
 								<p id={styles.name}>roberto123</p>
 								<p id={styles.title}>Instructor de yoga</p>
