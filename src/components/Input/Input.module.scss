@@ -17,7 +17,7 @@
         position:absolute;
         transition: all .2s;
     }
-    #input{
+    .input{
         width: inherit;
         font-family: 'Montserrat';
         font-size: 20px;
@@ -31,7 +31,7 @@
         }
     }
 
-    #inlineLabel{
+    .inlineLabel{
         position:absolute;
         right: 10%;
     }
@@ -41,7 +41,7 @@
         font-size: .8rem;
     }
 
-    #error{
+    .error{
         position: absolute;
         width: 100%;
         bottom: 0;

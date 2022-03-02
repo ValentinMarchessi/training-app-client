@@ -1,0 +1,49 @@
+.contetPayment {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .contentPaymentLeft {
+    flex: 1;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-self: start;
+    flex-direction: column;
+
+    .contentInfoCardLeft {
+      width: 100%;
+      height: 100%;
+      padding: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+
+      .imagePerson {
+        width: 150px;
+        height: 150px;
+      }
+    }
+  }
+
+  .contentPaymentRight {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .contentInfoCardRight {
+      position: relative;
+      width: 250px;
+      height: 300px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      background-color: #222222;
+    }
+  }
+}

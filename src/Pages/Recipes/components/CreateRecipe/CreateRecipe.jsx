@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useField } from '../../hooks/useField//useField'
+import { useField } from '../../../../hooks/useField/useField'
 import { useDispatch, useSelector } from 'react-redux'
 import { postCreateRecipes } from '../../Redux/apiCalls/recipesCall/createRecipes';
 import { updateRecipes } from '../../Redux/apiCalls/recipesCall/updateRecipes';
@@ -7,7 +7,7 @@ import { getAllRecipesByUserId } from '../../Redux/apiCalls/recipesCall/getAllRe
 import s from './createRecipe.module.scss';
 
 //IMAGES
-import pencil from '../../assets/images/icons/pencil.svg';
+import pencil from '../../../../assets/images/icons/pencil.svg';
 
 
 const CreateRecipe = ( { object, onSuccess } ) => {
@@ -63,6 +63,7 @@ const CreateRecipe = ( { object, onSuccess } ) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        console.log('Esta es la receta que se enviará',recipe)
         if(object){
             updateRecipes(dispatch, userId, object.id ,recipe, token );
         }else{
@@ -76,7 +77,6 @@ const CreateRecipe = ( { object, onSuccess } ) => {
 
     }
 
-
     return (
         <div className={s.container}>
             <div className={s.contentModal}>
@@ -85,11 +85,11 @@ const CreateRecipe = ( { object, onSuccess } ) => {
 
                     <div className={s.inputContainer}>
                         <img src={pencil} alt='pencil' className={s.icon}/>
-                        <input
-                            {...titleRecipe}
+                        <input type='text'
                             name='title'
                             placeholder={object?.title}
                             className={s.textInput}
+                            onChange={(e)=> handleChange(e.target)}
                         />
                     </div>
 
@@ -120,7 +120,7 @@ const CreateRecipe = ( { object, onSuccess } ) => {
                                 name='grs'
                                 placeholder={object?.grs}
                                 className={s.numberInput}
-
+                                onChange={(e)=> handleChange(e.target)}
                             />
                         </div>
 
@@ -143,7 +143,7 @@ const CreateRecipe = ( { object, onSuccess } ) => {
                                 name='grass'
                                 placeholder={object?.grease}
                                 className={s.numberInput}
-
+                                onChange={(e)=> handleChange(e.target)}
                             />
                         </div>
 
@@ -154,7 +154,7 @@ const CreateRecipe = ( { object, onSuccess } ) => {
                                 name='protein'
                                 placeholder={object?.proteins}
                                 className={s.numberInput}
-                            />
+                                onChange={(e)=> handleChange(e.target)}/>
                         </div>
                     </div>
                     <input type='submit'className={s.submitButton} value='Add Recipe'/>
