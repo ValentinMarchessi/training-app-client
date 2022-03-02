@@ -1,31 +1,62 @@
-@use '../../config/mixins' as Mixins;
-@use '../../config/colors' as Colors;
+@use '../../config/mixins'as Mixins;
+@use '../../config/colors'as Colors;
 
-.page{
-    @include Mixins.page;
-    color: white;
-    .header{
-        @include Mixins.header;
-    }
-    .body{
+.page {
+  @include Mixins.page;
+  color: white;
+
+  .header {
+    @include Mixins.header;
+  }
+
+  .body {
+    display: flex;
+    flex-direction: column;
+
+    .routines {
+      .container {
+        width: 90%;
+        margin: auto;
+        background-color: Colors.$container-bg;
         display: flex;
-        flex-direction: column;
-        
-        .routines{
-            .container{
-                width: 90%;
-                margin:auto;
-                background-color: Colors.$container-bg;
-                display: flex;
-                padding: 20px;
-                gap: 30px;
-                overflow-x:auto;
-            }
-        }
-
-        #create{
-            @include Mixins.blue-button;
-            margin: 40px auto;
-        }
+        padding: 20px;
+        gap: 30px;
+        overflow-x: auto;
+      }
     }
+
+  }
+}
+
+.create {
+  @include Mixins.blue-button;
+  margin: 40px auto;
+}
+
+.addRoutineButton {
+  width: 200px;
+  height: 30px;
+  border: none;
+  border-radius: 12px;
+  font-size: 15px;
+  font-family: 'Montserrat';
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.formClose {
+  display: none;
+  margin-top: 40px;
+  background-color: white;
+  width: fit-content;
+  z-index: -1;
+  transition: 1s;
+}
+
+.formOpen {
+  display: flex;
+  position: absolute;
+  margin-top: 40px;
+  z-index: 1;
+  transition: 1s;
 }
