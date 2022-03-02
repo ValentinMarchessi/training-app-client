@@ -5,9 +5,9 @@ import "./App.scss";
 import { Clients, Diets, Exercises, Home, Landing, Payment, Routines, Search, Settings, SignUpSequence, Recipes } from './Pages';
 import { ExercisesCreate, ExercisesView } from './Pages/Exercises';
 import { AccountUser, HistoryUser, PaymentMethod, ProfileUser } from './Pages/Settings';
-import CreateDiet from './components/CreateDiet/CreateDiet';
-import CreateRecipe from './components/CreateRecipe/CreateRecipe';
-import RoutineDetail from './Pages/Routines/RoutineDetail/RoutineDetail';
+import { CreateDiet } from './Pages/Diets';
+import { CreateRecipe } from './Pages/Recipes';
+import { RoutineDetail } from './Pages/Routines';
 
 function App() {
     return (
