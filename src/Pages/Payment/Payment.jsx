@@ -10,7 +10,6 @@ import { baseUrlDev } from '../../config/requestMethod/publicRequest';
 import Logo from '../../assets/images/dep.jpg';
 import { useDispatch, useSelector } from 'react-redux';
 import { postCreateTransaction } from '../../Redux/apiCalls/transaction/createTransaction';
-import { style } from '@mui/system';
 import { Avatar, Navbar } from '../../components';
 const KEY = 'pk_test_51KTHNqKxK712fkWkpddjvo4wS93yK5sVKG0cUZ5bLcIsxXc5J8UUfToFNZYXf09altAHfam57Sgxi8dfKQIil2r600FLkfDU2C';
 
@@ -19,20 +18,19 @@ export default function Payment() {
 		/* Traigo los datos del usuario */
 	}
 	const user = useSelector((state) => state.user.currentUser);
+	const transaction = useSelector((state) => state.transactions);
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 
 	// const location = useLocation()
 
 	//const { routineID } = useParams()
 	const routineId = '130833bb-07e3-405b-8d55-4ba86d76b8a6';
-
-	const navigate = useNavigate();
-
+	
 	const [stripeToken, setStripeToken] = useState(null);
 
 	const onToken = (token) => {
 		setStripeToken(token);
-		// navigate('/')
 	};
 
 	useEffect(() => {
@@ -50,17 +48,15 @@ export default function Payment() {
 						},
 					}
                 );
-                const { amount, id, receipt_url, payment_method_details } = res.data;
-                console.log(amount, id, receipt_url, payment_method_details);
+                const { amount, receipt_url, payment_method_details } = res.data;
                 const data = {
-                    id: id,
 					productId: routineId,
 					amount: amount,
 					method: payment_method_details,
 					receipt: receipt_url,
 				};
-				//res && navigate('/success', { state: { data: res.data } });
-				res && postCreateTransaction(dispatch, routineId, user.userId, data, user.accessToken);
+				res && await postCreateTransaction(dispatch, routineId, user.userId, data, user.accessToken);
+				if(res.status === 200) navigate('success', { state: res.data  });
 			} catch (error) {
 				console.log(error);
 			}

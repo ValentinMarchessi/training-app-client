@@ -1,12 +1,13 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.scss';
-import { Clients, Diets, Exercises, Home, Landing, Payment, Recipes, Routines, Search, Settings, SignUpSequence } from './Pages';
+import { Clients, Diets, Exercises, Home, Landing, Recipes, Routines, Search, Settings, SignUpSequence } from './Pages';
 import { ExercisesCreate, ExercisesView } from './Pages/Exercises';
 import { AccountUser, HistoryUser, PaymentMethod, ProfileUser } from './Pages/Settings';
 import { CreateDiet, ViewDiets } from './Pages/Diets';
 import { CreateRecipe } from './Pages/Recipes';
 import { RoutineDetail } from './Pages/Routines';
+import { Payment, Success } from './Pages/Payment';
 
 function App() {
 	return (
