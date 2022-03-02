@@ -130,21 +130,13 @@ const CreateDiet = () => {
         price: "",
         plain: [],
       });
-<<<<<<< HEAD
-      console.log(diet);
-      createDiets(dispatch, userId, diet);
-=======
       createDiets(dispatch, userId, diet, accessToken);
       redir('/diets')
->>>>>>> styleDiet
     } else {
       return alert("DEBE AGREGAR UN TITULO Y UN PRECIO");
     }
   }
 
-  function onSelectDay(e) {
-    console.log(e.target.textContent);
-  }
 
   return (
     <div className="container">
