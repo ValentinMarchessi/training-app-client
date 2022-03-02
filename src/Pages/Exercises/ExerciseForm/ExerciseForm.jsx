@@ -116,13 +116,11 @@ export default function ExerciseForm({onAdd, onClose}) {
                     preventSubmit.style.cursor='pointer'
                     document.getElementsByTagName('html')[0].style.cursor='default'
 					
-					if (Object.values(error).filter(e=>e==='').length===Object.values(error).length) {
-						
+					if (Object.values(error).every(e => e === '')) {
 						console.log(form, user.userId, user.accessToken);
-						//createExercises(dispatch, { userId: user.userId, token: user.accessToken, body: form });
-						//onAdd();
+						createExercises(dispatch, { userId: user.userId, token: user.accessToken, body: form });
+						onAdd();
 					}
-					
                 });
             })
     }

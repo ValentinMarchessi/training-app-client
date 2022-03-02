@@ -62,7 +62,7 @@ export default function Routine() {
                         <div className={styleRoutine.dayExercises}>
                             {routine.days&&routine.days[dayOption]?.map((e,j)=>
                                 <div key={j} className={styleRoutine.exercise} onClick={(e)=>viewExercise(e,j,dayOption)}>
-                                    <img className={styleRoutine.exerciseImg} src={exerciseImg} alt='ExerciseImg'/>
+                                    <img className={styleRoutine.exerciseImg} src={e.image||exerciseImg} alt='ExerciseImg'/>
                                     <p className={styleRoutine.nameExercise}>
                                         {e.title}<br/>
                                     </p>

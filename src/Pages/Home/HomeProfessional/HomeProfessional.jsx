@@ -59,8 +59,8 @@ const HomeProfessional = () => {
 			<div className={s.container}>
 				<div className={s.left}>
 					<div className={s.newsContainer}>
-						{news?.combined ? (
-							news.combined.map((item) => {
+						{news.length ? (
+							news.map((item) => {
 								return <NewsCard title={item.title} img={item.image_url} url={item.url} />;
 							})
 						) : (

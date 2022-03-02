@@ -25,7 +25,7 @@ export default function ExerciseView({ title, description, number,video,allExerc
 			<div >
 				<p>{allExercises[dayOption][i].title}</p>
                 <p>{allExercises[dayOption][i].description}</p>
-                <p className={style.number}></p>
+                <p className={style.number}>X{number}</p>
                 <div className={style.contNext}>
                     {i>0&&<button onClick={prev}className={style.next}>{"<"}</button>}
                     {i+1<allExercises[dayOption].length&&<button onClick={next}className={style.next}>{">"}</button>}

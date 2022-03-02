@@ -30,7 +30,7 @@ const dietsSlice = createSlice({
     getDietsByIdStart: (state) => {
       state.isFetching = true;
     },
-    getDietByIdSuccess: (state, action) => {
+    getDietsByIdSuccess: (state, action) => {
       state.isFetching = false;
       state.dietsById = action.payload;
     },

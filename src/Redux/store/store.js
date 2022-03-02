@@ -55,13 +55,14 @@ export const store = configureStore({
 });
 
 export let persistor = persistStore(store)
-
-export default configureStore({
+/* 
+configureStore({
 	reducer: {
 		user: userLoginReducer,
 		register: registerReducer,
 		updateUser: updateUserReducer,
-		diets: dietsReducer,
+        diets: dietsReducer,
+        recipes: recipesReducer,
 		exercises: exercisesReducer,
 		routines: routinesReducer,
 		allUsers: allUsersReducer,
@@ -70,4 +71,4 @@ export default configureStore({
 		news: newsReducer,
 		transactions: transactionReducer,
 	},
-});
+}); */
