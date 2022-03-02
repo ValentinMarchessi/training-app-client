@@ -1,10 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-
+//agrega routinesDetails
 const routinesSlice = createSlice({
   name: "routines",
   initialState: {
     allRoutines: [],
     routinesById: {},
+    routinesDetails: {},
     createdRoutines: {},
     updatedRoutines: {},
     deletedRoutines: {},
@@ -36,6 +37,18 @@ const routinesSlice = createSlice({
       state.routinesById = action.payload;
     },
     getRoutinesByIdFailure: (state) => {
+      state.isFetching = true;
+      state.error = true;
+    },
+    //GET Details ID Routines
+    getRoutinesDetailsStart: (state) => {
+      state.isFetching = true;
+    },
+    getRoutinesDetailsSuccess: (state, action) => {
+      state.isFetching = false;
+      state.routinesDetails = action.payload;
+    },
+    getRoutinesDetailsFailure: (state) => {
       state.isFetching = true;
       state.error = true;
     },
@@ -88,6 +101,9 @@ export const {
   getRoutinesByIdStart,
   getRoutinesByIdSuccess,
   getRoutinesByIdFailure,
+  getRoutinesDetailsStart,
+  getRoutinesDetailsSuccess,
+  getRoutinesDetailsFailure,
   createRoutinesStart,
   createRoutinesSuccess,
   createRoutinesFailure,
