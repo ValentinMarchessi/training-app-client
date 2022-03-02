@@ -4,35 +4,26 @@ import styles from './Payment.module.scss';
 import user from '../../assets/images/imageUser.jpg';
 import { star } from '../../assets/images/icons';
 import yoga from '../../assets/images/yoga.jpg';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import StripeCheckout from 'react-stripe-checkout';
 import { baseUrlDev } from '../../config/requestMethod/publicRequest';
 import Logo from '../../assets/images/dep.jpg';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { postCreateTransaction } from '../../Redux/apiCalls/transaction/createTransaction';
 import { style } from '@mui/system';
 import { Avatar, Navbar } from '../../components';
 const KEY = 'pk_test_51KTHNqKxK712fkWkpddjvo4wS93yK5sVKG0cUZ5bLcIsxXc5J8UUfToFNZYXf09altAHfam57Sgxi8dfKQIil2r600FLkfDU2C';
-
-/* {
-    transaction_id          //id de la transacción
-    transaction_ammount     //monto en U$D
-    transaction_date        //formato HH:MM:SS DD/MM/AAAA
-    card_name               //nombre del titular de la tarjeta
-    card_last4              //últimos 4 dígitos
-    card_brand              //Visa,Master Card, etc
-    card_exp_month          //mes de vencimiento
-    card_exp_year           //año de vencimiento
-} */
 
 export default function Home() {
 	{
 		/* Traigo los datos del usuario */
 	}
 	const currentUser = useSelector((state) => state.user.currentUser);
+	const dispatch = useDispatch();
 
 	// const location = useLocation()
 
-	// const { routineID } = useParams()
+	const { routineID } = useParams()
 
 	const navigate = useNavigate();
 
@@ -68,7 +59,7 @@ export default function Home() {
 					receipt: receipt_url,
 				};
 				//res && navigate('/success', { state: { data: res.data } });
-				res && postCreateTransaction(dispatch, productId, currentUser.id, data, currentUser.accessToken)
+				res && postCreateTransaction(dispatch, routineID, currentUser.id, data, currentUser.accessToken);
 			} catch (error) {
 				console.log(error);
 			}
