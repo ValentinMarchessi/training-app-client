@@ -29,7 +29,6 @@ export default function MyDiets() {
             <div className={style.body}>
                 <h1 id={style.myPlans}>Planes</h1>
                 <div className={style.plans}>
-                    <CreateDiet />
                     <DietCard name={diet.name} clients={diet.clients} weekly={diet.weekly} />
                     <DietCard name={diet.name} clients={diet.clients} weekly={diet.weekly} />
                     <DietCard name={diet.name} clients={diet.clients} weekly={diet.weekly} />
