@@ -5,7 +5,7 @@ import './App.scss';
 import { Clients, Diets, Exercises, Home, Landing, Payment, Recipes, Routines, Search, Settings, SignUpSequence } from './Pages';
 import { ExercisesCreate, ExercisesView } from './Pages/Exercises';
 import { AccountUser, HistoryUser, PaymentMethod, ProfileUser } from './Pages/Settings';
-import { CreateDiet } from './Pages/Diets';
+import { CreateDiet, ViewDiets } from './Pages/Diets';
 import { CreateRecipe } from './Pages/Recipes';
 import { RoutineDetail } from './Pages/Routines';
 
@@ -20,9 +20,10 @@ function App() {
 				<Route path="/routines" element={<Routines />}>
 					<Route path=":routineId" element={<RoutineDetail />} />
 				</Route>
-				<Route path="/clients" element={<Clients />}></Route>
+				<Route path="/clients" element={<Clients />} />
 				<Route path="/diets" element={<Diets />}>
-					<Route path="createDiet" element={<CreateDiet />} />
+					<Route index element={<ViewDiets />} />
+					<Route path="create" element={<CreateDiet />} />
 				</Route>
 				<Route path="/exercises" element={<Exercises />}>
 					<Route index element={<ExercisesView />} />
@@ -34,8 +35,11 @@ function App() {
 					<Route path="payment" element={<PaymentMethod />} />
 					<Route path="history" element={<HistoryUser />} />
 				</Route>
+				<Route path="test" element={<CreateRecipe />} />
 				<Route path="/recipes" element={<Recipes />} />
-				<Route path="/payment" element={<Payment />} />
+				<Route path="/payment" element={<Payment />}>
+					<Route path="success" element={<Success/>}/>
+				</Route>
 			</Routes>
 		</div>
 	);
