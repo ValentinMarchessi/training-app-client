@@ -1,46 +1,71 @@
 //STYLES
-import S from "./PaymentMethod.module.scss";
+import styles from './PaymentMethod.module.scss';
 //IMAGES
-import masterCard from "../../../assets/images/masterCard.png";
-import BBVAIcon from "../../../assets/images/BBVAIcon.png";
-import meliIcon from "../../../assets/images/meliIcon.png";
+import ReceiptIcon from '@mui/icons-material/Receipt';
+import Card from './Card/Card';
+import { useDispatch, useSelector } from 'react-redux';
+import { getTransactions } from '../../../Redux/apiCalls/transaction/getTransactions';
+import { useEffect } from 'react';
 
 export default function PaymentMethod() {
-  return (
-    <div className={S.container}>
-      <div className={S.containerCard}>
-        <div className={S.contentCard}>
-          <div className={S.contentCardLeft}>
-            <img alt="imgCards" src={masterCard} />
-            <img alt="imgCards" src={BBVAIcon} />
-            <img alt="imgCards" src={meliIcon} />
-          </div>
-          <div className={S.contentCardRight}>
-            <p>Master Card</p>
-            <p>Banco Francés</p>
-            <p>Mercado Pago</p>
-          </div>
-        </div>
-        <button>Add Card</button>
-      </div>
-      <div className={S.containerCart}>
-        <h4>Cart</h4>
-        <div className={S.contentCart}>
-          <div className={S.contentCartLeft}>
-            <p>Sub Total</p>
-            <p>Discount</p>
-            <hr />
-            <p>Total</p>
-          </div>
-          <div className={S.contentCartRight}>
-            <p>$150</p>
-            <p>$50</p>
-            <hr />
-            <p>$100</p>
-          </div>
-        </div>
-        <button>Payment</button>
-      </div>
-    </div>
-  );
+	const dispatch = useDispatch();
+	const transactions = useSelector(store => store.transactions.transactions);
+	const user = useSelector(store => store.user.currentUser);
+
+	useEffect(() => {
+		getTransactions(dispatch, user.accessToken,user.userId);
+	}, [dispatch, getTransactions])
+
+	const tableRows = transactions.map(transaction => {
+		const { id, method, createdAt, receipt } = transaction;
+		const { card } = method;
+		const date = new Date(createdAt);
+		return (
+			<tr key={id}>
+				<td className={styles.id}>{id}</td>
+				<td>
+					<span>**** **** **** {card.last4}</span>
+					<br />
+					<span>
+						{card.brand} {method.type}
+					</span>
+				</td>
+				<td>{date.toLocaleString('en-GB', { timeZone: 'UTC' })}</td>
+				<td className={styles.receipt}>
+					<a href={receipt}><ReceiptIcon fontSize='large'/></a>
+				</td>
+			</tr>
+		);
+	}
+	)
+
+	return (
+		<div className={styles.container}>
+			<div className={styles.section}>
+				<h1>Cards</h1>
+				<div className={styles.cards}>
+					<Card brand="Visa" name="Marchessi Valentín" expiration="04/24" last4="4581" />
+					<Card brand="Master Card" name="Marchessi Valentín" expiration="04/24" last4="4581" />
+					<Card brand="Master Card" name="Marchessi Valentín" expiration="04/24" last4="4581" />
+					<Card brand="Master Card" name="Marchessi Valentín" expiration="04/24" last4="4581" />
+				</div>
+			</div>
+			<div className={styles.section}>
+				<h1>Transactions</h1>
+				<table id={styles.transactionTable}>
+					<thead>
+						<tr id={styles.headerRow}>
+							<th>Transaction ID</th>
+							<th>Payment Info</th>
+							<th>Date</th>
+							<th>Receipt</th>
+						</tr>
+					</thead>
+					<tbody>
+						{ tableRows}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	);
 }

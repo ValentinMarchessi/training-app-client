@@ -3,15 +3,8 @@ import { useDispatch } from 'react-redux';
 import { deleteRecipes }  from '../../../../Redux/apiCalls/recipesCall/deleteRecipes';
 import CreateRecipe from '../CreateRecipe/CreateRecipe'
 import s from './RecipeContainer.module.scss';
+
 //RECIBE EL OBJETO COMPLETO DE LA RECETA
-
-/*
-      TODO: COLOCAR BOTON PARA ELIMINAR RECETA
-      TODO: CAMBIAR LA INFORMACION QUE DEVUELVE LA RUTA QUE TRAE TODAS LAS RECETAS DE UN USUARIO
-      TODO: LA INFORMACION NUTRICIONAL PODRÍA VENIR EN UN OBJETO ASÍ SE LE HACE UN MAP Y LISTO 
-*/
-
-
 const RecipeContainer = ( {recipe, user, onClick} )=>{
       const dispatch = useDispatch();
 

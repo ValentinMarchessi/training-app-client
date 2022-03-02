@@ -35,6 +35,7 @@ const excercisesSlice = createSlice({
       state.exercisesById = action.payload;
     },
     getExercisesByIdFailure: (state) => {
+      state.exercisesById = undefined;
       state.isFetching = true;
       state.error = true;
     },

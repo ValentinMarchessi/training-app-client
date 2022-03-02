@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from "react";
+import {useNavigate} from 'react-router-dom'
 // import { useField } from "../../hooks/useField/useField";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllRecipesByUserId } from "../../../Redux/apiCalls/recipesCall/getAllRecipesByUser";
 import { createDiets } from "../../../Redux/apiCalls/dietsCall/createDiets";
+import { getDietsById } from "../../../Redux/apiCalls/dietsCall/getDietsById";
+
+//STYLES
+import "./createDiet.scss";
 
 const days = [
   "monday",
@@ -15,6 +20,7 @@ const days = [
 ];
 
 const CreateDiet = () => {
+  const redir = useNavigate()
   const { userId, accessToken } = useSelector(
     (state) => state.user.currentUser
   );
@@ -22,6 +28,7 @@ const CreateDiet = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    getDietsById(dispatch, userId, accessToken);
     getAllRecipesByUserId(dispatch, userId, accessToken);
   }, [dispatch]);
 
@@ -123,24 +130,35 @@ const CreateDiet = () => {
         price: "",
         plain: [],
       });
-      createDiets(dispatch, userId, diet);
+      createDiets(dispatch, userId, diet, accessToken);
+      redir('/diets')
     } else {
       return alert("DEBE AGREGAR UN TITULO Y UN PRECIO");
     }
   }
 
+
   return (
-    <div>
-      <div className="contentTopbar"></div>
-      <form>
-        <div className="formTop">
-          <input onChange={onHandleNewDiet} value={diet.title} name="title" />
+    <div className="container">
+      <div className="navBar">
+        <div className="navBarInputs">
+          <label>Title :</label>
+          <input
+            onChange={onHandleNewDiet}
+            type="text"
+            value={diet.title}
+            name="title"
+          />
+          <label>Price :</label>
+          <input
+            onChange={onHandleNewDiet}
+            type="number"
+            value={diet.price}
+            name="price"
+          />
         </div>
-        <div className="formButton">
-          <input onChange={onHandleNewDiet} value={diet.price} name="price" />
-        </div>
-        <div className="formCenter">
-          <button onClick={onCreateDayDiet}>CREATE DAY'S DIET</button>
+      </div>
+      <form>     
           <select
             value={newPlain.day}
             name="day"
@@ -189,9 +207,32 @@ const CreateDiet = () => {
               </option>
             ))}
           </select>
-        </div>
-        <button onClick={onSendDiet}>ENVIAR DIET A DDBB</button>
       </form>
+      <button onClick={onCreateDayDiet}>Add day's diet</button>
+      <div className="containerCreateDiet">
+        <div className="containerTitleAndPrice">
+        <h2> Title : {diet.title}</h2>
+        <h2>Price : ${diet.price}</h2>
+        </div>
+        {diet.plain.map((diet) => {
+          return (
+            <div className="containerDays">
+              <h3>{diet.day}</h3>
+              {allRecipes.map((recipe) => {
+                return diet.meals.breakfast.map((b) => {
+                  if (recipe.id === b) {
+                    //TARJETA DE RECIPE
+                    return recipe.title
+                  } else {
+                    return "";
+                  }
+                });
+              })}
+            </div>
+          );
+        })}
+      </div>
+      <button onClick={onSendDiet}>Create Diet</button>
     </div>
   );
 };

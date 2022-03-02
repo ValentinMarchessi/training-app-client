@@ -1,92 +1,68 @@
-@use "../../../config/colors" as c;
-@use "../../../config/fontSize" as f;
+@use '../../../config/colors/' as Color;
+@use '../../../config/mixins/' as Mixins;
 
 .container {
-  background: c.$option2-bg;
-  border-radius: 5px;
-  display: flex;
-  justify-content: space-around;
-  .containerCard {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    .contentCard {
-      display: flex;
-      .contentCardLeft {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        img {
-          margin: 10px;
-          width: 50px;
-        }
-      }
-      .contentCardRight {
-        display: flex;
-        flex-direction: column;
-        p {
-          margin: 15px;
-          color: c.$white;
-        }
-        p:hover {
-          cursor: pointer;
-          text-decoration: underline;
-          transition: 0.3s;
-        }
-      }
-    }
-    button {
-      margin: 10px;
-      background: c.$button-bg;
-      padding: 9px;
-      border: none;
-      border-radius: 5px;
-      color: c.$white;
-    }
-    button:hover {
-      cursor: pointer;
-      transition: 0.3s;
-      opacity: 0.8;
-    }
-  }
-  .containerCart {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    background: c.$secondary-bg;
-    margin: 15px 0;
-    width: 35%;
-    height: 70%;
-    border-radius: 15px;
-    h4 {
-      color: c.$white;
-      margin: 0;
-    }
-    .contentCart {
-      display: flex;
-      justify-content: space-around;
-      width: 100%;
-      .contentCartLeft {
-        color: c.$white;
-      }
-      .contentCartRight {
-        color: c.$white;
-      }
-    }
-    button {
-      margin: 10px;
-      background: c.$button-bg;
-      padding: 9px;
-      border: none;
-      border-radius: 5px;
-      color: c.$white;
-    }
-    button:hover {
-      cursor: pointer;
-      transition: 0.3s;
-      opacity: 0.8;
-    }
-  }
+	padding: 20px;
+	font-family: 'Montserrat';
+	background-color: Color.$secondary-bg;
+	display: flex;
+	gap: 50px;
+	flex-direction: column;
+
+	.section{
+		h1{
+			align-self: flex-start;
+		}
+	
+		.cards{
+			padding: 10px 0;
+			width: 100%;
+			display: flex;
+			gap: 20px;
+			overflow-x: auto;
+			scroll-behavior: smooth;
+		}
+	
+		#transactionTable {
+			width: fill-available;
+			margin: 10px;
+			color: white;
+			overflow: hidden;
+			border-spacing: 0;
+			border-radius: 5px;
+	
+			tr:not(#headerRow) {
+				height: 70px;
+			}
+	
+			th {
+				text-align: left;
+			}
+
+			
+			th,
+			td {
+				max-width: 150px;
+				text-overflow: ellipsis;
+				overflow: hidden;
+				border-collapse: collapse;
+				padding: 5px;
+			}
+			
+			td.receipt{
+				text-align: center;
+			}
+			
+			td.id{
+				font-size: 14px;
+			}
+	
+			tr:nth-child(even) {
+				background-color: #40394a;
+			}
+			tr:nth-child(odd) {
+				background-color: #6a5f7a;
+			}
+		}
+	}
 }
