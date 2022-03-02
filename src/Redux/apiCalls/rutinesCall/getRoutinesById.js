@@ -1,19 +1,18 @@
+import { baseUrlDev } from "../../../config/requestMethod/publicRequest";
 import {
-    getRoutinesByIdStart,
-    getRoutinesByIdSuccess,
-    getRoutinesByIdFailure,
-  } from "../../Reducers/routinesReducer.js";
-  import { baseUrlDev } from "../../../config/requestMethod/publicRequest";
+  getRoutinesByIdFailure, getRoutinesByIdStart,
+  getRoutinesByIdSuccess
+} from "../../reducers/routinesReducer.js";
   
-  //get routines By Id
+//get routines By Id
   
-  export const getRoutinesById = async (dispatch,id) => {
-    dispatch(getRoutinesByIdStart());
-    try {
-      const res = await baseUrlDev.get(`routine/${id}`);
-      dispatch(getRoutinesByIdSuccess(res.data));
-    } catch (err) {
-      dispatch(getRoutinesByIdFailure());
-    }
-  };
+export const getRoutinesById = async (dispatch, id) => {
+  dispatch(getRoutinesByIdStart());
+  try {
+    const res = await baseUrlDev.get(`routine/get/${id.routineId}`);
+    dispatch(getRoutinesByIdSuccess(res.data));
+  } catch (err) {
+    dispatch(getRoutinesByIdFailure());
+  }
+};
   

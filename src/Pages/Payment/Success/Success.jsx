@@ -1,6 +1,6 @@
 import React from 'react'
 import { useLocation } from 'react-router-dom'
-import cheked from '../../assets/images/checked.png'
+import cheked from '../../../assets/images/checked.png'
 import './success.scss'
 
 const Success = () => {
@@ -9,7 +9,6 @@ const Success = () => {
     const transaction = location.state.data
 
     console.log(transaction)
-
 
     return (
         <div className='contentSuccess' >
