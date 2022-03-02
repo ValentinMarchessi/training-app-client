@@ -4,7 +4,7 @@ const dietsSlice = createSlice({
   name: "diets",
   initialState: {
     allDiets: [],
-    dietsById: {},
+    dietsById: [],
     createdDiets: {},
     updatedDiets: {},
     deletedDiets: {},

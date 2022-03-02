@@ -1,0 +1,21 @@
+.body {
+	text-align: left;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+
+	#myPlans {
+		color: white;
+		width: fit-content;
+		border-bottom: 2px solid gray;
+	}
+
+	.plans {
+		max-height: 400px;
+		display: flex;
+		padding: 10px;
+		gap: 20px;
+		flex-direction: column;
+		overflow-y: auto;
+	}
+}
