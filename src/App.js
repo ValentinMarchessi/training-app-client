@@ -1,29 +1,12 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.scss';
-//PAGES
-import {
-  Clients,
-  Exercises,
-  Home,
-  Landing,
-  Payment,
-  Routines,
-  Search,
-  Settings,
-  SignUpSequence,
-  Recipes,
-} from "./Pages";
-import { ExercisesCreate, ExercisesView } from "./Pages/Exercises";
-import { Diets, CreateDiet, ViewDiets } from "./Pages/Diets";
-import {
-  AccountUser,
-  HistoryUser,
-  PaymentMethod,
-  ProfileUser,
-} from "./Pages/Settings";
-import CreateRecipe from "./Pages/Recipes/components/CreateRecipe/CreateRecipe";
-import RoutineDetail from "./Pages/Routines/RoutineDetail/Routine";
+import { Clients, Diets, Exercises, Home, Landing, Payment, Recipes, Routines, Search, Settings, SignUpSequence } from './Pages';
+import { ExercisesCreate, ExercisesView } from './Pages/Exercises';
+import { AccountUser, HistoryUser, PaymentMethod, ProfileUser } from './Pages/Settings';
+import { CreateDiet } from './Pages/Diets';
+import { CreateRecipe } from './Pages/Recipes';
+import { RoutineDetail } from './Pages/Routines';
 
 function App() {
   return (
