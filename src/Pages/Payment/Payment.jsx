@@ -58,11 +58,17 @@ export default function Home() {
 						},
 					}
                 );
-                console.log(res);
-                const { amount, id, card, receipt_url, source } = res.data;
-                console.log(amount, id, receipt_url, source);
+                const { amount, id, receipt_url, payment_method_details } = res.data;
+                console.log(amount, id, receipt_url, payment_method_details);
+                const data = {
+                    id: id,
+					productId: routineID,
+					amount: amount,
+					method: payment_method_details,
+					receipt: receipt_url,
+				};
 				//res && navigate('/success', { state: { data: res.data } });
-				res && postCreateTransaction(dispatch, productId, currentUser.id, currentUser.accessToken)
+				res && postCreateTransaction(dispatch, productId, currentUser.id, data, currentUser.accessToken)
 			} catch (error) {
 				console.log(error);
 			}
