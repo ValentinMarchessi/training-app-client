@@ -1,9 +1,8 @@
-import {
-    getAllRoutinesStart,
-    getAllRoutinesSuccess,
-    getAllRoutinesFailure,
-} from "../../reducers/routinesReducer";
 import { baseUrlDev } from "../../../config/requestMethod/publicRequest";
+import {
+    getAllRoutinesFailure, getAllRoutinesStart,
+    getAllRoutinesSuccess
+} from "../../reducers/routinesReducer";
 
 //getAll Routines
 

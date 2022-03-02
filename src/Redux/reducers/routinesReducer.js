@@ -1,77 +1,78 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const rutinesSlice = createSlice({
-  name: "rutines",
+const routinesSlice = createSlice({
+  name: "routines",
   initialState: {
-    allRutines: [],
-    rutinesById: {},
-    createdRutines: {},
-    updatedRutines: {},
-    deletedRutines: {},
+    allRoutines: [],
+    routinesById: {},
+    createdRoutines: {},
+    updatedRoutines: {},
+    deletedRoutines: {},
     isFetching: false,
     error: false,
   },
   reducers: {
-    // GET ALL Rutines
+    // GET ALL Routines
     getAllRoutinesStart: (state) => {
       state.isFetching = true;
     },
     getAllRoutinesSuccess: (state, action) => {
       console.log(action);
       state.isFetching = false;
-      state.allRutines = action.payload;
+      state.allRoutines = action.payload;
     },
     getAllRoutinesFailure: (state) => {
       state.isFetching = true;
       state.error = true;
     },
+    allRoutines: [],
 
-    //GET ID Rutines
+    //GET ID Routines
     getRoutinesByIdStart: (state) => {
       state.isFetching = true;
     },
     getRoutinesByIdSuccess: (state, action) => {
       state.isFetching = false;
-      state.rutinesById = action.payload;
+      state.routinesById = action.payload;
     },
     getRoutinesByIdFailure: (state) => {
       state.isFetching = true;
       state.error = true;
     },
 
-    // CREATE Rutines
+    // CREATE Routines
     createRoutinesStart: (state) => {
       state.isFetching = true;
     },
     createRoutinesSuccess: (state, action) => {
       state.isFetching = false;
-      state.createdRutines = action.payload;
+      state.createdRoutines = action.payload;
     },
     createRoutinesFailure: (state) => {
       state.isFetching = true;
       state.error = true;
     },
 
-    //UPDATE Rutines
+    //UPDATE Routines
     updateRoutinesStart: (state) => {
       state.isFetching = true;
     },
     updateRoutinesSuccess: (state, action) => {
       state.isFetching = false;
-      state.updatedRutines = action.payload;
+      state.updatedRoutines = action.payload;
     },
     updateRoutinesFailure: (state) => {
       state.isFetching = true;
       state.error = true;
     },
 
-    // DELETE  Rutines
+    // DELETE  Routines
     deleteRoutinesStart: (state) => {
       state.isFetching = true;
     },
     deleteRoutinesSuccess: (state, action) => {
       state.isFetching = false;
-      state.deletedRutines = action.payload;
+      state.deletedRoutines = action.payload;
     },
     deleteRoutinesFailure: (state) => {
       state.isFetching = true;
@@ -96,6 +97,6 @@ export const {
   deleteRoutinesStart,
   deleteRoutinesSuccess,
   deleteRoutinesFailure,
-} = rutinesSlice.actions;
+} = routinesSlice.actions;
 
-export default rutinesSlice.reducer;
+export default routinesSlice.reducer;
