@@ -43,3 +43,12 @@
   user-select: none;
   cursor: pointer;
 }
+
+#add {
+  @include Mixins.blue-button;
+  width: fit-content;
+  align-self: center;
+  justify-self: center;
+  font-size: 18px;
+  margin-top: 2rem;
+}

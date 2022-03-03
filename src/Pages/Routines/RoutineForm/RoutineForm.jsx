@@ -119,7 +119,7 @@ export default function RoutineForm({ onAdd }) {
           </div>
         ))}
       </div>
-      <button type='submit' onClick={(e) => handleSubmit(e)}>Submit</button>
+      <button type='submit' id={style.add} onClick={(e) => handleSubmit(e)}>Submit</button>
     </div>
   );
 };
