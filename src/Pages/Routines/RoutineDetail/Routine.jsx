@@ -22,7 +22,7 @@ export default function Routine() {
     const [dayOption,setDayOption]=useState("Monday");
     const [exercise,setExercise]=useState({viewing:false});
     const routineId=useParams().routineId;
-    const routine=useSelector(state=>state.routines.rutinesById);
+    const routine=useSelector(state=>state.routines.routinesById);
     const dispatch=useDispatch();
     useEffect(()=>{
         getRoutinesById(dispatch, { routineId })
@@ -42,7 +42,7 @@ export default function Routine() {
 				<Link to='/'>
 					<img id={style.icon} src={home} alt="home" />
 				</Link>
-				{!exercise.viewing?<h1>Routine: {routine?.name}</h1>: <h1>Exercise: {exercise.allExercises[exercise.dayOption][exercise.j].title}</h1>}
+				{!exercise.viewing?<h1>Routine: {routine?.title}</h1>: <h1>Exercise: {exercise.allExercises[exercise.dayOption][exercise.j].title}</h1>}
 				<hr />
 			</div>
 			<div>
@@ -64,7 +64,7 @@ export default function Routine() {
                                 <div key={j} className={styleRoutine.exercise} onClick={(e)=>viewExercise(e,j,dayOption)}>
                                     <img className={styleRoutine.exerciseImg} src={e.image||exerciseImg} alt='ExerciseImg'/>
                                     <p className={styleRoutine.nameExercise}>
-                                        {e.title}<br/>
+                                        {e.title||"Exercise "+ (j+1)}<br/>
                                     </p>
                                 </div>
                             )}

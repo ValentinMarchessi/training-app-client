@@ -6,13 +6,51 @@ const routinesSlice = createSlice({
     allRoutines: [],
     routinesById: {},
     routinesDetails: {},
+    users:[],
     createdRoutines: {},
     updatedRoutines: {},
     deletedRoutines: {},
+    routinesByUser: [],
     isFetching: false,
     error: false,
   },
   reducers: {
+    //GET users Routine
+    getAllUsersRoutinesStart: (state)=>{
+      state.isFetching = true;
+    },
+    getAllUsersRoutinesSuccess: (state, action)=>{
+      state.isFetching = false;
+      state.routinesByUser = [...state.users,action.payload];
+    },
+    getAllUsersRoutinesFailure: (state)=>{
+      state.isFetching = true;
+      state.error = true;
+    },
+    // CREATE Routine
+    createRoutinesStart: (state)=>{
+      state.isFetching = true;
+    },
+    createRoutinesSuccess: (state,action)=>{
+      state.isFetching = false;
+      state.routinesByUser = [...state.routinesByUser,action.payload];
+    },
+    createRoutinesFailure: (state)=>{
+      state.isFetching = true;
+      state.error = true;
+    },
+    // GET USER Routines
+    getUserRoutinesStart: (state)=>{
+      state.isFetching = true;
+    },
+    getUserRoutinesSuccess: (state,action)=>{
+      state.isFetching = false;
+      state.routinesByUser = [...state.routinesByUser,action.payload];
+    },
+    getUserRoutinesFailure: (state)=>{
+      state.isFetching = true;
+      state.error = true;
+    },
     // GET ALL Routines
     getAllRoutinesStart: (state) => {
       state.isFetching = true;
