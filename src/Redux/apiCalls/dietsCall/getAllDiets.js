@@ -20,4 +20,3 @@ import {
       dispatch(getAllDietsFailure());
     }
   };
-  

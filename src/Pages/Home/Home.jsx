@@ -7,7 +7,7 @@ import HomeClient from './HomeClient/HomeClient';
 
 const Home = () => {
 	const user = useSelector(state => state.user.currentUser)
-	console.log(user)
+	console.log('User:',user)
 	return (
 		<div className={styles.page}>
 			<Navbar />
