@@ -35,12 +35,13 @@ import style from './Routines.module.scss';
 
 export default function Routines() {
 	const [routines, setRoutines] = useState([]);
-	const user=useSelector(state=>state.user.currentUser);
+	//const user=useSelector(state=>state.user.currentUser);
 	const routinesFetch=useSelector(state=>state.routines.routinesByUser);
 	const dispatch=useDispatch();
 	useEffect(() => {
 		const fetchRoutines = async () => {
-			await getUserRoutines(dispatch,user.userId,user.accessToken);
+			//Arreglar ruta del back para que traiga a todos los usuarios del producto
+			//await getUserRoutines(dispatch,user.userId,user.accessToken);
 			await setRoutines(routinesFetch);
 		}
 		fetchRoutines();
