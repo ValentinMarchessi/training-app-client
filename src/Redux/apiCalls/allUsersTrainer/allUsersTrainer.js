@@ -6,8 +6,9 @@ import { getAllUsersTrainersFailure, getAllUsersTrainersStart, getAllUsersTraine
 export const getAllTrainers = async (dispatch, token) => {
     dispatch(getAllUsersTrainersStart());
     try {
-        const res = await baseUrlDev.get('user/trainers', {headers:{token}});
+        const res = await baseUrlDev.get('user/get/trainers', {headers:{token}});
         dispatch(getAllUsersTrainersSuccess(res.data));
+        return res.data;
     } catch (err) {
         dispatch(getAllUsersTrainersFailure());
     }
