@@ -32,6 +32,9 @@
 	&:active {
 		background-color: gray;
 	}
+	&[disabled]{
+		background-color: gray;
+	}
 }
 
 @mixin bold-button($color) {
