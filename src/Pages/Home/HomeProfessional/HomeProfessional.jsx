@@ -19,7 +19,6 @@ const HomeProfessional = () => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const news = useSelector((state) => state.news.news);
-	console.log(news);
 	const user = useSelector((state) => state.user.currentUser);
 	const pTrainerButtons = (
 		<div className={s.buttonContainer}>
