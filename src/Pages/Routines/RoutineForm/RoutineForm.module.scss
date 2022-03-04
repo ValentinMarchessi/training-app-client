@@ -2,20 +2,18 @@
 @use '../../../config/colors'as Colors;
 
 .formContainer {
-  margin: 100px auto;
   display: grid;
-  max-width: 1234px;
+  max-width: 600px;
   padding: 40px;
   border-radius: 3px;
-  gap: 32px;
+  gap: 24px;
   grid-template-rows: repeat(5, auto);
-  background-color: rgba(45, 38, 83, 0.69);
 }
 
 .inputContainer {
   display: grid;
   gap: 8px;
-  grid-template-rows: repeat(2, 15px);
+  grid-template-rows: repeat(2, 20px);
 }
 
 .exerciseContainer {
@@ -44,4 +42,13 @@
   padding: 0 8px;
   user-select: none;
   cursor: pointer;
+}
+
+#add {
+  @include Mixins.blue-button;
+  width: fit-content;
+  align-self: center;
+  justify-self: center;
+  font-size: 18px;
+  margin-top: 2rem;
 }
