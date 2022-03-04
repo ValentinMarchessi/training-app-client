@@ -1,49 +1,57 @@
-import React, { useEffect, useState } from 'react'
-import './Search.scss'
-import test from '../../assets/images/imageBg.png'
-import user from '../../assets/images/imageUser.jpg'
-import { Link, useParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import s from './Search.module.scss';
+import test from '../../assets/images/imageBg.png';
+import user from '../../assets/images/imageUser.jpg';
+import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllTrainers } from '../../Redux/apiCalls/allUsersTrainer/allUsersTrainer';
 import { getAllNutritionits } from '../../Redux/apiCalls/allUsersNutritionist/allUsersNutritionist';
 import { getAllRoutines } from '../../Redux/apiCalls/rutinesCall/getAllRoutines';
-
-import { Navbar, Searchbar } from '../../components';
-import RoutineCard from './RoutineCard/RoutineCard';
+import { getAllDiets } from '../../Redux/apiCalls/dietsCall/getAllDiets'; 
+import { Navbar } from '../../components';
 import { Select } from '../../components';
+
+import RoutineCard from './components/RoutineCard/RoutineCard';
+import UserCard from './components/UserCard/UserCard';
+/*
+TODO: Que se conecte al estado y muestre las cosas
+TODO: Utiliza el type
+
+*/
+
 
 export default function Search() {
     //Hacer dispatch segun el type
     const elementosDeTest = 61
-
     const dispatch = useDispatch()
+    const { accessToken } = useSelector(state=>state.user.currentUser.accessToken);
+    const [ currentType, setCurrentType ] = useState('');
+    const [currentItems, setCurrentItems] = useState([]);
 
-    const {accessToken} = useSelector(state=>state.user.currentUser.accessToken)
-
-    const [currentType, setCurrentType] = useState('')
-    console.log(currentType)
-
-    const RoutinesDB = useSelector(state=>state.routines.allRutines)
-    const TrainersDB = useSelector(state=>state.trainers.usersTrainers)
-    const NutritionistsDB = useSelector(state=>state.nutritionists.usersNutritionits)
-
-    //Por si el usuario recarga la página.
-    window.addEventListener('load',()=>{
-        try{
-            if(!RoutinesDB?.length&&currentType==='routines') getAllRoutines(dispatch)
-            if(!TrainersDB?.length&&currentType==='trainers') getAllTrainers(dispatch)
-            if(!NutritionistsDB?.length&&currentType==='nutritionists') getAllNutritionits(dispatch)
-        } catch(err){
-            console.log(err)
-        }
-        
-    })
-
+    //Cada vez que se eliga un producto en esepecifico se acutiza el currenType y dependiendo de eso se hace la petición
+    //Se utiliza la var currentItem como arreglo en el que se almacenan los productos a mostrar
     useEffect(()=>{
-        if(!RoutinesDB?.length&&currentType==='routines') getAllRoutines(dispatch)
-        if(!TrainersDB?.length&&currentType==='trainers') getAllTrainers(dispatch)
-        if(!NutritionistsDB?.length&&currentType==='nutritionists') getAllNutritionits(dispatch)
-    },[currentType])
+        console.log('Current Type', currentType);
+        //El producto por default son las dietas
+        if(currentType === 'Diets' || !currentType){
+            getAllDiets(dispatch, accessToken)
+                .then(data => setCurrentItems( data ));
+        };
+        if(currentType === 'Routines'){
+            getAllRoutines(dispatch, accessToken)
+                .then(data => setCurrentItems( data ));
+        };
+        if(currentType === 'Personal Trainers'){
+            getAllTrainers(dispatch, accessToken)
+                .then(data => setCurrentItems( data ));
+        };
+        if(currentType === 'Nutritionists' ){
+            getAllNutritionits(dispatch, accessToken)
+                .then(data => setCurrentItems( data ));
+        };
+        console.log('CurrentItem: ', currentItems);
+    },[currentType]);
+
 
     let rating = 0
     let reviews = 0
@@ -51,7 +59,6 @@ export default function Search() {
     let ratingdir = 'up'
     let reviewsdir = 'up'
     let pricedir = 'up'
-
     const routines = {
         author: (index) => String.fromCodePoint(index).toString(),
         authorTitle: 'profesor',
@@ -88,90 +95,92 @@ export default function Search() {
             avatar: user
         })
     }
+    const [inicio, setInicio] = useState(0);
+    let current = currentItems.slice(inicio, inicio + 8);
+    const [search, newSearch] = useState('');
+    const [input, newInput] = useState('');
+    const [reviewSort, setReviewSort] = useState(false);
+    const [scoreSort, setScoreSort] = useState(false);
+    const [priceSort, setPriceSort] = useState(false);
 
-    const [currentobj, setObj] = useState(obj)
-
-    const [inicio, setInicio] = useState(0)
-
-    let current = currentobj.slice(inicio, inicio + 8)
-
-    const [search, newSearch] = useState('')
-    const [input, newInput] = useState('')
-
-    const [reviewSort, setReviewSort] = useState(false)
-    const [scoreSort, setScoreSort] = useState(false)
-    const [priceSort, setPriceSort] = useState(false)
-		
     function sortHandler(type){
-        let auxState
-        setInicio(0)
-
-        type==='reviews'?auxState=reviewSort:type==='reviews'?auxState=scoreSort:auxState=priceSort
-        setObj(currentobj.sort((a, b)=>a[type] < b[type] ? (auxState?-1:1) : a[type] > b[type]?(auxState?1:-1):0))
-        type==='reviews'?setReviewSort(!reviewSort):type==='reviews'?setScoreSort(!scoreSort):setPriceSort(!priceSort)
+        let auxState;
+        setInicio(0);
+        type === 'reviews' ? auxState = reviewSort : type === 'reviews' ? auxState= scoreSort: auxState= priceSort
+        setCurrentItems(currentItems.sort((a, b)=>a[type] < b[type] ? (auxState?-1:1) : a[type] > b[type]?(auxState?1:-1):0))
+        type === 'reviews' ? setReviewSort(!reviewSort):type==='reviews'?setScoreSort(!scoreSort):setPriceSort(!priceSort)
     }   
-    
-    function typeHandler(event){
-        setCurrentType(event.target.value)
-    }
 
     return (
         <>
         <Navbar/>
-           
-        <div className='searchContainer'>
-            <div className='searchBar'>
+        <div className={s.searchContainer}>
+            <div className={s.searchBar}>
                 <form onSubmit={event=>{
                     event.preventDefault()
                     newSearch(input)
                 }}>
-                    <div className='searchField'>
-                        <div className='searchInput'>
-                            <input type='text' id='addInput' placeholder={`Search for ${currentType}`} onChange={event=>{
-                                newInput(event.target.value)
-                            }}/>
-                            <input type='submit' id='submitInput' value='submit'/>
+                    <div className={s.searchField}>
+                        {/*Esto se debe mejorar : Son los filtros */}
+                        <div className={s.filters}>
+                            <button onClick={() => sortHandler('reviews')}>
+                                Reviews
+                            </button>
+                            <button onClick={() => sortHandler('rating')}>
+                                Score
+                            </button>
+                            <button onClick={() => sortHandler('price')}>
+                                Price
+                            </button>
+                            <Select callback={ (e) => setCurrentType(e.target.value)} options={[{value:'Routines'},{value:'Diets'},{value:'Nutritionists'},{value:'Personal Trainers'}]}/>
                         </div>
-                    
-                        
-                        <div className='filters'>
-                        <button onClick={() => sortHandler('reviews')}>
-                            Reviews
-                        </button>
-                        <button onClick={() => sortHandler('rating')}>
-                            Score
-                        </button>
-                        <button onClick={() => sortHandler('price')}>
-                            Price
-                        </button>
-                        <Select callback={typeHandler} options={[{value:'routines'},{value:'nutritionists'},{value:'trainers'}]}/>
+                        <div className={s.searchInput}>
+                            {/* Esta es el input de busqueda */}
+                            <input type='text' className={s.addInput} placeholder={'Search items'} onChange={ e => { newInput( e.target.value ) }}/>
+                            <input type='submit' className={s.submitInput} value='Submit'/>
                         </div>
                     </div>
                 </form>
-                    <div style={{width:'80%'}}><h2 style={{height:'2rem', margin:'5px', marginLeft:'10px'}}>{search?`Resultados para ${search}`:''}</h2></div>
-                
-                
-		    </div>
+                <div className={s.resultText}> <h2>{search?`Resultados para: ${search}`:''}</h2> </div>
+            </div>
 
-            
-            <div id='paginationContainer'>
-                {current.map(element =>
-                    <Link to='/routineDetail' style={{ textDecoration: 'none', color: 'unset', margin: '10px' }}>
+            <div id='paginationContainer' className={s.resultContainer}>  
+            {/* Aqui es donde se muestra todo */}
+                {currentType === 'Nutritionists' || currentType.includes('Trainers') ? current.map(element =>
+                    <Link to={`/userDetail/${element.id}`} style={{ textDecoration: 'none', color: 'unset', margin: '10px' }}>
+                        <UserCard
+                            id= {element.id}
+                            profileImg={element.profile_img}
+                            username={element.username}
+                            email={element.email}
+                            gender={element.gender}
+                            country={element.country}
+                            nutritionist={element.is_nutritionist}
+                            PTrainer={element.is_personal_trainer}
+                        />
+                    </Link>
+                )
+                : current.map(element =>
+                    <Link to={`/routineDetail/${element.id}`} style={{ textDecoration: 'none', color: 'unset', margin: '10px' }}>
                         <RoutineCard
-                            //name='Roberto' 
-                            author={element.author}
-                            authorTitle={element.authorTitle}
+                            avatar={element.owner?.profile_img}
+                            author={element.owner?.username}
+                            email={element.owner?.email}
+                            title= {element.title}
                             rating={element.rating}
                             reviews={element.reviews}
                             price={element.price}
                             image={element.image}
-                            avatar={element.avatar}
                         />
                     </Link>
                 )}
+
             </div>
-            <button onClick={() => inicio!==0 ? setInicio(inicio-8) : null}>previous</button>
-            <button onClick={() => inicio+8 < elementosDeTest ? setInicio(inicio+8) : null}>next</button>
+
+            <div className={s.pagination}>
+                <button onClick={() => inicio !== 0 ? setInicio(inicio-8) : null}>Previous</button>
+                <button onClick={() => inicio + 8 < currentItems.length ? setInicio(inicio+8) : null}>Next</button>
+            </div>
         </div>
         </>
     );

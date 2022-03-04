@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUserRoutines } from '../../Redux/apiCalls/rutinesCall/getUserRoutines';
 import { Navbar } from '../../components';
+import { getUserRoutines } from '../../Redux/apiCalls/rutinesCall/getUserRoutines';
 import RoutineBox from './RoutineBox/RoutineBox';
-import RoutineForm from './RoutineForm/RoutineForm';
+import RoutineCreate from './RoutineCreate/RoutineCreate';
 import style from './Routines.module.scss';
 
 // const mockRoutine = {
@@ -43,18 +43,11 @@ export default function Routines() {
 			//Arreglar ruta del back para que traiga a todos los usuarios del producto
 			//await getUserRoutines(dispatch,user.userId,user.accessToken);
 			await setRoutines(routinesFetch);
-		}
+		};
 		fetchRoutines();
 		console.log(routines);
-	},[])
+	}, []);
 	
-
-	const toggleForm = () => {
-		let form = document.querySelector('#routineForm');
-		form.classList.toggle(`${style.formOpen}`);
-		form.classList.toggle(`${style.formClose}`);
-	};
-
 	return (
 		<div className={style.page}>
 			<Navbar />
@@ -63,15 +56,12 @@ export default function Routines() {
 					<div className={style.container}>
 						{routines.map((routine, index) => (
 							<div key={index} className={style.click}>
-							<RoutineBox {...routine} />		
+								<RoutineBox {...routine} />		
 							</div>
 						))}
 					</div>
 				</div>
-				<button className={style.create} onClick={toggleForm}>Create Routine</button>
-				<div className={style.formClose} id='routineForm'>
-					<RoutineForm />
-				</div>
+				<RoutineCreate />
 			</div>
 		</div>
 	);
