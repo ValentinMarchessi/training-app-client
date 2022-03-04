@@ -31,15 +31,15 @@ export default function UserPanel() {
 			<Dropdown ToggleElement={<MenuIcon/>} align="right">
 				<div className={style.item}>
 					<HistoryIcon />
-					<a>History</a>
+					<button>History</button>
 				</div>
 				<div className={style.item}>
 					<SettingsIcon />
-					<a onClick={handleSettings}>Settings</a>
+					<button onClick={handleSettings}>Settings</button>
 				</div>
 				<div id={style.logout} className={style.item}>
 					<LogoutIcon />
-					<a onClick={handleLogOut}>Log Out</a>
+					<button onClick={handleLogOut}>Log Out</button>
 				</div>
 			</Dropdown>
 		</div>
