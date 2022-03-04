@@ -10,7 +10,8 @@ import { postCreateTransaction } from '../../../Redux/apiCalls/transaction/creat
 import StripeCheckout from 'react-stripe-checkout';
 import Logo from '../../../assets/images/dep.jpg';
 import { baseUrlDev } from '../../../config/requestMethod/publicRequest';
-import { style } from '@mui/system';
+import Success from './Success';
+import Error from './Error';
 const KEY = 'pk_test_51KTHNqKxK712fkWkpddjvo4wS93yK5sVKG0cUZ5bLcIsxXc5J8UUfToFNZYXf09altAHfam57Sgxi8dfKQIil2r600FLkfDU2C';
 
 export default function Checkout() {
@@ -123,9 +124,5 @@ export default function Checkout() {
 				</div>
 			</div>
 		</>
-	) : (
-		<div className={style.result}>
-			<h1>{transaction.success ? 'Your purchase has been processed successfully' : 'An error has ocurred during your purchase'}</h1>
-		</div>
-	);
+	) : (transaction.success ? <Success /> : <Error />);
 }
