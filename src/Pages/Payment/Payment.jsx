@@ -11,7 +11,7 @@ import Logo from '../../assets/images/dep.jpg';
 import { useDispatch, useSelector } from 'react-redux';
 import { postCreateTransaction } from '../../Redux/apiCalls/transaction/createTransaction';
 import { Avatar, Navbar } from '../../components';
-const KEY = 'pk_test_51KTHNqKxK712fkWkpddjvo4wS93yK5sVKG0cUZ5bLcIsxXc5J8UUfToFNZYXf09altAHfam57Sgxi8dfKQIil2r600FLkfDU2C';
+const { PUBlIC_STRIPE_KEY } = process.env;
 
 export default function Payment() {
 	{
@@ -71,7 +71,7 @@ export default function Payment() {
 		description: 'Your total is $5.40',
 		amount: 540,
 		token: onToken,
-		stripeKey: KEY,
+		stripeKey: PUBlIC_STRIPE_KEY,
 	};
 
     return (
@@ -115,7 +115,7 @@ export default function Payment() {
 					{/* BOTON PARA REALIZAR EL COBRO CON STRIPE */}
 					<div id={styles.checkoutButton}>
 						<StripeCheckout {...stripeOptions} billingAddress shippingAddress>
-							<button>Continue to checkout</button>
+							<button>Buy</button>
 						</StripeCheckout>
 					</div>
 				</div>

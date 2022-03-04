@@ -1,0 +1,92 @@
+@use '../../../config/mixins/' as Mixin;
+@use '../../../config/colors/' as Color;
+
+.details {
+	.header {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+
+		h4 {
+			font-weight: 500;
+			font-style: italic;
+		}
+
+		#merit {
+			display: flex;
+			gap: 5px;
+			#rating {
+				font-weight: 700;
+			}
+			#reviews {
+				font-weight: 300;
+			}
+		}
+		margin-bottom: 20px;
+	}
+	#routineCard {
+		position: relative;
+		#user {
+			margin: 10px;
+			padding: 8px 15px;
+			display: flex;
+			gap: 5px;
+			background-color: Color.$primary-bg;
+			position: absolute;
+			border-radius: 10px;
+
+			.info {
+				align-self: flex-end;
+				#name {
+					font-size: 25px;
+				}
+				#title {
+					font-size: 12px;
+				}
+			}
+		}
+		#routineImage {
+			border-radius: 20px;
+			width: 100%;
+			height: 100%;
+		}
+	}
+}
+
+.checkout {
+	display: flex;
+	flex-direction: column;
+	background-color: #23222b;
+	padding: 30px;
+	border-radius: 5px;
+	h1 {
+		margin-bottom: 30px;
+	}
+	#pricing {
+		width: 90%;
+		margin: auto;
+		display: grid;
+		gap: 17px;
+		grid-template-columns: auto auto;
+		justify-content: space-between;
+		.subtle {
+			font-weight: 300;
+		}
+
+		hr {
+			border: 1px solid #343434;
+			width: 80%;
+			grid-row: 3;
+			grid-column: 1 / span 2;
+		}
+	}
+
+	button {
+		@include Mixin.blue-button;
+	}
+
+	#checkoutButton {
+		align-self: center;
+		margin-top: 50px;
+	}
+}
