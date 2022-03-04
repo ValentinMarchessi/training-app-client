@@ -34,15 +34,11 @@ export default function LandingPage(){
     return (
         <div className='landingContainer'>
             <h1 className='title'>Training app</h1>
-
-
             <div id='caroussel'>
                 <img className='background' src={background} alt='1'/>
                 <img className='background' src={test1} alt='2'/>
                 <img className='background' src={test2} alt='3'/>
-
             </div>
-
             <div className='choices'>
                 <div id='optionselect'>
                     <h2 id='logInText' onClick={() => {
@@ -50,7 +46,6 @@ export default function LandingPage(){
                         document.getElementById('logInText').style.borderBottom = '10px solid #3f59b8'
                         document.getElementById('signUpText').style.borderBottom = '10px solid transparent'
                     }}>Log In</h2>
-
                     <hr />
                     <h2 id='signUpText' onClick={() => {
                         autoScroll('authform', 'right')
