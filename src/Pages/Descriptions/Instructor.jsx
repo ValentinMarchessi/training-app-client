@@ -1,25 +1,34 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
+import React, { useEffect,useState  } from 'react'
+import { Link, useParams  } from 'react-router-dom';
 import style from './Instructor.module.scss';
 import { home } from '../../assets/images/icons';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUserRoutines } from '../../Redux/apiCalls/rutinesCall/getUserRoutines';
+import { getDietsById } from '../../Redux/apiCalls/dietsCall/getDietsById';
+import { getTransactions } from '../../Redux/apiCalls/transaction/getTransactions';
 
 export default function Instructor() {
 
-	const routine1={price:20,id:1,title:"Abdominales",image:"https://media.vogue.es/photos/5fbff0d1f19b6599598e2b90/4:3/w_4167,h_3125,c_limit/tabla%20de%20ejercicios6_Mesa%20de%20trabajo%201%20copia%205.jpg"}
-	const routine2={price:30,id:2,title:"Intensiva",image:"https://st2.depositphotos.com/1077687/6264/v/600/depositphotos_62644855-stock-illustration-fitness-design-vector-illustration.jpg"}
-	const diet1={price:10,id:3,title:"Vegana",image:"https://i.blogs.es/6ce7cc/istock-630007208/1366_2000.jpeg"}
-	const diet2={price:70,id:5,title:"Libre de Gluten",image:"https://diariolibre.blob.core.windows.net.optimalcdn.com/images/documents/10157/0/image_content_8061400_20170330101130.jpg"}
-	const user={
-		username:"Pedro Venitez",
-		profile_img:"http://imgs.globovision.com/41T1b5hiCk6bhh4IC5ag2FFeeTk=/847x0/smart/9578fca5d59845cf84546777e80164b1",
-		description:"Soy entrenador especializado en...sasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasad  dsadasdas  dasdsad dsadsadsadsadsadsadsadsadasdsadsadsad",
-		Routines:[routine1,routine2],
-		Diets:[diet1,diet2],
-		Transactions:[{},{},{}],
-		is_nutritionist:true,
-		is_personal_trainer:true,
+	const user=useSelector(state=>state.user.currentUser);
+	const instructorId=useParams().instructorId;
+	const routines=useSelector(state=>state.routines.routinesByUser);
+	const transactions=useSelector(state=>state.transactions.transactions);
+	const diets=useSelector(state=>state.diets.dietsById);
+	const [products,setProducts]=useState([]);
+	const dispatch=useDispatch();
+	useEffect(()=>{
+		getUserRoutines(dispatch,instructorId,user.accessToken);
+		getDietsById(dispatch,instructorId,user.accessToken);
+		getTransactions(dispatch,instructorId,user.userId);
+		setProducts([...routines,...diets]);
+	},[])
+	const handleChange= (e)=>{
+		let value=e.target.value
+		value==="Routines"?
+		setProducts(routines)
+		:value==="Diets"?setProducts(diets)
+		:setProducts([...routines,...diets]);
 	}
-
     return (
 		<div className={style.page}>
 			<div className={style.header}>
@@ -38,21 +47,33 @@ export default function Instructor() {
 			<div className={style.totalStudents}>
 				<div>
 					<p>Total students</p>
-				    <span>{user.Transactions.length}</span>
+				    <span>{transactions?.length}</span>
 				</div>
 				<div>
 					<p>Valoraciones</p>
 					<div className={style.points}>
-						<h3>2 <img src="/static/media/star.69f119269b8ac1b0e0ea69dbe6655d48.svg" alt="points"/></h3>
+						<h3>
+						    {products?.reduce((acc,product)=>acc+=product.Reviews?.length,0)}
+						</h3>
 					</div>
 					
 				</div>
 			</div>
 			<h2>About</h2>
-			<p className={style.description}>{user.description}</p>
-			<h2>My courses ({[...user.Routines,...user.Diets].length})</h2>
+			<p className={style.description}>{user?.description||"No have a description..."}</p>
+			<h2>My products ({products?.length})</h2>
+			<form>
+                <div className={style.contentSelect}>
+                    <select onChange={handleChange}> 
+						<option value="default">All Products</option>
+						<option value="Routines">Routines</option>
+						<option value="Diets">Diets</option>
+                    </select>
+                    <i></i>
+                </div>
+            </form>
 			<div className={style.courses}>
-				{[...user.Routines,...user.Diets].map((product,i)=>
+				{products?.map((product,i)=>
 					<div className={style.product} key={i}>
 						<Link to={`/routines/info/${product.id}`}>
 							<img className={style.productImg} src={product.image}/>
@@ -61,7 +82,11 @@ export default function Instructor() {
 								<div className={style.containerPoints}>
 									<div className={style.points}>
 										<img src="/static/media/star.69f119269b8ac1b0e0ea69dbe6655d48.svg" alt="points"/>
-										<h3>1/5</h3>
+										<h3>
+										{
+											product.Reviews?.reduce((acc,{points})=>acc+=points,0)/product.Reviews?.length||0
+										}/10
+										</h3>
 									</div>
 									<div>
 										<h4>{product.price} $</h4>
