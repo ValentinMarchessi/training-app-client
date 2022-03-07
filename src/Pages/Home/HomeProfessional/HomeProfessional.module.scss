@@ -2,35 +2,3 @@
       display: flex;
       margin-top: 25px;
 }
-
-
-.buttonContainer{
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      position: absolute;
-      right: 50px;
-}
-
-.newsContainer{
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      width: 40%;
-      max-height: 80vh;
-      overflow-y: auto;
-}
-
-.newsContainer::-webkit-scrollbar{
-      display: none;
-}
-
-
-@media (min-width: 1600px ){
-      .buttonContainer{
-            right: 150px;
-      }
-      .newsContainer{
-            left: 150px;
-      }
-}
