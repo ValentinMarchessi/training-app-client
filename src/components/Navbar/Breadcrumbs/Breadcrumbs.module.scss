@@ -22,6 +22,17 @@
     }
 
     #divider{
-      height:50%;
+      height:100%;
+      border-color: rgb(255, 255, 255);
+      border-right:0;
     }
+
+    #div{
+      display: flex !important;
+      flex-direction: row;
+      align-items: center;
+      height: 100%;
+    }
+    
 }
+

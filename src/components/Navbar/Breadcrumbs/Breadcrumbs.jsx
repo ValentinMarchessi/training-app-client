@@ -14,6 +14,7 @@ export default function Breadcrumbs() {
 			<Link to="/home">
 				<HomeIcon className={style.homeItem} />
 			</Link>
+			<hr id={style.divider} />
 			{locations.map((e,i) => (
 				<Fragment key={`fragment-${i}`}>
 					<hr key={`divider-${i}`} id={style.divider} />

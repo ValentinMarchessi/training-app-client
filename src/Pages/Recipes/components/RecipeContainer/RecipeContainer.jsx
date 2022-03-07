@@ -34,10 +34,9 @@ const RecipeContainer = ( {recipe, user, onClick} )=>{
                               <h4 className={s.elementData}>{recipe.grs}</h4>
                         </div>
                   </div>
-                  <button className={s.deleteButton} onClick={ () =>  {
-                              deleteRecipes(dispatch, user.userId, recipe.id, user.token) 
-                              window.location.reload()
-                        }}>Delete</button>
+                  <button className={s.deleteButton} onClick={()=>{deleteRecipes(dispatch, user.userId, recipe.id, user.token)}}>
+                        Delete
+                  </button>
                   <button className={s.editButton} onClick={()=> onClick(true,recipe)}>Edit</button>
             </div>
 }
