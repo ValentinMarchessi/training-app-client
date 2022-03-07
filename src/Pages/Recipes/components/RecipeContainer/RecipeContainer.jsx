@@ -7,9 +7,8 @@ import s from './RecipeContainer.module.scss';
 //RECIBE EL OBJETO COMPLETO DE LA RECETA
 const RecipeContainer = ( {recipe, user, onClick} )=>{
       const dispatch = useDispatch();
-
       return <div className={s.container} key={recipe.id}>
-                  {recipe.imagen ? <img src={recipe.image} alt={'Recipe Imagen'}/> : <div className={s.fakeImage}/>}
+                  {recipe.image ? <img src={recipe.image} alt={'Recipe Imagen'} className={s.image}/> : <div className={s.fakeImage}/>}
                   <h1 className={s.title}>{recipe.title}</h1>
                   <div className={s.nutritionalInfo}>
                         <div className={s.element}>

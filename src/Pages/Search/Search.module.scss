@@ -4,23 +4,27 @@
 
 .page {
 	@include Mixins.page;
-    
-    .search{
-        display: flex;
-		justify-content: space-between;
-        .fields{
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-			gap: 10px;
-
-			button{
-				@include Mixins.blue-button;
-			}
-        }
-    }
+	padding-top: 1px;
+	padding-bottom: 20px;
+	background-color: c.$container-bg;
+	border-radius: 4px;
 }
+.search{
+	display: flex;
+	justify-content: space-between;
+	margin: 0 40px;
+	margin-bottom: 20px;
+.fields{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+		gap: 10px;
 
+		button{
+			@include Mixins.blue-button;
+		}
+	}
+}
 .resultContainer {
 	width: 100%;
 	display: flex;
@@ -37,8 +41,8 @@
 	width: fit-content;
 	margin: auto;
 	margin-top: 20px;
-
 	button {
 		@include Mixins.blue-button;
+		margin-bottom: 20px;
 	}
 }

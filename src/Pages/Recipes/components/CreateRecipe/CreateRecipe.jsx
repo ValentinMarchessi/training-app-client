@@ -14,7 +14,6 @@ const CreateRecipe = ( { object } ) => {
     const userId = useSelector(state => state.user?.currentUser.userId);
     const token = useSelector(state => state.user?.currentUser.accessToken)
 
-    console.log(object)
 
     //Estado para guardar la newReceta para dispachar
     const [recipe, setRecipe] = useState({
@@ -29,8 +28,6 @@ const CreateRecipe = ( { object } ) => {
 
 
     const handleChange = (target) =>{
-        console.log(target.name)
-        console.log(target.value)
         setRecipe(prev => {
             return {
                 ...prev,
@@ -81,7 +78,6 @@ const CreateRecipe = ( { object } ) => {
                         <div className={s.contentItem}>
                             <label>Kcal</label>
                             <input type='number' 
-                                className={s.inputCreateRutine}
                                 name='kcal'
                                 value={recipe.kcal}
                                 placeholder='0'
@@ -93,7 +89,6 @@ const CreateRecipe = ( { object } ) => {
                         <div className={s.contentItem}>
                             <label>Grs per plate</label>
                             <input type='number' 
-                                className={s.inputCreateRutine}
                                 name='grs'
                                 value={recipe.grs}
                                 placeholder='0'
@@ -105,7 +100,6 @@ const CreateRecipe = ( { object } ) => {
                         <div className={s.contentItem}>
                             <label>% Carbohydrates</label>
                             <input type='number'
-                                className={s.inputCreateRutine}
                                 name='carbohydrates'
                                 value={recipe.carbohydrates}
                                 placeholder='0'
@@ -117,7 +111,6 @@ const CreateRecipe = ( { object } ) => {
                         <div className={s.contentItem}>
                             <label>% Grease</label>
                             <input type='number' 
-                                className={s.inputCreateRutine}
                                 name='grease'
                                 value={recipe.grease}
                                 placeholder='0'
@@ -129,7 +122,6 @@ const CreateRecipe = ( { object } ) => {
                         <div className={s.contentItem}>
                             <label>% Proteins</label>
                             <input type='number' 
-                                className={s.inputCreateRutine}
                                 name='proteins'
                                 value={recipe.proteins}
                                 placeholder='0'

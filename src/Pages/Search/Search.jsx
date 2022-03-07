@@ -90,30 +90,31 @@ export default function Search() {
         setCurrentItems( aux.sort((a, b) => a[type] < b[type] ? ( auxState ? -1 : 1) : a[type] > b[type] ? ( auxState ? 1:-1 ) : 0) );
         type === 'reviews' ? setReviewSort( !reviewSort ) : type === 'rating' ? setRatingSort( !ratingSort ) : setPriceSort( !priceSort );
     };
+    console.log('Inicio:',inicio / 9)
+    console.log('CurrentItem:', Math.round(currentItems.length / 9) );
 
     return (
         <>
         <Navbar/>
-        <div className={s.page}>
-            <div className={s.search}>
-                <div className={s.fields}>
-                    {/*Esto se debe mejorar : Son los filtros */}
-                    <button onClick={() => sortHandler('reviews')}>
-                        Reviews
-                    </button>
-                    <button onClick={() => sortHandler('rating')}>
-                        Raiting
-                    </button>
-                    <button onClick={() => sortHandler('price')}>
-                        Price
-                    </button>
-                </div>
-                <Select callback={ (e) => setCurrentType(e.target.value)} options={[{value:'Routines'},{value:'Diets'},{value:'Nutritionists'},{value:'Personal Trainers'}]}/>
-                {/* Esta es el input de busqueda */}
-                <Searchinput callback={ setCurrentItems } setInput={ newInput } type={ currentType }/>
+        <div className={s.search}>
+            <div className={s.fields}>
+                {/*Esto se debe mejorar : Son los filtros */}
+                <button onClick={() => sortHandler('reviews')}>
+                    Reviews
+                </button>
+                <button onClick={() => sortHandler('rating')}>
+                    Raiting
+                </button>
+                <button onClick={() => sortHandler('price')}>
+                    Price
+                </button>
             </div>
-            <h2 id={s.results}>{search && `Resultados para: ${search}`}</h2>
+            <Select callback={ (e) => setCurrentType(e.target.value)} options={[{value:'Routines'},{value:'Diets'},{value:'Nutritionists'},{value:'Personal Trainers'}]}/>
+            {/* Esta es el input de busqueda */}
+            <Searchinput callback={ setCurrentItems } setInput={ newInput } type={ currentType }/>
+        </div>
 
+        <div className={s.page}>
             <div id='paginationContainer' className={s.resultContainer}>  
             {/* Aqui es donde se muestra todo */}
                 {currentType === 'Nutritionists' || currentType.includes('Trainers') ? current.map( element =>
@@ -157,12 +158,11 @@ export default function Search() {
                     </Link>
                 )}
             </div>
+        </div>
 
-            <div className={s.pagination}>
-                <button onClick={() => inicio !== 0 ? setInicio(inicio-8) : null}>Previous</button>
-                <button onClick={() => inicio + 8 < currentItems.length ? setInicio(inicio+9) : null}>Next</button>
-            </div>
-
+        <div className={s.pagination}>
+                { inicio === 0 ? null : <button onClick={() => inicio !== 0 ? setInicio(inicio - 9) : null}> Previous </button> }
+                { inicio / 9 === Math.round(currentItems.length / 9) ? null : <button onClick={() => inicio + 9 < currentItems.length ? setInicio(inicio+9) : null}> Next </button> }
         </div>
         </>
     );
