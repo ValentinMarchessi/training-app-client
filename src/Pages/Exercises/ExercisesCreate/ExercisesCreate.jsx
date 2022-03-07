@@ -2,9 +2,13 @@ import style from './ExercisesCreate.module.scss';
 import ExerciseForm from '../ExerciseForm/ExerciseForm';
 import { Overlay } from '../../../components';
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllExercises } from '../../../Redux/apiCalls/exercisesCall/getAllExercises';
 
 export default function ExercisesCreate() {
-    const [overlay, setOverlay] = useState(false)
+	const { userId, accessToken } = useSelector(store => store.user.currentUser);
+	const [overlay, setOverlay] = useState(false)
+	const dispatch = useDispatch();
     const overlayStyle = {
         backgroundColor: '#201f24c3',
 	};
@@ -12,7 +16,7 @@ export default function ExercisesCreate() {
     const handleOverlay = {
         open: () => setOverlay(true),
         close: () => setOverlay(false),
-    }
+	}
 
     return (
 		<>
