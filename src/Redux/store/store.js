@@ -38,7 +38,7 @@ const rootReducer = combineReducers({
     diets: dietsReducer,
     nutritionists: allUsersNutritionitsReducer,
     trainers: allUsersTrainersReducer,
-    transaction: transactionReducer,
+    transactions: transactionReducer,
     news : newsReducer,
 })
 
@@ -55,19 +55,20 @@ export const store = configureStore({
 });
 
 export let persistor = persistStore(store)
-
-export default configureStore({
-    reducer: {
-        user: userLoginReducer,
-        register: registerReducer,
-        updateUser: updateUserReducer,
+/* 
+configureStore({
+	reducer: {
+		user: userLoginReducer,
+		register: registerReducer,
+		updateUser: updateUserReducer,
         diets: dietsReducer,
-        recipes : recipesReducer,
-        exercises: exercisesReducer,
-        routines: routinesReducer,
-        allUsers: allUsersReducer,
-        allUsersTrainer: allUsersTrainersReducer,
-        allUsersNutritionits: allUsersNutritionitsReducer,
-        news : newsReducer
-    },
-});
+        recipes: recipesReducer,
+		exercises: exercisesReducer,
+		routines: routinesReducer,
+		allUsers: allUsersReducer,
+		allUsersTrainer: allUsersTrainersReducer,
+		allUsersNutritionits: allUsersNutritionitsReducer,
+		news: newsReducer,
+		transactions: transactionReducer,
+	},
+}); */

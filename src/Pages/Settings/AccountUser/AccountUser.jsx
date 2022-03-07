@@ -62,7 +62,7 @@ export default function AccountUser() {
 
 	function handleSaveChanges(e) {
 		e.preventDefault();
-		updateUser(dispatch, accessToken, userId, { username: state.username, email: state.email, password: state.password })
+		updateUser(dispatch, accessToken, userId, { username: state.username, email: state.email, password: state.newPassword })
 		dispatch(logoutUser(user));
 		navigate('/');
 	}

@@ -1,4 +1,15 @@
-
+@use '../../../config/mixins/' as Mixins;
+.page{
+    @include Mixins.page;
+    .header {
+        @include Mixins.header;
+      }
+    .nameExercise {
+        font-size: 17px;
+        line-height: 17px;
+        color: black;
+    }
+}
 .container {
     width: 100%;
     text-align: center;
@@ -79,13 +90,11 @@
 .contentSelect:hover i{
 	margin-top: 3px;
 }
-.nameExercise {
-    color: #2E2C3B;
-    font-size: 17px;
-    line-height: 17px;
-}
+
 
 .exit {
+    position: absolute;
+    top: 390px;
     width: 30%;
     background-color: #3F59B8;
     color: white;

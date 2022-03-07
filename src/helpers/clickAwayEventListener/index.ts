@@ -5,20 +5,20 @@ function clickAwayEventListener(element: Element, callback: Function) {
 	let onFocus = false;
 	const handleClickAway = (event: Event) => {
 		if (element.contains(event.target)) {
-			console.log(`${elementName} on focus.`);
+			// console.log(`${elementName} on focus.`);
 			onFocus = true;
 		}
 		if (!event.composedPath().includes(element) && onFocus) {
-			console.log(`${elementName} lost focus, triggering callback.`);
+			// console.log(`${elementName} lost focus, triggering callback.`);
 			element.value ? callback(element.value) : callback();
 			onFocus = !onFocus;
 		}
 	};
-	console.log(`Adding clickAwayEventListener on ${elementName}.`);
+	// console.log(`Adding clickAwayEventListener on ${elementName}.`);
 	document.addEventListener(`click`, handleClickAway);
 
 	return () => {
-		console.log(`Removing clickAwayEventListener on ${elementName}.`);
+		// console.log(`Removing clickAwayEventListener on ${elementName}.`);
 		document.removeEventListener(`click`, handleClickAway);
 	};
 }

@@ -1,17 +1,56 @@
 import { createSlice } from "@reduxjs/toolkit";
-
+//agrega routinesDetails
 const routinesSlice = createSlice({
   name: "routines",
   initialState: {
     allRoutines: [],
     routinesById: {},
+    routinesDetails: {},
+    users:[],
     createdRoutines: {},
     updatedRoutines: {},
     deletedRoutines: {},
+    routinesByUser: [],
     isFetching: false,
     error: false,
   },
   reducers: {
+    //GET users Routine
+    getAllUsersRoutinesStart: (state)=>{
+      state.isFetching = true;
+    },
+    getAllUsersRoutinesSuccess: (state, action)=>{
+      state.isFetching = false;
+      state.routinesByUser = [...state.users,action.payload];
+    },
+    getAllUsersRoutinesFailure: (state)=>{
+      state.isFetching = true;
+      state.error = true;
+    },
+    // CREATE Routine
+    createRoutinesStart: (state)=>{
+      state.isFetching = true;
+    },
+    createRoutinesSuccess: (state,action)=>{
+      state.isFetching = false;
+      state.routinesByUser = action.payload;
+    },
+    createRoutinesFailure: (state)=>{
+      state.isFetching = true;
+      state.error = true;
+    },
+    // GET USER Routines
+    getUserRoutinesStart: (state)=>{
+      state.isFetching = true;
+    },
+    getUserRoutinesSuccess: (state,action)=>{
+      state.isFetching = false;
+      state.routinesByUser = action.payload;
+    },
+    getUserRoutinesFailure: (state)=>{
+      state.isFetching = true;
+      state.error = true;
+    },
     // GET ALL Routines
     getAllRoutinesStart: (state) => {
       state.isFetching = true;
@@ -39,16 +78,15 @@ const routinesSlice = createSlice({
       state.isFetching = true;
       state.error = true;
     },
-
-    // CREATE Routines
-    createRoutinesStart: (state) => {
+    //GET Details ID Routines
+    getRoutinesDetailsStart: (state) => {
       state.isFetching = true;
     },
-    createRoutinesSuccess: (state, action) => {
+    getRoutinesDetailsSuccess: (state, action) => {
       state.isFetching = false;
-      state.createdRoutines = action.payload;
+      state.routinesDetails = action.payload;
     },
-    createRoutinesFailure: (state) => {
+    getRoutinesDetailsFailure: (state) => {
       state.isFetching = true;
       state.error = true;
     },
@@ -85,9 +123,18 @@ export const {
   getAllRoutinesStart,
   getAllRoutinesSuccess,
   getAllRoutinesFailure,
+  getUserRoutinesStart,
+  getUserRoutinesSuccess,
+  getUserRoutinesFailure,
+  getAllUsersRoutinesStart,
+  getAllUsersRoutinesSuccess,
+  getAllUsersRoutinesFailure,
   getRoutinesByIdStart,
   getRoutinesByIdSuccess,
   getRoutinesByIdFailure,
+  getRoutinesDetailsStart,
+  getRoutinesDetailsSuccess,
+  getRoutinesDetailsFailure,
   createRoutinesStart,
   createRoutinesSuccess,
   createRoutinesFailure,

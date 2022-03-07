@@ -2,19 +2,22 @@ $card-width: 350px;
 $card-height: 250px;
 $profile-height: 40px;
 $profile-margin: 10px;
-$profile-padding: 4px;
+$profile-padding: 6px;
 $body-height: 200px;
 
 .card{
-    p,h1,h2,h3,span,strong{
+    display: flex;
+    position: relative;
+    flex-direction:column;
+    height: $card-height;
+    width: $card-width;
+    border-radius: 5px;
+
+    p,h1,h2,strong {
         height: fit-content;
         margin: 0;
     }
 
-    height: $card-height;
-    width: $card-width;
-    display: flex;
-    flex-direction:column;
 
     .profile{
         width: fit-content;
@@ -23,13 +26,14 @@ $body-height: 200px;
         display: flex;
         margin: $profile-margin;
         padding: $profile-padding;
-        gap: 5px;
+        gap: 20px;
         text-align: left;
         
         img{
             border-radius: 50%;
             width: $profile-height;
             height: inherit;
+            object-fit: cover;
         }
 
         .info{
@@ -51,6 +55,8 @@ $body-height: 200px;
     .body{
         width: inherit;
         height: 200px;
+        border-radius: 5px;
+        text-align: center;
         img{
             width: inherit;
             object-fit: cover;
@@ -58,9 +64,12 @@ $body-height: 200px;
         }
         h1{
             font-size: x-large;
-            margin: 0 10px;
             position: absolute;
+            right: 0;
+            left: 0;
             top: 150px;
+            color: white;
+            font-family: 'Montserrat';
         }
     }
 
@@ -73,6 +82,7 @@ $body-height: 200px;
         align-items: center;
         border-top: 1px #AFAFAF solid;
         padding: 0 10px;
+        border-radius: 5px;
 
         #merit{
             display:flex;

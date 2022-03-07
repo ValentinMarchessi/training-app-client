@@ -17,7 +17,6 @@ const excercisesSlice = createSlice({
       state.isFetching = true;
     },
     getAllExercisesSuccess: (state, action) => {
-      console.log(action);
       state.isFetching = false;
       state.allExercises = action.payload;
     },
@@ -85,6 +84,7 @@ export const {
   getAllExercisesStart,
   getAllExercisesSuccess,
   getAllExercisesFailure,
+  
   getExercisesByIdStart,
   getExercisesByIdSuccess,
   getExercisesByIdFailure,

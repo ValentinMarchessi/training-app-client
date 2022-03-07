@@ -6,11 +6,12 @@ import {
 
 //getAll Routines
 
-export const getAllRoutines = async (dispatch) => {
+export const getAllRoutines = async (dispatch,token) => {
     dispatch(getAllRoutinesStart());
     try {
-        const res = await baseUrlDev.get('routine');
+        const res = await baseUrlDev.get('routine', {headers:{token}});
         dispatch(getAllRoutinesSuccess(res.data));
+        return res.data
     } catch (err) {
         dispatch(getAllRoutinesFailure());
     }

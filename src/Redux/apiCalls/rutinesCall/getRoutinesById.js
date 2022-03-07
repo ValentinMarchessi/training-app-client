@@ -6,10 +6,10 @@ import {
   
 //get routines By Id
   
-export const getRoutinesById = async (dispatch, id) => {
+export const getRoutinesById = async (dispatch, id, token) => {
   dispatch(getRoutinesByIdStart());
   try {
-    const res = await baseUrlDev.get(`routine/get/${id.routineId}`);
+    const res = await baseUrlDev.get(`routine/get/${id}`,{headers: {token}});
     dispatch(getRoutinesByIdSuccess(res.data));
   } catch (err) {
     dispatch(getRoutinesByIdFailure());
