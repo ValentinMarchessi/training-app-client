@@ -33,7 +33,7 @@ const routinesSlice = createSlice({
     },
     createRoutinesSuccess: (state,action)=>{
       state.isFetching = false;
-      state.routinesByUser = [...state.routinesByUser,action.payload];
+      state.routinesByUser = action.payload;
     },
     createRoutinesFailure: (state)=>{
       state.isFetching = true;
@@ -45,7 +45,7 @@ const routinesSlice = createSlice({
     },
     getUserRoutinesSuccess: (state,action)=>{
       state.isFetching = false;
-      state.routinesByUser = [...state.routinesByUser,action.payload];
+      state.routinesByUser = action.payload;
     },
     getUserRoutinesFailure: (state)=>{
       state.isFetching = true;

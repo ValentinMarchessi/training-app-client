@@ -1,3 +1,4 @@
+@use "../../../config/colors/" as Color;
 .cont{
     display: grid;
     grid-template-columns: 65% 30%;
@@ -8,21 +9,22 @@
 .cont iframe {
     height: 300px;
 } 
+.info {
+    background-color: Color.$secondary-bg;
+    padding: 10%;
+    border-radius: 15px;
+    min-width: 100%;
+}
 .number{
-    position: absolute;
-    top: 40%;
-    right: 11.5%;
+    text-align: center;
     font-size: 30px;
 }
 .contNext{
     display: flex;
     justify-content: center;
-    align-content: center;
-    margin-top: 100%;
 }
 .next{
     width: 60%;
-    margin-top: 50px;
     background-color: #3F59B8;
     color: white;
     padding: 10px;

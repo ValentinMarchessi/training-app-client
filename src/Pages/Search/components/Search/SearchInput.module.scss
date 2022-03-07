@@ -1,33 +1,26 @@
 @use '../../../../config//colors//index.scss' as c ;
+@use '../../../../config/mixins/' as Mixins;
 
 .searchInput{
       display: flex;
-      position: absolute;
-      right: 100px;
-      height: 30px;
-      gap: 5px;
-      align-items: center;
-
+         
       .addInput{
             border: none;
-            border-radius: 8px;
-            height: 25px;
-            width: 200px;
+            border-radius: 10px 0px 0px 10px;
             font-family: 'Montserrat';
-            padding-left: 5px;
       }
       .addInput:focus{
             outline: none;
       }
-
+      
       .submitInput{
-            border: none;
-            padding: 10px;
-            border-radius: 8px;
-            background-color: c.$button-bg;
-            color: white;
+            @include Mixins.blue-button;
+            border-radius: 0 10px 10px 0;
+      }
+      
+      .addInput, .submitInput{
+            height: inherit;
             font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
+            padding: 10px;
       }
 }
