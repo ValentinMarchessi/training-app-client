@@ -12,7 +12,7 @@ export default function LandingPage(){
 
     const navigate=useNavigate()
     const location=useLocation()
-    
+
     useEffect(()=>{
         setTimeout(() => { 
             autoScroll('caroussel', 'right', 'loop', 2)//Hace el carrusel. Se bugea un poco, por ahí después lo cambie
@@ -30,7 +30,6 @@ export default function LandingPage(){
             autoScroll('authform', 'right')
         }
     }, [])
-
     return (
         <div className='landingContainer'>
             <h1 className='title'>Training app</h1>
@@ -50,7 +49,6 @@ export default function LandingPage(){
                         document.getElementById('logInText').style.borderBottom = '10px solid #3f59b8'
                         document.getElementById('signUpText').style.borderBottom = '10px solid transparent'
                     }}>Log In</h2>
-
                     <hr />
                     <h2 id='signUpText' onClick={() => {
                         autoScroll('authform', 'right')
@@ -67,7 +65,6 @@ export default function LandingPage(){
                     <AuthForm method={'register'} />
                 </div>
             </div>
-
         </div>
     )
 }
