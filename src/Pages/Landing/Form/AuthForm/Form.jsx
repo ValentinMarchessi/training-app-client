@@ -11,11 +11,17 @@ import { useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import { authentication } from '../../../../firebase/config-firestore/firabase';
 import { signInWithPopup, GoogleAuthProvider, FacebookAuthProvider } from 'firebase/auth'
+import { useAuth0 } from '@auth0/auth0-react'
 
 export default function AuthForm({ method, cb }) {
+    const { loginWithRedirect, logout, user, isAuthenticated } = useAuth0()
+
+
+    isAuthenticated && navigate('/home', { state: { ...user } })
+
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const user = useSelector(state => state.user.currentUser)
+    const selector = useSelector(state => state.user.currentUser)
 
     let [formData, setFormData] = useState({
         username: '',
@@ -27,8 +33,8 @@ export default function AuthForm({ method, cb }) {
     let [errors, setErrors] = useState({})
 
     useEffect(() => {
-        user&&navigate('/home')
-    }, [user, navigate, formData])
+        selector && navigate('/home')
+    }, [selector, navigate, formData])
 
     const Toast = Swal.mixin({
         toast: true,
@@ -53,25 +59,25 @@ export default function AuthForm({ method, cb }) {
             [event.target.name]: event.target.value
         }))
 
-        if(method==='login'&&event.target.name==='username'){ 
+        if (method === 'login' && event.target.name === 'username') {
             (/\S+@\S+\.\S+/.test(event.target.value))
-            ?   setFormData({
+                ? setFormData({
                     email: event.target.value,
-                    password:formData.password,
+                    password: formData.password,
                     empty: false
                 })
-            :   setFormData({
+                : setFormData({
                     username: event.target.value,
-                    password:(formData.password??''),
+                    password: (formData.password ?? ''),
                     empty: false
                 })
         }
-        else{
+        else {
             setFormData({
                 ...formData,
                 [event.target.name]: event.target.value,
                 empty: false
-            })     
+            })
         }
 
         setAlert(false)
@@ -81,14 +87,14 @@ export default function AuthForm({ method, cb }) {
 
     const handleSubmitClick = (e) => {
         e.preventDefault()
-        if ((!formData.username&&!formData.email) || !formData.password) {
+        if ((!formData.username && !formData.email) || !formData.password) {
             Toast.fire({
                 icon: 'info',
                 title: 'Invalid Credentials'
             })
         } else {
             if (method === 'login') loginUser(dispatch, formData)
-            
+
             if (method === 'register') navigate('/newUser', { state: { ...formData } })
         }
         setFormData({
@@ -109,17 +115,17 @@ export default function AuthForm({ method, cb }) {
         handleAlert()
     }, [alert, Toast])
 
-    
-    useEffect(()=>{//Para que los errores de input en los registros (password 8 caracteres etc) no aparezcan si la form está vacia
-        let activeErrors=Array.from(document.getElementsByClassName('active'))
-        let inactiveErrors=Array.from(document.getElementsByClassName('inactive'))
-        let inputs = document.querySelectorAll(method==='register'?'.authinput':null)
-        const validInputs = Array.from(inputs).filter( input => input.value === "");
+
+    useEffect(() => {//Para que los errores de input en los registros (password 8 caracteres etc) no aparezcan si la form está vacia
+        let activeErrors = Array.from(document.getElementsByClassName('active'))
+        let inactiveErrors = Array.from(document.getElementsByClassName('inactive'))
+        let inputs = document.querySelectorAll(method === 'register' ? '.authinput' : null)
+        const validInputs = Array.from(inputs).filter(input => input.value === "");
         //console.log(activeErrors)
-        (validInputs.length===4?activeErrors:inactiveErrors).forEach(e=>{
-            e.setAttribute('class',validInputs.length===4?'inactive':'active')
+        (validInputs.length === 4 ? activeErrors : inactiveErrors).forEach(e => {
+            e.setAttribute('class', validInputs.length === 4 ? 'inactive' : 'active')
         })
-    },[errors])
+    }, [errors])
 
 
     const singInWithGoogle = () => {
@@ -127,14 +133,14 @@ export default function AuthForm({ method, cb }) {
         signInWithPopup(authentication, provider)
             .then((res) => {
                 let data = {
-                    username: res.user.displayName,
-                    password: res.user.uid,
-                    email: res.user.email,
-                    empty: false 
+                    username: res.selector.displayName,
+                    password: res.selector.uid,
+                    email: res.selector.email,
+                    empty: false
                 }
-                method==='register'
-                ? navigate('/newUser', { state: data })
-                : loginUser(dispatch, data)
+                method === 'register'
+                    ? navigate('/newUser', { state: data })
+                    : loginUser(dispatch, data)
             })
             .catch((err) => console.log(err.message))
     }
@@ -163,9 +169,9 @@ export default function AuthForm({ method, cb }) {
                         <input
                             type='text'
                             name='username'
-                            placeholder={method==='login'?'Username or email':'Username'}
+                            placeholder={method === 'login' ? 'Username or email' : 'Username'}
                             value={formData.username}
-                            className={method==='register'?'authinput':''}
+                            className={method === 'register' ? 'authinput' : ''}
                             onChange={event => inputHandler(event)}
                         />
                     </div>
@@ -177,7 +183,7 @@ export default function AuthForm({ method, cb }) {
                     ? <div>
                         <div>
                             <img src={google} alt='google' />
-                            <input type='text' name='email' className={method==='register'?'authinput':''} placeholder='Email' onChange={inputHandler} />
+                            <input type='text' name='email' className={method === 'register' ? 'authinput' : ''} placeholder='Email' onChange={inputHandler} />
                         </div>
 
                         <span className={errors.email ? 'active' : 'inactive'}>{errors.email}</span>
@@ -191,7 +197,7 @@ export default function AuthForm({ method, cb }) {
                             type='password'
                             name='password'
                             placeholder='Password'
-                            className={method==='register'?'authinput':''}
+                            className={method === 'register' ? 'authinput' : ''}
                             value={formData.password}
                             onChange={inputHandler}
                         />
@@ -206,7 +212,7 @@ export default function AuthForm({ method, cb }) {
                     ? <div>
                         <div>
                             <img src={google} alt='google' />
-                            <input type='password' name='confirmPassword' className={method==='register'?'authinput':''} placeholder='Confirm password' onChange={inputHandler} />
+                            <input type='password' name='confirmPassword' className={method === 'register' ? 'authinput' : ''} placeholder='Confirm password' onChange={inputHandler} />
                         </div>
                         <span className={errors.confirmPassword ? 'active' : 'inactive'}>{errors.confirmPassword}</span>
 
@@ -229,8 +235,8 @@ export default function AuthForm({ method, cb }) {
             <div className='mediaAuth'>
                 <p>Or {method === 'register' ? 'sign up' : 'log in'} with your social media</p>
                 <div>
-                    <img src={google} alt='google' onClick={singInWithGoogle} />
-                    <img src={facebook} alt='google' onClick={singInWithFacebook} />
+                    <img src={google} alt='google' onClick={() => loginWithRedirect()} />
+                    <img src={facebook} alt='google' />
                     <img src={twitter} alt='google' />
                 </div>
             </div>
