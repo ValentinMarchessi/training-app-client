@@ -75,7 +75,7 @@ export default function Search() {
 
     const [inicio, setInicio] = useState(0);
     //Var en la que se almacenan los elementos de la páginacion actual, mostrando actualmente 9 por página
-    let current = currentItems ? currentItems.slice(inicio, inicio + 9) : [];
+    let current = currentItems.slice(inicio, inicio + 9);
     //Var utilizadas para los filtros
     const [reviewSort, setReviewSort] = useState(false);
     const [ratingSort, setRatingSort] = useState(false);
@@ -94,25 +94,30 @@ export default function Search() {
     return (
         <>
         <Navbar/>
-        <div className={s.page}>
-            <div className={s.search}>
-                <div className={s.fields}>
-                    {/*Esto se debe mejorar : Son los filtros */}
-                    <button onClick={() => sortHandler('reviews')}>
-                        Reviews
-                    </button>
-                    <button onClick={() => sortHandler('rating')}>
-                        Raiting
-                    </button>
-                    <button onClick={() => sortHandler('price')}>
-                        Price
-                    </button>
-                </div>
-                <Select callback={ (e) => setCurrentType(e.target.value)} options={[{value:'Routines'},{value:'Diets'},{value:'Nutritionists'},{value:'Personal Trainers'}]}/>
-                {/* Esta es el input de busqueda */}
-                <Searchinput callback={ setCurrentItems } setInput={ newInput } type={ currentType }/>
+        <div className={s.searchContainer}>
+            <div className={s.searchBar}>
+                <form >
+                    <div className={s.searchField}>
+                        {/*Esto se debe mejorar : Son los filtros */}
+                        <div className={s.filters}>
+                            <button onClick={() => sortHandler('reviews')}>
+                                Reviews
+                            </button>
+                            <button onClick={() => sortHandler('rating')}>
+                                Raiting
+                            </button>
+                            <button onClick={() => sortHandler('price')}>
+                                Price
+                            </button>
+                            <Select callback={ (e) => setCurrentType(e.target.value)} options={[{value:'Routines'},{value:'Diets'},{value:'Nutritionists'},{value:'Personal Trainers'}]}/>
+                        </div>
+
+                        {/* Esta es el input de busqueda */}
+                        <Searchinput callback={ setCurrentItems } setInput={ newInput } type={ currentType }/>
+                    </div>
+                </form>
+                <div className={s.resultText}> <h2>{search?`Resultados para: ${search}`:''}</h2> </div>
             </div>
-            <h2 id={s.results}>{search && `Resultados para: ${search}`}</h2>
 
             <div id='paginationContainer' className={s.resultContainer}>  
             {/* Aqui es donde se muestra todo */}
