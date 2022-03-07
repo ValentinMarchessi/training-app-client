@@ -7,7 +7,6 @@ import { getAllTrainers } from "../../Redux/apiCalls/allUsersTrainer/allUsersTra
 import { useEffect } from "react";
 import styles from "./Detail.module.scss"; //revisar esto
 import { Avatar, Navbar } from "../../components";
-// import styles from "../Payment/Payment.module.scss";
 import { star } from "../../assets/images/icons";
 //mock de la bd
 import { myRoutine, Owner, Reviews, exercises } from "./dbDetails";
