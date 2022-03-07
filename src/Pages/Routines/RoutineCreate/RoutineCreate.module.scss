@@ -1,0 +1,9 @@
+@use '../../../config/mixins/'as Mixins;
+
+#add {
+  @include Mixins.blue-button;
+  width: fit-content;
+  align-self: center;
+  font-size: 18px;
+  margin-top: 2rem;
+}

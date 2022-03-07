@@ -11,6 +11,7 @@ import Overlay from './Overlay/Overlay.jsx';
 import Pill from './Pill/Pill.jsx';
 import SearchBar from './SearchBar/SearchBar.jsx';
 import Select from './Select/Select.jsx';
+import Loading from './Loading/Loading.jsx';
 
 export {
     Avatar,
@@ -25,5 +26,6 @@ export {
     Select,
     Overlay,
     Input,
-    MediumCard
+    MediumCard,
+    Loading,
 };

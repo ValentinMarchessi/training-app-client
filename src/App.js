@@ -25,6 +25,7 @@ import { CreateRecipe } from "./Pages/Recipes";
 import { RoutineDetail } from "./Pages/Routines";
 import { Payment, Success } from "./Pages/Payment";
 import Details from "./Pages/Detail/Detail";
+import Instructor from "./Pages/Descriptions/Instructor";
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
           <Route index element={<ViewDiets />} />
           <Route path="create" element={<CreateDiet />} />
         </Route>
+        <Route path="/instructor/:instructorId" element={<Instructor />}/>
         <Route path="/exercises" element={<Exercises />}>
           <Route index element={<ExercisesView />} />
           <Route path="create" element={<ExercisesCreate />} />
