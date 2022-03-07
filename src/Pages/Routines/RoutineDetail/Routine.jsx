@@ -1,4 +1,3 @@
-import style from '../Routines.module.scss';
 import styleRoutine from './Routine.module.scss';
 import exerciseImg from '../../../assets/images/routines.png'
 import { useEffect, useState } from 'react';
@@ -22,10 +21,11 @@ export default function Routine() {
     const [dayOption,setDayOption]=useState("Monday");
     const [exercise,setExercise]=useState({viewing:false});
     const routineId=useParams().routineId;
-    const routine=useSelector(state=>state.routines.rutinesById);
+    const routine=useSelector(state=>state.routines.routinesById);
+    const user=useSelector(state=>state.user.currentUser);
     const dispatch=useDispatch();
     useEffect(()=>{
-        getRoutinesById(dispatch, { routineId })
+        getRoutinesById(dispatch,routineId,user.accessToken)
     },[dispatch])
 
     const changeDayOption=(e)=>{
@@ -33,16 +33,16 @@ export default function Routine() {
     }
     const viewExercise=(e,j)=>{
         if(routine.days)
-        setExercise({...routine.days[dayOption][j],viewing:true,allExercises:routine.days,dayOption,j})
+        setExercise({viewing:true,allExercises:routine.days,dayOption,j})
     }
 
     return (
-		<div className={`${style.page}`}>
-			<div className={style.header}>
+		<div className={`${styleRoutine.page}`}>
+			<div className={styleRoutine.header}>
 				<Link to='/'>
-					<img id={style.icon} src={home} alt="home" />
+					<img id={styleRoutine.icon} src={home} alt="home" />
 				</Link>
-				{!exercise.viewing?<h1>Routine: {routine?.name}</h1>: <h1>Exercise: {exercise.allExercises[exercise.dayOption][exercise.j].title}</h1>}
+				{!exercise.viewing?<h1>Routine: {routine?.title}</h1>: <h1>Exercise view</h1>}
 				<hr />
 			</div>
 			<div>
@@ -64,7 +64,7 @@ export default function Routine() {
                                 <div key={j} className={styleRoutine.exercise} onClick={(e)=>viewExercise(e,j,dayOption)}>
                                     <img className={styleRoutine.exerciseImg} src={e.image||exerciseImg} alt='ExerciseImg'/>
                                     <p className={styleRoutine.nameExercise}>
-                                        {e.title}<br/>
+                                        {e.title||"Exercise "+ (j+1)}<br/>
                                     </p>
                                 </div>
                             )}

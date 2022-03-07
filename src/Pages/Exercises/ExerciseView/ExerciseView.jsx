@@ -9,7 +9,7 @@ function extractYTvideoId(url = '') {
 	}
 }
 
-export default function ExerciseView({ title, description, number,video,allExercises,dayOption,j }) {
+export default function ExerciseView({ number,allExercises,dayOption,j }) {
     const [i,setI]=useState(j)
     const next=()=>{
         if(i+1<allExercises[dayOption].length)
@@ -22,13 +22,14 @@ export default function ExerciseView({ title, description, number,video,allExerc
     return (
 		<div className={style.cont}>
 			<iframe width="100%" height="100%" src={`https://www.youtube-nocookie.com/embed/${extractYTvideoId(allExercises[dayOption][i].video)}`} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
-			<div >
-				<p>{allExercises[dayOption][i].title}</p>
+			<div className={style.info}>
+				<h3>{allExercises[dayOption][i].title}</h3>
+                <hr/>
                 <p>{allExercises[dayOption][i].description}</p>
-                <p className={style.number}>X{number}</p>
+                <p className={style.number}>x {allExercises[dayOption][i].number||1}</p>
                 <div className={style.contNext}>
-                    {i>0&&<button onClick={prev}className={style.next}>{"<"}</button>}
-                    {i+1<allExercises[dayOption].length&&<button onClick={next}className={style.next}>{">"}</button>}
+                    {i>0&&<button onClick={prev}className={style.next}>{"Previous"}</button>}
+                    {i+1<allExercises[dayOption].length&&<button onClick={next}className={style.next}>{"Next"}</button>}
                 </div>
 			</div>
 		</div>

@@ -1,39 +1,73 @@
-@use '../../../config/mixins/' as Mixins;
+@use '../../config/mixins/' as Mixins;
+
 .page{
     @include Mixins.page;
+    .description{
+        text-align: center;
+        margin-right: 200px
+    }
     .header {
         @include Mixins.header;
       }
-    .nameExercise {
-        font-size: 17px;
-        line-height: 17px;
-        color: black;
+    .points {
+        h3 {
+            display: inline-block;
+            margin: 0;
+            color: #FBCB22;;
+        }
     }
+    position: relative;
 }
-.container {
-    width: 100%;
-    text-align: center;
+.imageProfile{
+    float: right;
+    position: absolute;
+    right: 0;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
 }
-.exerciseImg{
-    width: 100%;
+.productImg {
+    width: 90%;
+    height: 300px;
+    margin: auto;
+    display: block;
+    padding-left: 10px;
+    padding-right: 10px;
     padding-bottom: 5px;
-    border-bottom: 1px solid #2E2C3B;
+    padding-top: 30px;
 }
-.dayExercises{
-    margin-bottom: 10px;
+.totalStudents{
+    display: flex;
+    justify-content: space-between;
+    margin-right: 200px;
+}
+.courses{
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    align-items: center;
 }
-.exercise {
-    background-color: #C4C4C4;
-    width: 400px;
-    margin-top:10px;
-    margin-right: 10px;
-    margin-left: 10px;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-    cursor: pointer;
+.product {
+    width: 50%;
+    h3 {
+        padding-bottom: 10px;
+        color: black;
+    }
+    h4 {
+        padding-bottom: 10px;
+        color: black;
+        font-size: 20px;
+    }
+}
+.containerInfo{
+    background-color: white;
+    margin-left: 5%;
+    margin-right: 5%;
+    padding-left:10px;
+    padding-right: 10px;
+}
+.containerPoints {
+    display: flex;
+    justify-content: space-between;
 }
 .contentSelect select{
 	appearance: none;
@@ -89,18 +123,4 @@
 
 .contentSelect:hover i{
 	margin-top: 3px;
-}
-
-
-.exit {
-    position: absolute;
-    top: 390px;
-    width: 30%;
-    background-color: #3F59B8;
-    color: white;
-    padding: 10px;
-    border: none;
-    font-size: 30px;
-    border-radius: 15px;
-    cursor: pointer;
 }

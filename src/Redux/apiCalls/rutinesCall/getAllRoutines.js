@@ -11,6 +11,7 @@ export const getAllRoutines = async (dispatch,token) => {
     try {
         const res = await baseUrlDev.get('routine', {headers:{token}});
         dispatch(getAllRoutinesSuccess(res.data));
+        return res.data
     } catch (err) {
         dispatch(getAllRoutinesFailure());
     }
