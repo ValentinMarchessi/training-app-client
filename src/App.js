@@ -32,7 +32,7 @@ function App() {
     <div className="App">
       <Routes>
         {/* poner esta ruta en detalles */}
-        <Route path="/details" element={<Details />} />
+        <Route path="/details/:id" element={<Details />} />
         {/* hasta aqui */}
         <Route path="/" element={<Landing />} />
         <Route path="/home" element={<Home />} />
@@ -45,7 +45,7 @@ function App() {
           <Route index element={<ViewDiets />} />
           <Route path="create" element={<CreateDiet />} />
         </Route>
-        <Route path="/instructor/:instructorId" element={<Instructor />}/>
+        <Route path="/instructor/:instructorId" element={<Instructor />} />
         <Route path="/exercises" element={<Exercises />}>
           <Route index element={<ExercisesView />} />
           <Route path="create" element={<ExercisesCreate />} />

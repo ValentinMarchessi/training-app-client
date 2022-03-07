@@ -4,27 +4,42 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { getRoutinesDetails } from "../../Redux/apiCalls/rutinesCall/getRoutinesDetails";
 import { getAllTrainers } from "../../Redux/apiCalls/allUsersTrainer/allUsersTrainer";
-import { useEffect } from "react";
-import styles from "./Detail.module.scss"; //revisar esto
+import { useEffect, useState } from "react";
+import styles from "./Detail.module.scss";
 import { Avatar, Navbar } from "../../components";
 import { star } from "../../assets/images/icons";
 //mock de la bd
-import { myRoutine, Owner, Reviews, exercises } from "./dbDetails";
+import { Reviews } from "./dbDetails";
 
 export default function Details(props) {
-  // const dispatch = useDispatch();
-  // const myRoutine = useSelector((state) => state.routinesDetails);
-  // let { id } = useParams();
-  // let idOwner = myRoutine.owner;
+  const dispatch = useDispatch();
+  //routine details
 
-  // useEffect(() => {
-  //   getUserById(dispatch, idOwner, token);
-  // }, [dispatch]);
+  let myRoutine = useSelector((state) => state.routines.routinesDetails);
+  let { id } = useParams();
+  console.log(id);
+  console.log("mi rutina", myRoutine);
+  //current user
+  const user = useSelector((state) => state.user.currentUser);
+  console.log("usuario actual", user);
 
-  // useEffect(() => {
-  //   getRoutinesDetails(dispatch, id);
-  // }, [dispatch]);
+  const [allTrainers, setAllTrainers] = useState([]);
 
+  useEffect(() => {
+    console.log("renderizo useEffect1");
+    getRoutinesDetails(dispatch, id);
+  }, [dispatch, id]);
+
+  useEffect(() => {
+    console.log("renderizo useEffect2");
+    getAllTrainers(dispatch, user.accessToken).then((data) =>
+      setAllTrainers(data)
+    );
+  }, [dispatch, user.accessToken]);
+
+  console.log(allTrainers);
+  const owner = allTrainers.filter((e) => e.id === myRoutine.owner);
+  console.log("OWNER", owner);
   const points = Reviews.map((e) => e.points);
   const average = (arr) => arr.reduce((a, b) => a + b, 0) / arr.length;
   const rating = average(points);
@@ -40,15 +55,15 @@ export default function Details(props) {
             </div>
 
             <div className={styles.presentation}>
-              <Avatar src={Owner.profile_img} />
+              <Avatar src={owner[0].profile_img} />
 
               <div className={styles.info}>
-                <p id={styles.name}>{Owner.username}</p>
+                <p id={styles.name}>{owner[0].username}</p>
 
                 <p id={styles.title}>
                   {" "}
-                  {Owner.is_personal_trainer
-                    ? Owner.is_nutritionist
+                  {owner[0].is_personal_trainer
+                    ? owner[0].is_nutritionist
                       ? "Personal trainer / Nutricionist"
                       : "Personal trainer"
                     : "Nutricionist"}
@@ -82,20 +97,20 @@ export default function Details(props) {
 
           <p id={styles.title2}>
             {" "}
-            {Owner.is_personal_trainer
-              ? Owner.is_nutritionist
+            {owner[0].is_personal_trainer
+              ? owner[0].is_nutritionist
                 ? "Personal trainer / Nutricionist"
                 : "Personal trainer"
               : "Nutricionist"}
           </p>
           <div className={styles.alignCheck}>
-            <Avatar src={Owner.profile_img} />
+            <Avatar src={owner[0].profile_img} />
             <div className={styles.info}>
-              <p id={styles.name}>{Owner.username}</p>
+              <p id={styles.name}>{owner[0].username}</p>
               <p id={styles.title}>
                 {" "}
-                {Owner.is_personal_trainer
-                  ? Owner.is_nutritionist
+                {owner[0].is_personal_trainer
+                  ? owner[0].is_nutritionist
                     ? "Personal trainer / Nutricionist"
                     : "Personal trainer"
                   : "Nutricionist"}
