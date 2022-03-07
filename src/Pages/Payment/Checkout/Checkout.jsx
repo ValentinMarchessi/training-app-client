@@ -5,7 +5,7 @@ import yoga from '../../../assets/images/yoga.jpg';
 import { Avatar } from '../../../components';
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { postCreateTransaction } from '../../../Redux/apiCalls/transaction/createTransaction';
 import StripeCheckout from 'react-stripe-checkout';
 import Logo from '../../../assets/images/dep.jpg';
@@ -23,10 +23,11 @@ export default function Checkout() {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
-	// const location = useLocation()
+	const location = useLocation()
 
 	//const { routineID } = useParams()
 	const routineId = '130833bb-07e3-405b-8d55-4ba86d76b8a6';
+	console.log(location.state)
 
 	const [stripeToken, setStripeToken] = useState(null);
 
@@ -57,7 +58,7 @@ export default function Checkout() {
 					receipt: receipt_url,
 				};
 				console.log(res)
-				if (res?.status === 200) {
+				if (res.status === "200") {
 					await postCreateTransaction(dispatch, routineId, user.userId, data, user.accessToken);
 					setTransaction({ completed: true, success: true });
 				} else {
