@@ -5,7 +5,6 @@ import { logoutUser } from '../../../Redux/reducers/userLoginReducer';
 import { Dropdown } from '../../../components';
 
 import style from './UserPanel.module.scss';
-
 import MenuIcon from '@mui/icons-material/Menu';
 import SettingsIcon from '@mui/icons-material/Settings';
 import LogoutIcon from '@mui/icons-material/Logout';

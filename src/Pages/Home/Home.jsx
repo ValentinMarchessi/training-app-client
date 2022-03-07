@@ -1,13 +1,12 @@
 import React from 'react';
 import styles from './Home.module.scss';
 import Navbar from '../../components/Navbar/Navbar';
-import { useSelector } from 'react-redux'
+import { useSelector } from 'react-redux';
 import HomeProfessional from './HomeProfessional/HomeProfessional';
 import HomeClient from './HomeClient/HomeClient';
 
 const Home = () => {
-	const user = useSelector(state => state.user.currentUser)
-	console.log('User:',user)
+	const user = useSelector((state) => state.user.currentUser);
 	return (
 		<>
 			<Navbar />

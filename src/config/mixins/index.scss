@@ -2,7 +2,7 @@
 @use '../colors' as Colors;
 @use '../fontWeight' as FontWeight;
 
-@mixin font{
+@mixin font {
 	font-family: Montserrat;
 }
 
@@ -22,13 +22,14 @@
 	padding: 5px 15px;
 	text-decoration: none;
 	font-weight: 600;
-	transition: .3s;
+	transition: 0.3s;
 	box-sizing: content-box;
 	text-align: center;
 	cursor: pointer;
-	&:hover{
+	&:hover, &:focus-visible{
 		filter: brightness(120%);
-	}
+		outline: none;
+	}	
 	&:active {
 		background-color: gray;
 	}
@@ -42,8 +43,8 @@
 	@include medium-bold-font;
 }
 
-@mixin close-button{
-	@include button(Colors.$but)
+@mixin close-button {
+	@include button(Colors.$but);
 }
 
 @mixin blue-button {
@@ -51,7 +52,7 @@
 	@include medium-bold-font;
 }
 
-@mixin red-button{
+@mixin red-button {
 	@include button(red);
 	@include medium-bold-font;
 }
@@ -69,10 +70,10 @@
 		margin: 0;
 		height: fit-content;
 	}
-	a{
+	a {
 		text-decoration: none;
 	}
-	a:visited{
+	a:visited {
 		color: white;
 	}
 	margin: 0 40px;
@@ -106,25 +107,39 @@
 	transition: visibility 1s;
 }
 
-@mixin searchbar-wrapper{
+@mixin searchbar-wrapper {
 	border-radius: 4px;
 	border: none;
 	position: relative;
 
-	input[type=text]{
+	input[type='text'] {
 		font-size: 20px;
 		padding: 4px 10px;
 	}
 
-	&::before{
+	&::before {
 		position: absolute;
 		top: 15%;
 		left: 3%;
 		color: blue;
-		content: url("")
+		content: url('');
 	}
 
-	&:focus-within::before{
+	&:focus-within::before {
 		display: none;
+	}
+}
+
+@mixin scrollbar {
+	&::-webkit-scrollbar {
+		width: 10px;
+		background: Colors.$secondary-bg;
+		border-radius: 10px;
+		margin: 10px;
+	}
+	&::-webkit-scrollbar-thumb {
+		background: gray;
+		border-radius: 10px;
+		padding: 5px;
 	}
 }

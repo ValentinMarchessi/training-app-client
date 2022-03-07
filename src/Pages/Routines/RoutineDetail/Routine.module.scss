@@ -1,4 +1,15 @@
-
+@use '../../../config/mixins/' as Mixins;
+.page{
+    @include Mixins.page;
+    .header {
+        @include Mixins.header;
+      }
+    .nameExercise {
+        font-size: 17px;
+        line-height: 17px;
+        color: black;
+    }
+}
 .container {
     width: 100%;
     text-align: center;
@@ -82,6 +93,8 @@
 
 
 .exit {
+    position: absolute;
+    top: 390px;
     width: 30%;
     background-color: #3F59B8;
     color: white;
@@ -90,8 +103,4 @@
     font-size: 30px;
     border-radius: 15px;
     cursor: pointer;
-}
-.nameExercise {
-    font-size: 17px;
-    line-height: 17px;
 }

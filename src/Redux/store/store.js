@@ -55,7 +55,7 @@ export const store = configureStore({
 });
 
 export let persistor = persistStore(store)
-/* 
+
 configureStore({
 	reducer: {
 		user: userLoginReducer,
@@ -71,4 +71,4 @@ configureStore({
 		news: newsReducer,
 		transactions: transactionReducer,
 	},
-}); */
+});
