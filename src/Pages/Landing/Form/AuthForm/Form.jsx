@@ -23,7 +23,6 @@ export default function AuthForm({ method, cb }) {
         empty: true
     })
     const [alert, setAlert] = useState(false)
-
     let [errors, setErrors] = useState({})
 
     useEffect(() => {
@@ -41,13 +40,10 @@ export default function AuthForm({ method, cb }) {
             toast.addEventListener('mouseleave', Swal.resumeTimer)
         }
     })
-
     let string
     if (method === 'register') string = 'Let\'s get started'
     else string = 'Log In'
-
     function inputHandler(event) {
-
         setErrors(validate({
             ...formData,
             [event.target.name]: event.target.value
@@ -97,7 +93,6 @@ export default function AuthForm({ method, cb }) {
             empty: true
         })
     }
-
     useEffect(() => {
         const handleAlert = () => {
             if (alert) return Toast.fire({
@@ -138,7 +133,6 @@ export default function AuthForm({ method, cb }) {
             })
             .catch((err) => console.log(err.message))
     }
-
     const singInWithFacebook = () => {
         const provider = new FacebookAuthProvider()
         signInWithPopup(authentication, provider)
@@ -147,14 +141,11 @@ export default function AuthForm({ method, cb }) {
             })
             .catch((err) => console.log(err.message))
     }
-
     return (
         <div className='auth' id='auth'>
-
             <form className='authForm' onSubmit={event => {
                 event.preventDefault()
                 if (method === 'register' && !Object.keys(errors).length) {
-
                 }
             }}>
                 <div>
@@ -170,9 +161,7 @@ export default function AuthForm({ method, cb }) {
                         />
                     </div>
                     {method === 'register' ? <span className={errors.username ? 'active' : 'inactive'}>{errors.username}</span> : null}
-
                 </div>
-
                 {method === 'register'
                     ? <div>
                         <div>
@@ -183,7 +172,6 @@ export default function AuthForm({ method, cb }) {
                         <span className={errors.email ? 'active' : 'inactive'}>{errors.email}</span>
                     </div>
                     : null}
-
                 <div>
                     <div>
                         <img src={google} alt='google' />
@@ -199,8 +187,6 @@ export default function AuthForm({ method, cb }) {
                     {method === 'register'
                         ? <span className={errors.password ? 'active' : 'inactive'}>{errors.password} <span style={{ color: 'red' }}>{errors.passwordRequiredLength}</span> {formData.password && (errors.passwordRequiredLength && errors.passwordIncludesNumber) ? 'and' : null} <span style={{ color: 'red' }}>{errors.passwordIncludesNumber}</span></span>
                         : null}
-
-
                 </div>
                 {method === 'register'
                     ? <div>
@@ -212,9 +198,7 @@ export default function AuthForm({ method, cb }) {
 
                     </div>
                     : null}
-
                 <div style={{ alignItems: 'center' }}>
-
                     <input className={method === 'register'
                         ? ((Object.keys(errors).length || formData.empty) ? 'unready' : 'ready')
                         : 'ready'} style={{ textIndent: 0 }}
@@ -222,9 +206,7 @@ export default function AuthForm({ method, cb }) {
                         value={string}
                         onClick={handleSubmitClick}
                     />
-
                 </div>
-
             </form>
             <div className='mediaAuth'>
                 <p>Or {method === 'register' ? 'sign up' : 'log in'} with your social media</p>

@@ -30,7 +30,7 @@ const Searchinput = ({ callback, type, setInput})=>{
       return (
       <div className={s.searchInput}>
             <input type='text' className={s.addInput} placeholder={'Search items'} onChange={e => handlerChange(e.target.value)}/>
-            <input type='submit' className={s.submitInput} value='Submit'/>
+            <input type='submit' className={s.submitInput} value='Search'/>
       </div>
       )
 }

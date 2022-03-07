@@ -23,6 +23,6 @@ const HomeClient = () => {
 			</div>
 		</div>
 	);
-};
+}
 
 export default HomeClient;
