@@ -8,13 +8,15 @@ import { getDietsById } from '../../Redux/apiCalls/dietsCall/getDietsById';
 import { getTransactions } from '../../Redux/apiCalls/transaction/getTransactions';
 
 export default function Instructor() {
-
+	const defaultImgProduct="https://www.enestadocrudo.com/wp-content/uploads/ejercicios-casa.jpg"
+	const defaultImgUser="http://imgs.globovision.com/41T1b5hiCk6bhh4IC5ag2FFeeTk=/847x0/smart/9578fca5d59845cf84546777e80164b1"
 	const user=useSelector(state=>state.user.currentUser);
 	const instructorId=useParams().instructorId;
 	const routines=useSelector(state=>state.routines.routinesByUser);
 	const transactions=useSelector(state=>state.transactions.transactions);
 	const diets=useSelector(state=>state.diets.dietsById);
 	const [products,setProducts]=useState([]);
+	const [numberPag,setNumberPag]=useState(0);
 	const dispatch=useDispatch();
 	useEffect(()=>{
 		getUserRoutines(dispatch,instructorId,user.accessToken);
@@ -22,12 +24,41 @@ export default function Instructor() {
 		getTransactions(dispatch,instructorId,user.userId);
 		setProducts([...routines,...diets]);
 	},[])
+	const next=()=>{
+		setNumberPag(numberPag + 6);
+	}
+	const previous=()=>{
+		setNumberPag(numberPag - 6);
+	}
 	const handleChange= (e)=>{
 		let value=e.target.value
 		value==="Routines"?
 		setProducts(routines)
 		:value==="Diets"?setProducts(diets)
 		:setProducts([...routines,...diets]);
+	}
+	const comments= ()=>{
+		let productsWithComments=products?.filter(product=>product.Reviews?.some(review=>review.comments));
+		let comments=[];
+		let productsFounds={};
+		let randomProduct=(product)=>{
+			let random=Math.round(Math.random()*(product.length-1))
+			if(productsFounds[random])
+			return randomProduct(product);	
+			productsFounds[random]=true
+			return random;
+		}
+		let randomComment=(product)=>{
+			let random=Math.round(Math.random()*(product.length-1))
+			return random;
+		}
+		let limitOfComments=productsWithComments.length<5?productsWithComments.length:5;
+		for(let i=0;i<limitOfComments;i++){
+			let productReviews=productsWithComments[randomProduct(productsWithComments)].Reviews;
+			let review=productReviews[randomComment(productReviews)]
+			comments.push(<div className={style.comment} key={i}><p>{review.comments}</p> <div><img src="/static/media/star.69f119269b8ac1b0e0ea69dbe6655d48.svg" alt="points"/>{review.points}/10</div></div>);
+		}
+		return comments.length?comments:[<div key={0} className={style.commentNone}><p>Be the first to comment on a product of {user.username}...</p></div>]
 	}
     return (
 		<div className={style.page}>
@@ -39,7 +70,7 @@ export default function Instructor() {
 				<h1>Instructor description</h1>
 			</div>
 			<hr/>
-			<img className={style.imageProfile} src={user.profile_img} alt="profileImg"/>
+			<img className={style.imageProfile} src={user.profile_img||defaultImgUser} alt="profileImg"/>
 			<p>Instructor</p>
             <h2>{user.username}</h2>
 			<p>{`${user.is_personal_trainer?"Trainer":""}${user.is_nutritionist?user.is_nutritionist&&user.is_personal_trainer?" and Nutritionist":"Nutritionist":""}`}</p>
@@ -72,11 +103,12 @@ export default function Instructor() {
                     <i></i>
                 </div>
             </form>
-			<div className={style.courses}>
-				{products?.map((product,i)=>
+			<div className={style.productComments}>
+				<div className={style.courses}>
+				{products.slice(numberPag,numberPag+6)?.map((product,i)=>
 					<div className={style.product} key={i}>
 						<Link to={`/routines/info/${product.id}`}>
-							<img className={style.productImg} src={product.image}/>
+							<img className={style.productImg} src={product.image||defaultImgProduct}/>
 							<div className={style.containerInfo}>
 								<h3>{product.title}</h3>
 								<div className={style.containerPoints}>
@@ -96,8 +128,18 @@ export default function Instructor() {
 						</Link>
 					</div>
 				)}
+				<div className={style.pagination}>
+							{numberPag>0&&<button onClick={previous}>Previous</button>} 
+							{products.length>6&&numberPag*6<products.length&&<button onClick={next}>Next</button>}
+						</div>
+				</div>
+				<div className={style.comments}>
+					<h3>Comments</h3>
+                    {
+						comments()
+					}
+				</div>
 			</div>
-			
 		</div>
 	);
 }
