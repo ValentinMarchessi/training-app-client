@@ -8,8 +8,8 @@ import { getDietsById } from '../../Redux/apiCalls/dietsCall/getDietsById';
 import { getTransactions } from '../../Redux/apiCalls/transaction/getTransactions';
 
 export default function Instructor() {
-
-	const defaultImg="https://www.enestadocrudo.com/wp-content/uploads/ejercicios-casa.jpg"
+	const defaultImgProduct="https://www.enestadocrudo.com/wp-content/uploads/ejercicios-casa.jpg"
+	const defaultImgUser="http://imgs.globovision.com/41T1b5hiCk6bhh4IC5ag2FFeeTk=/847x0/smart/9578fca5d59845cf84546777e80164b1"
 	const user=useSelector(state=>state.user.currentUser);
 	const instructorId=useParams().instructorId;
 	const routines=useSelector(state=>state.routines.routinesByUser);
@@ -70,7 +70,7 @@ export default function Instructor() {
 				<h1>Instructor description</h1>
 			</div>
 			<hr/>
-			<img className={style.imageProfile} src={user.profile_img} alt="profileImg"/>
+			<img className={style.imageProfile} src={user.profile_img||defaultImgUser} alt="profileImg"/>
 			<p>Instructor</p>
             <h2>{user.username}</h2>
 			<p>{`${user.is_personal_trainer?"Trainer":""}${user.is_nutritionist?user.is_nutritionist&&user.is_personal_trainer?" and Nutritionist":"Nutritionist":""}`}</p>
@@ -108,7 +108,7 @@ export default function Instructor() {
 				{products.slice(numberPag,numberPag+6)?.map((product,i)=>
 					<div className={style.product} key={i}>
 						<Link to={`/routines/info/${product.id}`}>
-							<img className={style.productImg} src={product.image || defaultImg}/>
+							<img className={style.productImg} src={product.image||defaultImgProduct}/>
 							<div className={style.containerInfo}>
 								<h3>{product.title}</h3>
 								<div className={style.containerPoints}>
