@@ -26,9 +26,10 @@
 	box-sizing: content-box;
 	text-align: center;
 	cursor: pointer;
-	&:hover{
+	&:hover, &:focus-visible{
 		filter: brightness(120%);
-	}
+		outline: none;
+	}	
 	&:active {
 		background-color: gray;
 	}
