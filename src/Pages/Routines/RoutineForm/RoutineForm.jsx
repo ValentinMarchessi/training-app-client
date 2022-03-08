@@ -47,8 +47,11 @@ export default function RoutineForm({ onAdd }) {
     };
   };
 
-  const addExercise = (e) => {
-    const day = e.target.id;
+  const handleTag = (e) => {
+    const day = e.target.id.split('-')[0];
+    let currentTag = document.querySelector(`#${e.target.id}`);
+
+    console.log(currentTag.classList.toggle(style.active));
 
     const current = {
       name: e.target.innerHTML.trim()
@@ -114,7 +117,7 @@ export default function RoutineForm({ onAdd }) {
           <div className={style.day} key={key}>
             <label>{day}</label>
             {exercises && exercises.map(exercise => (
-              <div className={style.tag} id={day} onClick={addExercise} key={exercise.id} value={exercise.id}>{exercise.title}</div>
+              <div className={style.tag} id={`${day}-${exercise.id}`} onClick={handleTag} key={exercise.id} value={exercise.id}>{exercise.title}</div>
             ))}
           </div>
         ))}
