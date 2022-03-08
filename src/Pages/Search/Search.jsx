@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import s from './Search.module.scss';
 import { Link } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { getAllTrainers } from '../../Redux/apiCalls/allUsersTrainer/allUsersTrainer';
 import { getAllNutritionits } from '../../Redux/apiCalls/allUsersNutritionist/allUsersNutritionist';
 import { getAllRoutines } from '../../Redux/apiCalls/rutinesCall/getAllRoutines';
@@ -11,6 +11,7 @@ import { Navbar, Select, Fallback } from '../../components';
 import RoutineCard from './components/RoutineCard/RoutineCard';
 import UserCard from './components/UserCard/UserCard';
 import Searchinput from './components/Search/SearchInput';
+import s from './Search.module.scss';
 
 export default function Search() {
 	const dispatch = useDispatch();

@@ -99,7 +99,6 @@ export default function ExerciseForm({onAdd, onClose}) {
             (error) => {},
             () => {
                 getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-					console.log(downloadURL)
 					///if(downloadURL)
 					setForm({
 						...form,
@@ -111,12 +110,6 @@ export default function ExerciseForm({onAdd, onClose}) {
                     preventSubmit.innerText='Done'
                     preventSubmit.style.cursor='pointer'
                     document.getElementsByTagName('html')[0].style.cursor='default'
-					
-					if (Object.values(error).every(e => e === '')) {
-						console.log(form, user.userId, user.accessToken);
-						createExercises(dispatch, { userId: user.userId, token: user.accessToken, body: form });
-						onAdd();
-					}
                 });
             })
     }

@@ -47,6 +47,7 @@ const excercisesSlice = createSlice({
     createExercisesSuccess: (state, action) => {
       state.isFetching = false;
       state.createdExercises = action.payload;
+      state.allExercises = [...state.allExercises, action.payload];
     },
     createExercisesFailure: (state) => {
       state.isFetching = true;
