@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import s from './Search.module.scss';
-import test from '../../assets/images/imageBg.png';
-import user from '../../assets/images/imageUser.jpg';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllTrainers } from '../../Redux/apiCalls/allUsersTrainer/allUsersTrainer';
@@ -14,13 +12,9 @@ import RoutineCard from './components/RoutineCard/RoutineCard';
 import UserCard from './components/UserCard/UserCard';
 import Searchinput from './components/Search/SearchInput';
 
-function ContainerFallback({ }) {
-    
-}
-
 export default function Search() {
 	const dispatch = useDispatch();
-	const [currentType, setCurrentType] = useState('');
+	const [currentType, setCurrentType] = useState('Routines');
 	const [currentItems, setCurrentItems] = useState([]);
 
 	//Var para realizar realizar busquedas
@@ -119,31 +113,23 @@ export default function Search() {
 				</div>
 				<h2 id={s.results}>{search && `Resultados para: ${search}`}</h2>
 				<div id="paginationContainer" className={s.resultContainer}>
-                    <Fallback
-                        on={current.length > 0}
-                        element={<ContainerFallback hasElements={ }/>}
-                    >
+					<Fallback
+						on={currentItems.length > 0}
+						element={<h1 id={s.fallback}>Could not find {currentType}</h1>}>
 						{/* Aqui es donde se muestra todo */}
 						{currentType === 'Nutritionists' || currentType.includes('Trainers')
 							? current.map((element) => (
 									<Link
+										key={element.id}
 										to={`/userDetail/${element.id}`}
 										style={{ textDecoration: 'none', color: 'unset', margin: '10px' }}>
-										<UserCard
-											id={element.id}
-											profileImg={element.profile_img}
-											username={element.username}
-											email={element.email}
-											gender={element.gender}
-											country={element.country}
-											nutritionist={element.is_nutritionist}
-											PTrainer={element.is_personal_trainer}
-										/>
+										<UserCard profileImg={element.profile_img} username={element.username} />
 									</Link>
 							  ))
 							: current.map((element) =>
 									currentType === 'Routines' ? (
 										<Link
+											key={element.id}
 											to={`/routineDetail/${element.id}`}
 											style={{ textDecoration: 'none', color: 'unset', margin: '10px' }}>
 											<RoutineCard
@@ -159,6 +145,7 @@ export default function Search() {
 										</Link>
 									) : (
 										<Link
+											key={element.id}
 											to={`/dietDetail/${element.id}`}
 											style={{ textDecoration: 'none', color: 'unset', margin: '10px' }}>
 											<RoutineCard
