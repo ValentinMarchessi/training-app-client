@@ -6,7 +6,7 @@ import { getRoutinesDetails } from "../../Redux/apiCalls/rutinesCall/getRoutines
 //import { getAllRoutines } from "../../Redux/apiCalls/rutinesCall/getAllRoutines";
 import { getAllTrainers } from "../../Redux/apiCalls/allUsersTrainer/allUsersTrainer";
 import { useEffect, useState } from "react";
-import styles from "./Detail.module.scss";
+import styles from "./Detail.module.scss"; //revisar esto
 import { Avatar, Navbar } from "../../components";
 import { star } from "../../assets/images/icons";
 //mock de la bd
@@ -14,41 +14,26 @@ import { Reviews } from "./dbDetails";
 
 export default function Details(props) {
   const dispatch = useDispatch();
-  //routine details
-  let myRoutine = useSelector((state) => state.routines.routinesDetails);
-  console.log("mi rutina", myRoutine);
+  const myRoutine = useSelector((state) => state.routines.routinesDetails);
+  const allTrainers = useSelector((state) => state.trainers.usersTrainers);
   let { id } = useParams();
-  console.log(id);
-  //current user
   const user = useSelector((state) => state.user.currentUser);
-  console.log("usuario actual", user);
-  //estados locales
-  const [allTrainers, setAllTrainers] = useState();
+  const [owner, setOwner] = useState();
 
   useEffect(() => {
-    getRoutinesDetails(id);
-    console.log("renderizo useEffect1");
-  }, [dispatch]);
+    (async () => {
+      await getAllTrainers(dispatch, user.accessToken);
+      await getRoutinesDetails(dispatch, id);
+    })();
+    setOwner(allTrainers.filter((e) => e.id !== myRoutine.owner));
+    console.log(allTrainers, myRoutine);
+  }, [dispatch, id, user.accessToken, myRoutine.owner, allTrainers, myRoutine]);
 
-  useEffect(() => {
-    console.log("renderizo useEffect2");
-    getAllTrainers(user.accessToken).then((data) => setAllTrainers(data));
-  }, [dispatch, user.accessToken]);
-
-  //Rutine
-  // console.log(allRoutines);
-  // const myRoutine = allRoutines.filter((e) => e.id === idRoutine);
-  // console.log("myRoutine", myRoutine);
-  //Trainer
-  console.log(allTrainers);
-  const owner = allTrainers.filter((e) => e.id === myRoutine.owner);
-  console.log("OWNER", owner);
-  //Reviews
   const points = Reviews.map((e) => e.points);
   const average = (arr) => arr.reduce((a, b) => a + b, 0) / arr.length;
   const rating = average(points);
 
-  return (
+  return myRoutine && owner ? (
     <>
       <Navbar />
       <div className={styles.page}>
@@ -59,15 +44,15 @@ export default function Details(props) {
             </div>
 
             <div className={styles.presentation}>
-              <Avatar src={owner[0].profile_img} />
+              <Avatar src={owner.profile_img} />
 
               <div className={styles.info}>
-                <p id={styles.name}>{owner[0].username}</p>
+                <p id={styles.name}>{owner.username}</p>
 
                 <p id={styles.title}>
                   {" "}
-                  {owner[0].is_personal_trainer
-                    ? owner[0].is_nutritionist
+                  {owner.is_personal_trainer
+                    ? owner.is_nutritionist
                       ? "Personal trainer / Nutricionist"
                       : "Personal trainer"
                     : "Nutricionist"}
@@ -101,20 +86,20 @@ export default function Details(props) {
 
           <p id={styles.title2}>
             {" "}
-            {owner[0].is_personal_trainer
-              ? owner[0].is_nutritionist
+            {owner.is_personal_trainer
+              ? owner.is_nutritionist
                 ? "Personal trainer / Nutricionist"
                 : "Personal trainer"
               : "Nutricionist"}
           </p>
           <div className={styles.alignCheck}>
-            <Avatar src={owner[0].profile_img} />
+            <Avatar src={owner.profile_img} />
             <div className={styles.info}>
-              <p id={styles.name}>{owner[0].username}</p>
+              <p id={styles.name}>{owner.username}</p>
               <p id={styles.title}>
                 {" "}
-                {owner[0].is_personal_trainer
-                  ? owner[0].is_nutritionist
+                {owner.is_personal_trainer
+                  ? owner.is_nutritionist
                     ? "Personal trainer / Nutricionist"
                     : "Personal trainer"
                   : "Nutricionist"}
@@ -133,5 +118,5 @@ export default function Details(props) {
         </div>
       </div>
     </>
-  );
+  ) : null;
 }
