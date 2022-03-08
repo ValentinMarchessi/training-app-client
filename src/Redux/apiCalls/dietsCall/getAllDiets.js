@@ -14,6 +14,6 @@ import {
       dispatch(getAllDietsSuccess(res.data));
       return res.data
     } catch (err) {
-      dispatch(getAllDietsFailure());
+        dispatch(getAllDietsFailure());
     }
-  };
+};
