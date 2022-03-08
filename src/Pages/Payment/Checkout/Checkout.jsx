@@ -25,9 +25,9 @@ export default function Checkout() {
 	const dispatch = useDispatch();
 
 	const location = useLocation()
+	console.log(location);
 
-	//const { routineID } = useParams()
-	const routineId = '08cadc04-391e-4832-986b-5ffd9fe49f20';
+	const { routineId } = location.state;
 
 	const [stripeToken, setStripeToken] = useState(null);
 
