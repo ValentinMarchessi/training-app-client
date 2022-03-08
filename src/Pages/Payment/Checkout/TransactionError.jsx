@@ -1,6 +1,6 @@
-import styles from './Error.module.scss';
+import styles from './TransactionError.module.scss';
 
-export default function Error() {
+export default function TransactionError() {
     return (
         <div className={styles.error}>
             <h1>:(</h1>

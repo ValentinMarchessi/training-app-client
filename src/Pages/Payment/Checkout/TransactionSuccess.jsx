@@ -1,6 +1,6 @@
-import styles from './Success.module.scss';
+import styles from './TransactionSuccess.module.scss';
 
-export default function Success() {
+export default function TransactionSuccess() {
     return (
         <div>
             <h1>Your purchase has been processed</h1>

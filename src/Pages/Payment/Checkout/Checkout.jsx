@@ -10,24 +10,24 @@ import { postCreateTransaction } from '../../../Redux/apiCalls/transaction/creat
 import StripeCheckout from 'react-stripe-checkout';
 import Logo from '../../../assets/images/dep.jpg';
 import { baseUrlDev } from '../../../config/requestMethod/publicRequest';
-import Success from './Success';
-import Error from './Error';
+import TransactionSuccess from './TransactionSuccess';
+import TransactionError from './TransactionError';
 const KEY = 'pk_test_51KTHNqKxK712fkWkpddjvo4wS93yK5sVKG0cUZ5bLcIsxXc5J8UUfToFNZYXf09altAHfam57Sgxi8dfKQIil2r600FLkfDU2C';
 
 export default function Checkout() {
 	const user = useSelector((state) => state.user.currentUser);
+	const { transactions, createTransaction, isFetching, error } = useSelector(store => store.transactions);
 	const [transaction, setTransaction] = useState({
+		payload: {},
 		completed: false,
 		success: false,
 	});
 	const dispatch = useDispatch();
-	const navigate = useNavigate();
 
 	const location = useLocation()
 
 	//const { routineID } = useParams()
-	const routineId = '130833bb-07e3-405b-8d55-4ba86d76b8a6';
-	console.log(location.state)
+	const routineId = '08cadc04-391e-4832-986b-5ffd9fe49f20';
 
 	const [stripeToken, setStripeToken] = useState(null);
 
@@ -57,10 +57,11 @@ export default function Checkout() {
 					method: payment_method_details,
 					receipt: receipt_url,
 				};
-				console.log(res)
-				if (res.status === "200") {
+				console.log(res);
+				if (res.status == 200) {
 					await postCreateTransaction(dispatch, routineId, user.userId, data, user.accessToken);
-					setTransaction({ completed: true, success: true });
+					setTransaction({ payload: createTransaction.success, completed: true, success: !error });
+					console.log(transaction);
 				} else {
 					setTransaction({ completed: true, success: false });
 				}
@@ -125,5 +126,5 @@ export default function Checkout() {
 				</div>
 			</div>
 		</>
-	) : (transaction.success ? <Success /> : <Error />);
+	) : (transaction.success ? <TransactionSuccess /> : <TransactionError />);
 }
