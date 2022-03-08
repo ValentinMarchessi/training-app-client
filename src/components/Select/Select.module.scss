@@ -17,7 +17,6 @@
             color:white;
             text-indent: 1rem;
             z-index: 2;
-            width: 190px;
             height: 40px;
             background-color: transparent;
             border: 2px solid #253064;
@@ -25,15 +24,13 @@
             appearance: none;
             padding-right: 35px !important;
             text-overflow: ellipsis;
-            padding: 0px 10px;
-            cursor: pointer;
 
             &:focus-visible{
                 outline: none;
             }
 
             option{
-                font-family: 'Montserrat';
+                font-family: inherit;
                 color:white;
                 background-color: colors.$secondary-bg;
             }
