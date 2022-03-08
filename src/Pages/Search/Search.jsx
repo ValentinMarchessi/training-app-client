@@ -14,82 +14,87 @@ import RoutineCard from './components/RoutineCard/RoutineCard';
 import UserCard from './components/UserCard/UserCard';
 import Searchinput from './components/Search/SearchInput';
 
+function ContainerFallback({ }) {
+    
+}
 
 export default function Search() {
-    const dispatch = useDispatch()
-    const [ currentType, setCurrentType ] = useState('');
-    const [currentItems, setCurrentItems] = useState([]);
+	const dispatch = useDispatch();
+	const [currentType, setCurrentType] = useState('');
+	const [currentItems, setCurrentItems] = useState([]);
 
-    //Var para realizar realizar busquedas
-    const [search, newSearch] = useState('');
-    const [input, newInput] = useState('');
+	//Var para realizar realizar busquedas
+	const [search, newSearch] = useState('');
+	const [input, newInput] = useState('');
 
-    //Cada vez que se eliga un producto en esepecifico se acutiza el currenType y dependiendo de eso se hace la petición
-    //Se utiliza la var currentItem como arreglo en el que se almacenan los productos a mostrar
-    useEffect(() => {
-        //El producto por default son las dietas
-        if(currentType === 'Diets' || !currentType){
-            getAllDiets(dispatch)
-                .then(data => setCurrentItems( data ));
-        };
-        if(currentType === 'Routines'){
-            getAllRoutines(dispatch)
-                .then(data => setCurrentItems( data ));
-        };
-        if(currentType === 'Personal Trainers'){
-            getAllTrainers(dispatch)
-                .then(data => setCurrentItems( data ));
-        };
-        if(currentType === 'Nutritionists' ){
-            getAllNutritionits(dispatch)
-                .then(data => setCurrentItems( data ));
-        };
-    }, [currentType]);
+	//Cada vez que se eliga un producto en esepecifico se acutiza el currenType y dependiendo de eso se hace la petición
+	//Se utiliza la var currentItem como arreglo en el que se almacenan los productos a mostrar
+	useEffect(() => {
+		//El producto por default son las dietas
+		if (currentType === 'Diets' || !currentType) {
+			getAllDiets(dispatch).then((data) => setCurrentItems(data));
+		}
+		if (currentType === 'Routines') {
+			getAllRoutines(dispatch).then((data) => setCurrentItems(data));
+		}
+		if (currentType === 'Personal Trainers') {
+			getAllTrainers(dispatch).then((data) => setCurrentItems(data));
+		}
+		if (currentType === 'Nutritionists') {
+			getAllNutritionits(dispatch).then((data) => setCurrentItems(data));
+		}
+	}, [currentType]);
 
-    //Para cuando el search no tenga nada
-    useEffect(() => {
-        //Cuando input no tenga nada
-        if(!input.length){
-            if(currentType === 'Diets' || !currentType){
-                getAllDiets(dispatch)
-                    .then(data => setCurrentItems( data ));
-            };
-            if(currentType === 'Routines'){
-                getAllRoutines(dispatch)
-                    .then(data => setCurrentItems( data ));
-            };
-            if(currentType === 'Personal Trainers'){
-                getAllTrainers(dispatch)
-                    .then(data => setCurrentItems( data ));
-            };
-            if(currentType === 'Nutritionists' ){
-                getAllNutritionits(dispatch)
-                    .then(data => setCurrentItems( data ));
-            };
-        }
-    }, [input])
+	//Para cuando el search no tenga nada
+	useEffect(() => {
+		//Cuando input no tenga nada
+		if (!input.length) {
+			if (currentType === 'Diets' || !currentType) {
+				getAllDiets(dispatch).then((data) => setCurrentItems(data));
+			}
+			if (currentType === 'Routines') {
+				getAllRoutines(dispatch).then((data) => setCurrentItems(data));
+			}
+			if (currentType === 'Personal Trainers') {
+				getAllTrainers(dispatch).then((data) => setCurrentItems(data));
+			}
+			if (currentType === 'Nutritionists') {
+				getAllNutritionits(dispatch).then((data) => setCurrentItems(data));
+			}
+		}
+	}, [input]);
 
-    //Cada vez que se realice una busqueda
+	//Cada vez que se realice una busqueda
 
-    const [inicio, setInicio] = useState(0);
-    //Var en la que se almacenan los elementos de la páginacion actual, mostrando actualmente 9 por página
-    let current = currentItems ? currentItems.slice(inicio, inicio + 9) : [];
-    //Var utilizadas para los filtros
-    const [reviewSort, setReviewSort] = useState(false);
-    const [ratingSort, setRatingSort] = useState(false);
-    const [priceSort, setPriceSort] = useState(false);
+	const [inicio, setInicio] = useState(0);
+	//Var en la que se almacenan los elementos de la páginacion actual, mostrando actualmente 9 por página
+	let current = currentItems ? currentItems.slice(inicio, inicio + 9) : [];
+	//Var utilizadas para los filtros
+	const [reviewSort, setReviewSort] = useState(false);
+	const [ratingSort, setRatingSort] = useState(false);
+	const [priceSort, setPriceSort] = useState(false);
 
-    function sortHandler(type) {
-        //Hacemos una copia del estado ya que no sé puede cambiar directamente 
-        let aux = [...currentItems];
-        let auxState;
-        setInicio(0);
-        type === 'reviews' ? auxState = reviewSort : type === 'rating' ? auxState = ratingSort : auxState = priceSort;
-        setCurrentItems(aux.sort((a, b) => a[type] < b[type] ? (auxState ? -1 : 1) : a[type] > b[type] ? (auxState ? 1 : -1) : 0));
-        type === 'reviews' ? setReviewSort(!reviewSort) : type === 'rating' ? setRatingSort(!ratingSort) : setPriceSort(!priceSort);
-    };
+	function sortHandler(type) {
+		//Hacemos una copia del estado ya que no sé puede cambiar directamente
+		let aux = [...currentItems];
+		let auxState;
+		setInicio(0);
+		type === 'reviews'
+			? (auxState = reviewSort)
+			: type === 'rating'
+			? (auxState = ratingSort)
+			: (auxState = priceSort);
+		setCurrentItems(
+			aux.sort((a, b) => (a[type] < b[type] ? (auxState ? -1 : 1) : a[type] > b[type] ? (auxState ? 1 : -1) : 0))
+		);
+		type === 'reviews'
+			? setReviewSort(!reviewSort)
+			: type === 'rating'
+			? setRatingSort(!ratingSort)
+			: setPriceSort(!priceSort);
+	}
 
-    return (
+	return (
 		<>
 			<Navbar />
 			<div className={s.page}>
@@ -113,8 +118,11 @@ export default function Search() {
 					<Searchinput callback={setCurrentItems} setInput={newInput} type={currentType} />
 				</div>
 				<h2 id={s.results}>{search && `Resultados para: ${search}`}</h2>
-				<Fallback>
-					<div id="paginationContainer" className={s.resultContainer}>
+				<div id="paginationContainer" className={s.resultContainer}>
+                    <Fallback
+                        on={current.length > 0}
+                        element={<ContainerFallback hasElements={ }/>}
+                    >
 						{/* Aqui es donde se muestra todo */}
 						{currentType === 'Nutritionists' || currentType.includes('Trainers')
 							? current.map((element) => (
@@ -166,8 +174,8 @@ export default function Search() {
 										</Link>
 									)
 							  )}
-					</div>
-				</Fallback>
+					</Fallback>
+				</div>
 				<div className={s.pagination}>
 					<button onClick={() => (inicio !== 0 ? setInicio(inicio - 8) : null)}>Previous</button>
 					<button onClick={() => (inicio + 8 < currentItems.length ? setInicio(inicio + 9) : null)}>
