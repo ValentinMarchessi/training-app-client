@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import styles from './Overlay.module.scss';
 
 export default function Overlay({active, onClose, children, style }) {

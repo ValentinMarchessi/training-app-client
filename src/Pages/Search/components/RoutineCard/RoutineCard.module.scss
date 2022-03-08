@@ -1,3 +1,5 @@
+@use '../../../../config/colors/' as Colors;
+
 $card-width: 350px;
 $card-height: 250px;
 $profile-height: 40px;
@@ -5,108 +7,110 @@ $profile-margin: 10px;
 $profile-padding: 6px;
 $body-height: 200px;
 
-.card{
-    display: flex;
-    position: relative;
-    flex-direction:column;
-    height: $card-height;
-    width: $card-width;
-    border-radius: 5px;
+.card {
+	display: flex;
+	position: relative;
+	flex-direction: column;
+	height: $card-height;
+	width: $card-width;
+	border-radius: 5px;
 
-    p,h1,h2,strong {
-        height: fit-content;
-        margin: 0;
-    }
+	p,
+	h1,
+	h2,
+	strong {
+		height: fit-content;
+		margin: 0;
+	}
 
+	.profile {
+		width: fit-content;
+		height: $profile-height;
+		position: absolute;
+		display: flex;
+		margin: $profile-margin;
+		padding: $profile-padding;
+		gap: 20px;
+		text-align: left;
 
-    .profile{
-        width: fit-content;
-        height: $profile-height;
-        position: absolute;
-        display: flex;
-        margin: $profile-margin;
-        padding: $profile-padding;
-        gap: 20px;
-        text-align: left;
-        
-        img{
-            border-radius: 50%;
-            width: $profile-height;
-            height: inherit;
-            object-fit: cover;
-        }
+		img {
+			border-radius: 50%;
+			width: $profile-height;
+			height: inherit;
+			object-fit: cover;
+		}
 
-        .info{
-            height: inherit;
-            display: flex;
-            flex-direction: column;
-            justify-content: end;
-            h1{
-                font-size: .9rem;
-                font-weight: bold;
-            }
-            h2{
-                font-size: .7rem;
-            }
-        }
+		.info {
+			height: inherit;
+			display: flex;
+			flex-direction: column;
+			justify-content: end;
+			h1 {
+				font-size: 0.9rem;
+				font-weight: bold;
+			}
+			h2 {
+				font-size: 0.7rem;
+			}
+		}
+	}
 
-    }
+	.body {
+		width: inherit;
+		height: 200px;
+		border-radius: 5px 5px 0 0;
+		text-align: center;
+		overflow: hidden;
+		img {
+			width: inherit;
+			object-fit: cover;
+			max-height: 200px;
+			background-color: Colors.$container-bg;
+		}
+		h1 {
+			font-size: x-large;
+			position: absolute;
+			right: 0;
+			left: 0;
+			top: 150px;
+			color: white;
+			font-family: 'Montserrat';
+		}
+	}
 
-    .body{
-        width: inherit;
-        height: 200px;
-        border-radius: 5px;
-        text-align: center;
-        img{
-            width: inherit;
-            object-fit: cover;
-            max-height: 200px;
-        }
-        h1{
-            font-size: x-large;
-            position: absolute;
-            right: 0;
-            left: 0;
-            top: 150px;
-            color: white;
-            font-family: 'Montserrat';
-        }
-    }
+	.footer {
+		height: calc($card-height - $body-height);
+		background-color: rgb(255, 255, 255);
+		display: flex;
+		flex-direction: row;
+		justify-content: space-around;
+		align-items: center;
+		border-top: 1px #afafaf solid;
+		padding: 0 10px;
+		border-radius: 0 0 5px 5px;
 
-    .footer{
-        height: calc($card-height - $body-height);
-        background-color: white;
-        display: flex;
-        flex-direction: row;
-        justify-content:space-around;
-        align-items: center;
-        border-top: 1px #AFAFAF solid;
-        padding: 0 10px;
-        border-radius: 5px;
+		#merit {
+			display: flex;
+			flex-direction: row;
+			gap: 10px;
 
-        #merit{
-            display:flex;
-            flex-direction: row;
-            gap: 5px;
+			#rating {
+				font-weight: bold;
+				color: #fbcb22;
+			}
 
-            #rating{
-                font-weight: bold;
-                color: #FBCB22;
-            }
-        }
+			.subtle {
+				color: #211b1b;
+			}
+		}
 
-        #pricing{
-            display: inherit;
-            align-items: end;
-            gap: 5px;
-            p{
-                font-size: 13px;
-            }
-        }
-    }
-}
-
-.subtle{
-    font-weight: lighter;
-    color: #AFAFAF;
+		#pricing {
+			display: inherit;
+			align-items: end;
+			gap: 5px;
+			p {
+				font-size: 13px;
+			}
+		}
+	}
 }

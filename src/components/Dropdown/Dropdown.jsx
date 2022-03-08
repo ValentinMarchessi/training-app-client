@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import style from './Dropdown.module.scss';
-import { clickAwayEventListener, hideOnClickOutside } from '../../helpers/clickAwayEventListener/index.ts';
+import { clickAwayEventListener } from '../../helpers/clickAwayEventListener/index.ts';
 
 /*
 	USO DE <Dropdown/>
@@ -30,7 +30,7 @@ export default function Dropdown({ ToggleElement, align = 'left', children }) {
 		return function cleanup() {
 			removeEventListener();
 		}
-	}, [clickAwayEventListener]);
+	}, []);
 
 	function handleExpand() {
 		setActive(!active);
@@ -40,9 +40,9 @@ export default function Dropdown({ ToggleElement, align = 'left', children }) {
 
 	return (
 		<div id={style.container}>
-			<a id={style.expand} onClick={handleExpand}>
+			<div id={style.expand} onClick={handleExpand}>
 				{ToggleElement}
-			</a>
+			</div>
 			<div style={dropdownStyle} id={style.dropdown} className={active ? style.active : null}>
 				{children}
 			</div>

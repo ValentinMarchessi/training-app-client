@@ -23,7 +23,7 @@ import {
 import { CreateDiet, ViewDiets } from "./Pages/Diets";
 import { CreateRecipe } from "./Pages/Recipes";
 import { RoutineDetail } from "./Pages/Routines";
-import { Payment, Success } from "./Pages/Payment";
+import { Checkout, Payment } from "./Pages/Payment";
 import Details from "./Pages/Detail/Detail";
 import Instructor from "./Pages/Descriptions/Instructor";
 
@@ -59,7 +59,7 @@ function App() {
         <Route path="test" element={<CreateRecipe />} />
         <Route path="/recipes" element={<Recipes />} />
         <Route path="/payment" element={<Payment />}>
-          <Route path="success" element={<Success />} />
+          <Route index element={<Checkout/>}/>
         </Route>
       </Routes>
     </div>
