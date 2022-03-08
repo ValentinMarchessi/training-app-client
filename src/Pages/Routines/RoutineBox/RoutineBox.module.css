@@ -1,0 +1,61 @@
+@media screen and (min-width: 768px) {
+  .box {
+    width: 400px;
+  }
+}
+
+.box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 20px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background-color: #201F24;
+  border-radius: 10px;
+  gap: 10px;
+  -webkit-box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.3);
+          box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.3);
+}
+
+.box .separator {
+  width: 80%;
+}
+
+.box .section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 10px;
+}
+
+.box .section h2 {
+  font-weight: 500;
+  font-size: 16px;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
+.click {
+  cursor: pointer;
+}
+
+.link {
+  text-decoration: none;
+  text-align: center;
+  background-color: #3F59B8;
+  color: white;
+  padding: 10px;
+  border: none;
+  font-size: 30px;
+  border-radius: 15px;
+  cursor: pointer;
+}
+/*# sourceMappingURL=RoutineBox.module.css.map */

@@ -1,0 +1,34 @@
+@use '../../../config/colors' as Colors;
+.contentMenu {
+  color: white;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.contentMenu .item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 10px;
+}
+
+.contentMenu .item a {
+  cursor: pointer;
+}
+
+.contentMenu #logout a {
+  color: #F35555;
+}
+/*# sourceMappingURL=UserPanel.module.css.map */

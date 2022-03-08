@@ -1,0 +1,11 @@
+.container {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (auto)[4];
+      grid-template-columns: repeat(4, auto);
+  gap: 24px;
+  max-width: 1234px;
+  margin: 0 auto;
+  padding: 48px 0;
+}
+/*# sourceMappingURL=ClientContainer.module.css.map */

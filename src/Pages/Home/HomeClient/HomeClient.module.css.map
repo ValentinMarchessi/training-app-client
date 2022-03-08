@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,UAAU,CAAA;EACJ,OAAO,EAAE,IAAI;EACb,UAAU,EAAE,IAAI;CACrB",
+    "sources": [
+        "HomeClient.module.scss"
+    ],
+    "names": [],
+    "file": "HomeClient.module.css"
+}

@@ -1,0 +1,64 @@
+@media screen and (max-width: 400px) {
+  .pill {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .pill .separator {
+    height: 0 !important;
+    width: 65%;
+  }
+  .pill .section {
+    max-width: 90% !important;
+  }
+}
+
+.pill {
+  max-height: 80px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 7px 10px;
+  background-color: #38363D;
+  gap: 10px;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 10px;
+}
+
+.pill h3 {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pill .separator {
+  margin: 0;
+  height: 2rem;
+}
+
+.pill .section {
+  max-width: 33%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 5px;
+}
+/*# sourceMappingURL=CircuitPill.module.css.map */

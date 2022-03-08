@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { getRoutinesDetails } from "../../Redux/apiCalls/rutinesCall/getRoutinesDetails";
+//import { getAllRoutines } from "../../Redux/apiCalls/rutinesCall/getAllRoutines";
 import { getAllTrainers } from "../../Redux/apiCalls/allUsersTrainer/allUsersTrainer";
 import { useEffect, useState } from "react";
 import styles from "./Detail.module.scss";
@@ -14,32 +15,35 @@ import { Reviews } from "./dbDetails";
 export default function Details(props) {
   const dispatch = useDispatch();
   //routine details
-
   let myRoutine = useSelector((state) => state.routines.routinesDetails);
+  console.log("mi rutina", myRoutine);
   let { id } = useParams();
   console.log(id);
-  console.log("mi rutina", myRoutine);
   //current user
   const user = useSelector((state) => state.user.currentUser);
   console.log("usuario actual", user);
-
-  const [allTrainers, setAllTrainers] = useState([]);
+  //estados locales
+  const [allTrainers, setAllTrainers] = useState();
 
   useEffect(() => {
+    getRoutinesDetails(id);
     console.log("renderizo useEffect1");
-    getRoutinesDetails(dispatch, id);
-  }, [dispatch, id]);
+  }, [dispatch]);
 
   useEffect(() => {
     console.log("renderizo useEffect2");
-    getAllTrainers(dispatch, user.accessToken).then((data) =>
-      setAllTrainers(data)
-    );
+    getAllTrainers(user.accessToken).then((data) => setAllTrainers(data));
   }, [dispatch, user.accessToken]);
 
+  //Rutine
+  // console.log(allRoutines);
+  // const myRoutine = allRoutines.filter((e) => e.id === idRoutine);
+  // console.log("myRoutine", myRoutine);
+  //Trainer
   console.log(allTrainers);
   const owner = allTrainers.filter((e) => e.id === myRoutine.owner);
   console.log("OWNER", owner);
+  //Reviews
   const points = Reviews.map((e) => e.points);
   const average = (arr) => arr.reduce((a, b) => a + b, 0) / arr.length;
   const rating = average(points);

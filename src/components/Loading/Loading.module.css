@@ -1,0 +1,45 @@
+#icon {
+  width: 100px;
+  height: 100px;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  -ms-grid-column-align: center;
+      justify-self: center;
+  -webkit-clip-path: polygon(50% 50%, 0 100%, 100% 100%);
+          clip-path: polygon(50% 50%, 0 100%, 100% 100%);
+  -webkit-animation: spin .5s linear infinite;
+          animation: spin .5s linear infinite;
+}
+
+#icon circle {
+  cx: 50px;
+  cy: 50px;
+  r: 25px;
+  fill: none;
+  stroke: #fdfdfd;
+  stroke-width: 7px;
+}
+
+@-webkit-keyframes spin {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+/*# sourceMappingURL=Loading.module.css.map */

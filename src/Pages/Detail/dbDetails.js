@@ -8,7 +8,7 @@ const myRoutine = {
   disabled: false,
   description: "Rutina muy intensa para conseguir resultados en poco tiempo.",
 };
-const Owner = {
+const owner = {
   id: "8337e07b-0f36-4a91-aad6-35b33194b651",
   username: "Gera",
   email: "asd@outlook.com",
@@ -65,4 +65,4 @@ const exercises = [
   },
 ];
 
-export { myRoutine, Owner, Reviews, exercises };
+export { myRoutine, owner, Reviews, exercises };
