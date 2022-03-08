@@ -11,6 +11,8 @@ import { useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import { authentication } from '../../../../firebase/config-firestore/firabase';
 import { signInWithPopup, GoogleAuthProvider, FacebookAuthProvider } from 'firebase/auth'
+import { getUserByQuery } from '../../../../Redux/apiCalls/allUsersCall/getUserByQuery'
+
 
 export default function AuthForm({ method, cb }) {
     const dispatch = useDispatch()
@@ -74,26 +76,30 @@ export default function AuthForm({ method, cb }) {
         console.log(formData)
     }
 
-    const handleSubmitClick = (e) => {
+    const handleSubmitClick = async (e) => {
         e.preventDefault()
-        if ((!formData.username && !formData.email) || !formData.password) {
+        if ((!formData.username&&!formData.email) || !formData.password) {
             Toast.fire({
                 icon: 'info',
                 title: 'Invalid Credentials'
             })
         } else {
-            if (method === 'login') {
-                loginUser(dispatch, formData)
-            }
+            if (method === 'login') loginUser(dispatch, formData)
+            
+            if (method === 'register') {
+                let userFound = await getUserByQuery(formData.username)
+                let emailFound = await getUserByQuery(formData.email)
 
-            if (method === 'register') navigate('/newUser', { state: { ...formData } })
+                if(userFound.error&&emailFound.error) navigate('/newUser', { state: { ...formData } }) 
+                
+                else return Toast.fire({
+                    icon: 'error',
+                    title: `This ${!userFound.error?"username":"email"} has already been used`
+                })
+            }
         }
-        setFormData({
-            username: '',
-            password: '',
-            empty: true
-        })
     }
+
     useEffect(() => {
         const handleAlert = () => {
             if (alert) return Toast.fire({
@@ -106,31 +112,28 @@ export default function AuthForm({ method, cb }) {
     }, [alert, Toast])
 
 
-    useEffect(() => {//Para que los errores de input en los registros (password 8 caracteres etc) no aparezcan si la form está vacia
-        let activeErrors = Array.from(document.getElementsByClassName('active'))
-        let inactiveErrors = Array.from(document.getElementsByClassName('inactive'))
-        let inputs = document.querySelectorAll(method === 'register' ? '.authinput' : null)
-        const validInputs = Array.from(inputs).filter(input => input.value === "");
-        //console.log(activeErrors)
-        (validInputs.length === 4 ? activeErrors : inactiveErrors).forEach(e => {
-            e.setAttribute('class', validInputs.length === 4 ? 'inactive' : 'active')
-        })
-    }, [errors])
-
-
     const singInWithGoogle = () => {
         const provider = new GoogleAuthProvider()
         signInWithPopup(authentication, provider)
-            .then((res) => {
+            .then(async (res) => {
                 let data = {
                     username: res.user.displayName,
                     password: res.user.uid,
                     email: res.user.email,
                     empty: false
                 }
-                method === 'register'
-                    ? navigate('/newUser', { state: data })
-                    : loginUser(dispatch, data)
+                if(method === 'register'){
+                    let userFound = await getUserByQuery(formData.username)
+                    let emailFound = await getUserByQuery(formData.email)
+    
+                    if(userFound.error&&emailFound.error) navigate('/newUser', { state: { ...formData } }) 
+                    
+                    else return Toast.fire({
+                        icon: 'error',
+                        title: `This ${!userFound.error?"username":"email"} has already been used`
+                    })
+                }
+                else loginUser(dispatch, data)
             })
             .catch((err) => console.log(err.message))
     }
