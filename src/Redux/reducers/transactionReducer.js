@@ -12,15 +12,16 @@ const transactionSlice = createSlice(
         reducers: {
             //POST TRANSACTION
             postCreateTransactionStart: (state) => {
-                state.isFetching = true
+                state.isFetching = true;
             },
             postCreateTransactionSuccess: (state, action) => {
-                state.isFetching = false
-                state.createTransaction = action.payload
+                state.isFetching = false;
+                state.error = false;
+                state.createTransaction = action.payload;
             },
             postCreateTransactionError: (state) => {
-                state.isFetching = false
-                state.error = true
+                state.isFetching = false;
+                state.error = true;
             },
             //GET TRANSACTION
             getTransactionsStart: (state) => {
@@ -28,6 +29,7 @@ const transactionSlice = createSlice(
             },
             getTransactionsSuccess: (state, action) => {
                 state.transactions = action.payload;
+                state.error = false;
                 state.isFetching = false;
             },
             getTransactionsError: (state) => {

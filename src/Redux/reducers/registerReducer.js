@@ -13,6 +13,7 @@ const registerSlice = createSlice({
         },
         registerSuccess: (state, action) => {
             state.isFetching = false
+            state.error = false;
             state.currentRegister = action.payload
         },
         registerFailure: (state) => {

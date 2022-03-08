@@ -10,7 +10,8 @@ import Routines from './Routines/Routines.jsx';
 import Search from './Search/Search.jsx';
 import Settings from './Settings/Settings.jsx';
 import SignUpSequence from './SignUpSequence/SignUpSequence.jsx';
+import Fallback from '../components/Fallback/Fallback.jsx';
 
 
-export { Clients, Recipes, Diets, Exercises, Home, Landing, Payment, Routines, RoutineForm, Search, Settings, SignUpSequence };
+export { Clients, Recipes, Diets, Exercises, Home, Landing, Payment, Routines, RoutineForm, Search, Settings, SignUpSequence, Fallback };
 

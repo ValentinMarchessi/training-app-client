@@ -6,7 +6,7 @@ import test3 from '../../../src/assets/images/test3.png'
 import test4 from '../../../src/assets/images/test4.png'
 import done from '../../../src/assets/images/done.png'
 import rank from '../../../src/assets/images/rank.jpg'
-import { Link, Navigate, useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import Select from '../../components/Select/Select.jsx'
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage"
 import app from '../../firebase/config-firestore/firabase'

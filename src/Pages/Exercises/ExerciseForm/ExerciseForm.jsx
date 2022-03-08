@@ -5,12 +5,6 @@ import { createExercises } from '../../../Redux/apiCalls/exercisesCall/createExe
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage"
 import app from '../../../firebase/config-firestore/firabase'
 
-const testingState = {
-	title: 'Burpee',
-	description: 'Mix of jumping jacks and push ups, an excelent whole body exercise.',
-	video: 'youtubeURL',
-};
-
 export default function ExerciseForm({onAdd, onClose}) {
 	const [form, setForm] = useState({
 		title: null, //string
@@ -22,6 +16,8 @@ export default function ExerciseForm({onAdd, onClose}) {
 
 	const dispatch = useDispatch();
 	const user = useSelector((store) => store.user.currentUser);
+
+	const canSubmit = Object.values(form).every(value => value !== null) && Object.values(error).every(value => value === null);
 
 	function handleInput(event) {
 		const { name, value } = event.target;
@@ -177,7 +173,7 @@ export default function ExerciseForm({onAdd, onClose}) {
 			</div>
 			<span>{error.video}</span>
 			
-			<button id={style.submit} type="submit">Please complete the form</button>
+			<button id={style.submit} disabled={!canSubmit} type="submit">{!canSubmit ? "Please complete the form" : "Submit"}</button>
 		</form>
 	);
 }
