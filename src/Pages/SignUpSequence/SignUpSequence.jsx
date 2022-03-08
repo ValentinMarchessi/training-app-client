@@ -215,8 +215,7 @@ export default function SignUpSequence() {
                         document.getElementById('fourthS').style.display = 'none'
                         document.getElementById('fifthS').scrollIntoView()
                         setTimeout(() => {
-                            register(dispatch, userData)
-                            navigate('/home')
+                            register(dispatch,userData).then(()=>loginUser(dispatch,userData).then(()=>navigate('/home')));
                         }, 2000)
                     }}>
                         I'd rather not
@@ -235,9 +234,9 @@ export default function SignUpSequence() {
                     <Select options={countries} label='Country' callback={event => {
                         setUserData({ ...userData, country: event.target.value })
                     }} />
-                    <Select options={[1, 2, 3, 4, 5, 6, 7].map(e=>{return {value:e, display:e}})} label='Weekly training days' callback={event => {
+                    {(userData.is_nutritionist || userData.is_personal_trainer)?<Select options={[1, 2, 3, 4, 5, 6, 7].map(e=>{return {value:e, display:e}})} label='Weekly training days' callback={event => {
                         setUserData({ ...userData, training_days: event.target.value })
-                    }} />
+                    }} />:null}
 
                     <div>
                         <label htmlFor='Height'>Height (cm)</label>
@@ -326,7 +325,7 @@ export default function SignUpSequence() {
                     console.log(userData)
                     document.getElementById('fifthS').scrollIntoView()
                     setTimeout(() => {
-                        register(dispatch,userData).then(()=>loginUser(dispatch,userData)).then(()=>navigate('/home'));
+                        register(dispatch,userData).then(()=>loginUser(dispatch,userData).then(()=>navigate('/home')));
                     }, 1500)
                 }}>
                     Continue

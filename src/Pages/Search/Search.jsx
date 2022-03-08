@@ -18,7 +18,6 @@ import Searchinput from './components/Search/SearchInput';
 
 export default function Search() {
     const dispatch = useDispatch()
-    const { accessToken } = useSelector(state=>state.user.currentUser.accessToken);
     const [ currentType, setCurrentType ] = useState('');
     const [currentItems, setCurrentItems] = useState([]);
 
@@ -31,19 +30,19 @@ export default function Search() {
     useEffect(()=>{
         //El producto por default son las dietas
         if(currentType === 'Diets' || !currentType){
-            getAllDiets(dispatch, accessToken)
+            getAllDiets(dispatch)
                 .then(data => setCurrentItems( data ));
         };
         if(currentType === 'Routines'){
-            getAllRoutines(dispatch, accessToken)
+            getAllRoutines(dispatch)
                 .then(data => setCurrentItems( data ));
         };
         if(currentType === 'Personal Trainers'){
-            getAllTrainers(dispatch, accessToken)
+            getAllTrainers(dispatch)
                 .then(data => setCurrentItems( data ));
         };
         if(currentType === 'Nutritionists' ){
-            getAllNutritionits(dispatch, accessToken)
+            getAllNutritionits(dispatch)
                 .then(data => setCurrentItems( data ));
         };
     },[currentType]);
@@ -53,19 +52,19 @@ export default function Search() {
         //Cuando input no tenga nada
         if(!input.length){
             if(currentType === 'Diets' || !currentType){
-                getAllDiets(dispatch, accessToken)
+                getAllDiets(dispatch)
                     .then(data => setCurrentItems( data ));
             };
             if(currentType === 'Routines'){
-                getAllRoutines(dispatch, accessToken)
+                getAllRoutines(dispatch)
                     .then(data => setCurrentItems( data ));
             };
             if(currentType === 'Personal Trainers'){
-                getAllTrainers(dispatch, accessToken)
+                getAllTrainers(dispatch)
                     .then(data => setCurrentItems( data ));
             };
             if(currentType === 'Nutritionists' ){
-                getAllNutritionits(dispatch, accessToken)
+                getAllNutritionits(dispatch)
                     .then(data => setCurrentItems( data ));
             };
         }

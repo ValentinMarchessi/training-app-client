@@ -3,10 +3,10 @@ import { getAllUsersTrainersFailure, getAllUsersTrainersStart, getAllUsersTraine
 
 //getAll Routines
 
-export const getAllTrainers = async (dispatch, token) => {
+export const getAllTrainers = async (dispatch) => {
     dispatch(getAllUsersTrainersStart());
     try {
-        const res = await baseUrlDev.get('user/get/trainers', {headers:{token}});
+        const res = await baseUrlDev.get('user/get/trainers');
         dispatch(getAllUsersTrainersSuccess(res.data));
         return res.data;
     } catch (err) {
