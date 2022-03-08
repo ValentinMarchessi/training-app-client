@@ -32,14 +32,14 @@ const persistConfig = {
 const rootReducer = combineReducers({
     user: userLoginReducer,
     register: registerReducer,
-    recipes : recipesReducer,
+    recipes: recipesReducer,
     routines: routinesReducer,
     exercises: exercisesReducer,
     diets: dietsReducer,
     nutritionists: allUsersNutritionitsReducer,
     trainers: allUsersTrainersReducer,
     transactions: transactionReducer,
-    news : newsReducer,
+    news: newsReducer,
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
@@ -56,19 +56,3 @@ export const store = configureStore({
 
 export let persistor = persistStore(store)
 
-configureStore({
-	reducer: {
-		user: userLoginReducer,
-		register: registerReducer,
-		updateUser: updateUserReducer,
-        diets: dietsReducer,
-        recipes: recipesReducer,
-		exercises: exercisesReducer,
-		routines: routinesReducer,
-		allUsers: allUsersReducer,
-		allUsersTrainer: allUsersTrainersReducer,
-		allUsersNutritionits: allUsersNutritionitsReducer,
-		news: newsReducer,
-		transactions: transactionReducer,
-	},
-});
