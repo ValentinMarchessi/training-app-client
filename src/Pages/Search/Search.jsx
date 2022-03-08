@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from 'react';
+import s from './Search.module.scss';
+import test from '../../assets/images/imageBg.png';
+import user from '../../assets/images/imageUser.jpg';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { getAllTrainers } from '../../Redux/apiCalls/allUsersTrainer/allUsersTrainer';
 import { getAllNutritionits } from '../../Redux/apiCalls/allUsersNutritionist/allUsersNutritionist';
 import { getAllRoutines } from '../../Redux/apiCalls/rutinesCall/getAllRoutines';
 import { getAllDiets } from '../../Redux/apiCalls/dietsCall/getAllDiets';
-
-//Components
 import { Navbar } from '../../components';
 import { Select } from '../../components';
+
 import RoutineCard from './components/RoutineCard/RoutineCard';
 import UserCard from './components/UserCard/UserCard';
 import Searchinput from './components/Search/SearchInput';
-import s from './Search.module.scss';
 
 
 export default function Search() {
@@ -21,10 +22,11 @@ export default function Search() {
     const [currentItems, setCurrentItems] = useState([]);
 
     //Var para realizar realizar busquedas
+    const [search, newSearch] = useState('');
     const [input, newInput] = useState('');
 
     //Cada vez que se eliga un producto en esepecifico se acutiza el currenType y dependiendo de eso se hace la petición
-    //Se utiliza la variable currentItem como arreglo en el que se almacenan los productos a mostrar
+    //Se utiliza la var currentItem como arreglo en el que se almacenan los productos a mostrar
     useEffect(() => {
         //El producto por default son las dietas
         if(currentType === 'Diets' || !currentType){
@@ -66,45 +68,51 @@ export default function Search() {
                     .then(data => setCurrentItems( data ));
             };
         }
-    }, [input]);
+    }, [input])
+
+    //Cada vez que se realice una busqueda
 
     const [inicio, setInicio] = useState(0);
-    //Var en la que se almacenan los elementos de la páginacion actual, mostrando 9 elementos por página
+    //Var en la que se almacenan los elementos de la páginacion actual, mostrando actualmente 9 por página
     let current = currentItems ? currentItems.slice(inicio, inicio + 9) : [];
     //Var utilizadas para los filtros
-    const [sort, setSort] = useState(false);
+    const [reviewSort, setReviewSort] = useState(false);
+    const [ratingSort, setRatingSort] = useState(false);
+    const [priceSort, setPriceSort] = useState(false);
 
     function sortHandler(type) {
         //Hacemos una copia del estado ya que no sé puede cambiar directamente 
         let aux = [...currentItems];
         let auxState;
         setInicio(0);
-        type === 'reviews' ? auxState = sort : type === 'rating' ? auxState = sort : auxState = sort;
+        type === 'reviews' ? auxState = reviewSort : type === 'rating' ? auxState = ratingSort : auxState = priceSort;
         setCurrentItems(aux.sort((a, b) => a[type] < b[type] ? (auxState ? -1 : 1) : a[type] > b[type] ? (auxState ? 1 : -1) : 0));
-        type === 'reviews' ? setSort(!sort) : type === 'rating' ? setSort(!sort) : setSort(!sort);
+        type === 'reviews' ? setReviewSort(!reviewSort) : type === 'rating' ? setRatingSort(!ratingSort) : setPriceSort(!priceSort);
     };
 
     return (
         <>
             <Navbar />
-            <div className={s.search}>
-                <div className={s.fields}>
-                    {/*Esto se debe mejorar : Son los filtros */}
-                    <button onClick={() => sortHandler('reviews')}>
-                        Reviews
-                    </button>
-                    <button onClick={() => sortHandler('rating')}>
-                        Raiting
-                    </button>
-                    <button onClick={() => sortHandler('price')}>
-                        Price
-                    </button>
-                </div>
-                <Select callback={(e) => setCurrentType(e.target.value)} options={[{ value: 'Routines' }, { value: 'Diets' }, { value: 'Nutritionists' }, { value: 'Personal Trainers' }]} />
-                {/* Esta es el input de busqueda */}
-                <Searchinput callback={setCurrentItems} setInput={newInput} type={currentType} />
-            </div>
             <div className={s.page}>
+                <div className={s.search}>
+                    <div className={s.fields}>
+                        {/*Esto se debe mejorar : Son los filtros */}
+                        <button onClick={() => sortHandler('reviews')}>
+                            Reviews
+                        </button>
+                        <button onClick={() => sortHandler('rating')}>
+                            Raiting
+                        </button>
+                        <button onClick={() => sortHandler('price')}>
+                            Price
+                        </button>
+                    </div>
+                    <Select callback={(e) => setCurrentType(e.target.value)} options={[{ value: 'Routines' }, { value: 'Diets' }, { value: 'Nutritionists' }, { value: 'Personal Trainers' }]} />
+                    {/* Esta es el input de busqueda */}
+                    <Searchinput callback={setCurrentItems} setInput={newInput} type={currentType} />
+                </div>
+                <h2 id={s.results}>{search && `Resultados para: ${search}`}</h2>
+
                 <div id='paginationContainer' className={s.resultContainer}>
                     {/* Aqui es donde se muestra todo */}
                     {currentType === 'Nutritionists' || currentType.includes('Trainers') ? current.map(element =>
@@ -148,10 +156,12 @@ export default function Search() {
                                 </Link>
                         )}
                 </div>
-            </div>
-            <div className={s.pagination}>
-                { inicio === 0 ? null : <button onClick={() => inicio !== 0 ? setInicio(inicio - 9) : null}> Previous </button> }
-                { inicio / 9 === Math.round(currentItems.length / 9) ? null : <button onClick={() => inicio + 9 < currentItems.length ? setInicio(inicio+9) : null}> Next </button> }
+
+                <div className={s.pagination}>
+                    <button onClick={() => inicio !== 0 ? setInicio(inicio - 8) : null}>Previous</button>
+                    <button onClick={() => inicio + 8 < currentItems.length ? setInicio(inicio + 9) : null}>Next</button>
+                </div>
+
             </div>
         </>
     );

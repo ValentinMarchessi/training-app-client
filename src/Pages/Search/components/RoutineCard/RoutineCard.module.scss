@@ -1,6 +1,5 @@
-@use '../../../../config/colors/' as c;
 $card-width: 350px;
-$card-height: 320px;
+$card-height: 250px;
 $profile-height: 40px;
 $profile-margin: 10px;
 $profile-padding: 6px;
@@ -8,61 +7,106 @@ $body-height: 200px;
 
 .card{
     display: flex;
-    width: $card-width;
-    height: $card-height;
-    flex-direction: column;
     position: relative;
-    background-color: c.$option2-bg;
+    flex-direction:column;
+    height: $card-height;
+    width: $card-width;
     border-radius: 5px;
 
+    p,h1,h2,strong {
+        height: fit-content;
+        margin: 0;
+    }
+
+
     .profile{
-        display: flex;
-        font-size: 9px;
+        width: fit-content;
+        height: $profile-height;
         position: absolute;
-        left: calc($card-width - 80%);
-        margin-top: 10px;
-        gap: 10px;
-        padding: 3px 10px;
-        background-color: #6b6979a9;
-        border-radius: 5px;
+        display: flex;
+        margin: $profile-margin;
+        padding: $profile-padding;
+        gap: 20px;
+        text-align: left;
+        
+        img{
+            border-radius: 50%;
+            width: $profile-height;
+            height: inherit;
+            object-fit: cover;
+        }
+
+        .info{
+            height: inherit;
+            display: flex;
+            flex-direction: column;
+            justify-content: end;
+            h1{
+                font-size: .9rem;
+                font-weight: bold;
+            }
+            h2{
+                font-size: .7rem;
+            }
+        }
+
     }
 
     .body{
+        width: inherit;
+        height: 200px;
+        border-radius: 5px;
+        text-align: center;
         img{
-            width: 100%;
+            width: inherit;
             object-fit: cover;
+            max-height: 200px;
+        }
+        h1{
+            font-size: x-large;
+            position: absolute;
+            right: 0;
+            left: 0;
+            top: 150px;
+            color: white;
+            font-family: 'Montserrat';
         }
     }
 
     .footer{
+        height: calc($card-height - $body-height);
+        background-color: white;
         display: flex;
-        flex-direction: column;
-        text-align: center;
-        gap: 12px;
-        strong{
-            color: white;
+        flex-direction: row;
+        justify-content:space-around;
+        align-items: center;
+        border-top: 1px #AFAFAF solid;
+        padding: 0 10px;
+        border-radius: 5px;
+
+        #merit{
+            display:flex;
+            flex-direction: row;
+            gap: 5px;
+
+            #rating{
+                font-weight: bold;
+                color: #FBCB22;
+            }
         }
-        .merit{
-            display: flex;
-            gap: 10px;
-            position: absolute;
-            bottom: 5px;
-            left: calc($card-width - 70%);
+
+        #pricing{
+            display: inherit;
+            align-items: end;
+            gap: 5px;
+            p{
+                font-size: 13px;
+            }
         }
     }
 }
 
-@media (min-width: 1600px ){
-    .card{
-        width: calc($card-width + 100px);
-        height: calc($card-height + 50px);
-
-        .profile{
-            left: calc($card-width - 50%);
-        }
-    }
-
-    .merit{
-        left: 155px !important;
-    }
+.subtle{
+    font-weight: lighter;
+    color: #AFAFAF;
 }
