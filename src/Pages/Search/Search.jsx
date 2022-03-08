@@ -11,7 +11,6 @@ import { Navbar, Select, Fallback } from '../../components';
 import RoutineCard from './components/RoutineCard/RoutineCard';
 import UserCard from './components/UserCard/UserCard';
 import Searchinput from './components/Search/SearchInput';
-import s from './Search.module.scss';
 
 export default function Search() {
 	const dispatch = useDispatch();
