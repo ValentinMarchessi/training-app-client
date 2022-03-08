@@ -18,8 +18,7 @@ import Searchinput from './components/Search/SearchInput';
 
 export default function Search() {
     const dispatch = useDispatch()
-    const { accessToken } = useSelector(state => state.user.currentUser.accessToken);
-    const [currentType, setCurrentType] = useState('');
+    const [ currentType, setCurrentType ] = useState('');
     const [currentItems, setCurrentItems] = useState([]);
 
     //Var para realizar realizar busquedas
@@ -30,43 +29,43 @@ export default function Search() {
     //Se utiliza la var currentItem como arreglo en el que se almacenan los productos a mostrar
     useEffect(() => {
         //El producto por default son las dietas
-        if (currentType === 'Diets' || !currentType) {
-            getAllDiets(dispatch, accessToken)
-                .then(data => setCurrentItems(data));
+        if(currentType === 'Diets' || !currentType){
+            getAllDiets(dispatch)
+                .then(data => setCurrentItems( data ));
         };
-        if (currentType === 'Routines') {
-            getAllRoutines(dispatch, accessToken)
-                .then(data => setCurrentItems(data));
+        if(currentType === 'Routines'){
+            getAllRoutines(dispatch)
+                .then(data => setCurrentItems( data ));
         };
-        if (currentType === 'Personal Trainers') {
-            getAllTrainers(dispatch, accessToken)
-                .then(data => setCurrentItems(data));
+        if(currentType === 'Personal Trainers'){
+            getAllTrainers(dispatch)
+                .then(data => setCurrentItems( data ));
         };
-        if (currentType === 'Nutritionists') {
-            getAllNutritionits(dispatch, accessToken)
-                .then(data => setCurrentItems(data));
+        if(currentType === 'Nutritionists' ){
+            getAllNutritionits(dispatch)
+                .then(data => setCurrentItems( data ));
         };
     }, [currentType]);
 
     //Para cuando el search no tenga nada
     useEffect(() => {
         //Cuando input no tenga nada
-        if (!input.length) {
-            if (currentType === 'Diets' || !currentType) {
-                getAllDiets(dispatch, accessToken)
-                    .then(data => setCurrentItems(data));
+        if(!input.length){
+            if(currentType === 'Diets' || !currentType){
+                getAllDiets(dispatch)
+                    .then(data => setCurrentItems( data ));
             };
-            if (currentType === 'Routines') {
-                getAllRoutines(dispatch, accessToken)
-                    .then(data => setCurrentItems(data));
+            if(currentType === 'Routines'){
+                getAllRoutines(dispatch)
+                    .then(data => setCurrentItems( data ));
             };
-            if (currentType === 'Personal Trainers') {
-                getAllTrainers(dispatch, accessToken)
-                    .then(data => setCurrentItems(data));
+            if(currentType === 'Personal Trainers'){
+                getAllTrainers(dispatch)
+                    .then(data => setCurrentItems( data ));
             };
-            if (currentType === 'Nutritionists') {
-                getAllNutritionits(dispatch, accessToken)
-                    .then(data => setCurrentItems(data));
+            if(currentType === 'Nutritionists' ){
+                getAllNutritionits(dispatch)
+                    .then(data => setCurrentItems( data ));
             };
         }
     }, [input])

@@ -230,7 +230,7 @@ export default function AuthForm({ method, cb }) {
             {method === 'register'
                 ? <p style={{ position: 'absolute', bottom: 0, left: 0, right: 0, textAlign: 'center' }}>
                     Already got an account? <span style={{ color: '#2B73FF', cursor: 'pointer' }} onClick={() => {
-                        autoScroll('form', 'right')
+                        autoScroll('authform', 'left')
                         document.getElementById('logInText').style.borderBottom = '10px solid #3f59b8'
                         document.getElementById('signUpText').style.borderBottom = '10px solid transparent'
                     }}>
@@ -239,7 +239,7 @@ export default function AuthForm({ method, cb }) {
                 </p>
                 : <p style={{ position: 'absolute', bottom: 0, left: 0, right: 0, textAlign: 'center' }}>
                     Don't have an account yet? <span style={{ color: '#2B73FF', cursor: 'pointer' }} onClick={() => {
-                        autoScroll('form', 'left')
+                        autoScroll('authform', 'right')
                         document.getElementById('signUpText').style.borderBottom = '10px solid #3f59b8'
                         document.getElementById('logInText').style.borderBottom = '10px solid transparent'
                     }}>
