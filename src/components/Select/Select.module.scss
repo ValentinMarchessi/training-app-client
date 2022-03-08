@@ -3,7 +3,7 @@
 .container{
     text-align: left;
 
-    .select{
+    .selectContainer{
         width: 100%;
         min-width: 15ch;
         //max-width: 20ch;
@@ -17,6 +17,7 @@
             color:white;
             text-indent: 1rem;
             z-index: 2;
+            width: 190px;
             height: 40px;
             background-color: transparent;
             border: 2px solid colors.$secondary-bg;
@@ -24,13 +25,15 @@
             appearance: none;
             padding-right: 35px !important;
             text-overflow: ellipsis;
+            padding: 0px 10px;
+            cursor: pointer;
 
             &:focus-visible{
                 outline: none;
             }
 
             option{
-                font-family: inherit;
+                font-family: 'Montserrat';
                 color:white;
                 background-color: colors.$secondary-bg;
             }

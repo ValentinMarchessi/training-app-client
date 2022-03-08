@@ -25,7 +25,7 @@ import style from './Select.module.scss';
 export default function Select({ options, label, callback }) {
 	return (
 		<div className={style.container}>
-			<div className={style.select}>
+			<div className={style.selectContainer}>
 				<select onChange={callback}>
 					<option value="" selected disabled hidden>
 						{label || "Selección"}
