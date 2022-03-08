@@ -20,6 +20,7 @@ const recipesSlice = createSlice({
         getAllRecipesSuccess: (state, action) => {
             console.log(action);
             state.isFetching = false;
+            state.error = false;
             state.allRecipes = action.payload;
         },
         getAllRecipesFailure: (state) => {

@@ -19,6 +19,7 @@ const dietsSlice = createSlice({
     getAllDietsSuccess: (state, action) => {
       console.log(action);
       state.isFetching = false;
+      state.error = false;
       state.allDiets = action.payload;
     },
     getAllDietsFailure: (state) => {
