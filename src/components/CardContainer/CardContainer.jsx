@@ -23,9 +23,9 @@ import styleModule from './CardContainer.module.scss';
     direction = 'row'|'column'
 */
 
-export default function CardContainer({ cards, CardElement, direction = 'row' }) {
+export default function CardContainer({ cards, CardElement, style }) {
     return (
-		<div style={{flexDirection: direction}} className={styleModule.container}>
+		<div style={style} className={styleModule.container}>
 			{cards.map((card) => (
 				<CardElement {...card} />
 			))}
