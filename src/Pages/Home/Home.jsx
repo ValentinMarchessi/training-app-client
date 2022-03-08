@@ -11,7 +11,7 @@ const Home = () => {
 		<>
 			<Navbar />
 			<div className={styles.page}>
-				{user && (user.PTrainer || user.Nutritionist) ? <HomeProfessional /> : <HomeClient />}
+				{user && (user.PTrainer || user.Nutritionist) ? <HomeProfessional/> : <HomeClient/>}
 			</div>
 		</>
 	);

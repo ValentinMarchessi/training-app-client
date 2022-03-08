@@ -1,9 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const userHistory = createSlice({
-  name: 'userHistory',
+const clientsSlice = createSlice({
+  name: 'clients',
   initialState: {
-    entries: []
+    entries: null,
+    isFetching: false,
+    error: false
   },
   reducers: {
     fetchStart: (state) => {
@@ -11,7 +13,6 @@ const userHistory = createSlice({
     },
     fetchSuccess: (state, action) => {
       state.isFetching = false;
-      state.error = false;
       state.entries = action.payload;
     },
     fetchFailure: (state) => {
@@ -25,6 +26,6 @@ export const {
   fetchStart,
   fetchSuccess,
   fetchFailure
-} = userHistory.actions;
+} = clientsSlice.actions;
 
-export default userHistory.reducer;
+export default clientsSlice.reducer;

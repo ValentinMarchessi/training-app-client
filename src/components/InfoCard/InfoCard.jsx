@@ -11,13 +11,6 @@ const Container = Styled.div.attrs((props) => ({ className: `${style.container} 
     opacity: ${(props) => (props.disabled ? 0.2 : 1)};
 `;
 
-const DisabledOverlay = Styled.div`
-    width: fit-content;
-    height: fit-content;
-`;
-
-
-
 //GET ALL ROUTINES COMPLETE
     // useEffect(() => {
     //     const handleAllRutines = () => {

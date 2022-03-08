@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import Avatar from '../../components/Avatar/Avatar';
 import avatarPlaceholder from '../../assets/images/avatarPlaceholder.svg';
 
@@ -7,7 +6,6 @@ import style from './Navbar.module.scss';
 import GuestPanel from './GuestPanel/GuestPanel';
 import UserPanel from './UserPanel/UserPanel';
 import Breadcrumbs from './Breadcrumbs/Breadcrumbs';
-import avatarMock from '../../assets/images/imageUser.jpg'
 import { useSelector } from 'react-redux';
 
 

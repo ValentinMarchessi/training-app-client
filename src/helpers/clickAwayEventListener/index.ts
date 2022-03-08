@@ -1,7 +1,7 @@
 //Event listeners para detectar clicks fuera de algún elemento del DOM, útil para menus
 
 function clickAwayEventListener(element: Element, callback: Function) {
-	const elementName = element.name || element.id || element.className || element.tagName;
+	//const elementName = element.name || element.id || element.className || element.tagName;
 	let onFocus = false;
 	const handleClickAway = (event: Event) => {
 		if (element.contains(event.target)) {

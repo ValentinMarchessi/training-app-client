@@ -21,6 +21,7 @@ const routinesSlice = createSlice({
     },
     getAllUsersRoutinesSuccess: (state, action)=>{
       state.isFetching = false;
+      state.error = false;
       state.routinesByUser = [...state.users,action.payload];
     },
     getAllUsersRoutinesFailure: (state)=>{
@@ -33,6 +34,7 @@ const routinesSlice = createSlice({
     },
     createRoutinesSuccess: (state,action)=>{
       state.isFetching = false;
+      state.error = false;
       state.routinesByUser = action.payload;
     },
     createRoutinesFailure: (state)=>{
@@ -45,6 +47,7 @@ const routinesSlice = createSlice({
     },
     getUserRoutinesSuccess: (state,action)=>{
       state.isFetching = false;
+      state.error = false;
       state.routinesByUser = action.payload;
     },
     getUserRoutinesFailure: (state)=>{
@@ -56,8 +59,8 @@ const routinesSlice = createSlice({
       state.isFetching = true;
     },
     getAllRoutinesSuccess: (state, action) => {
-      console.log(action);
       state.isFetching = false;
+      state.error = false;
       state.allRoutines = action.payload;
     },
     getAllRoutinesFailure: (state) => {
@@ -72,6 +75,7 @@ const routinesSlice = createSlice({
     },
     getRoutinesByIdSuccess: (state, action) => {
       state.isFetching = false;
+      state.error = false;
       state.routinesById = action.payload;
     },
     getRoutinesByIdFailure: (state) => {
@@ -84,6 +88,7 @@ const routinesSlice = createSlice({
     },
     getRoutinesDetailsSuccess: (state, action) => {
       state.isFetching = false;
+      state.error = false;
       state.routinesDetails = action.payload;
     },
     getRoutinesDetailsFailure: (state) => {
@@ -97,6 +102,7 @@ const routinesSlice = createSlice({
     },
     updateRoutinesSuccess: (state, action) => {
       state.isFetching = false;
+      state.error = false;
       state.updatedRoutines = action.payload;
     },
     updateRoutinesFailure: (state) => {
@@ -110,6 +116,7 @@ const routinesSlice = createSlice({
     },
     deleteRoutinesSuccess: (state, action) => {
       state.isFetching = false;
+      state.error = false;
       state.deletedRoutines = action.payload;
     },
     deleteRoutinesFailure: (state) => {

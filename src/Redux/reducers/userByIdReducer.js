@@ -14,6 +14,7 @@ const UserByIdSlice = createSlice({
     },
     getUsersByIdSuccess: (state, action) => {
       state.isFetching = false;
+      state.error = false;
       state.userById = action.payload;
     },
     getUsersByIdFailure: (state) => {

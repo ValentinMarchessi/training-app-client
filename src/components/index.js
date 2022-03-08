@@ -12,6 +12,7 @@ import Pill from './Pill/Pill.jsx';
 import SearchBar from './SearchBar/SearchBar.jsx';
 import Select from './Select/Select.jsx';
 import Loading from './Loading/Loading.jsx';
+import Fallback from './Fallback/Fallback.jsx';
 
 export {
     Avatar,
@@ -28,4 +29,5 @@ export {
     Input,
     MediumCard,
     Loading,
+    Fallback,
 };

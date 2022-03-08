@@ -14,7 +14,8 @@ const allUsers = createSlice({
         },
         userDietsRoutinesSuccess: (state, action) => {
             state.isFetching = false
-            state.userDietsRoutines = action.payload
+            state.error = false;
+            state.userDietsRoutines = action.payload;
         },
         userDietsRoutinesFailure: (state) => {
             state.isFetching = false
@@ -25,7 +26,8 @@ const allUsers = createSlice({
         },
         soldItemsSuccess: (state, action) => {
             state.isFetching = false
-            state.soldItems = action.payload
+            state.error = false;
+            state.soldItems = action.payload;
         },
         soldItemsFailure: (state) => {
             state.isFetching = false

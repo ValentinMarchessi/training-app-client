@@ -2,7 +2,7 @@ export default function validate(input) {
     let errors = {};
 
     if (!input.username) errors.username = 'Username required';
-    else if (input.username.length<5) errors.username = <span>Your username must contain at least <span style={{color:'red'}}>5 characters</span></span>;
+    else if (input.username.length<5) errors.username = <span>Your username must contain at least 5 characters</span>;
     
     if (!input.email) errors.email = 'Email required';
     else if (!/\S+@\S+\.\S+/.test(input.email)) errors.email = 'Please enter a valid email';
