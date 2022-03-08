@@ -13,13 +13,13 @@ export default function News() {
 		getNews(dispatch);
 	}, [dispatch, getNews]);
 
-	return (
+	return !isFetching ? (
 		<div className={styles.container}>
-			{!isFetching ? (
-				news.length && news.map((item) => <NewsCard title={item.title} img={item.image_url} url={item.url} />)
-			) : (
-				<Loading />
-			)}
+			{news.length && news.map((item) => <NewsCard title={item.title} img={item.image_url} url={item.url} />)}
+		</div>
+	) : (
+		<div id={styles.loading}>
+			<Loading/>
 		</div>
 	);
 }

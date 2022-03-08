@@ -5,15 +5,13 @@
 
 .page {
 	@include Mixins.page;
-
+	display: grid;
 	.buttonContainer {
 		width: 30%;
 		padding: 0 10px;
 		display: flex;
 		flex-direction: column;
 		gap: 20px;
-		position: absolute;
-		right: 50px;
 		max-height: 80vh;
 		overflow-y: auto;
 
