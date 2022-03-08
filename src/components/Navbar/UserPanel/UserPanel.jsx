@@ -1,14 +1,15 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { logoutUser } from '../../../Redux/reducers/userLoginReducer';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-import { Dropdown } from '../../../components';
+import { Dropdown } from "../../../components";
 
-import style from './UserPanel.module.scss';
-import MenuIcon from '@mui/icons-material/Menu';
-import SettingsIcon from '@mui/icons-material/Settings';
-import LogoutIcon from '@mui/icons-material/Logout';
-import HistoryIcon from '@mui/icons-material/History';
+import style from "./UserPanel.module.scss";
+import MenuIcon from "@mui/icons-material/Menu";
+import SettingsIcon from "@mui/icons-material/Settings";
+import LogoutIcon from "@mui/icons-material/Logout";
+import HistoryIcon from "@mui/icons-material/History";
+
+import Confirm from "./Confirm";
 
 export default function UserPanel() {
 	const user = useSelector((store) => store.user.currentUser);

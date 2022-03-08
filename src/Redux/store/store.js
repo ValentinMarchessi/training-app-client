@@ -32,14 +32,14 @@ const persistConfig = {
 const rootReducer = combineReducers({
     user: userLoginReducer,
     register: registerReducer,
-    recipes : recipesReducer,
+    recipes: recipesReducer,
     routines: routinesReducer,
     exercises: exercisesReducer,
     diets: dietsReducer,
     nutritionists: allUsersNutritionitsReducer,
     trainers: allUsersTrainersReducer,
     transactions: transactionReducer,
-    news : newsReducer,
+    news: newsReducer,
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

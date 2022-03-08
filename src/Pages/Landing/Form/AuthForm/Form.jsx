@@ -16,7 +16,7 @@ export default function AuthForm({ method, cb }) {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const user = useSelector(state => state.user.currentUser)
-
+    const userError = useSelector(state => state.user)
     let [formData, setFormData] = useState({
         username: '',
         password: '',
@@ -24,9 +24,8 @@ export default function AuthForm({ method, cb }) {
     })
     const [alert, setAlert] = useState(false)
     let [errors, setErrors] = useState({})
-
     useEffect(() => {
-        user&&navigate('/home')
+        user && navigate('/home')
     }, [user, navigate, formData])
 
     const Toast = Swal.mixin({
@@ -49,25 +48,25 @@ export default function AuthForm({ method, cb }) {
             [event.target.name]: event.target.value
         }))
 
-        if(method==='login'&&event.target.name==='username'){ 
+        if (method === 'login' && event.target.name === 'username') {
             (/\S+@\S+\.\S+/.test(event.target.value))
-            ?   setFormData({
+                ? setFormData({
                     email: event.target.value,
-                    password:formData.password,
+                    password: formData.password,
                     empty: false
                 })
-            :   setFormData({
+                : setFormData({
                     username: event.target.value,
-                    password:(formData.password??''),
+                    password: (formData.password ?? ''),
                     empty: false
                 })
         }
-        else{
+        else {
             setFormData({
                 ...formData,
                 [event.target.name]: event.target.value,
                 empty: false
-            })     
+            })
         }
 
         setAlert(false)
@@ -77,14 +76,16 @@ export default function AuthForm({ method, cb }) {
 
     const handleSubmitClick = (e) => {
         e.preventDefault()
-        if ((!formData.username&&!formData.email) || !formData.password) {
+        if ((!formData.username && !formData.email) || !formData.password) {
             Toast.fire({
                 icon: 'info',
                 title: 'Invalid Credentials'
             })
         } else {
-            if (method === 'login') loginUser(dispatch, formData)
-            
+            if (method === 'login') {
+                loginUser(dispatch, formData)
+            }
+
             if (method === 'register') navigate('/newUser', { state: { ...formData } })
         }
         setFormData({
@@ -104,17 +105,17 @@ export default function AuthForm({ method, cb }) {
         handleAlert()
     }, [alert, Toast])
 
-    
-    useEffect(()=>{//Para que los errores de input en los registros (password 8 caracteres etc) no aparezcan si la form está vacia
-        let activeErrors=Array.from(document.getElementsByClassName('active'))
-        let inactiveErrors=Array.from(document.getElementsByClassName('inactive'))
-        let inputs = document.querySelectorAll(method==='register'?'.authinput':null)
-        const validInputs = Array.from(inputs).filter( input => input.value === "");
+
+    useEffect(() => {//Para que los errores de input en los registros (password 8 caracteres etc) no aparezcan si la form está vacia
+        let activeErrors = Array.from(document.getElementsByClassName('active'))
+        let inactiveErrors = Array.from(document.getElementsByClassName('inactive'))
+        let inputs = document.querySelectorAll(method === 'register' ? '.authinput' : null)
+        const validInputs = Array.from(inputs).filter(input => input.value === "");
         //console.log(activeErrors)
-        (validInputs.length===4?activeErrors:inactiveErrors).forEach(e=>{
-            e.setAttribute('class',validInputs.length===4?'inactive':'active')
+        (validInputs.length === 4 ? activeErrors : inactiveErrors).forEach(e => {
+            e.setAttribute('class', validInputs.length === 4 ? 'inactive' : 'active')
         })
-    },[errors])
+    }, [errors])
 
 
     const singInWithGoogle = () => {
@@ -125,11 +126,11 @@ export default function AuthForm({ method, cb }) {
                     username: res.user.displayName,
                     password: res.user.uid,
                     email: res.user.email,
-                    empty: false 
+                    empty: false
                 }
-                method==='register'
-                ? navigate('/newUser', { state: data })
-                : loginUser(dispatch, data)
+                method === 'register'
+                    ? navigate('/newUser', { state: data })
+                    : loginUser(dispatch, data)
             })
             .catch((err) => console.log(err.message))
     }
@@ -141,6 +142,16 @@ export default function AuthForm({ method, cb }) {
             })
             .catch((err) => console.log(err.message))
     }
+
+    useEffect(() => {
+        (() => userError.error && Toast.fire({
+            icon: 'info',
+            title: 'Invalid Credentials'
+        }))()
+    }, [userError])
+
+
+
     return (
         <div className='auth' id='auth'>
             <form className='authForm' onSubmit={event => {
@@ -154,9 +165,9 @@ export default function AuthForm({ method, cb }) {
                         <input
                             type='text'
                             name='username'
-                            placeholder={method==='login'?'Username or email':'Username'}
+                            placeholder={method === 'login' ? 'Username or email' : 'Username'}
                             value={formData.username}
-                            className={method==='register'?'authinput':''}
+                            className={method === 'register' ? 'authinput' : ''}
                             onChange={event => inputHandler(event)}
                         />
                     </div>
@@ -166,7 +177,7 @@ export default function AuthForm({ method, cb }) {
                     ? <div>
                         <div>
                             <img src={google} alt='google' />
-                            <input type='text' name='email' className={method==='register'?'authinput':''} placeholder='Email' onChange={inputHandler} />
+                            <input type='text' name='email' className={method === 'register' ? 'authinput' : ''} placeholder='Email' onChange={inputHandler} />
                         </div>
 
                         <span className={errors.email ? 'active' : 'inactive'}>{errors.email}</span>
@@ -179,7 +190,7 @@ export default function AuthForm({ method, cb }) {
                             type='password'
                             name='password'
                             placeholder='Password'
-                            className={method==='register'?'authinput':''}
+                            className={method === 'register' ? 'authinput' : ''}
                             value={formData.password}
                             onChange={inputHandler}
                         />
@@ -192,7 +203,7 @@ export default function AuthForm({ method, cb }) {
                     ? <div>
                         <div>
                             <img src={google} alt='google' />
-                            <input type='password' name='confirmPassword' className={method==='register'?'authinput':''} placeholder='Confirm password' onChange={inputHandler} />
+                            <input type='password' name='confirmPassword' className={method === 'register' ? 'authinput' : ''} placeholder='Confirm password' onChange={inputHandler} />
                         </div>
                         <span className={errors.confirmPassword ? 'active' : 'inactive'}>{errors.confirmPassword}</span>
 
@@ -219,7 +230,7 @@ export default function AuthForm({ method, cb }) {
             {method === 'register'
                 ? <p style={{ position: 'absolute', bottom: 0, left: 0, right: 0, textAlign: 'center' }}>
                     Already got an account? <span style={{ color: '#2B73FF', cursor: 'pointer' }} onClick={() => {
-                        autoScroll('form', 'right')
+                        autoScroll('authform', 'left')
                         document.getElementById('logInText').style.borderBottom = '10px solid #3f59b8'
                         document.getElementById('signUpText').style.borderBottom = '10px solid transparent'
                     }}>
@@ -228,7 +239,7 @@ export default function AuthForm({ method, cb }) {
                 </p>
                 : <p style={{ position: 'absolute', bottom: 0, left: 0, right: 0, textAlign: 'center' }}>
                     Don't have an account yet? <span style={{ color: '#2B73FF', cursor: 'pointer' }} onClick={() => {
-                        autoScroll('form', 'left')
+                        autoScroll('authform', 'right')
                         document.getElementById('signUpText').style.borderBottom = '10px solid #3f59b8'
                         document.getElementById('logInText').style.borderBottom = '10px solid transparent'
                     }}>

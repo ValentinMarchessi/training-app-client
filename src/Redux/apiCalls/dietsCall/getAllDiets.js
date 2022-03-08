@@ -7,17 +7,13 @@ import {
   
   //GET ALL DIETS
   
-  export const getAllDiets = async (dispatch,token) => {
+  export const getAllDiets = async (dispatch) => {
     dispatch(getAllDietsStart());
     try {
-      const res = await baseUrlDev.get("diet",{
-        headers:{
-          token
-        }
-      });
+      const res = await baseUrlDev.get("diet");
       dispatch(getAllDietsSuccess(res.data));
       return res.data
     } catch (err) {
-      dispatch(getAllDietsFailure());
+        dispatch(getAllDietsFailure());
     }
-  };
+};
