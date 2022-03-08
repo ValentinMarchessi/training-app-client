@@ -10,12 +10,14 @@
   }
 
   .body {
+  
     display: flex;
     flex-direction: column;
 
     .routines {
       .container {
         width: 90%;
+        height:80vh;
         margin: auto;
         background-color: Colors.$container-bg;
         display: flex;

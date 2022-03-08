@@ -114,11 +114,11 @@ export default function Search() {
 				<h2 id={s.results}>{search && `Resultados para: ${search}`}</h2>
 				<div id="paginationContainer" className={s.resultContainer}>
 					<Fallback
-						on={currentItems.length > 0}
+						on={currentItems?.length > 0}
 						element={<h1 id={s.fallback}>Could not find {currentType}</h1>}>
 						{/* Aqui es donde se muestra todo */}
-						{currentType === 'Nutritionists' || currentType.includes('Trainers')
-							? current.map((element) => (
+						{currentType === 'Nutritionists' || currentType?.includes('Trainers')
+							? current?.map((element) => (
 									<Link
 										key={element.id}
 										to={`/userDetail/${element.id}`}
@@ -126,7 +126,7 @@ export default function Search() {
 										<UserCard profileImg={element.profile_img} username={element.username} />
 									</Link>
 							  ))
-							: current.map((element) =>
+							: current?.map((element) =>
 									currentType === 'Routines' ? (
 										<Link
 											key={element.id}
@@ -165,7 +165,7 @@ export default function Search() {
 				</div>
 				<div className={s.pagination}>
 					<button onClick={() => (inicio !== 0 ? setInicio(inicio - 8) : null)}>Previous</button>
-					<button onClick={() => (inicio + 8 < currentItems.length ? setInicio(inicio + 9) : null)}>
+					<button onClick={() => (inicio + 8 < currentItems?.length ? setInicio(inicio + 9) : null)}>
 						Next
 					</button>
 				</div>
