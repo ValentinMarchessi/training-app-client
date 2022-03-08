@@ -4,32 +4,33 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { getRoutinesDetails } from "../../Redux/apiCalls/rutinesCall/getRoutinesDetails";
 import { getAllTrainers } from "../../Redux/apiCalls/allUsersTrainer/allUsersTrainer";
-import { useEffect } from "react";
-import styles from "./Detail.module.scss"; //revisar esto
+import { useEffect, useState } from "react";
+import styles from "./Detail.module.scss";
 import { Avatar, Navbar } from "../../components";
 import { star } from "../../assets/images/icons";
 //mock de la bd
-import { myRoutine, Owner, Reviews, exercises } from "./dbDetails";
+import { Reviews } from "./dbDetails";
 
 export default function Details(props) {
-  // const dispatch = useDispatch();
-  // const myRoutine = useSelector((state) => state.routinesDetails);
-  // let { id } = useParams();
-  // let idOwner = myRoutine.owner;
+  const dispatch = useDispatch();
+  const myRoutine = useSelector((state) => state.routines.routinesDetails);
+  const allTrainers = useSelector((state) => state.trainers.usersTrainers);
+  let { id } = useParams();
+  const user = useSelector((state) => state.user.currentUser);
+  const [owner, setOwner] = useState();
 
-  // useEffect(() => {
-  //   getUserById(dispatch, idOwner, token);
-  // }, [dispatch]);
-
-  // useEffect(() => {
-  //   getRoutinesDetails(dispatch, id);
-  // }, [dispatch]);
-
+  useEffect(() => {
+    (async () => {
+      await getAllTrainers(dispatch, user.accessToken);
+      await getRoutinesDetails(dispatch, id);
+    })();
+    setOwner(allTrainers.filter((e) => e.id === myRoutine.owner));
+  }, []);
   const points = Reviews.map((e) => e.points);
   const average = (arr) => arr.reduce((a, b) => a + b, 0) / arr.length;
   const rating = average(points);
 
-  return (
+  return myRoutine && owner ? (
     <>
       <Navbar />
       <div className={styles.page}>
@@ -40,15 +41,15 @@ export default function Details(props) {
             </div>
 
             <div className={styles.presentation}>
-              <Avatar src={Owner.profile_img} />
+              <Avatar src={owner[0].profile_img} />
 
               <div className={styles.info}>
-                <p id={styles.name}>{Owner.username}</p>
+                <p id={styles.name}>{owner.username}</p>
 
                 <p id={styles.title}>
                   {" "}
-                  {Owner.is_personal_trainer
-                    ? Owner.is_nutritionist
+                  {owner[0].is_personal_trainer
+                    ? owner[0].is_nutritionist
                       ? "Personal trainer / Nutricionist"
                       : "Personal trainer"
                     : "Nutricionist"}
@@ -82,20 +83,20 @@ export default function Details(props) {
 
           <p id={styles.title2}>
             {" "}
-            {Owner.is_personal_trainer
-              ? Owner.is_nutritionist
+            {owner[0].is_personal_trainer
+              ? owner[0].is_nutritionist
                 ? "Personal trainer / Nutricionist"
                 : "Personal trainer"
               : "Nutricionist"}
           </p>
           <div className={styles.alignCheck}>
-            <Avatar src={Owner.profile_img} />
+            <Avatar src={owner[0].profile_img} />
             <div className={styles.info}>
-              <p id={styles.name}>{Owner.username}</p>
+              <p id={styles.name}>{owner.username}</p>
               <p id={styles.title}>
                 {" "}
-                {Owner.is_personal_trainer
-                  ? Owner.is_nutritionist
+                {owner[0].is_personal_trainer
+                  ? owner[0].is_nutritionist
                     ? "Personal trainer / Nutricionist"
                     : "Personal trainer"
                   : "Nutricionist"}
@@ -114,5 +115,7 @@ export default function Details(props) {
         </div>
       </div>
     </>
+  ) : (
+    <p>Loading...</p>
   );
 }
