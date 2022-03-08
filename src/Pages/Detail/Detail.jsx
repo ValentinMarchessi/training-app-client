@@ -25,10 +25,11 @@ export default function Details(props) {
       await getAllTrainers(dispatch, user.accessToken);
       await getRoutinesDetails(dispatch, id);
     })();
-    setOwner(allTrainers.filter((e) => e.id !== myRoutine.owner));
+    setOwner(allTrainers.filter((e) => e.id === myRoutine.owner));
     console.log(allTrainers, myRoutine);
-  }, [dispatch, id, user.accessToken, myRoutine.owner, allTrainers, myRoutine]);
-
+  }, []);
+  console.log("OWNER", owner);
+  //dispatch, id, user.accessToken, myRoutine.owner, allTrainers, myRoutine
   const points = Reviews.map((e) => e.points);
   const average = (arr) => arr.reduce((a, b) => a + b, 0) / arr.length;
   const rating = average(points);
@@ -44,15 +45,15 @@ export default function Details(props) {
             </div>
 
             <div className={styles.presentation}>
-              <Avatar src={owner.profile_img} />
+              <Avatar src={owner[0].profile_img} />
 
               <div className={styles.info}>
                 <p id={styles.name}>{owner.username}</p>
 
                 <p id={styles.title}>
                   {" "}
-                  {owner.is_personal_trainer
-                    ? owner.is_nutritionist
+                  {owner[0].is_personal_trainer
+                    ? owner[0].is_nutritionist
                       ? "Personal trainer / Nutricionist"
                       : "Personal trainer"
                     : "Nutricionist"}
@@ -86,20 +87,20 @@ export default function Details(props) {
 
           <p id={styles.title2}>
             {" "}
-            {owner.is_personal_trainer
-              ? owner.is_nutritionist
+            {owner[0].is_personal_trainer
+              ? owner[0].is_nutritionist
                 ? "Personal trainer / Nutricionist"
                 : "Personal trainer"
               : "Nutricionist"}
           </p>
           <div className={styles.alignCheck}>
-            <Avatar src={owner.profile_img} />
+            <Avatar src={owner[0].profile_img} />
             <div className={styles.info}>
               <p id={styles.name}>{owner.username}</p>
               <p id={styles.title}>
                 {" "}
-                {owner.is_personal_trainer
-                  ? owner.is_nutritionist
+                {owner[0].is_personal_trainer
+                  ? owner[0].is_nutritionist
                     ? "Personal trainer / Nutricionist"
                     : "Personal trainer"
                   : "Nutricionist"}
@@ -118,5 +119,7 @@ export default function Details(props) {
         </div>
       </div>
     </>
-  ) : null;
+  ) : (
+    <p>Loading...</p>
+  );
 }
