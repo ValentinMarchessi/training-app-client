@@ -10,7 +10,7 @@ export default function ExercisesView() {
 	const [search, setSearch] = useState('');
 	const user = useSelector((store) => store.user.currentUser);
 	const dispatch = useDispatch();
-	const exercises = useSelector((store) => store.exercises.allExercises);
+	const { allExercises } = useSelector((store) => store.exercises);
 
 	useEffect(() => {
 		if (user) getAllExercises(dispatch, { userId: user.userId, token: user.accessToken });
@@ -25,7 +25,14 @@ export default function ExercisesView() {
 		setSearch(value);
 	}
 
-	const cards = exercises.filter(e => e.title.startsWith(search))
+	const cardContainerStyle = {
+		marginTop: '40px',
+		display: 'grid',
+		gridTemplateColumns: 'auto auto auto',
+		maxHeight: '500px',
+	};
+
+	const searchResults = allExercises.filter(e => e.title.startsWith(search));
 
 	return (
 		<>
@@ -33,7 +40,7 @@ export default function ExercisesView() {
 			<div id={style.searchbar}>
 				<input type="text" value={search} onChange={handleSearch}></input>
 			</div>
-			<CardContainer cards={cards} CardElement={ExerciseCard} />
+			<CardContainer style={cardContainerStyle} cards={searchResults} CardElement={ExerciseCard} />
 		</>
 	);
 }

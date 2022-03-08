@@ -56,19 +56,19 @@ export const store = configureStore({
 
 export let persistor = persistStore(store);
 
-configureStore({
-  reducer: {
-    user: userLoginReducer,
-    register: registerReducer,
-    updateUser: updateUserReducer,
-    diets: dietsReducer,
-    recipes: recipesReducer,
-    exercises: exercisesReducer,
-    routines: routinesReducer,
-    allUsers: allUsersReducer,
-    allUsersTrainer: allUsersTrainersReducer,
-    allUsersNutritionits: allUsersNutritionitsReducer,
-    news: newsReducer,
-    transactions: transactionReducer,
-  },
-});
+// configureStore({
+//   reducer: {
+//     user: userLoginReducer,
+//     register: registerReducer,
+//     updateUser: updateUserReducer,
+//     diets: dietsReducer,
+//     recipes: recipesReducer,
+//     exercises: exercisesReducer,
+//     routines: routinesReducer,
+//     allUsers: allUsersReducer,
+//     allUsersTrainer: allUsersTrainersReducer,
+//     allUsersNutritionits: allUsersNutritionitsReducer,
+//     news: newsReducer,
+//     transactions: transactionReducer,
+//   },
+// });
