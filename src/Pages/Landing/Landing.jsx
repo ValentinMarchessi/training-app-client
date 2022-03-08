@@ -33,15 +33,11 @@ export default function LandingPage(){
     return (
         <div className='landingContainer'>
             <h1 className='title'>Training app</h1>
-
-
             <div id='caroussel'>
-                <img className='background' src={background} alt='1'/>
-                <img className='background' src={test1} alt='2'/>
-                <img className='background' src={test2} alt='3'/>
-
+                <img className='background' src={background} alt='1' />
+                <img className='background' src={test1} alt='2' />
+                <img className='background' src={test2} alt='3' />
             </div>
-
             <div className='choices'>
                 <div id='optionselect'>
                     <h2 id='logInText' onClick={() => {
