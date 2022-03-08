@@ -8,7 +8,7 @@ import validate from '../../../../helpers/inputValidators/AuthValidator'
 import { useDispatch, useSelector } from 'react-redux'
 import { loginUser } from '../../../../Redux/apiCalls/userLoginCall/userLoginCall'
 import { useNavigate } from 'react-router-dom'
-import Swal from 'sweetalert2'
+import { Toast } from '../../../../helpers/alert/alert'
 import { authentication } from '../../../../firebase/config-firestore/firabase';
 import { signInWithPopup, GoogleAuthProvider, FacebookAuthProvider } from 'firebase/auth'
 import { getUserByQuery } from '../../../../Redux/apiCalls/allUsersCall/getUserByQuery'
@@ -30,17 +30,7 @@ export default function AuthForm({ method, cb }) {
         user && navigate('/home')
     }, [user, navigate, formData])
 
-    const Toast = Swal.mixin({
-        toast: true,
-        position: 'top-end',
-        showConfirmButton: false,
-        timer: 2500,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-            toast.addEventListener('mouseenter', Swal.stopTimer)
-            toast.addEventListener('mouseleave', Swal.resumeTimer)
-        }
-    })
+
     let string
     if (method === 'register') string = 'Let\'s get started'
     else string = 'Log In'

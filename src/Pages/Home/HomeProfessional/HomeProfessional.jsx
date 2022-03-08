@@ -15,40 +15,40 @@ import s from './HomeProfessional.module.scss';
 import homeStyle from '../Home.module.scss';
 
 const HomeProfessional = () => {
-	const user = useSelector((state) => state.user.currentUser);
+    const user = useSelector((state) => state.user.currentUser);
 
-	const commonCards = (
-		<>
-			<ButtonHomeMenu linkTo="/clients" title="Clients" background={client} />
-			<ButtonHomeMenu linkTo="/shop" title="Shop" background={shopping} />
-		</>
-	);
+    const commonCards = (
+        <>
+            <ButtonHomeMenu linkTo="/clients" title="Clients" background={client} />
+            <ButtonHomeMenu linkTo="/shop" title="Shop" background={shopping} />
+        </>
+    );
 
-	const nutritionistCards = (
-		<>
-			<ButtonHomeMenu linkTo="/recipes" title="Recipes" background={recipes} />
-			<ButtonHomeMenu linkTo="/diets" title="Diets" background={diets} />
-		</>
-	);
+    const nutritionistCards = (
+        <>
+            {/* <ButtonHomeMenu linkTo="/recipes" title="Recipes" background={recipes} /> */}
+            <ButtonHomeMenu linkTo="/diets" title="Diets" background={diets} />
+        </>
+    );
 
-	const trainerCards = (
-		<>
-			<ButtonHomeMenu linkTo="/exercises" title="Exercices" background={excercise} />
-			<ButtonHomeMenu linkTo="/routines" title="Routines" background={routines} />
-		</>
-	);
+    const trainerCards = (
+        <>
+            {/* <ButtonHomeMenu linkTo="/exercises" title="Exercices" background={excercise} /> */}
+            <ButtonHomeMenu linkTo="/routines" title="Routines" background={routines} />
+        </>
+    );
 
-	return (
-		<div>
-			<div className={s.container}>
-				<News />
-				<div className={homeStyle.buttonContainer}>
-					{commonCards}
-					{user.PTrainer && trainerCards}
-					{user.Nutritionist && nutritionistCards}
-				</div>
-			</div>
-		</div>
-	);
+    return (
+        <div>
+            <div className={s.container}>
+                <News />
+                <div className={homeStyle.buttonContainer}>
+                    {commonCards}
+                    {user.PTrainer && trainerCards}
+                    {user.Nutritionist && nutritionistCards}
+                </div>
+            </div>
+        </div>
+    );
 };
 export default HomeProfessional;
