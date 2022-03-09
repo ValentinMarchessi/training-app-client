@@ -24,15 +24,15 @@ const diet = {
 
 export default function ViewDiets() {
     const dispatch = useDispatch();
-    const user = useSelector(store => store.user.currentUser);
-    const diets = useSelector(store => store.diets.dietsById);
+    const user = useSelector(store => store.user?.currentUser);
+    const diets = useSelector(store => store.diets?.dietsById);
 
     useEffect(() => {
         getDietsById(dispatch, user.userId, user.accessToken);
         console.log(diets);
     }, [getDietsById, dispatch, user.userId, user.accessToken]);
 
-    const dietCards = diets.map(diet =>
+    const dietCards = diets?.map(diet =>
         <div key={diet.id}>
             <h1>{diet.title}</h1>
             {diet.plain.map(o =>
