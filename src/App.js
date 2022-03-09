@@ -26,6 +26,7 @@ import { RoutineDetail } from "./Pages/Routines";
 import { Checkout, Payment } from "./Pages/Payment";
 import Details from "./Pages/Detail/Detail";
 import Instructor from "./Pages/Descriptions/Instructor";
+import Chat from './components/Chat/Chat'
 
 function App() {
   return (
@@ -61,6 +62,7 @@ function App() {
         <Route path="/payment" element={<Payment />}>
           <Route index element={<Checkout/>}/>
         </Route>
+        <Route path="/chat" element={<Chat />} />
       </Routes>
     </div>
   );

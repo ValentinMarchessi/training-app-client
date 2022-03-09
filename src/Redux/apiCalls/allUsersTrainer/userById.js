@@ -7,10 +7,10 @@ import {
 
 //get user by ID
 
-export const getUserById = async (dispatch, id, token) => {
+export const getUserById = async (dispatch, id) => {
   dispatch(getUsersByIdStart());
   try {
-    const res = await baseUrlDev.get(`user/${id}`, { headers: { token } });
+    const res = await baseUrlDev.get(`user/${id}`);
     dispatch(getUsersByIdSuccess(res.data));
   } catch (err) {
     dispatch(getUsersByIdFailure());
