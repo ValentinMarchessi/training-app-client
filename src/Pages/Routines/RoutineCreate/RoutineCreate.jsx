@@ -8,7 +8,8 @@ export default function RoutineCreate() {
   const [active, setActive] = useState(false);
   const overlayStyle = {
     backgroundColor: '#201f24c3',
-    width: 'max-content'
+    width: 'max-content',
+    color: '#fff'
   };
 
   const handleOverlay = {

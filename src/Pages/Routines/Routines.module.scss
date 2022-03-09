@@ -62,3 +62,23 @@
   z-index: 1;
   transition: 1s;
 }
+
+.nocontent {
+  margin: 0 auto;
+  padding: 150px 0;
+  color: grey;
+  max-width: 1234px;
+  text-align: center;
+  font-size: 48px;
+  font-weight: 700;
+  align-self: center;
+  justify-self: center;
+}
+
+.emptyContainer {
+  display: grid;
+  grid-template-rows: repeat(2, auto);
+  align-items: center;
+  justify-items: center;
+  height: auto;
+}
