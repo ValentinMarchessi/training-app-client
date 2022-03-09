@@ -10,21 +10,14 @@ export default function DietDetail() {
     const dispatch=useDispatch();
     const id=useParams().dietId;
     const user=useSelector(state=>state.user.currentUser);
-    //const diet=useSelector(state=>state.diets.dietDetail);
-    const foodImg="https://t1.rg.ltmcdn.com/es/posts/7/0/6/albondigas_caseras_51607_600.jpg"
-    const receta=[{title:"pollo",image:foodImg,kcal:12,carbohydrates:30,grease:30,proteins:1,grs:30,description:"Buena receta"},{title:"pollo",image:foodImg,kcal:12,carbohydrates:30,grease:30,proteins:1,grs:30,description:"Buena receta"},{title:"pollo",image:foodImg,kcal:12,carbohydrates:30,grease:30,proteins:1,grs:30,description:"Buena receta"},{title:"pollo",image:foodImg,kcal:12,carbohydrates:30,grease:30,proteins:1,grs:30,description:"Buena receta"},{title:"pollo",image:foodImg,kcal:12,carbohydrates:30,grease:30,proteins:1,grs:30,description:"Buena receta"},{title:"empanadas",image:null,kcal:12,carbohydrates:30,grease:30,proteins:1,grs:30,description:"Buendas receta"}];
-    const receta2=[{title:"Mila",image:null,kcal:12,carbohydrates:30,grease:30,proteins:1,grs:30,description:"Buena receta"}];
-    const receta3=[{title:"Carne",image:null,kcal:12,carbohydrates:30,grease:30,proteins:1,grs:30,description:"Buena receta"}];
-    const diet= {
-        title:"dieta rica",
-        plain:[{day:"Monday",meals:{breakfast:receta,lunch:receta2,dinner:receta3}},{day:"Thueday",meals:{breakfast:receta,lunch:receta2,dinner:receta3}},{day:"Wednesday",meals:{breakfast:receta2,lunch:receta,dinner:receta3}},]
-    }
+    const diet=useSelector(state=>state.diets.dietDetail);
+    const imgRecipDefault="https://t1.rg.ltmcdn.com/es/posts/4/3/8/chanfainita_20834_600.jpg";
     useEffect(()=>{
-        //getDietDetail(dispatch,id,user.accessToken)
+        getDietDetail(dispatch,id,user.accessToken)
     },[])
 
 
-    const [dayView,setDayView]=useState([true,"Monday",0]);
+    const [dayView,setDayView]=useState([true,"monday",0]);
     const [option,setOption]=useState("breakfast");
     const dietClick=(e,day,i)=>{
         if(dayView[1]===day)
@@ -36,27 +29,30 @@ export default function DietDetail() {
     }
     const recetDetail=(obj)=>{
         let info=[]
+        if(obj===null) return [<p className={style.noRecipe}>You have no a {option} in the day {dayView[1]}</p>,<img className={style.noRecipeImg} src={"https://norecipes.com/wp-content/uploads/2019/10/nr-logo.png"}/>]
+        let i=0;
         for (const key in obj) {
             if(key==="image")
-            info.push(<div className={style.imgRecipe}><img src={obj[key]}/></div>)
+            info.push(<div key={i} className={style.imgRecipe}><img key={i} src={obj[key]||imgRecipDefault}/></div>)
             else if (key==="title")
-            info.push(<h3>{obj[key][0].toUpperCase()+obj[key].slice(1)}</h3>)
-            else if (key==="description")
+            info.push(<h3 key={i}>{obj[key][0].toUpperCase()+obj[key].slice(1)}</h3>)
+            else if (key==="description"|| key==="updatedAt"||key==="UserId"||key==="createdAt")
             continue;
             else
             info.push(
-                <div className={style.cardDescr}>
+                <div key={i} className={style.cardDescr}>
                     <p>{key==="kcal"?"Energy":key[0].toUpperCase()+key.slice(1)}</p>
-                    <p>{key==="kcal"?`${obj[key]}kcal`:obj[key]+"g"}</p>
+                    <p>{key==="kcal"?`${obj[key]}kcal`:obj[key]?obj[key]:0+"g"}</p>
                 </div>
             
             )
+            i++;
         }
         return info;
     }
     const days= ()=>{
         let days=[];
-        diet.plain.forEach(({day},i)=>days.push(<span onClick={(e)=>dietClick(e,day,i)} className={`${style.day} ${dayView[0]&&dayView[1]===day&&style.daySelect}`}>{day}</span>))
+        diet.plain.forEach(({day},i)=>days.push(<span key={i} onClick={(e)=>dietClick(e,day,i)} className={`${style.day} ${dayView[0]&&dayView[1]===day&&style.daySelect}`}>{day[0].toUpperCase()+day.slice(1)}</span>))
         return days
     }
     const data= (plain)=>{
@@ -67,7 +63,7 @@ export default function DietDetail() {
             proteins:0
         }
         for (const key in plain) {
-            plain[key].forEach(({kcal,carbohydrates,grease,proteins})=>{
+            plain[key][0]&&plain[key].forEach(({kcal,carbohydrates,grease,proteins})=>{
                 obj.energy+=kcal;
                 obj.carbohydrates+=carbohydrates;
                 obj.grease+=grease;
@@ -75,21 +71,21 @@ export default function DietDetail() {
             })
         }
         return [
-            <div>
+            <div key={1}>
                     <p>Energy</p>
-                    <p>{obj.energy}</p>
+                    <p>{obj.energy}kcal</p>
             </div>,
-            <div>
+            <div key={2}>
                 <p>Carbohydrates</p>
-                <p>{obj.carbohydrates}</p>
+                <p>{obj.carbohydrates}g</p>
             </div>,
-            <div>
+            <div key={3}>
                 <p>Grease</p>
-                <p>{obj.grease}</p>
+                <p>{obj.grease}g</p>
             </div>,
-            <div>
+            <div key={4}>
                 <p>Proteins</p>
-                <p>{obj.proteins}</p>
+                <p>{obj.proteins}g</p>
             </div>
         ]
     }
@@ -111,7 +107,7 @@ export default function DietDetail() {
                 <div className={style.days}>
                     {days()}
                 </div>
-                <div>
+            <div>
                 <form>
                     <div className={style.contentSelect}>
                         <select onChange={handleChange}> 
@@ -126,7 +122,7 @@ export default function DietDetail() {
             </div>
             <div className={style.containerFoods}>
                 {diet.plain[dayView[2]].meals[option]
-                .map((food)=><div className={style.cardFood}>{recetDetail(food)}</div>)}
+                .map((food,i)=><div key={i} className={style.cardFood}>{recetDetail(food)}</div>)}
             </div>
             <br/>
 		</div>
