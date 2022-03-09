@@ -29,7 +29,15 @@ export default function Routines() {
 			<>
 				<Navbar />
 				<div className={style.nocontent}>
-					You haven't ${user.PTrainer ? 'created' : 'bought'} any routines yet.
+					You haven't {user.PTrainer ? 'created' : 'bought'} any routines yet.
+				</div>
+				<div className={style.emptyContainer}>
+					{(user.PTrainer && <>
+						<RoutineCreate />
+						<Link to='/exercises' >
+							<button className={style.create} >Create Exercise</button>
+						</Link>
+					</>) || ''}
 				</div>
 			</>
 		);
@@ -57,4 +65,4 @@ export default function Routines() {
 			</div>
 		</div>
 	);
-}
+};
