@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Navbar } from "../../components";
@@ -8,20 +8,17 @@ import RoutineCreate from "./RoutineCreate/RoutineCreate";
 import style from "./Routines.module.scss";
 
 export default function Routines() {
-	const [routines, setRoutines] = useState([]);
 	/*Falta arreglar la ruta para que traiga a todos los
 	usuarios del producto desde el backend, para así mostrarlos*/
 	const user = useSelector(state => state.user.currentUser);
-	const routinesFetch = useSelector(state => state.routines.routinesByUser);
+	const routines = useSelector(state => state.routines.routinesByUser);
 	const dispatch = useDispatch();
+
 	useEffect(() => {
-		const fetchRoutines = async () => {
-			await getUserRoutines(dispatch, user.userId, user.accessToken);
-			setRoutines(routinesFetch);
-		};
-		fetchRoutines();
+		getUserRoutines(dispatch, user.userId, user.accessToken);
 	}, []);
 
+	console.log('routines =>', routines);
 
 	if (!routines.length) {
 		return (
@@ -50,7 +47,7 @@ export default function Routines() {
 					<div className={style.container}>
 						{routines.map((routine, index) => (
 							<div key={index} className={style.click}>
-								<RoutineBox {...routine} />		
+								<RoutineBox {...routine} />
 							</div>
 						))}
 					</div>
