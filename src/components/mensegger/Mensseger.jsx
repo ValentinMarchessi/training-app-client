@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import './mensseger.css'
+import './mensseger.scss'
 import { io } from 'socket.io-client'
 import { useSelector } from 'react-redux'
 import Conversation from '../conversation/Conversation'
