@@ -9,7 +9,7 @@ import { useEffect } from 'react';
 
 export default function PaymentMethod() {
 	const dispatch = useDispatch();
-	const transactions = useSelector(store => store.transactions.transactions);
+	const { transactions } = useSelector(store => store.transactions.transactions);
 	const user = useSelector(store => store.user.currentUser);
 
 	useEffect(() => {
