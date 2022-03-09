@@ -30,9 +30,15 @@
         }
     }
 }
+.containerOptions{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
 .days {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
 }
 .day{
     background-color: #3F59B8;
@@ -46,7 +52,6 @@
 }
 .containerFoods{
     margin-top: 20px;
-    margin-bottom: 20px;
     background-color: Color.$option2-bg;
     padding: 10px;
     border: 2px solid black;
@@ -110,6 +115,27 @@
             width: 70%;
         }
     }
+}
+@media screen and (max-width:460px){
+    .containerFoods {
+        display: grid;
+        justify-items: center;
+        grid-template-columns: 100%;
+        .cardFood {
+            width: 90%;
+        }
+    }
+    .cardDescr{
+        height: 70px;
+        width: 130px;
+        p{
+            min-width: 0px;
+            word-wrap: break-word;
+        }
+    }
+}
+.contentSelect {
+    width: 200px;
 }
 .contentSelect select{
 	appearance: none;

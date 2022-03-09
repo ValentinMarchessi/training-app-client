@@ -107,25 +107,28 @@ export default function DietDetail() {
             <div className={style.statics}>
                 {data(diet.plain[dayView[2]].meals)}
             </div>
-            <div className={style.days}>
-                {days()}
-            </div>
-            <div>
-            <form>
-                <div className={style.contentSelect}>
-                    <select onChange={handleChange}> 
-						<option value="breakfast">Breakfast</option>
-						<option value="lunch">Lunch</option>
-						<option value="dinner">Dinner</option>
-                    </select>
-                    <i></i>
+            <div className={style.containerOptions}>
+                <div className={style.days}>
+                    {days()}
                 </div>
-            </form>
+                <div>
+                <form>
+                    <div className={style.contentSelect}>
+                        <select onChange={handleChange}> 
+                            <option value="breakfast">Breakfast</option>
+                            <option value="lunch">Lunch</option>
+                            <option value="dinner">Dinner</option>
+                        </select>
+                        <i></i>
+                    </div>
+                </form>
+                </div>
             </div>
             <div className={style.containerFoods}>
                 {diet.plain[dayView[2]].meals[option]
                 .map((food)=><div className={style.cardFood}>{recetDetail(food)}</div>)}
             </div>
+            <br/>
 		</div>
 	);
 }
