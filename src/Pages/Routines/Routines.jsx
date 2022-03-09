@@ -18,8 +18,6 @@ export default function Routines() {
 		getUserRoutines(dispatch, user.userId, user.accessToken);
 	}, []);
 
-	console.log('routines =>', routines);
-
 	if (!routines.length) {
 		return (
 			<>
