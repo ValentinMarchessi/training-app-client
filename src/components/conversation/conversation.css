@@ -1,9 +1,8 @@
 .conversation {
   display: flex;
   align-items: center;
-  padding: 10px;
+  padding:10px;
   cursor: pointer;
-  margin-top: 20px;
 }
 
 .conversation:hover {

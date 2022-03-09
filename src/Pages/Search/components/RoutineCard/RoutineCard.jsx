@@ -2,13 +2,14 @@ import style from './RoutineCard.module.scss';
 import avatarPlaceholder from '../../../../assets/images/avatarPlaceholder.svg';
 import { star } from '../../../../assets/images/icons';
 import brokenImage from '../../../../assets/images/brokenfile.png';
+import { Avatar } from '../../../../components';
 
 export default function RoutineCard( {name, author, email, title, rating, reviews, price, image, avatar} ) {
 /* De ser necesaria una refactorización, se puede extraer un componente SmallProfile del div con className={style.profile}*/
 return (
 	<div className={style.card}>
 		<div className={style.profile}>
-		<img id={style.avatar} alt={author} src={avatar ? avatar : avatarPlaceholder} />
+		<Avatar src={avatar}/>
 		<div className={style.info}>
 			<h1 style={{color:'white'}}>{author}</h1>
 			<h2 style={{color:'white'}}>{email}</h2>
