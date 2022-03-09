@@ -16,7 +16,7 @@ import registerReducer from '../reducers/registerReducer';
 import routinesReducer from '../reducers/routinesReducer';
 import transactionReducer from '../reducers/transactionReducer';
 import userLoginReducer from '../reducers/userLoginReducer';
-
+import UserById from '../reducers/userByIdReducer'
 const persistConfig = {
     key: "root",
     version: 1,
@@ -25,6 +25,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
     user: userLoginReducer,
+    newUser: UserById,
     register: registerReducer,
     recipes: recipesReducer,
     routines: routinesReducer,
