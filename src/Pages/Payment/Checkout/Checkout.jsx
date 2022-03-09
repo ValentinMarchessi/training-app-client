@@ -5,7 +5,7 @@ import yoga from '../../../assets/images/yoga.jpg';
 import { Avatar } from '../../../components';
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { postCreateTransaction } from '../../../Redux/apiCalls/transaction/createTransaction';
 import StripeCheckout from 'react-stripe-checkout';
 import Logo from '../../../assets/images/dep.jpg';
@@ -16,19 +16,15 @@ const KEY = 'pk_test_51KTHNqKxK712fkWkpddjvo4wS93yK5sVKG0cUZ5bLcIsxXc5J8UUfToFNZ
 
 export default function Checkout() {
 	const user = useSelector((state) => state.user.currentUser);
-	const { transactions, createTransaction, isFetching, error } = useSelector(store => store.transactions);
 	const [transaction, setTransaction] = useState({
-		payload: {},
+		payload: null,
 		completed: false,
 		success: false,
 	});
 	const dispatch = useDispatch();
 
 	const location = useLocation()
-	console.log(location);
-
-	const { routineId } = location.state;
-
+	const { product, owner } = location.state;
 	const [stripeToken, setStripeToken] = useState(null);
 
 	const onToken = (token) => {
@@ -42,7 +38,7 @@ export default function Checkout() {
 					'transaction/payment',
 					{
 						tokenId: stripeToken.id,
-						amount: 500,
+						amount: product.price * 100,
 					},
 					{
 						headers: {
@@ -52,16 +48,14 @@ export default function Checkout() {
 				);
 				const { amount, receipt_url, payment_method_details } = res.data;
 				const data = {
-					productId: routineId,
-					amount: amount,
+					productId: product.id,
+					amount,
 					method: payment_method_details,
 					receipt: receipt_url,
 				};
-				console.log(res);
 				if (res.status == 200) {
-					await postCreateTransaction(dispatch, routineId, user.userId, data, user.accessToken);
-					setTransaction({ payload: createTransaction.success, completed: true, success: !error });
-					console.log(transaction);
+					await postCreateTransaction(dispatch, product.id, user.userId, data, user.accessToken);
+					setTransaction({ payload: data, completed: true, success: true });
 				} else {
 					setTransaction({ completed: true, success: false });
 				}
@@ -76,8 +70,8 @@ export default function Checkout() {
 	const stripeOptions = {
 		name: 'Training App',
 		image: Logo,
-		description: 'Your total is $5.40',
-		amount: 540,
+		description: `Your total is $${(product.price + 0.4).toFixed(2)}`,
+		amount: (product.price + 0.4) * 100,
 		token: onToken,
 		stripeKey: KEY,
 	};
@@ -86,21 +80,20 @@ export default function Checkout() {
 		<>
 			<div className={styles.details}>
 				<div className={styles.header}>
-					<h4>Yoga</h4>
-					<h1>CLASES DE YOGA</h1>
+					<h1>{product.title}</h1>
 					<div id={styles.merit}>
 						<img src={star} alt="star" />
-						<p id={styles.rating}>4/5</p>
-						<p id={styles.reviews}>(70 reseñas)</p>
+						<p id={styles.rating}>{product.rating || '?'}/5</p>
+						<p id={styles.reviews}>({product.reviews || '?'} reseñas)</p>
 					</div>
 				</div>
 
 				<div id={styles.routineCard}>
 					<div id={styles.user}>
-						<Avatar src={user_avatar} />
+						<Avatar style={{height: "50px"}} src={owner.profile_img} />
 						<div className={styles.info}>
-							<p id={styles.name}>roberto123</p>
-							<p id={styles.title}>Instructor de yoga</p>
+							<p id={styles.name}>{owner.username}</p>
+							<p id={styles.title}>{owner.title}</p>
 						</div>
 					</div>
 					<img id={styles.routineImage} src={yoga} alt="routineImage" />
@@ -110,12 +103,12 @@ export default function Checkout() {
 				<h1>Price resume</h1>
 				<div id={styles.pricing}>
 					<p className={styles.subtle}>Subtotal</p>
-					<p className={styles.subtle}>$5</p>
+					<p className={styles.subtle}>${product.price}</p>
 					<p className={styles.subtle}>Service fee</p>
 					<p className={styles.subtle}>$0.40</p>
 					<hr />
 					<h3 id={styles.total}>Total</h3>
-					<h3>$5.40</h3>
+					<h3>${(product.price + 0.4).toFixed(2)}</h3>
 				</div>
 
 				{/* BOTON PARA REALIZAR EL COBRO CON STRIPE */}
