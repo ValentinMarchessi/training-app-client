@@ -12,106 +12,108 @@ import { star } from '../../assets/images/icons';
 import { Reviews } from './dbDetails';
 
 export default function Details(props) {
-	const dispatch = useDispatch();
-	const myRoutine = useSelector((state) => state.routines.routinesDetails);
-	const allTrainers = useSelector((state) => state.trainers.usersTrainers);
-	let { id } = useParams();
-	const user = useSelector((state) => state.user.currentUser);
-	const [owner, setOwner] = useState();
+    const dispatch = useDispatch();
+    const myRoutine = useSelector((state) => state.routines.routinesDetails);
+    const allTrainers = useSelector((state) => state.trainers.usersTrainers);
+    let { id } = useParams();
+    const user = useSelector((state) => state.user.currentUser);
+    const [owner, setOwner] = useState();
 
-	useEffect(() => {
-		(async () => {
-			await getAllTrainers(dispatch, user.accessToken);
-			await getRoutinesDetails(dispatch, id);
-		})();
-		setOwner(allTrainers.filter((e) => e.id === myRoutine.owner));
-	}, []);
-	const points = Reviews.map((e) => e.points);
-	const average = (arr) => arr.reduce((a, b) => a + b, 0) / arr.length;
-	const rating = average(points);
+    useEffect(() => {
+        (async () => {
+            await getAllTrainers(dispatch, user.accessToken);
+            await getRoutinesDetails(dispatch, id);
+        })();
+        setOwner(allTrainers.filter((e) => e.id === myRoutine.owner));
+    }, []);
+    const points = Reviews.map((e) => e.points);
+    const average = (arr) => arr.reduce((a, b) => a + b, 0) / arr.length;
+    const rating = average(points);
 
-	return myRoutine && owner ? (
-		<>
-			<Navbar />
-			<div className={styles.page}>
-				<div className={styles.align}>
-					<div className={styles.intro}>
-						<div className={styles.header}>
-							<h1>{myRoutine.title.toUpperCase()}</h1>
-						</div>
+    console.log(owner)
 
-						<div className={styles.presentation}>
-							<Avatar src={owner[0].profile_img} />
+    return myRoutine && owner ? (
+        <>
+            <Navbar />
+            <div className={styles.page}>
+                <div className={styles.align}>
+                    <div className={styles.intro}>
+                        <div className={styles.header}>
+                            <h1>{myRoutine.title.toUpperCase()}</h1>
+                        </div>
 
-							<div className={styles.info}>
-								<p id={styles.name}>{owner.username}</p>
+                        <div className={styles.presentation}>
+                            <Avatar src={owner[0].profile_img} />
 
-								<p id={styles.title}>
-									{' '}
-									{owner[0].is_personal_trainer
-										? owner[0].is_nutritionist
-											? 'Personal trainer / Nutricionist'
-											: 'Personal trainer'
-										: 'Nutricionist'}
-								</p>
-							</div>
-							<div id={styles.merit}>
-								<img src={star} alt="star" />
-								<p id={styles.rating}>{rating}/5 </p>
-								<p id={styles.reviews}>({points.length} reseñas)</p>
-							</div>
-						</div>
-					</div>
+                            <div className={styles.info}>
+                                <p id={styles.name}>{owner.username}</p>
 
-					<img id={styles.routineImage} src={myRoutine.image} alt="routineImage" />
-				</div>
+                                <p id={styles.title}>
+                                    {' '}
+                                    {owner[0].is_personal_trainer
+                                        ? owner[0].is_nutritionist
+                                            ? 'Personal trainer / Nutricionist'
+                                            : 'Personal trainer'
+                                        : 'Nutricionist'}
+                                </p>
+                            </div>
+                            <div id={styles.merit}>
+                                <img src={star} alt="star" />
+                                <p id={styles.rating}>{rating}/5 </p>
+                                <p id={styles.reviews}>({points.length} reseñas)</p>
+                            </div>
+                        </div>
+                    </div>
 
-				<div className={styles.checkout}>
-					<h1>{myRoutine.title}</h1>
-					<div id={styles.merit}>
-						<img src={star} alt="star" />
-						<p id={styles.rating}>{rating}/5 </p>
-						<p id={styles.reviews}>({points.length} reseñas)</p>
-					</div>
-					<br />
-					<p id={styles.description}>{myRoutine.description}</p>
-					<br />
+                    <img id={styles.routineImage} src={myRoutine.image} alt="routineImage" />
+                </div>
 
-					<p id={styles.title2}>
-						{' '}
-						{owner[0].is_personal_trainer
-							? owner[0].is_nutritionist
-								? 'Personal trainer / Nutricionist'
-								: 'Personal trainer'
-							: 'Nutricionist'}
-					</p>
-					<div className={styles.alignCheck}>
-						<Avatar src={owner[0].profile_img} />
-						<div className={styles.info}>
-							<p id={styles.name}>{owner.username}</p>
-							<p id={styles.title}>
-								{' '}
-								{owner[0].is_personal_trainer
-									? owner[0].is_nutritionist
-										? 'Personal trainer / Nutricionist'
-										: 'Personal trainer'
-									: 'Nutricionist'}
-							</p>
-							<Link to="/profile">
-								<button id={styles.profileButton}>Ver perfil</button>
-							</Link>
-						</div>
-					</div>
+                <div className={styles.checkout}>
+                    <h1>{myRoutine.title}</h1>
+                    <div id={styles.merit}>
+                        <img src={star} alt="star" />
+                        <p id={styles.rating}>{rating}/5 </p>
+                        <p id={styles.reviews}>({points.length} reseñas)</p>
+                    </div>
+                    <br />
+                    <p id={styles.description}>{myRoutine.description}</p>
+                    <br />
 
-					<div id={styles.checkoutButton}>
-						<Link to="/payment" state={{ product: myRoutine, owner: owner[0] }}>
-							<button>Comprar rutina ${myRoutine.price}</button>
-						</Link>
-					</div>
-				</div>
-			</div>
-		</>
-	) : (
-		<p>Loading...</p>
-	);
+                    <p id={styles.title2}>
+                        {' '}
+                        {owner[0].is_personal_trainer
+                            ? owner[0].is_nutritionist
+                                ? 'Personal trainer / Nutricionist'
+                                : 'Personal trainer'
+                            : 'Nutricionist'}
+                    </p>
+                    <div className={styles.alignCheck}>
+                        <Avatar src={owner[0].profile_img} />
+                        <div className={styles.info}>
+                            <p id={styles.name}>{owner.username}</p>
+                            <p id={styles.title}>
+                                {' '}
+                                {owner[0].is_personal_trainer
+                                    ? owner[0].is_nutritionist
+                                        ? 'Personal trainer / Nutricionist'
+                                        : 'Personal trainer'
+                                    : 'Nutricionist'}
+                            </p>
+                            <Link to={`/instructor/${owner[0].id}`} >
+                                <button id={styles.profileButton}>Ver perfil</button>
+                            </Link>
+                        </div>
+                    </div>
+
+                    <div id={styles.checkoutButton}>
+                        <Link to="/payment" state={{ product: myRoutine, owner: owner[0] }}>
+                            <button>Comprar rutina ${myRoutine.price}</button>
+                        </Link>
+                    </div>
+                </div>
+            </div>
+        </>
+    ) : (
+        <p>Loading...</p>
+    );
 }

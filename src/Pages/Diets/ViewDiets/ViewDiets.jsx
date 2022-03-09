@@ -24,8 +24,8 @@ const diet = {
 
 export default function ViewDiets() {
     const dispatch = useDispatch();
-    const user = useSelector(store => store.user?.currentUser);
-    const diets = useSelector(store => store.diets?.dietsById);
+    const user = useSelector(store => store.user.currentUser);
+    const diets = useSelector(store => store.diets.dietsById.result);
 
     useEffect(() => {
         getDietsById(dispatch, user.userId, user.accessToken);
