@@ -1,12 +1,11 @@
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { Navbar } from '../../components';
-import { getUserRoutines } from '../../Redux/apiCalls/rutinesCall/getUserRoutines';
-import RoutineBox from './RoutineBox/RoutineBox';
-import RoutineCreate from './RoutineCreate/RoutineCreate';
-import style from './Routines.module.scss';
-
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { Navbar } from "../../components";
+import { getUserRoutines } from "../../Redux/apiCalls/rutinesCall/getUserRoutines";
+import RoutineBox from "./RoutineBox/RoutineBox";
+import RoutineCreate from "./RoutineCreate/RoutineCreate";
+import style from "./Routines.module.scss";
 
 export default function Routines() {
 	const [routines, setRoutines] = useState([]);
