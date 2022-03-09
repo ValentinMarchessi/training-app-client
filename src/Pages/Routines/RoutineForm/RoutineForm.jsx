@@ -51,7 +51,7 @@ export default function RoutineForm({ onAdd }) {
     const day = e.target.id.split('-')[0];
     let currentTag = document.querySelector(`#${e.target.id}`);
 
-    console.log(currentTag.classList.toggle(style.active));
+    currentTag.classList.toggle(style.active);
 
     const current = {
       name: e.target.innerHTML.trim()
