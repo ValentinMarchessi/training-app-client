@@ -29,7 +29,7 @@ export default function Routines() {
 			<>
 				<Navbar />
 				<div className={style.nocontent}>
-					You haven't bought any routines yet.
+					You haven't ${user.PTrainer ? 'created' : 'bought'} any routines yet.
 				</div>
 			</>
 		);
