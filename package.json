@@ -22,8 +22,10 @@
     "react-stripe-checkout": "^2.6.3",
     "redux-persist": "^6.0.0",
     "sass": "^1.49.7",
+    "socket.io-client": "^4.4.1",
     "styled-components": "^5.3.3",
     "sweetalert2": "^11.4.0",
+    "timeago.js": "^4.0.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
