@@ -10,15 +10,16 @@ import { useEffect } from 'react';
 export default function PaymentMethod() {
     const dispatch = useDispatch();
     const transactions = useSelector(store => store.transactions.transactions);
-    const id = useSelector(store => store.user.currentUser.userId);
+    const user = useSelector(store => store.user.currentUser);
+    const id= user.userId
+    console.log(user)
 
-    console.log(transactions)
 
     useEffect(() => {
         getTransactions(dispatch, id);
     }, [dispatch, id])
 
-    const tableRows = transactions?.map(transaction => {
+    const tableRows = transactions?.transactions?.map(transaction => {
         const { id, method, createdAt, receipt } = transaction;
         const { card } = method;
         const date = new Date(createdAt);
@@ -46,10 +47,10 @@ export default function PaymentMethod() {
             <div className={styles.section}>
                 <h1>Cards</h1>
                 <div className={styles.cards}>
-                    <Card brand="Visa" name="Marchessi Valentín" expiration="04/24" last4="4581" />
-                    <Card brand="Master Card" name="Marchessi Valentín" expiration="04/24" last4="4581" />
-                    <Card brand="Master Card" name="Marchessi Valentín" expiration="04/24" last4="4581" />
-                    <Card brand="Master Card" name="Marchessi Valentín" expiration="04/24" last4="4581" />
+                    <Card brand="Visa" name={user.username} expiration="04/24" last4="4581" />
+                    <Card brand="Master Card" name={user.username} expiration="04/24" last4="4581" />
+                    <Card brand="Master Card" name={user.username} expiration="04/24" last4="4581" />
+                    <Card brand="Master Card" name={user.username} expiration="04/24" last4="4581" />
                 </div>
             </div>
             <div className={styles.section}>
