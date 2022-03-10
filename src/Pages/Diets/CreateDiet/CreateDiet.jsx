@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from 'react-router-dom'
 // import { useField } from "../../hooks/useField/useField";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllRecipesByUserId } from "../../../Redux/apiCalls/recipesCall/getAllRecipesByUser";
+import { useNavigate } from 'react-router-dom';
+import { Toast } from '../../../helpers/alert/alert';
 import { createDiets } from "../../../Redux/apiCalls/dietsCall/createDiets";
 import { getDietsById } from "../../../Redux/apiCalls/dietsCall/getDietsById";
-import { Toast } from '../../../helpers/alert/alert'
-
+import { getAllRecipesByUserId } from "../../../Redux/apiCalls/recipesCall/getAllRecipesByUser";
 //STYLES
 import "./createDiet.scss";
+
 
 const days = [
     "monday",
@@ -21,7 +21,7 @@ const days = [
 ];
 
 const CreateDiet = () => {
-    const redir = useNavigate()
+    const redir = useNavigate();
     const { userId, accessToken } = useSelector(
         (state) => state.user.currentUser
     );
@@ -62,7 +62,7 @@ const CreateDiet = () => {
                 return Toast.fire({
                     icon: "info",
                     title: "RECIPE YA ESTA"
-                })
+                });
             }
         }
         setMeals({
@@ -97,26 +97,26 @@ const CreateDiet = () => {
             if (diet.plain[i].day === newPlain.day) {
                 return Toast.fire({
                     icon: "info",
-                    title: "EL DIA YA ESTA"
+                    title: `${newPlain.day} slot already exists!`
                 });
             }
         }
         if (meals.breakfast.length === 0) {
             return Toast.fire({
                 icon: "info",
-                title: "DEBE SELECCIONAR UNA BF"
+                title: "You must include a breakfast!"
             });
         }
         if (meals.lunch.length === 0) {
             return Toast.fire({
                 icon: "info",
-                title: "DEBE SELECCIONAR UNA L"
+                title: "You must include a lunch!"
             });
         }
         if (meals.dinner.length === 0) {
             return Toast.fire({
                 icon: "info",
-                title: "DEBE SELECCIONAR UNA D"
+                title: "You must include a dinner!"
             });
         }
         if (newPlain.day !== "" && newPlain.day !== "Days") {
@@ -136,12 +136,12 @@ const CreateDiet = () => {
         } else {
             return Toast.fire({
                 icon: "info",
-                title: "DEBE SELECIONAR UN DIA"
+                title: "You must select a day!"
             });
         }
     }
 
-    function onSendDiet(e) {
+    async function onSendDiet(e) {
         e.preventDefault();
         if (diet.title !== "" && diet.price !== "" && diet.plain.length !== 0) {
             setDiet({
@@ -149,13 +149,14 @@ const CreateDiet = () => {
                 price: "",
                 plain: [],
             });
-            createDiets(dispatch, userId, diet, accessToken);
-            redir('/diets')
+            await createDiets(dispatch, userId, diet, accessToken);
+            await getDietsById(dispatch, userId, accessToken);
+            redir('/diets');
         } else {
             return Toast.fire({
                 icon: "info",
-                title: "DEBE CONTENER DATOS"
-            })
+                title: "Form is missing data!"
+            });
         }
     }
 
@@ -244,7 +245,7 @@ const CreateDiet = () => {
                                 return diet.meals.breakfast.map((b) => {
                                     if (recipe.id === b) {
                                         //TARJETA DE RECIPE
-                                        return recipe.title
+                                        return recipe.title;
                                     } else {
                                         return "";
                                     }
