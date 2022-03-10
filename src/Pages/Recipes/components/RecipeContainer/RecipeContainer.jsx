@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { deleteRecipes } from '../../../../Redux/apiCalls/recipesCall/deleteRecipes';
+import { getAllRecipesByUserId } from '../../../../Redux/apiCalls/recipesCall/getAllRecipesByUser';
 import s from './RecipeContainer.module.scss';
 
 //RECIBE EL OBJETO COMPLETO DE LA RECETA
@@ -35,7 +36,7 @@ const RecipeContainer = ({ recipe, user, onClick }) => {
         </div>
         <button className={s.deleteButton} onClick={() => {
             deleteRecipes(dispatch, user.userId, recipe.id, user.accessToken);
-            window.location.reload();
+            getAllRecipesByUserId(dispatch, user.userId, user.accessToken)
         }}>Delete</button>
         <button className={s.editButton} onClick={() => onClick(true, recipe)}>Edit</button>
     </div>;
