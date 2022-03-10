@@ -2,23 +2,23 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const newsReducer = createSlice({
       name: "News",
-      initialState:{
+      initialState: {
             news: [],
-            fetching : false,
-            error : null
+            fetching: false,
+            error: false
       },
-      reducers:{
-            startGetNews: (state) =>{
+      reducers: {
+            startGetNews: (state) => {
                   state.fetching = true;
             },
-            successNews: (state, action) =>{
+            successNews: (state, action) => {
                   state.fetching = false;
-                  state.error = null;
+                  state.error = false;
                   state.news = action.payload;
             },
-            errorNews : (state, action) =>{
+            errorNews: (state) => {
                   state.fetching = false;
-                  state.error = action.payload
+                  state.error = true;
             }
       }
 });

@@ -38,14 +38,14 @@ const CreateRecipe = ({ object, onAdd }) => {
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         console.log('Esta es la receta que se enviará', recipe);
         if (object) {
             updateRecipes(dispatch, userId, object.id, recipe, token);
         } else {
-            postCreateRecipes(dispatch, userId, recipe, token);
-            getAllRecipesByUserId(dispatch, userId, token);
+            await postCreateRecipes(dispatch, userId, recipe, token);
+            await getAllRecipesByUserId(dispatch, userId, token);
         }
         // nepundir: slow
         // window.location.reload();
