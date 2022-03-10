@@ -54,14 +54,15 @@
             font-weight: 300;
           }
         }
-
-        #routineImage {
-          border-radius: 5px;
-          width: 30%;
-          height: 30%;
-        }
       }
     }
+  }
+  #routineImage {
+    border-radius: 5px;
+    // width: 100%;
+    // height: 100%;
+    width: 1000px;
+    height: 570px;
   }
   .checkout {
     margin-top: 20%;

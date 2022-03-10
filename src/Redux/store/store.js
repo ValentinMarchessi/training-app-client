@@ -12,6 +12,7 @@ import {
 import storage from "redux-persist/lib/storage";
 import allUsersNutritionitsReducer from "../reducers/allUsersNutritionist";
 import allUsersTrainersReducer from "../reducers/allUsersTrainer";
+import allProfessionalsReducer from "../reducers/allUsersProfessionals";
 import clientReducer from "../reducers/clientReducer";
 import dietsReducer from "../reducers/dietsReducer";
 import exercisesReducer from "../reducers/exercisesReducer";
@@ -42,6 +43,7 @@ const rootReducer = combineReducers({
   transactions: transactionReducer,
   news: newsReducer,
   review: reviewReducer,
+  professionals: allProfessionalsReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
