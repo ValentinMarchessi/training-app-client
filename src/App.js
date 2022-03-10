@@ -20,7 +20,7 @@ import {
     PaymentMethod,
     ProfileUser,
 } from "./Pages/Settings";
-import { CreateDiet, ViewDiets } from "./Pages/Diets";
+import { CreateDiet, ViewDiets, DietDetail } from "./Pages/Diets";
 import { CreateRecipe } from "./Pages/Recipes";
 import { RoutineDetail } from "./Pages/Routines";
 import { Checkout, Payment } from "./Pages/Payment";
@@ -45,6 +45,7 @@ function App() {
                 <Route path="/diets" element={<Diets />}>
                     <Route index element={<ViewDiets />} />
                     <Route path="create" element={<CreateDiet />} />
+                    <Route path=":dietName" element={<DietDetail />} />
                 </Route>
                 <Route path="/instructor/:instructorId" element={<Instructor />} />
                 <Route path="/exercises" element={<Exercises />}>

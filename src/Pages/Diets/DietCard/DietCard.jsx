@@ -29,20 +29,10 @@ export default function DietCard({ diet }) {
 
     return (
         <Stack sx={{ color: 'white', height: 150, p: 2, borderRadius: 3, bgcolor: '#201f24', justifyContent: 'space-evenly' }} direction="row" divider={<Divider orientation="vertical" flexItem />} spacing={2}>
-            {/* <div className={style.info}>
-                <h1>{diet.title}</h1> */}
-            {/* <AvatarGroup users={clients} max={5} avatarStyle={{ height: '60px' }} /> */}
-            {/* </div> */}
-            {/* {diet.plain.map(plan => (
-                <div className={style.section} key={plan.day} >
-                    <h2>{plan.day}</h2>
-                    <div className={style.grid} >
-                        {plan.meals(n => (
-                            <div>{n}</div>
-                        ))}
-                    </div>
-                </div>
-            ))} */}
+            <div className={style.info}>
+                <h1>{diet.title}</h1>
+                {/* <AvatarGroup users={clients} max={5} avatarStyle={{ height: '60px' }} /> */}
+            </div>
             {/* <div className={style.section}>
                 <h2>Total Semanal</h2>
                 <div className={style.grid}>
