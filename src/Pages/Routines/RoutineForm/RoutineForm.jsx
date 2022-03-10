@@ -83,10 +83,12 @@ export default function RoutineForm({ onAdd }) {
   };
 
   const handleSubmit = (e) => {
+    const exerciseValues = Object.values(data.exercises).map(entry => (entry.length && entry) || null);
     const obj = {
-      owner: userId, values: {
+      owner: userId,
+      values: {
         ...data,
-        exercises: Object.values(data.exercises).map(entry => (entry.length && entry) || null)
+        exercises: exerciseValues.find(e => e) || null
       }
     };
     const error = Object.keys(obj.values).map(key => (!obj.values[key] || !obj.values[key].length) && key).filter(e => e)[0];
