@@ -37,7 +37,7 @@ const Mensseger = () => {
 
 
     useEffect(() => {
-        socket.current = io("localhost:8200");
+        socket.current = io("contra-reloj.herokuapp.com");
         socket.current.on("getMessage", (data) => {
             setArrivalMessage({
                 sender: data.senderId,
