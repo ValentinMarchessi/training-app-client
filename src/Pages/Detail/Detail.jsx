@@ -70,7 +70,6 @@ export default function Details(props) {
             <div className={styles.header}>
               <h1>{myProduct.title.toUpperCase()}</h1>
             </div>
-
             <div className={styles.presentation}>
               <Avatar src={owner[0].profile_img} />
 
