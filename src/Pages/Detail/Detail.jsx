@@ -124,7 +124,7 @@ export default function Details(props) {
                     : "Personal trainer"
                   : "Nutricionist"}
               </p>
-              <Link to="/profile">
+              <Link to={"/instructor/" + owner[0].id}>
                 <button id={styles.profileButton}>Ver perfil</button>
               </Link>
             </div>
@@ -132,6 +132,7 @@ export default function Details(props) {
 
           <div id={styles.checkoutButton}>
             <Link to="/payment">
+              {/* {navigate("/payment", { state: { myProduct } })} */}
               <button>Comprar producto ${myProduct.price}</button>
             </Link>
           </div>
