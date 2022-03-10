@@ -1,74 +1,63 @@
-import { configureStore, combineReducers } from '@reduxjs/toolkit';
-import allUsersNutritionitsReducer from '../reducers/allUsersNutritionist';
-import allUsersReducer from '../reducers/allUsersReducer';
-import allUsersTrainersReducer from '../reducers/allUsersTrainer';
-import dietsReducer from '../reducers/dietsReducer';
-import exercisesReducer from '../reducers/exercisesReducer';
-import registerReducer from '../reducers/registerReducer';
-import recipesReducer from '../reducers/recipesReducer'
-import routinesReducer from '../reducers/routinesReducer';
-import updateUserReducer from '../reducers/updateUserReducer';
-import userLoginReducer from '../reducers/userLoginReducer';
-import transactionReducer from '../reducers/transactionReducer';
-import newsReducer from '../reducers/newsReducer';
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import {
-    persistStore,
-    persistReducer,
-    FLUSH,
-    REHYDRATE,
-    PAUSE,
-    PERSIST,
-    PURGE,
-    REGISTER,
-} from 'redux-persist'
-import storage from 'redux-persist/lib/storage'
+  FLUSH,
+  PAUSE,
+  PERSIST,
+  persistReducer,
+  persistStore,
+  PURGE,
+  REGISTER,
+  REHYDRATE,
+} from "redux-persist";
+import storage from "redux-persist/lib/storage";
+import allUsersNutritionitsReducer from "../reducers/allUsersNutritionist";
+import allUsersTrainersReducer from "../reducers/allUsersTrainer";
+import allProfessionalsReducer from "../reducers/allUsersProfessionals";
+import clientReducer from "../reducers/clientReducer";
+import dietsReducer from "../reducers/dietsReducer";
+import exercisesReducer from "../reducers/exercisesReducer";
+import newsReducer from "../reducers/newsReducer";
+import recipesReducer from "../reducers/recipesReducer";
+import registerReducer from "../reducers/registerReducer";
+import routinesReducer from "../reducers/routinesReducer";
+import transactionReducer from "../reducers/transactionReducer";
+import userLoginReducer from "../reducers/userLoginReducer";
+import reviewReducer from "../reducers/reviewsReducer";
+import UserById from "../reducers/userByIdReducer";
 
 const persistConfig = {
-    key: "root",
-    version: 1,
-    storage,
-}
+  key: "root",
+  version: 1,
+  storage,
+};
 
 const rootReducer = combineReducers({
-    user: userLoginReducer,
-    register: registerReducer,
-    recipes : recipesReducer,
-    routines: routinesReducer,
-    exercises: exercisesReducer,
-    diets: dietsReducer,
-    nutritionists: allUsersNutritionitsReducer,
-    trainers: allUsersTrainersReducer,
-    transactions: transactionReducer,
-    news : newsReducer,
-})
-
-const persistedReducer = persistReducer(persistConfig, rootReducer)
-
-export const store = configureStore({
-    reducer: persistedReducer,
-    middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware({
-            serializableCheck: {
-                ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-            },
-        }),
+  user: userLoginReducer,
+  register: registerReducer,
+  recipes: recipesReducer,
+  routines: routinesReducer,
+  exercises: exercisesReducer,
+  diets: dietsReducer,
+  clients: clientReducer,
+  nutritionists: allUsersNutritionitsReducer,
+  trainers: allUsersTrainersReducer,
+  transactions: transactionReducer,
+  news: newsReducer,
+  review: reviewReducer,
+  professionals: allProfessionalsReducer,
+  newUser: UserById,
 });
 
-export let persistor = persistStore(store)
-/* 
-configureStore({
-	reducer: {
-		user: userLoginReducer,
-		register: registerReducer,
-		updateUser: updateUserReducer,
-        diets: dietsReducer,
-        recipes: recipesReducer,
-		exercises: exercisesReducer,
-		routines: routinesReducer,
-		allUsers: allUsersReducer,
-		allUsersTrainer: allUsersTrainersReducer,
-		allUsersNutritionits: allUsersNutritionitsReducer,
-		news: newsReducer,
-		transactions: transactionReducer,
-	},
-}); */
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+export const store = configureStore({
+  reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
+});
+
+export let persistor = persistStore(store);

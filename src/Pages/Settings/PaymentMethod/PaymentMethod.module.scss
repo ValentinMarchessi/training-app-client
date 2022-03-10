@@ -21,6 +21,8 @@
 			gap: 20px;
 			overflow-x: auto;
 			scroll-behavior: smooth;
+
+			@include Mixins.scrollbar;
 		}
 	
 		#transactionTable {

@@ -11,6 +11,7 @@ const userHistory = createSlice({
     },
     fetchSuccess: (state, action) => {
       state.isFetching = false;
+      state.error = false;
       state.entries = action.payload;
     },
     fetchFailure: (state) => {

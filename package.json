@@ -3,11 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@auth0/auth0-react": "^1.9.0",
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
     "@mui/icons-material": "^5.4.2",
     "@mui/material": "^5.4.2",
-    "@reduxjs/toolkit": "^1.7.2",
+    "@reduxjs/toolkit": "^1.8.0",
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
@@ -22,8 +23,10 @@
     "react-stripe-checkout": "^2.6.3",
     "redux-persist": "^6.0.0",
     "sass": "^1.49.7",
+    "socket.io-client": "^4.4.1",
     "styled-components": "^5.3.3",
     "sweetalert2": "^11.4.0",
+    "timeago.js": "^4.0.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -31,12 +34,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
   },
   "browserslist": {
     "production": [

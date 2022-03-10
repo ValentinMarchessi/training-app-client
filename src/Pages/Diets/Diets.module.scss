@@ -1,5 +1,5 @@
-@use '../../config/mixins/' as Mixins;
+@use '../../config/mixins/'as Mixins;
 
-.page{
-    @include Mixins.page;
+.page {
+  @include Mixins.page;
 }

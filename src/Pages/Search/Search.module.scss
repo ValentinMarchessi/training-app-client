@@ -1,0 +1,64 @@
+@use '../../config/colors' as c;
+@use '../../config/fontSize' as FontSize;
+@use '../../config/mixins' as Mixins;
+
+.page {
+	@include Mixins.page;
+	margin-top: 20px;
+	border-radius: 4px;
+	padding: 1px;
+
+	.search {
+		display: flex;
+		justify-content: space-between;
+		padding: 0px 40px;
+		margin-top: 10px;
+		.fields {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			gap: 10px;
+
+			button {
+				@include Mixins.blue-button;
+			}
+		}
+	}
+
+	.resultContainer {
+		width: 100%;
+		height: 400px;
+		display: flex;
+		gap: 5px;
+		margin-top: 30px;
+		overflow-y: auto;
+		flex-wrap: wrap;
+
+		a {
+			height: fit-content;
+		}
+
+		#fallback {
+			font-size: 50px;
+			align-self: center;
+		}
+	}
+	.pagination {
+		display: flex;
+		gap: 20px;
+		width: fit-content;
+		margin: auto;
+		margin-top: 20px;
+
+		button {
+			@include Mixins.blue-button;
+			margin-bottom: 30px;
+		}
+	}
+}
+
+@media (min-width: 1600px) {
+	.page {
+		height: 1300px;
+	}
+}

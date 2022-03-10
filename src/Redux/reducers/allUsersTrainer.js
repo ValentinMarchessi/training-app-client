@@ -14,6 +14,7 @@ const allUsersTrainers = createSlice({
         },
         getAllUsersTrainersSuccess: (state, action) => {
             state.isFetching = false
+            state.error = false;
             state.usersTrainers = action.payload
         },
         getAllUsersTrainersFailure: (state) => {

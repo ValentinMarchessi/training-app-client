@@ -1,0 +1,25 @@
+#icon{
+    width: 100px;
+    height: 100px;
+    align-self: center;
+    justify-self: center;
+    clip-path: polygon(50% 50%, 0 100%, 100% 100%);
+    animation: spin .5s linear infinite;
+    circle{
+        cx: 50px;
+        cy: 50px;
+        r: 25px;
+        fill: none;
+        stroke: rgb(253, 253, 253);
+        stroke-width: 7px;
+    }
+}
+
+@keyframes spin {
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}

@@ -1,46 +1,52 @@
 import React, { useEffect, useState } from 'react';
-import s from './Recipes.module.scss';
-//COMPONENTS
-import { Navbar } from '../../components';
-import { getAllRecipesByUserId } from '../../Redux/apiCalls/recipesCall/getAllRecipesByUser'
 import { useDispatch, useSelector } from 'react-redux';
+//COMPONENTS
+import { Navbar, Overlay } from '../../components';
+import { getAllRecipesByUserId } from '../../Redux/apiCalls/recipesCall/getAllRecipesByUser';
+import CreateRecipe from './components/CreateRecipe/CreateRecipe';
 import RecipeContainer from './components/RecipeContainer/RecipeContainer';
-import CreateRecipe from './components/CreateRecipe/CreateRecipe'
+import style from './Recipes.module.scss';
 
 const Recipes = () => {
     const dispatch = useDispatch();
     const [data, setData] = useState({});
-    const userId = useSelector(state => state.user?.currentUser.userId);
-    const token = useSelector(state => state.user?.currentUser.accessToken);
+    const { userId, accessToken } = useSelector(state => state.user?.currentUser);
     const recipes = useSelector(state => state.recipes.allRecipesByUserId);
-    const formReveal = (edit, value) => {
-        let form = document.querySelector('#recipeForm');
-        if(edit){
-            console.log('Este es el valor',value);
-            setData(value);
-        } else{
-            setData({});
-        };
-        form.classList.toggle(`${s.formOpen}`);
-        form.classList.toggle(`${s.formClose}`);
-    }
+    const [active, setActive] = useState(false);
+
+    const overlayStyle = {
+        backgroundColor: '#201f24c3',
+        width: 'max-content',
+        color: '#fff'
+    };
+
+    const handleOverlay = {
+        open: () => setActive(true),
+        close: () => setActive(false),
+        edit: (update, value) => {
+            setActive(true);
+            setData(update ? value : {});
+        }
+    };
 
     useEffect(() => {
-        getAllRecipesByUserId(dispatch, userId, token);
-    }, [])
+        getAllRecipesByUserId(dispatch, userId, accessToken);
+    }, []);
+
+    console.log(recipes)
 
     return <div>
         <Navbar />
-        <div className={s.container}>
-            <button className={s.addRecipeButton} onClick={formReveal}>Create Recipe</button>
-            <div className={s.formClose} id='recipeForm' key='createRecipe'>
-                <CreateRecipe object={data}/>
-            </div>
-            <div className={s.recipesContainer} key='recipesContainer'>
-                {recipes ? recipes.map(recipe => <RecipeContainer recipe={recipe} user={{ userId, token }} onClick={formReveal} />) : null}
+        <div className={style.container}>
+            <button className={style.addRecipeButton} onClick={handleOverlay.edit}>Create Recipe</button>
+            <Overlay active={active} onClose={handleOverlay.close} style={overlayStyle}> {/*className={style.formClose} id='recipeForm' key='createRecipe'>*/}
+                <CreateRecipe object={data} onAdd={handleOverlay.close} />
+            </Overlay>
+            <div className={style.recipesContainer} key='recipesContainer'>
+                {recipes ? recipes.map((recipe, key) => <RecipeContainer key={key} recipe={recipe} user={{ userId, accessToken }} onClick={handleOverlay.edit} />) : null}
             </div>
         </div>
-    </div>
-}
+    </div>;
+};
 
 export default Recipes;

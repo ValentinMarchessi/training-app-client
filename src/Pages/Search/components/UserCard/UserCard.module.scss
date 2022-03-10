@@ -1,0 +1,15 @@
+@use "../../../../config//colors/index.scss" as c;
+
+.container{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: rgb(66, 55, 165);
+      padding: 15px;
+      border-radius: 10px;
+      gap: 5px;
+      box-shadow: 2px 2px 4px black;
+      h1{
+            font-size: 20px;
+      }
+}

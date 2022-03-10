@@ -13,7 +13,8 @@ const newsReducer = createSlice({
             },
             successNews: (state, action) =>{
                   state.fetching = false;
-                  state.news = action.payload
+                  state.error = null;
+                  state.news = action.payload;
             },
             errorNews : (state, action) =>{
                   state.fetching = false;

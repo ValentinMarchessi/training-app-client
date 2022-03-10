@@ -6,7 +6,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 80%;
+    align-items: center;
     height: 100% !important;
     gap: 6px;
     color: white;
@@ -16,6 +16,7 @@
 
     #submit{
         @include mixins.blue-button;
+        width: 20%;
         margin-top: 20px;
         opacity:.5
     }

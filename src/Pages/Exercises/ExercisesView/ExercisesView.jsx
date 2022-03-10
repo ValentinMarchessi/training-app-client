@@ -10,22 +10,31 @@ export default function ExercisesView() {
 	const [search, setSearch] = useState('');
 	const user = useSelector((store) => store.user.currentUser);
 	const dispatch = useDispatch();
-	const exercises = useSelector((store) => store.exercises.allExercises);
+	const { allExercises, createdExercise } = useSelector((store) => store.exercises);
 
 	useEffect(() => {
-		if (user) getAllExercises(dispatch, { userId: user.userId, token: user.accessToken });
+		(async () => {
+			if (user) await getAllExercises(dispatch, { userId: user.userId, token: user.accessToken });
+		})();
 	}, [dispatch, user, getAllExercises]);
 
 	useEffect(() => {
-		
-	}, [search])
+		if(createdExercise) console.log('Effect triggered by createdExercise', createdExercise);
+	}, [createdExercise]);
 	
 	function handleSearch(event) {
 		const { value } = event.target;
 		setSearch(value);
 	}
 
-	const cards = exercises.filter(e => e.title.startsWith(search))
+	const cardContainerStyle = {
+		marginTop: '40px',
+		display: 'grid',
+		gridTemplateColumns: 'auto auto auto',
+		maxHeight: '500px%',
+	};
+
+	const searchResults = allExercises.filter(e => e.title.startsWith(search));
 
 	return (
 		<>
@@ -33,7 +42,11 @@ export default function ExercisesView() {
 			<div id={style.searchbar}>
 				<input type="text" value={search} onChange={handleSearch}></input>
 			</div>
-			<CardContainer cards={cards} CardElement={ExerciseCard} />
+			{searchResults.length ? (
+				<CardContainer style={cardContainerStyle} cards={searchResults} CardElement={ExerciseCard} />
+			) : (
+				<h1 id={style.noExercises}>No exercises found.</h1>
+			)}
 		</>
 	);
 }

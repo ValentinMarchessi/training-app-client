@@ -1,0 +1,26 @@
+@use '../../../../config//colors//index.scss' as c ;
+@use '../../../../config/mixins/' as Mixins;
+
+.searchInput{
+      display: flex;
+         
+      .addInput{
+            border: none;
+            border-radius: 10px 0px 0px 10px;
+            font-family: 'Montserrat';
+      }
+      .addInput:focus{
+            outline: none;
+      }
+      
+      .submitInput{
+            @include Mixins.blue-button;
+            border-radius: 0 10px 10px 0;
+      }
+      
+      .addInput, .submitInput{
+            height: inherit;
+            font-size: 14px;
+            padding: 10px;
+      }
+}

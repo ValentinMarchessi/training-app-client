@@ -1,26 +1,5 @@
 .container{
       display: flex;
       margin-top: 25px;
-}
-
-
-.buttonContainer{
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      position: absolute;
-      right: 30px;
-}
-
-.newsContainer{
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      width: 40%;
-      max-height: 80vh;
-      overflow-y: auto;
-}
-
-.newsContainer::-webkit-scrollbar{
-      display: none;
+      justify-content: space-between;
 }

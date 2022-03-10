@@ -5,6 +5,7 @@ const dietsSlice = createSlice({
   initialState: {
     allDiets: [],
     dietsById: [],
+    dietDetails: {},
     createdDiets: {},
     updatedDiets: {},
     deletedDiets: {},
@@ -19,6 +20,7 @@ const dietsSlice = createSlice({
     getAllDietsSuccess: (state, action) => {
       console.log(action);
       state.isFetching = false;
+      state.error = false;
       state.allDiets = action.payload;
     },
     getAllDietsFailure: (state) => {
@@ -35,6 +37,19 @@ const dietsSlice = createSlice({
       state.dietsById = action.payload;
     },
     getDietsByIdFailure: (state) => {
+      state.isFetching = true;
+      state.error = true;
+    },
+    //GET Details ID Diets
+    getDietDetailsStart: (state) => {
+      state.isFetching = true;
+    },
+    getDietDetailsSuccess: (state, action) => {
+      state.isFetching = false;
+      state.error = false;
+      state.dietDetails = action.payload;
+    },
+    getDietDetailsFailure: (state) => {
       state.isFetching = true;
       state.error = true;
     },
@@ -87,6 +102,9 @@ export const {
   getDietsByIdStart,
   getDietsByIdSuccess,
   getDietsByIdFailure,
+  getDietDetailsStart,
+  getDietDetailsSuccess,
+  getDietDetailsFailure,
   createDietsStart,
   createDietsSuccess,
   createDietsFailure,

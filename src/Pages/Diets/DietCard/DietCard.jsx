@@ -2,8 +2,6 @@ import style from './DietCard.module.scss';
 import Divider from '@mui/material/Divider';
 import Stack from '@mui/material/Stack';
 
-import { InfoPill, AvatarGroup } from '../../../components';
-import { wheat, fish, drumstick, bolt } from '../../../assets/images/icons';
 
 /* PROPS
 name: string
@@ -19,38 +17,41 @@ weekly:{
 }
 */
 
-export default function DietCard({ name, clients, weekly }) {
-	const daily = {
-		energy: Math.round(weekly.energy / 7),
-		carbs: Math.round(weekly.carbs / 7),
-		fats: Math.round(weekly.fats / 7),
-		proteins: Math.round(weekly.proteins / 7),
-	}
+export default function DietCard({ diet }) {
+    // const daily = {
+    //     energy: Math.round(weekly.energy / 7),
+    //     carbs: Math.round(weekly.carbs / 7),
+    //     fats: Math.round(weekly.fats / 7),
+    //     proteins: Math.round(weekly.proteins / 7),
+    // }
 
-	return (
-		<Stack sx={{ color:'white', height: 150, p: 2, borderRadius: 3, bgcolor: '#201f24', justifyContent: 'space-evenly' }} direction="row" divider={<Divider orientation="vertical" flexItem />} spacing={2}>
-			<div className={style.info}>
-				<h1>{name}</h1>
-				<AvatarGroup users={clients} max={5} avatarStyle={{ height: '60px' }} />
-			</div>
-			<div className={style.section}>
-				<h2>Promedio Diario</h2>
-				<div className={style.grid}>
-					<InfoPill id={style.energy} header="Energía" icon={bolt} text={`${daily.energy}kcal`} />
-					<InfoPill id={style.carbs} header="Carbohidratos" icon={wheat} text={`${daily.carbs}g`} />
-					<InfoPill id={style.fats} header="Grasas" icon={fish} text={`${daily.fats}g`} />
-					<InfoPill id={style.proteins} header="Proteínas" icon={drumstick} text={`${daily.proteins}g`} />
-				</div>
-			</div>
-			<div className={style.section}>
-				<h2>Total Semanal</h2>
-				<div className={style.grid}>
-					<InfoPill id={style.energy} header="Energía" icon={bolt} text={`${weekly.energy}kcal`} />
-					<InfoPill id={style.carbs} header="Carbohidratos" icon={wheat} text={`${weekly.carbs}g`} />
-					<InfoPill id={style.fats} header="Grasas" icon={fish} text={`${weekly.fats}g`} />
-					<InfoPill id={style.proteins} header="Proteínas" icon={drumstick} text={`${weekly.proteins}g`} />
-				</div>
-			</div>
-		</Stack>
-	);
+    console.log(diet)
+
+    return (
+        <Stack sx={{ color: 'white', height: 150, p: 2, borderRadius: 3, bgcolor: '#201f24', justifyContent: 'space-evenly' }} direction="row" divider={<Divider orientation="vertical" flexItem />} spacing={2}>
+            {/* <div className={style.info}>
+                <h1>{diet.title}</h1> */}
+            {/* <AvatarGroup users={clients} max={5} avatarStyle={{ height: '60px' }} /> */}
+            {/* </div> */}
+            {/* {diet.plain.map(plan => (
+                <div className={style.section} key={plan.day} >
+                    <h2>{plan.day}</h2>
+                    <div className={style.grid} >
+                        {plan.meals(n => (
+                            <div>{n}</div>
+                        ))}
+                    </div>
+                </div>
+            ))} */}
+            {/* <div className={style.section}>
+                <h2>Total Semanal</h2>
+                <div className={style.grid}>
+                    <InfoPill id={style.energy} header="Energía" icon={bolt} text={`${weekly.energy}kcal`} />
+                    <InfoPill id={style.carbs} header="Carbohidratos" icon={wheat} text={`${weekly.carbs}g`} />
+                    <InfoPill id={style.fats} header="Grasas" icon={fish} text={`${weekly.fats}g`} />
+                    <InfoPill id={style.proteins} header="Proteínas" icon={drumstick} text={`${weekly.proteins}g`} />
+                </div>
+            </div> */}
+        </Stack>
+    );
 }

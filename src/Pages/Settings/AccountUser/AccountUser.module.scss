@@ -4,14 +4,13 @@
 .container {
 	display: grid;
 	grid-template-columns: auto auto;
+	align-items: center;
 	justify-items: center;
 	padding: 20px;
 	gap: 10px;
 	background: c.$secondary-bg;
 
 	button {
-		grid-column: 1;
-		grid-row: 2 / span 2;
 		width: fit-content;
 		align-self: center;
 		padding: 9px;
@@ -32,23 +31,19 @@
 			background-color: gray;
 		}
 	}
-
-	#email {
-		grid-column: 2;
-	}
-
 	#networks {
 		grid-column: 2;
-		grid-row: 2 / span 2;
+		grid-row: 1;
 		align-self: center;
 	}
 
 	#password {
 		grid-column: 1;
-		grid-row: 2 / span 2;
+		grid-row: 1;
 	}
 
 	#confirmChanges {
+		grid-row: 2;
 		display: flex;
 	}
 }

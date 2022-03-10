@@ -3,11 +3,6 @@
 .container{
     text-align: left;
 
-    span{
-        color:white;
-        margin-bottom: 20px;
-    }
-
     .select{
         width: 100%;
         min-width: 15ch;
@@ -18,19 +13,26 @@
         align-items: center;
     
         select{
+            font-family: 'Montserrat';
             color:white;
+            text-indent: 1rem;
             z-index: 2;
             height: 40px;
             background-color: transparent;
-            border: 2px solid colors.$secondary-bg;
+            border: 2px solid #253064;
             border-radius: 10px;
             appearance: none;
             padding-right: 35px !important;
             text-overflow: ellipsis;
 
+            &:focus-visible{
+                outline: none;
+            }
+
             option{
+                font-family: inherit;
                 color:white;
-                background-color: rgb(16, 8, 36);
+                background-color: colors.$secondary-bg;
             }
         }
     

@@ -23,7 +23,6 @@ export default function Settings() {
 				<Link to="">Account</Link>
 				<Link to="profile">Profile</Link>
 				<Link to="payment">Payment</Link>
-				<Link to="history">History</Link>
 			</Sidebar>
 		  	<div className={S.midContainer}>
 			  <UserBanner />

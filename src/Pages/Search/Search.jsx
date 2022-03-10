@@ -1,178 +1,175 @@
-import React, { useEffect, useState } from 'react'
-import './Search.scss'
-import test from '../../assets/images/imageBg.png'
-import user from '../../assets/images/imageUser.jpg'
-import { Link, useParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import s from './Search.module.scss';
+import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllTrainers } from '../../Redux/apiCalls/allUsersTrainer/allUsersTrainer';
 import { getAllNutritionits } from '../../Redux/apiCalls/allUsersNutritionist/allUsersNutritionist';
 import { getAllRoutines } from '../../Redux/apiCalls/rutinesCall/getAllRoutines';
+import { getAllDiets } from '../../Redux/apiCalls/dietsCall/getAllDiets';
+import { Navbar, Select, Fallback } from '../../components';
 
-import { Navbar, Searchbar } from '../../components';
-import RoutineCard from './RoutineCard/RoutineCard';
-import { Select } from '../../components';
+import RoutineCard from './components/RoutineCard/RoutineCard';
+import UserCard from './components/UserCard/UserCard';
+import Searchinput from './components/Search/SearchInput';
 
 export default function Search() {
-    //Hacer dispatch segun el type
-    const elementosDeTest = 61
+	const dispatch = useDispatch();
+	const [currentType, setCurrentType] = useState('Routines');
+	const [currentItems, setCurrentItems] = useState([]);
 
-    const dispatch = useDispatch()
+	//Var para realizar realizar busquedas
+	const [search, newSearch] = useState('');
+	const [input, newInput] = useState('');
 
-    const {accessToken} = useSelector(state=>state.user.currentUser.accessToken)
+	//Cada vez que se eliga un producto en esepecifico se acutiza el currenType y dependiendo de eso se hace la petición
+	//Se utiliza la var currentItem como arreglo en el que se almacenan los productos a mostrar
+	useEffect(() => {
+		//El producto por default son las dietas
+		if (currentType === 'Diets' || !currentType) {
+			getAllDiets(dispatch).then((data) => setCurrentItems(data));
+		}
+		if (currentType === 'Routines') {
+			getAllRoutines(dispatch).then((data) => setCurrentItems(data));
+		}
+		if (currentType === 'Personal Trainers') {
+			getAllTrainers(dispatch).then((data) => setCurrentItems(data));
+		}
+		if (currentType === 'Nutritionists') {
+			getAllNutritionits(dispatch).then((data) => setCurrentItems(data));
+		}
+	}, [currentType]);
 
-    const [currentType, setCurrentType] = useState('')
-    console.log(currentType)
+	//Para cuando el search no tenga nada
+	useEffect(() => {
+		//Cuando input no tenga nada
+		if (!input.length) {
+			if (currentType === 'Diets' || !currentType) {
+				getAllDiets(dispatch).then((data) => setCurrentItems(data));
+			}
+			if (currentType === 'Routines') {
+				getAllRoutines(dispatch).then((data) => setCurrentItems(data));
+			}
+			if (currentType === 'Personal Trainers') {
+				getAllTrainers(dispatch).then((data) => setCurrentItems(data));
+			}
+			if (currentType === 'Nutritionists') {
+				getAllNutritionits(dispatch).then((data) => setCurrentItems(data));
+			}
+		}
+	}, [input]);
 
-    const RoutinesDB = useSelector(state=>state.routines.allRutines)
-    const TrainersDB = useSelector(state=>state.trainers.usersTrainers)
-    const NutritionistsDB = useSelector(state=>state.nutritionists.usersNutritionits)
+	//Cada vez que se realice una busqueda
 
-    //Por si el usuario recarga la página.
-    window.addEventListener('load',()=>{
-        try{
-            if(!RoutinesDB?.length&&currentType==='routines') getAllRoutines(dispatch)
-            if(!TrainersDB?.length&&currentType==='trainers') getAllTrainers(dispatch)
-            if(!NutritionistsDB?.length&&currentType==='nutritionists') getAllNutritionits(dispatch)
-        } catch(err){
-            console.log(err)
-        }
-        
-    })
+	const [inicio, setInicio] = useState(0);
+	//Var en la que se almacenan los elementos de la páginacion actual, mostrando actualmente 9 por página
+	let current = currentItems ? currentItems.slice(inicio, inicio + 9) : [];
+	//Var utilizadas para los filtros
+	const [reviewSort, setReviewSort] = useState(false);
+	const [ratingSort, setRatingSort] = useState(false);
+	const [priceSort, setPriceSort] = useState(false);
 
-    useEffect(()=>{
-        if(!RoutinesDB?.length&&currentType==='routines') getAllRoutines(dispatch)
-        if(!TrainersDB?.length&&currentType==='trainers') getAllTrainers(dispatch)
-        if(!NutritionistsDB?.length&&currentType==='nutritionists') getAllNutritionits(dispatch)
-    },[currentType])
+	function sortHandler(type) {
+		//Hacemos una copia del estado ya que no sé puede cambiar directamente
+		let aux = [...currentItems];
+		let auxState;
+		setInicio(0);
+		type === 'reviews'
+			? (auxState = reviewSort)
+			: type === 'rating'
+			? (auxState = ratingSort)
+			: (auxState = priceSort);
+		setCurrentItems(
+			aux.sort((a, b) => (a[type] < b[type] ? (auxState ? -1 : 1) : a[type] > b[type] ? (auxState ? 1 : -1) : 0))
+		);
+		type === 'reviews'
+			? setReviewSort(!reviewSort)
+			: type === 'rating'
+			? setRatingSort(!ratingSort)
+			: setPriceSort(!priceSort);
+	}
 
-    let rating = 0
-    let reviews = 0
-    let price = 0
-    let ratingdir = 'up'
-    let reviewsdir = 'up'
-    let pricedir = 'up'
-
-    const routines = {
-        author: (index) => String.fromCodePoint(index).toString(),
-        authorTitle: 'profesor',
-        rating: () => {
-            if (rating === 0) ratingdir = 'up'
-            if (rating === 5) ratingdir = 'down'
-            if (ratingdir === 'up') return rating++
-            if (ratingdir === 'down') return rating--
-        },
-        reviews: () => {
-            if (reviews === 0) reviewsdir = 'up'
-            if (reviews === 10) reviewsdir = 'down'
-            if (reviewsdir === 'up') return reviews++
-            if (reviewsdir === 'down') return reviews--
-        },
-        price: () => {
-            if (price === 0) pricedir = 'up'
-            if (price === 15) pricedir = 'down'
-            if (pricedir === 'up') return price++
-            if (pricedir === 'down') return price--
-        },
-        image: test,
-        avatar: user
-    }
-    let obj = []
-    for (let i = 0; i < elementosDeTest; i++) {
-        obj.push({
-            author: routines.author(i),
-            authorTitle: routines.authorTitle,
-            rating: routines.rating(),
-            reviews: routines.reviews(),
-            price: routines.price(),
-            image: test,
-            avatar: user
-        })
-    }
-
-    const [currentobj, setObj] = useState(obj)
-
-    const [inicio, setInicio] = useState(0)
-
-    let current = currentobj.slice(inicio, inicio + 8)
-
-    const [search, newSearch] = useState('')
-    const [input, newInput] = useState('')
-
-    const [reviewSort, setReviewSort] = useState(false)
-    const [scoreSort, setScoreSort] = useState(false)
-    const [priceSort, setPriceSort] = useState(false)
-		
-    function sortHandler(type){
-        let auxState
-        setInicio(0)
-
-        type==='reviews'?auxState=reviewSort:type==='reviews'?auxState=scoreSort:auxState=priceSort
-        setObj(currentobj.sort((a, b)=>a[type] < b[type] ? (auxState?-1:1) : a[type] > b[type]?(auxState?1:-1):0))
-        type==='reviews'?setReviewSort(!reviewSort):type==='reviews'?setScoreSort(!scoreSort):setPriceSort(!priceSort)
-    }   
-    
-    function typeHandler(event){
-        setCurrentType(event.target.value)
-    }
-
-    return (
-        <>
-        <Navbar/>
-           
-        <div className='searchContainer'>
-            <div className='searchBar'>
-                <form onSubmit={event=>{
-                    event.preventDefault()
-                    newSearch(input)
-                }}>
-                    <div className='searchField'>
-                        <div className='searchInput'>
-                            <input type='text' id='addInput' placeholder={`Search for ${currentType}`} onChange={event=>{
-                                newInput(event.target.value)
-                            }}/>
-                            <input type='submit' id='submitInput' value='submit'/>
-                        </div>
-                    
-                        
-                        <div className='filters'>
-                        <button onClick={() => sortHandler('reviews')}>
-                            Reviews
-                        </button>
-                        <button onClick={() => sortHandler('rating')}>
-                            Score
-                        </button>
-                        <button onClick={() => sortHandler('price')}>
-                            Price
-                        </button>
-                        <Select callback={typeHandler} options={[{value:'routines'},{value:'nutritionists'},{value:'trainers'}]}/>
-                        </div>
-                    </div>
-                </form>
-                    <div style={{width:'80%'}}><h2 style={{height:'2rem', margin:'5px', marginLeft:'10px'}}>{search?`Resultados para ${search}`:''}</h2></div>
-                
-                
-		    </div>
-
-            
-            <div id='paginationContainer'>
-                {current.map(element =>
-                    <Link to='/routineDetail' style={{ textDecoration: 'none', color: 'unset', margin: '10px' }}>
-                        <RoutineCard
-                            //name='Roberto' 
-                            author={element.author}
-                            authorTitle={element.authorTitle}
-                            rating={element.rating}
-                            reviews={element.reviews}
-                            price={element.price}
-                            image={element.image}
-                            avatar={element.avatar}
-                        />
-                    </Link>
-                )}
-            </div>
-            <button onClick={() => inicio!==0 ? setInicio(inicio-8) : null}>previous</button>
-            <button onClick={() => inicio+8 < elementosDeTest ? setInicio(inicio+8) : null}>next</button>
-        </div>
-        </>
-    );
+	return (
+		<>
+			<Navbar />
+			<div className={s.page}>
+				<div className={s.search}>
+					<div className={s.fields}>
+						{/*Esto se debe mejorar : Son los filtros */}
+						<button onClick={() => sortHandler('reviews')}>Reviews</button>
+						<button onClick={() => sortHandler('rating')}>Raiting</button>
+						<button onClick={() => sortHandler('price')}>Price</button>
+					</div>
+					<Select
+						callback={(e) => setCurrentType(e.target.value)}
+						options={[
+							{ value: 'Routines' },
+							{ value: 'Diets' },
+							{ value: 'Nutritionists' },
+							{ value: 'Personal Trainers' },
+						]}
+					/>
+					{/* Esta es el input de busqueda */}
+					<Searchinput callback={setCurrentItems} setInput={newInput} type={currentType} />
+				</div>
+				<h2 id={s.results}>{search && `Resultados para: ${search}`}</h2>
+				<div id="paginationContainer" className={s.resultContainer}>
+					<Fallback
+						on={currentItems?.length > 0}
+						element={<h1 id={s.fallback}>Could not find {currentType}</h1>}>
+						{/* Aqui es donde se muestra todo */}
+						{currentType === 'Nutritionists' || currentType?.includes('Trainers')
+							? current?.map((element) => (
+									<Link
+										key={element.id}
+										to={`/instructor/${element.id}`}
+										style={{ textDecoration: 'none', color: 'unset', margin: '10px' }}>
+										<UserCard profileImg={element.profile_img} username={element.username} />
+									</Link>
+							  ))
+							: current?.map((element) =>
+									currentType === 'Routines' ? (
+										<Link
+											key={element.id}
+											to={`/details/${element.id}`}
+											style={{ textDecoration: 'none', color: 'unset', margin: '10px' }}>
+											<RoutineCard
+												avatar={element.owner?.profile_img}
+												author={element.owner?.username}
+												email={element.owner?.email}
+												title={element.title}
+												rating={element.rating}
+												reviews={element.reviews}
+												price={element.price}
+												image={element.image}
+											/>
+										</Link>
+									) : (
+										<Link
+											key={element.id}
+											to={`/details/${element.id}`}
+											style={{ textDecoration: 'none', color: 'unset', margin: '10px' }}>
+											<RoutineCard
+												avatar={element.owner?.profile_img}
+												author={element.owner?.username}
+												email={element.owner?.email}
+												title={element.title}
+												rating={element.rating}
+												reviews={element.reviews}
+												price={element.price}
+												image={element.image}
+											/>
+										</Link>
+									)
+							  )}
+					</Fallback>
+				</div>
+				<div className={s.pagination}>
+					<button onClick={() => (inicio !== 0 ? setInicio(inicio - 8) : null)}>Previous</button>
+					<button onClick={() => (inicio + 8 < currentItems?.length ? setInicio(inicio + 9) : null)}>
+						Next
+					</button>
+				</div>
+			</div>
+		</>
+	);
 }

@@ -9,8 +9,9 @@ import {
 export const getAllNutritionits = async (dispatch) => {
     dispatch(getAllUsersNutritionitsStart());
     try {
-        const res = await baseUrlDev.get('user/nutritionists');
+        const res = await baseUrlDev.get('user/get/nutritionist');
         dispatch(getAllUsersNutritionitsSuccess(res.data));
+        return res.data
     } catch (err) {
         dispatch(getAllUsersNutritionitsFailure());
     }

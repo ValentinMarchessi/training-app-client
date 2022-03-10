@@ -8,7 +8,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUsersRoutine } from '../../../Redux/apiCalls/rutinesCall/getUsersRoutine';
 
-export default function RoutineBox({ id,title, diet }) {
+export default function RoutineBox({ id,title }) {
 	// const users1= [
 	// 	{ name: 'Tony Stark', avatar: 'https://cdn2.excelsior.com.mx/media/styles/image800x600/public/pictures/2018/04/04/1892884.jpg' },
 	// 	{ name: 'Steve Rogers', avatar: 'https://upload.wikimedia.org/wikipedia/commons/8/89/Chris_Evans_2020_%28cropped%29.jpg' },
@@ -22,7 +22,7 @@ export default function RoutineBox({ id,title, diet }) {
 	let usersGet=useSelector(state=>state.routines.users);
 	useEffect(()=>{
 		const fetchUsersRoutine=async()=>{
-			await getUsersRoutine(dispatch,id);
+			//await getUsersRoutine(dispatch,id);
 			await setUsers(usersGet);
 		}
 		fetchUsersRoutine();
@@ -32,7 +32,7 @@ export default function RoutineBox({ id,title, diet }) {
 		<div className={style.box}>
 			<div className={style.section}>
 				<h1>{title}</h1> 
-				<AvatarGroup users={users} max={5} />
+				{/* <AvatarGroup users={users} max={5} /> */}
 			</div>
 			<hr className={style.separator} />
 			<div className={style.section}>
