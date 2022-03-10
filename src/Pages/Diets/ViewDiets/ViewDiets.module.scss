@@ -1,21 +1,36 @@
+@use '../../../config/mixins/'as Mixins;
+
 .body {
-	text-align: left;
-	display: flex;
-	flex-direction: column;
-	gap: 20px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 
-	#myPlans {
-		color: white;
-		width: fit-content;
-		border-bottom: 2px solid gray;
-	}
+  #myPlans {
+    color: white;
+    width: fit-content;
+    border-bottom: 2px solid gray;
+  }
 
-	.plans {
-		max-height: 400px;
-		display: flex;
-		padding: 10px;
-		gap: 20px;
-		flex-direction: column;
-		overflow-y: auto;
-	}
+  .plans {
+    max-height: 400px;
+    display: flex;
+    padding: 10px;
+    gap: 20px;
+    flex-direction: column;
+    overflow-y: auto;
+  }
+}
+
+.create {
+  @include Mixins.blue-button;
+}
+
+.emptyContainer {
+  display: grid;
+  grid-template-rows: repeat(2, auto);
+  gap: 40px;
+  align-items: center;
+  justify-items: center;
+  height: auto;
 }

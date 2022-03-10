@@ -1,9 +1,9 @@
-import style from './ViewDiets.module.scss';
-import DietCard from '../DietCard/DietCard.jsx';
 import { useEffect } from 'react';
-import { getDietsById } from '../../../Redux/apiCalls/dietsCall/getDietsById';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { getDietsById } from '../../../Redux/apiCalls/dietsCall/getDietsById';
+import DietCard from '../DietCard/DietCard.jsx';
+import style from './ViewDiets.module.scss';
 
 const diet = {
     name: 'Dieta Cetogénica',
@@ -47,7 +47,7 @@ export default function ViewDiets() {
                 </div>
             )}
         </div>
-    )
+    );
 
     return (
         <div className={style.body}>
@@ -56,12 +56,16 @@ export default function ViewDiets() {
             <div className={style.plans}>
                 <DietCard name={diet.name} clients={diet.clients} weekly={diet.weekly} />
             </div>
-            <Link to='/diets/create' >
-                <button>Create Diets</button>
-            </Link>
-            <Link to='/recipes' >
-                <button>Create Recipe</button>
-            </Link>
+            {(user.Nutritionist && 
+                <div className={style.emptyContainer}>
+                    <Link to='/diets/create' >
+                        <button className={style.create} >Create Diets</button>
+                    </Link>
+                    <Link to='/recipes' >
+                        <button className={style.create} >Create Recipe</button>
+                    </Link>
+                </div>
+            ) || ''}
         </div>
     );
 }
