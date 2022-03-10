@@ -34,9 +34,9 @@ const RecipeContainer = ({ recipe, user, onClick }) => {
                 <h4 className={s.elementData}>{recipe.grs}</h4>
             </div>
         </div>
-        <button className={s.deleteButton} onClick={() => {
-            deleteRecipes(dispatch, user.userId, recipe.id, user.accessToken);
-            getAllRecipesByUserId(dispatch, user.userId, user.accessToken)
+        <button className={s.deleteButton} onClick={async () => {
+            await deleteRecipes(dispatch, user.userId, recipe.id, user.accessToken);
+            await getAllRecipesByUserId(dispatch, user.userId, user.accessToken);
         }}>Delete</button>
         <button className={s.editButton} onClick={() => onClick(true, recipe)}>Edit</button>
     </div>;
