@@ -82,16 +82,27 @@ export default function RoutineForm({ onAdd }) {
     setData({ ...data, [property]: value });
   };
 
+
   const handleSubmit = (e) => {
     const exerciseValues = Object.values(data.exercises).map(entry => (entry.length && entry) || null);
+
     const obj = {
       owner: userId,
       values: {
         ...data,
-        exercises: exerciseValues.find(e => e) || null
+        exercises: exerciseValues
       }
     };
-    const error = Object.keys(obj.values).map(key => (!obj.values[key] || !obj.values[key].length) && key).filter(e => e)[0];
+
+    const error = Object.keys(obj.values).map(key => {
+      if (Array.isArray(obj.values[key])) {
+        const hasValues = obj.values[key].filter(e => e);
+        if (!hasValues.length) return key;
+      } else if (!obj.values[key]) {
+        return key;
+      }
+    }).filter(e => e)[0];
+
     if (error) {
       alert(`Error! field '${error}' can't be empty.`);
       e.preventDefault();
