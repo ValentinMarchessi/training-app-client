@@ -5,22 +5,22 @@ import { getDietsById } from '../../../Redux/apiCalls/dietsCall/getDietsById';
 import DietCard from '../DietCard/DietCard.jsx';
 import style from './ViewDiets.module.scss';
 
-const diet = {
-    name: 'Dieta Cetogénica',
-    clients: [
-        { name: 'Jorge', avatar: 'https://cdn2.excelsior.com.mx/media/styles/image800x600/public/pictures/2018/04/04/1892884.jpg' },
-        { name: 'Jorge', avatar: 'https://cdn2.excelsior.com.mx/media/styles/image800x600/public/pictures/2018/04/04/1892884.jpg' },
-        { name: 'Jorge', avatar: 'https://cdn2.excelsior.com.mx/media/styles/image800x600/public/pictures/2018/04/04/1892884.jpg' },
-        { name: 'Jorge', avatar: 'https://cdn2.excelsior.com.mx/media/styles/image800x600/public/pictures/2018/04/04/1892884.jpg' },
-        { name: 'Jorge', avatar: 'https://cdn2.excelsior.com.mx/media/styles/image800x600/public/pictures/2018/04/04/1892884.jpg' },
-    ],
-    weekly: {
-        energy: 4000,
-        carbs: 200,
-        fats: 300,
-        proteins: 400,
-    },
-};
+// const diet = {
+//     name: 'Dieta Cetogénica',
+//     clients: [
+//         { name: 'Jorge', avatar: 'https://cdn2.excelsior.com.mx/media/styles/image800x600/public/pictures/2018/04/04/1892884.jpg' },
+//         { name: 'Jorge', avatar: 'https://cdn2.excelsior.com.mx/media/styles/image800x600/public/pictures/2018/04/04/1892884.jpg' },
+//         { name: 'Jorge', avatar: 'https://cdn2.excelsior.com.mx/media/styles/image800x600/public/pictures/2018/04/04/1892884.jpg' },
+//         { name: 'Jorge', avatar: 'https://cdn2.excelsior.com.mx/media/styles/image800x600/public/pictures/2018/04/04/1892884.jpg' },
+//         { name: 'Jorge', avatar: 'https://cdn2.excelsior.com.mx/media/styles/image800x600/public/pictures/2018/04/04/1892884.jpg' },
+//     ],
+//     weekly: {
+//         energy: 4000,
+//         carbs: 200,
+//         fats: 300,
+//         proteins: 400,
+//     },
+// };
 
 export default function ViewDiets() {
     const dispatch = useDispatch();
@@ -29,34 +29,34 @@ export default function ViewDiets() {
 
     useEffect(() => {
         getDietsById(dispatch, user.userId, user.accessToken);
-        console.log(diets);
     }, [getDietsById, dispatch, user.userId, user.accessToken]);
 
-    const dietCards = diets?.map(diet =>
-        <div key={diet.id}>
-            <h1>{diet.title}</h1>
-            {diet.plain.map(o =>
-                <div>
-                    {o.day}
-                    <h2>Breakfast</h2>
-                    {o.meals.breakfast.map(meal => <p>{meal}</p>)}
-                    <h2>Lunch</h2>
-                    {o.meals.lunch.map(meal => <p>{meal}</p>)}
-                    <h2>Dinner</h2>
-                    {o.meals.dinner.map(meal => <p>{meal}</p>)}
-                </div>
-            )}
-        </div>
-    );
+    // const dietCards = diets?.map(diet =>
+    //     <div key={diet.id}>
+    //         <h1>{diet.title}</h1>
+    //         {diet.plain.map(o =>
+    //             <div>
+    //                 {o.day}
+    //                 <h2>Breakfast</h2>
+    //                 {o.meals.breakfast.map(meal => <p>{meal}</p>)}
+    //                 <h2>Lunch</h2>
+    //                 {o.meals.lunch.map(meal => <p>{meal}</p>)}
+    //                 <h2>Dinner</h2>
+    //                 {o.meals.dinner.map(meal => <p>{meal}</p>)}
+    //             </div>
+    //         )}
+    //     </div>
+    // );
 
     return (
         <div className={style.body}>
             <h1 id={style.myPlans}>Planes</h1>
-            {dietCards}
-            <div className={style.plans}>
-                <DietCard name={diet.name} clients={diet.clients} weekly={diet.weekly} />
+            <div className={style.plans} >
+                {diets && diets.map(diet => (
+                    <DietCard key={diet.diet_id} diet={diet} />
+                ))}
             </div>
-            {(user.Nutritionist && 
+            {(user.Nutritionist &&
                 <div className={style.emptyContainer}>
                     <Link to='/diets/create' >
                         <button className={style.create} >Create Diets</button>
