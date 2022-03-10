@@ -33,16 +33,6 @@ export default function DietCard({ diet }) {
                 <h1>{diet.title}</h1>
                 {/* <AvatarGroup users={clients} max={5} avatarStyle={{ height: '60px' }} /> */}
             </div>
-            {diet.plain.map(plan => (
-                <div className={style.section} key={plan.day} >
-                    <h2>{plan.day}</h2>
-                    <div className={style.grid} >
-                        {plan.meals(n => (
-                            <div>{n}</div>
-                        ))}
-                    </div>
-                </div>
-            ))}
             {/* <div className={style.section}>
                 <h2>Total Semanal</h2>
                 <div className={style.grid}>

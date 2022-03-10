@@ -1,3 +1,4 @@
+@use '../../../config/colors/'as Colors;
 @use '../../../config/mixins/'as Mixins;
 
 .body {
@@ -19,6 +20,11 @@
     gap: 20px;
     flex-direction: column;
     overflow-y: auto;
+
+    a{
+      @include Mixins.blue-button;
+      width: 20%;
+    }
   }
 }
 

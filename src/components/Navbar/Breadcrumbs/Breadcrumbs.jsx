@@ -18,7 +18,7 @@ export default function Breadcrumbs() {
 				<Fragment key={`fragment-${i}`}>
 					<hr id={style.divider} />
 					<span className={style.breadcrumb}>
-						{e}
+						{e.replace(/%20/g,' ')}
 					</span>
 				</Fragment>
 			))}

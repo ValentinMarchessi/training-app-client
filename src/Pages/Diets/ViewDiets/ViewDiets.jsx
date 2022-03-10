@@ -49,23 +49,27 @@ export default function ViewDiets() {
     // );
 
     return (
-        <div className={style.body}>
-            <h1 id={style.myPlans}>Planes</h1>
-            <div className={style.plans} >
-                {diets && diets.map(diet => (
-                    <DietCard key={diet.diet_id} diet={diet} />
-                ))}
-            </div>
-            {(user.Nutritionist &&
-                <div className={style.emptyContainer}>
-                    <Link to='/diets/create' >
-                        <button className={style.create} >Create Diets</button>
-                    </Link>
-                    <Link to='/recipes' >
-                        <button className={style.create} >Create Recipe</button>
-                    </Link>
-                </div>
-            ) || ''}
-        </div>
-    );
+		<div className={style.body}>
+			<h1 id={style.myPlans}>Plans</h1>
+			<div className={style.plans}>
+				{diets &&
+                    diets.map((diet) => (
+                        <Link key={diet.diet_id} to={`${diet.title}`} state={diet}>
+                            <h1>{diet.title}</h1>
+                        </Link>
+					))}
+			</div>
+			{(user.Nutritionist && (
+				<div className={style.emptyContainer}>
+					<Link to="/diets/create">
+						<button className={style.create}>Create Diets</button>
+					</Link>
+					<Link to="/recipes">
+						<button className={style.create}>Create Recipe</button>
+					</Link>
+				</div>
+			)) ||
+				""}
+		</div>
+	);
 }
