@@ -15,7 +15,7 @@ export default function News() {
 
 	return !isFetching ? (
 		<div className={styles.container}>
-			{news.length && news.map((item) => <NewsCard title={item.title} img={item.image_url} url={item.url} />)}
+			{news.length && news.map((item, key) => <NewsCard key={key} title={item.title} img={item.image_url} url={item.url} />)}
 		</div>
 	) : (
 		<div id={styles.loading}>
