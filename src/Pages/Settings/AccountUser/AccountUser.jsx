@@ -69,8 +69,6 @@ export default function AccountUser() {
 
 	return (
 		<form className={S.container} autoComplete="off">
-			<Input id={S.username} placeholder={username} label="Username" name="username" onChange={handleInputs} error={error.username} />
-			<Input id={S.email} placeholder={email} label="E-Mail" name="email" onChange={handleInputs} error={error.email} />
 			<NetworkContainer id={S.networks} />
 			<PasswordChange id={S.password} handlePasswords={handleInputs} error={error} />
 			<div id={S.saveChanges}>
