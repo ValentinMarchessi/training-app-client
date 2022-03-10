@@ -12,7 +12,7 @@ const Conversation = ({ conversation, currentUser }) => {
 
         const getUser = async () => {
             try {
-                const res = await axios.get(`http://localhost:8200/api/user/${friendId}`)
+                const res = await axios.get(`https://contra-reloj.herokuapp.com/api/user/${friendId}`)
                 setUser(res.data);
             } catch (error) {
                 console.log(error);

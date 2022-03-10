@@ -60,7 +60,7 @@ const Mensseger = () => {
     useEffect(() => {
         const getConversations = async () => {
             try {
-                const res = await axios.get("http://localhost:8200/api/conversations/" + user.userId);
+                const res = await axios.get("https://contra-reloj.herokuapp.com/api/conversations/" + user.userId);
                 setConversations(res.data);
             } catch (err) {
                 console.log(err);
@@ -72,7 +72,7 @@ const Mensseger = () => {
     useEffect(() => {
         const getMessages = async () => {
             try {
-                const res = await axios.get("http://localhost:8200/api/messages/" + currentChat?._id);
+                const res = await axios.get("https://contra-reloj.herokuapp.com/api/messages/" + currentChat?._id);
                 setMessages(res.data);
             } catch (err) {
                 console.log(err);
@@ -98,7 +98,7 @@ const Mensseger = () => {
         });
 
         try {
-            const res = await axios.post("http://localhost:8200/api/messages", message);
+            const res = await axios.post("https://contra-reloj.herokuapp.com/api/messages", message);
             setMessages([...messages, res.data]);
             setNewMessage("");
         } catch (err) {
