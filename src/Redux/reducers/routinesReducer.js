@@ -6,7 +6,7 @@ const routinesSlice = createSlice({
     allRoutines: [],
     routinesById: {},
     routinesDetails: {},
-    users:[],
+    users: [],
     createdRoutines: {},
     updatedRoutines: {},
     deletedRoutines: {},
@@ -16,41 +16,41 @@ const routinesSlice = createSlice({
   },
   reducers: {
     //GET users Routine
-    getAllUsersRoutinesStart: (state)=>{
+    getAllUsersRoutinesStart: (state) => {
       state.isFetching = true;
     },
-    getAllUsersRoutinesSuccess: (state, action)=>{
+    getAllUsersRoutinesSuccess: (state, action) => {
       state.isFetching = false;
       state.error = false;
-      state.routinesByUser = [...state.users,action.payload];
+      state.routinesByUser = [...state.users, action.payload];
     },
-    getAllUsersRoutinesFailure: (state)=>{
+    getAllUsersRoutinesFailure: (state) => {
       state.isFetching = true;
       state.error = true;
     },
     // CREATE Routine
-    createRoutinesStart: (state)=>{
+    createRoutinesStart: (state) => {
       state.isFetching = true;
     },
-    createRoutinesSuccess: (state,action)=>{
+    createRoutinesSuccess: (state, action) => {
       state.isFetching = false;
       state.error = false;
-      state.routinesByUser = action.payload;
+      state.routinesByUser = [...state.routinesByUser, action.payload];
     },
-    createRoutinesFailure: (state)=>{
+    createRoutinesFailure: (state) => {
       state.isFetching = true;
       state.error = true;
     },
     // GET USER Routines
-    getUserRoutinesStart: (state)=>{
+    getUserRoutinesStart: (state) => {
       state.isFetching = true;
     },
-    getUserRoutinesSuccess: (state,action)=>{
+    getUserRoutinesSuccess: (state, action) => {
       state.isFetching = false;
       state.error = false;
       state.routinesByUser = action.payload;
     },
-    getUserRoutinesFailure: (state)=>{
+    getUserRoutinesFailure: (state) => {
       state.isFetching = true;
       state.error = true;
     },

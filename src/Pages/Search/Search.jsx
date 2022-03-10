@@ -121,7 +121,7 @@ export default function Search() {
 							? current?.map((element) => (
 									<Link
 										key={element.id}
-										to={`/userDetail/${element.id}`}
+										to={`/instructor/${element.id}`}
 										style={{ textDecoration: 'none', color: 'unset', margin: '10px' }}>
 										<UserCard profileImg={element.profile_img} username={element.username} />
 									</Link>
@@ -130,7 +130,7 @@ export default function Search() {
 									currentType === 'Routines' ? (
 										<Link
 											key={element.id}
-											to={`/routineDetail/${element.id}`}
+											to={`/details/${element.id}`}
 											style={{ textDecoration: 'none', color: 'unset', margin: '10px' }}>
 											<RoutineCard
 												avatar={element.owner?.profile_img}
@@ -146,7 +146,7 @@ export default function Search() {
 									) : (
 										<Link
 											key={element.id}
-											to={`/dietDetail/${element.id}`}
+											to={`/details/${element.id}`}
 											style={{ textDecoration: 'none', color: 'unset', margin: '10px' }}>
 											<RoutineCard
 												avatar={element.owner?.profile_img}

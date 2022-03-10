@@ -1,11 +1,7 @@
-#thumb {
-  display: flex;
-
-  img {
-    background-color: gray;
-    object-fit: cover;
-    aspect-ratio: 1/1;
-    border-radius: 50%;
-    max-width: 80px;
-  }
+#avatar {
+  max-width: 100px;
+	background-color: gray;
+	object-fit: cover;
+	aspect-ratio: 1/1;
+	border-radius: 50%;
 }

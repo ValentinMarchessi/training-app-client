@@ -23,6 +23,7 @@ import routinesReducer from "../reducers/routinesReducer";
 import transactionReducer from "../reducers/transactionReducer";
 import userLoginReducer from "../reducers/userLoginReducer";
 import reviewReducer from "../reducers/reviewsReducer";
+import UserById from "../reducers/userByIdReducer";
 
 const persistConfig = {
   key: "root",
@@ -44,6 +45,7 @@ const rootReducer = combineReducers({
   news: newsReducer,
   review: reviewReducer,
   professionals: allProfessionalsReducer,
+  newUser: UserById,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
