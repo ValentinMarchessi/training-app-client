@@ -112,7 +112,7 @@ export default function DietDetail() {
 		<>
 			<div className={style.page}>
                 <h2>{diet.title}</h2>
-				<div className={style.statics}>{data(diet.plain[dayView[2]].meals)}</div>
+				<div className={style.statics}>{data(diet?.plain[dayView[2]].meals)}</div>
 				<div className={style.containerOptions}>
 					<div className={style.days}>{days()}</div>
 					<div>
@@ -129,7 +129,7 @@ export default function DietDetail() {
 					</div>
 				</div>
 				<div className={style.containerFoods}>
-					{diet.plain[dayView[2]].meals[option].map((food, i) => (
+					{diet?.plain[dayView[2]].meals[option].map((food, i) => (
 						<div key={i} className={style.cardFood}>
 							{recetDetail(food)}
 						</div>
